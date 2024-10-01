@@ -57,7 +57,8 @@ The many-particle wavefunction of the bosons is a symetric (exponent $S$) under 
 \[
     \Phi^{(S)}(x_1,..,x_N) = \left(N!\prod_{N}(n_{\nu})!\right)^{-\frac{1}{2}} \sum_{P\in S_n} P \phi_{\nu_1}(x_1)\cdot ..\cdot \phi_{\nu_N}(x_N)
 \]
-where $n_{\nu}$ represents the number of particle in the state $\nu$. Therefor we usaly call it the occupation number of the state $\nu$.
+This represents the an eigenfunction of the non interacting bosonic-Hamiltonian.
+We used $n_{\nu}$, which represents the number of particle in the state $\nu$. Therefor we usaly call it the occupation number of the state $\nu$.
 For fermion this integer has no constrain in general.
 The permutation set $S_n$ contains all the possbile combinations of $x_i$ in the state $\nu_j$ for $i,j\in\natset{N}$.
 
@@ -66,6 +67,7 @@ Fermions are a bit different, their many-particle fermion wavefunction is antisy
 \[
     \Phi^{(A)}(x_1,..,x_N) = \left(N!\right)^{-\frac{1}{2}} \sum_{P\in S_n} \signum{P}\cdot P \phi_{\nu_1}(x_1)\cdot ..\cdot \phi_{\nu_N}(x_N).
 \]
+which is an eigenfunction of the non interacting fermionic-Hamiltonian.
 $\text{sgn}$ represents the signum function. Applied on a permutation $P$ it is one if $P$ is even and minus one if $P$ is even.\\
 We already know that the Pauli principle implies that it can be up to one particle in each energy state. We therfore have $n_\nu \in \{0,1\}$. The normalsization
 factor is the same but the product over the ones vanishes.\\
@@ -159,16 +161,67 @@ From this we can define the number operator $\hat{n}_{\nu}:= c_{\nu}^{\dagger} c
 \[
     \hat{N} = \sum_{\nu} \hat{n}_{\nu}~,~~\text{where logicaly}~ N = \sum_{\nu} n_{\nu}
 \]
-if we apply the operator on a state.
+if we apply the operator on a state.\\
+
+\paragraph{Second quantisation description of the single- and two- particle operators}
+We first need to make an important observation between the Slatter determinant and the single particle state to
+understand the following. First we introduce two basis element |$\Phi_{\alpha}\rangle$ and $|\Phi_{\beta}\rangle$, which can be many-particles eigenstate of the system.
+We can also call them Slatter determinant.
+Further we introduce the probability of the configuration $|\Phi_{\alpha}\rangle$ to scatter into the $|\Phi_{\beta}\rangle$ due to the action of an operator $A$ (momentum, potental, interactions,..).
+This is described by the matrix element $\langle\Phi_{\alpha}|A|\Phi_{\beta}\rangle$ which involves the single particle states $|\alpha_1\rangle, .., |\alpha_N\rangle$ of $|\Phi_{\alpha}\rangle$
+and $|\beta_1\rangle, ..,|\beta_N\rangle$ of $|\Phi_{\beta}\rangle$.
+\[
+    \langle\Phi_{\alpha}|A|\Phi_{\beta}\rangle = \sum_{i,j} C_{ij}\langle\alpha_i|A|\beta_j\rangle
+\]
+involving some constants $C_{ij}$. This describes the overlapp of the two configurations, after that we modified $|\Phi_{\beta}\rangle$ with $A$.
+On the right hand side (r.h.s) we introduced the braket scalar product notation. The bra $\langle\alpha|$ lives in the dual space
+of the Hilbert space. One reads it as the complexe transpose of $|\alpha\rangle$.\\
+
+We recall the single particle Hamiltonian we introduced earlyer. Its second quantisation representation reads
+\[
+    \hat{H}_0 = \sum_{i \in \natset{N}} \hat{h}(x_i) ~ \leadsto ~~ \sum_{\alpha,\beta} \langle \alpha|\hat{h}|\beta\rangle c_{\alpha}^{\dagger}c_{\beta}
+\] 
+where $\alpha$ and $\beta$ are single-particle states of the system. $c_{\alpha}^{\dagger}c_{\beta}$ tries to transfert a fermion
+from the state $|\beta\rangle$ to the state $|\alpha\rangle$.
+We have
+\[
+    \langle \alpha|\hat{h}|\beta\rangle = \int  \varphi_{\alpha}^{\ast}(x) \hat{h}(x) \varphi_{\beta}(x) \dd x\\
+\]
+where $x$ still represents the position and the spin of the particle.\\
+$\hat{h}$ is a single particle operator, it means it acts on one particle at a time.
+Two states are going to be changed. $|\alpha\rangle$ loses a particle and $|\beta\rangle$ gains one. We say for instance, that the 
+configuration before the scattering is $|\Phi\rangle$ and after the scattering is $|\Phi'\rangle$. 
+This means, if our two slatter determinant $|\Phi\rangle$ and $|\Phi'\rangle$ differs in more than two state, there are
+some scattering that we can't describe, so the overlapp must be zero. We allow only two states to be modified. Otherwise the single-particle
+states differ and due to their orthonal properties, we get a zero.\\
+
+Similarly for the two-particle operator we have
+\[
+    \hat{H}_I = \frac{1}{2}\sum_{i\neq j \in \natset{N}} \hat{v}(x_i, x_j) ~ \leadsto ~~ \frac{1}{2}\sum_{\alpha,\beta,\gamma,\delta} \langle \alpha\beta|\hat{v}|\gamma\delta\rangle c_{\alpha}^{\dagger}c_{\beta}^{\dagger}c_{\gamma}c_{\delta}
+\]
+involving a more nested overlap of the four states:
+\[
+    \langle\alpha\beta|\hat{v}|\gamma\delta\rangle = \int \int \varphi_{\alpha}^{\ast}(x) \varphi_{\beta}^{\ast}(x') \hat{v}(x,x') \varphi_{\gamma}(x) \varphi_{\delta}(x') \dd x \dd x'.
+\]
+which modifies four states so the overlapp of two slatter determinant vanishes if the determinant differ in at least four states.\\ 
+
+The l.h.s of the equation is the matrix element $\langle\Phi_{\alpha}|\hat{v}|\Phi_{\beta}\rangle$ of the the operator
+ $\hat{v}$, which involves two basis state |$\Phi_{\alpha}\rangle$ and $|\Phi_{\beta}\rangle$ .
+On the r.h.s we have a description with wavefunctions, which own to the first quantisation. What we have here
+is the bridge between the first and the second quantisation. One could compute each side separately and notice
+that both formalism lead to the same result.\\
+
+A useful tool that one can use is gives a wavefunction of a single-particle state:
+\[\varphi_{\alpha}(x) = \langle x|\alpha\rangle\]
+
+
 \subsubsection{Second quantisation for bosons}
 \subsection{Basis transformation}
 \subsection{Interactive electron gas}
 
 The main transformation beween the second quantisation to the first are the followings:
 \begin{align*}
-    \varphi_{\alpha}(x) =& \langle x|\alpha\rangle\\
     \langle \alpha |V|\beta\rangle =& \int  \varphi_{\alpha}^{\ast}(x) V(x) \varphi_{\beta}(x) \dd x\\
-    \langle\alpha\beta|V|\gamma\delta\rangle =& \int \int \varphi_{\alpha}^{\ast}(x) \varphi_{\beta}^{\ast}(x') V(x,x') \varphi_{\gamma}(x) \varphi_{\delta}(x') \dd x \dd x'
 \end{align*}
 \section{Superconductivity}
 Superconductivity can be illustrated as a phase transition of a meterial under a crital temperature. In the superconductive state the material 
