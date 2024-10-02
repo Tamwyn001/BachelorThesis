@@ -223,6 +223,8 @@ The main transformation beween the second quantisation to the first are the foll
 \begin{align*}
     \langle \alpha |V|\beta\rangle =& \int  \varphi_{\alpha}^{\ast}(x) V(x) \varphi_{\beta}(x) \dd x\\
 \end{align*}
+
+%------------------------%
 \section{Superconductivity}
 Superconductivity can be illustrated as a phase transition of a meterial under a crital temperature. In the superconductive state the material 
 become a perfect diamaget and its resistivity vanishes. We then observe some shielding currents that araise on it's surface
@@ -239,6 +241,7 @@ a lower density of these particles. The penetration is described as some magneti
 The Meissner state is a thermodynamical state. We can show that the free energy of the superconductive state is higher than the normal state. 
 This results in a lower entropy compered to the normal state.
 
+For readability reason we set the reducted Planck constant $\hbar = 1$ in the following.\\
 \subsection{Theoretical framework and BCS theory}
 The Hamiltonian of the system is discribed by the solid state physics. The consider the energy of the electrons and the ions in a lattice.
 \[
@@ -281,14 +284,14 @@ An important fact is that without interaction, the particle shouldn't scatter in
 which is zero if the wave-vectors between the two timepoint differs. 
 We observe that only the past time $t'-t$ is relevant. This is due to the time independent property of the Hamiltonian.
 We are going to use the representation in the frequency space, using a Fourier-transformation.
-\[
+\begin{equation}
     G_0(\bm{k},\omega) = \int_{\mathbb{R}} e^{\im\omega t} G_0(\bm{k},t)\dd t = \frac{1}{\omega - \epsilon_{\bm{k}} + \im \delta_{\bm{k}}} \label{eq:single_propa}
-\]
+\end{equation}
 where $\delta_{\bm{k}} = \delta \cdot\signum{\epsilon_{\bm{k}} - \epsilon_{F}}$ involving a very small non zero number $\delta$. We observe that
 this analytical function has a pole given by 
 \begin{align*}
     &\omega - \epsilon_{\bm{k}} + \im \delta_{\bm{k}} = 0\\
-    \Longleftrightarrow & \omega = \epsilon_{\bm{k}} - \im \delta_{\bm{k}}
+    \Longleftrightarrow ~& \omega = \epsilon_{\bm{k}} - \im \delta_{\bm{k}}
 \end{align*}
 where we denote $\im$ as the imaginary unit to avoid confusion with the index $i$.
 The frequency $\omega$ gives the so called spectrum of the exitation from the unique-particle system. The imaginary part serves as a damping term and is 
@@ -309,30 +312,299 @@ and for the density of state
 \[
     D(\omega) = \int A(\bm{k},\omega) \dd ^3 k~,~~ \text{or for discontinuous state}~ \sum_{\bm{k}} A(\bm{k}, \omega).
 \]
-\subsubsection{Fermi-Liquid}
+\subsubsection{Fermi-Liquid - the interacting case}
+Now that we've described the non interacting system, let us complexify the model by introducing the interactions.
 In an earlyer section we saw how
-\[
+\begin{equation} \label{eq:FermiLiquid_Hamiltonian}
     H = \sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma} + \sum_{\bm{k},\sigma,\bm{k}',\sigma'}
         V_{\bm{k}\bm{k}', \bm{q}} c_{\bm{k}-\bm{q},\sigma}^{\dagger}c_{\bm{k}+\bm{q},\sigma'}^{\dagger}c_{\bm{k},\sigma}c_{\bm{k}',\sigma'}
-\]
-represent the pairwise interaction of multiple electrons and their respective energy. To extend the model we now want to introduce two new [measures],
-the propagator $G$ and the one-particle irreductible self-energy $\Sigma$.\\
-
-The propagator [bildet ab] in the complex space and sgives the probability amplitude of finding a the particle in the state $|\bm{k},\sigma\rangle$ at a time $t$. On the other hand 
+\end{equation}
+represent the pairwise interaction of multiple electrons and their respective energy. 
+The process the Hamiltonian describes can be illustrated with the following diagram:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{feynman}
+          \vertex (a) at (3,0){};
+          \vertex (b) at (0,0);
+          \vertex (c) at (-1,2){\(\bm{k}-\bm{q},\sigma\)};
+          \vertex (d) at (-1,-2){\(\bm{k},\sigma\)};*
+          \vertex (c2) at (4,2){\(\bm{k}'+\bm{q},\sigma\)};
+          \vertex (d2) at (4,-2){\(\bm{k}',\sigma\)};
+          \diagram* {
+            (d) -- [fermion] (b) -- [fermion] (c),
+            (b)-- [scalar, edge label=\(\bm{q}\)] (a),
+            (d2) -- [fermion] (a) -- [fermion] (c2)
+        };
+        \end{feynman}
+    \end{tikzpicture}
+    \label{ref:photon_exchange}
+    \caption{The interaction of two electrons modulated by a photon of momentum $\bm{q}$.}
+\end{figure}
+To extend the model we now want to introduce two new quantities,
+the propagator $G$ and the one-particle irreductible self-energy $\Sigma$.
+The propagator maps in the complex space and sgives the probability amplitude of finding a the particle in the state $|\bm{k},\sigma\rangle$ at a time $t$. On the other hand 
 $\Sigma = \Sigma_R + \im \Sigma_I$ contains 
 the lifetime of the particle in this state and shift of energy of the particle due to the interaction with the surroundings. The frameworks defines the 
 non-interacting energy of the particle as $\epsilon_{\bm{k}}$. Whene put in an interacting system the spectrum shifts and becomes 
 $\tilde{\epsilon}_{\bm{k}} =  \epsilon_{\bm{k}} + \Sigma_R$. Due to the interactions, the particle then has a much smaller lifetime. $\Sigma_I$ is antiproportional to 
 the particle's lifetime $\tau_{\bm{k}}$. We therfore expect $\Sigma_I$ to be realy small in the non interacting case. 
-These two \textit{Größe} are linked trough the Dyson equation, which reads
+These two quantities are linked trough the Dyson equation, which reads
 \[
     \bigl(G(\bm{k}, \omega)\bigr)^{-1} =  \bigl(G_0(\bm{k}, \omega)\bigr)^{-1} - \Sigma(\bm{k},\omega).
 \]
-\textit{sigma R}
+\rem{$sigma R$}?\\
+
 One can use a Fourier-transformation to switch from the time representation to the frequency representation $\omega$. Reordering the equation and using the result
 from \ref{eq:single_propa} we obtain
 \[
     G(\bm{k},\omega) = \frac{1}{\omega - \epsilon_{\bm{k}} - \Sigma}.
 \]
+This function has a pole at $\omega = \epsilon_{\bm{k}} + \Sigma_R + \im \Sigma_I$, where in the none interacting case $\omega = \epsilon_{\bm{k}} + \im\Sigma_I$.
+It makes makes sense, the particle spectrum is now shifted due to the finite lifetime of the particle as a result of the interaction.\\
+
+In complexe analysis the order of a pole is given as $n$ if $f(z)$ is meromorphic and has a pole at $z_0$ where
+\[
+    (z-z_0)^n f(z)
+\]
+is also meromorphic in the neighbourhood of $z_0$. In our case we're interested in the 0.th order of the pole \textit{why?}. 
+We therfore ignor the imaginary part of the pole and we get
+\[
+    \omega = \epsilon_{\bm{k}} + \Sigma_R(\bm{k}, \epsilon_{\bm{k}}) = \tilde{\epsilon}_{\bm{k}}.  
+\]
+Taking in account a small imaginary part requires a Taylor expension of $\Sigma_{R}$ \textit{why?} in the neighbourhood of $\omega = \tilde{\epsilon}_{\bm{k}}$.
+\begin{center}
+    \textit{Follow with the book and check}
+\end{center}
+We define the residue of the propagator as 
+\begin{equation}
+    z_{\bm{k}} = \frac{1}{1- \left.\parDif{\Sigma}{\omega}\right|_{\omega = \tilde{\epsilon}_{\bm{k}}}} \label{eq:residue}
+\end{equation}
+This residue is a decreasing function of the energy, which means that its influence is more important for low energies. 
+An interpretation could be that the slow moving electrons have less time to interact with their homologues. 
+\textit{Interacting electrons are degraded version of the non-interacting case. There remains a} $z_{\bm{k}}<1$.\\ 
+
+\paragraph{Quasi-particles}
+The main question we have now is how does the residue look like on the fermi surface? We set us in the context of a low energy electron, close to the Fermi-surface and 
+once we had a interaction. It turns out that if there is a $z_{\bm{k}_F}>0$ we find a precise low energy single particle excitation. This exitation is very close
+to the exact eigenfunction of an non-interacting Hamiltonian. We call this state akin to the free electron a quasi-particle.\\
+
+This is it, a Fermi-liquid is a system of interacting electrons and quasi-particles. These quasi-particles are not eigenstates of the interacting Hamiltonian anymore.
+We can't consider them as an electron like excitation in the interaction context.
+The interactions allows to scatter some states in and out of the Bloch-State. \rem{Introduce what a Bloch state is.}\\
+
+The above expression for the momentum distribution $n(\bm{k})$ can be ploted and we can recognise a gap of $z_{\bm{k}}$ \rem{or $k_F$}?
+wich is an inportant feature of the Fermi-liquid.\\
+
+\paragraph{Repulsive interactions}
+In condensed matter physics the dominant effect is the repulsive interactions between the electrons due to the coulomb potential. We already described it in the Hamiltonian 
+$H_{e^-e^-}$ using some pairwise interactions in \ref{eq:FermiLiquid_Hamiltonian}. Therfore the goal is now to find an expression for the potential $V_{\bm{k}\bm{k}',\bm{q}}$.\\
+
+As we can see in eq. \ref{eq:FermiLiquid_Hamiltonian} the system is describe in the momentum-space. For this reason we need to 
+consider the Fourier-transform of the real-sapce potential. We start with the coulomb potential which is predominant in the solid state physics.
+However the integral is going to diverge for $r\rightarrow 0$. To solve this problem We
+introduce the Yakuma potential which exponentialy modulates the coulomb potential:
+\begin{equation}
+    V_{\lambda}(r) = \frac{1}{4\pi\epsilon_0} \frac{e^2}{r} e^{-r\lambda} \label{eq:Yakuma}
+\end{equation}
+this is a solid approximation since we can the fourier transform and let $\lambda\rightarrow 0$ in the result. \rem{Result in appendix?}.
+The result we get is 
+\begin{equation} \label{eq:Pot_repulsive_el}
+    V_{\bm{k},\bm{k}',\bm{q}} = V_{\text{el}}(\bm{q}) := \frac{1}{4\pi\epsilon_0} \frac{2\pi e^2}{\bm{q}^2}
+\end{equation}
+with $\bm{q}$ the momentum transfert during the interaction. The Fermi-liquid remains stable to the repulsive processes.\\
+
+However as we're going to see in the next section, attractive interactiosn also takes place due to an exchange of phonons between two electrons. This will be the 
+ground stone to our description of the Meissner state.
+
+\subsubsection{Instability due to attractive Interactions}
+\rem{Hier we are going to show how the attractive interactions destabilise the Fermi-liquid:new ground states are open.}
+Now that we showed the influence of attractive interactions, we seek some candidate process that are attractive.
+
+\subsubsection{Phonon-mediated attractive interactions \rem{reformulate}}
+As known from condensed matter physics, the lattice can have some intern oscillations called phonons resulting from the spring coupling between the ions.
+Now we can imagine that due to the Coulomb interactions, an electron can shift an ions producing a phonon. If this phonon travels and influences another electron
+on it way, we result in an effective electron-electron interaction thanks to the phonon. A similar case would be the exchange of a photon between two electrons.
+We are going to show how this exchange can lead to an attractive interaction.\\
+
+Tn a dense lattice the ions moves much slowly around their equilibrium positions than the lights electrons who pass by. The electron moves the charges of the ions resulting
+in a small dipol moment. A second electron that also passes in the surounding is going to feel the dipol moment and will be 
+attracted. Then the ion shifts back in its new equilibrium position and the dipol moment vanishes long after the first electron passed.\\
+
+Morover due to the Coulomb interaction, the electrons aim to put as most distance as they can between them in a minimal amount of time. Therfore
+we can say that the $\bm{k}$-quantum number should be opposite between the two electron. If we target to put these concepts in a mathematical form, we use
+our previous Hamiltonian and add an electron-phonon interaction term.
+\[
+    H = \sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma} + \sum_{\bm{k},\sigma,\bm{k}',\sigma'}
+        V_{\bm{k}\bm{k}', \bm{q}} c_{\bm{k}-\bm{q},\sigma}^{\dagger}c_{\bm{k}+\bm{q},\sigma'}^{\dagger}c_{\bm{k},\sigma}c_{\bm{k}',\sigma'} + V_{e^-\text{phonon}}
+\]
+where $V_{e^-\text{phonon}}$ usely depends on the sum of the phonons-modes $\lambda$. These modes are similar to the oscillations modes we have in a $CO_2$-molecule.
+The expression form the phonon-depend potential in momentum space reads 
+\begin{equation} \label{eq:Pot_phonon_interaction}
+    V_{e^-\text{phonon}} = \sum_{\bm{k},\bm{q},\sigma} M_{\bm{q}}\left(a_{-\bm{q}^{\dagger}} + a_{\bm{q}}\right) c_{\bm{k}+\bm{q},\sigma}^{\dagger}c_{\bm{k},\sigma}.
+\end{equation}
+$M_{\bm{q}}\left(a_{-\bm{q}^{\dagger}} + a_{\bm{q}}\right) $ is a matrix element of the coupling between the electron and the phonon. 
+The $a_{\bm{q}}$ and $a_{\bm{q}^{\dagger}}$ are annihilation and creation operators of the phonon with wavevector $\bm{q}$. Further researches have shown that \rem{source}
+\[
+    \commu{a_{\bm{q}}}{a_{\bm{q}^{\dagger}}} = \delta_{\bm{q},\bm{q}'}
+\] 
+and therefor phonons act like bosons. Their number is however not conserved in a solid. The matrix element $M$ is a function of the eigenfrequency 
+\rem{or energy?} of the phonon $\omega_{\bm{q}},\lambda$ and the fourier tramsform $\tilde{V}$ of the electrostatic potential $V_{\lambda}(\bm{q})$ between the electron
+and the phonon of mode $\lambda$, if included. \rem{more details?}  
+\[
+    M_{\bm{q},\lambda} = \im (\bm{q}\cdot \bm{\xi}_{\lambda}) \sqrt{\frac{\hbar}{2M\omega_{\bm{q},\lambda}}} \tilde{V}_{\lambda}(\bm{q}).
+\]
+$M$ can't be realy computed due to its complexity, we hold it as a parameter here. This pairing is much waker than the electron-photon interaction. 
+An other important fact ist than for $\bm{q}\rightarrow 0$ the matrix element $M$ vanishes. $M$ is proportional to $\bm{q}$ which illustrate the the electron-phonon interaction
+happens between a point charge and a dipol.\\
+
+The goal is now the implicitly express the phonon exchange with an effective electron-electron process. If we consider two diagrams, one aiming to describe the absorption of a phonon
+and one the emission of a phonon, we can combine them to get a new effective interaction like the photon exchange case.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{feynman}
+          \vertex (a) at (2,0){};
+          \vertex (b) at (0,0);
+          \vertex (c) at (-1,2){\(\bm{k}-\bm{q},\sigma\)};
+          \vertex (d) at (-1,-2){\(\bm{k},\sigma\)};
+          \vertex[left = 2mm of b] (e) {\(M_{\bm{q}}\)};
+          \diagram* {
+            (d) -- [fermion] (b) -- [fermion] (c),
+            (b)-- [scalar, edge label=\(\bm{q}\)] (a),
+        };
+        \end{feynman}
+      \end{tikzpicture} \hspace{2cm}
+    \begin{tikzpicture}
+        \begin{feynman}
+          \vertex (a) at (-2,0){};
+          \vertex (b) at (0,0);
+          \vertex (c) at (1,2){\(\bm{k}+\bm{q},\sigma\)};
+          \vertex (d) at (1,-2){\(\bm{k},\sigma\)};
+          \vertex[right = 2mm of b] (e) {\(M_{\bm{q}}\)};
+          \diagram* {
+            (d) -- [fermion] (b) -- [fermion] (c),
+            (a)-- [scalar, edge label=\(\bm{q}\)] (b),
+        };
+        \end{feynman}
+      \end{tikzpicture}
+    \caption{The emission (left) and absorption (right) digramm of a phonon of wavevector $\bm{q}$ by an electron.}
+    \end{figure}
+If we represent this inderaction by linking both $\bm{q}$-edges. The energy of phonon is simply defined as
+\[
+    H_{\text{phonon}} = \sum_{\bm{q}} \omega_{\bm{q}} a_{\bm{q}}^{\dagger}a_{\bm{q}}
+\]
+and we can write a propagator which describes the dashed line in a connected context similar to to photon case described in the figure \ref{ref:photon_exchange}.
+\[
+    D_0(\bm{q},\omega) = \frac{1}{\omega^2 - \omega_{\bm{q}}^2 + \im \eta}
+\]
+involving a very small quantity $\eta$. From this \rem{how?} we obtain an expression for the phonon-mediated interaction of two electrons:
+\begin{equation}\label{eq:Pot_attractive_el_phonon}
+    V^{(ph)}_{\text{eff}}(\bm{q},\omega) = \frac{2|M_{\bm{q}}|^2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2}
+\end{equation}
+with $\bm{q}$ the momentum transfert.
+We can now use a more complete potential in the Hamiltonian involving both the electrostatic \ref{eq:Pot_repulsive_el} and effective phonon-mediated interactions \ref{eq:Pot_attractive_el_phonon}.
+\begin{equation}
+    V_{\text{eff}}(\bm{k},\bm{k}',\bm{q}) =  V_{\text{el}}(\bm{q}) + V^{(ph)}_{\text{eff}}(\bm{q},\omega) \label{eq:V_eff} = \frac{1}{4\pi\epsilon_0} \frac{2\pi e^2}{\bm{q}^2} + \frac{2|M_{\bm{q}}|^2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2}
+\end{equation}
+
+Here we have reached a very important point. This new potential can be in some case negative, which means we result in an attractive interaction between the electrons. 
+With other word, in some cases the phonon exchage can be attractive and even overcome the strong repulsive coulomb potential.
+\rem{Graph of V and the simplified version of it, which is also a very good predication.}
+
+\subsubsection{Contraction of the effective Hamiltonian}
+We want to restrict ourselves in the case where the effective Hamiltonian is attractive. This happens in a small shell around the Fermi-surface.
+If we want to maximise the phase space for the scattering, the state before and after the scattering have to be in this shell. A good idea is 
+to consider that the two electrons have opposite wavevectors. The folowing figure illustrates this process.
+\begin{figure}[H]\centering
+    \begin{tikzpicture}
+        \coordinate (O) at (-3, -3);
+        \coordinate (a) at (2.21, -0.981);
+        \coordinate (b) at (1.2, 2.078);
+        \filldraw[color=black, fill = white!0 , thick, dotted](0,0) circle (2.7);
+        \filldraw[color=black, fill = white!0, very thick](0,0) circle (1.9);
+        \draw[->, thick] (0,0) -- (a) node[anchor = south]{$\bm{k}'$};
+        \draw[->, thick] (0,0) -- (b) node[anchor = west]{$\bm{k}$};
+        \draw[->, thick, draw = TamGreen ] (a) -- ++(2,-0.3) node[midway, anchor = south]{$\bm{q}$};
+        \draw[->, thick] (b) -- ++(-2,0.3) node[midway, anchor = south]{$-\bm{q}$};
+        \coordinate (a) at (2.21, -0.981);
+        \draw[->] (O) -- ++(1,0) node[anchor = south]{$\bm{k_x}$};
+        \draw[->] (O) -- ++(0,1) node[anchor = west]{$\bm{k_y}$};
+    \end{tikzpicture}
+    \hspace{0.7cm}
+    \begin{tikzpicture}
+        \coordinate (a) at (1.697, 1.697);
+        \coordinate (b) at (-1.697, -1.697);
+        \coordinate (shift) at (0,-3);
+        \filldraw[color=black, fill = white!0 , thick, dotted](0,0) circle (2.7);
+        \filldraw[color=black, fill = white!0, very thick](0,0) circle (1.9);
+        \draw[->, thick] (0,0) -- (a) node[anchor = west]{$\bm{k}$};
+        \draw[->, thick] (0,0) -- (b) node[anchor = north]{$\bm{k}'$};
+        \draw[->, thick] (a) -- ++(-2.3,0.8) node[midway, anchor = south]{$-\bm{q}$};
+        \draw[->, thick] (b) -- ++(2.3,-0.8) node[midway, anchor = north]{$\bm{q}$};
+        \filldraw[color=white, fill = white!0 , thick, dotted] (shift) circle (0.1);3
+    \end{tikzpicture}
+    \caption{The scattering process of two electrons with opposite wavevectors $\bm{k}$ and $\bm{k}'$. We have a momentum transfert $\bm{q}$ between them. 
+    The thick line illustrates the Fermi-surface and the dotted one the thin shell. As we see if the electrons have opposite wavevectors, and the $\bm{k}$ electrons
+    scatters into the shell, then the $\bm{k}'$ electron scatters in the shell as well. This is not allways the case if the wavevectors don't agree as we can see on the left figure.
+    The right figure points out the maximisation process. With opposite wavevectors,
+    we get the largest possbility spectrum for the scattering.}
+\end{figure}
+Further the attractivity is a short range effect, so if we want to consider it, we must think that the electrons are very close to eachother.
+This requires the electrons to have opposite spins due to the Pauli principle. This is a same as a lattice site. This is the only 
+possbility for them to cohabit the same neighbourhood. \rem{check} The approximation turns out to be a good model.\\
+
+Now we allow us to rename some variables:
+\[
+    \bm{k} + \bm{q} \longrightarrow \bm{k} ~,~~ \bm{k} \longrightarrow \bm{k}'
+\]
+The Hamiltonian that follows from these transformations is called the BCS-reduced Hamiltonian
+\begin{equation} \label{eq:BCS_ReducedHamiltonian}
+    H = \sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma} + \sum_{\bm{k},\sigma,\bm{k}} V_{\bm{k}\bm{k}'} c_{\bm{k},\sigma}^{\dagger}c_{-\bm{k},-\sigma}^{\dagger}c_{-\bm{k}',-\sigma}c_{\bm{k}',\sigma}
+\end{equation}
+$V_{\bm{k}\bm{k}'}$ is now a matrix element that acts if the wavevectors are close to the Fermi-surface. The electrons have to move in opposite directions with opposite spins.
+Due to the retardation processes we introduced earlier, there remains a distortion in the lattice long after the electrons passed. Due to the inducting dipol moment,
+the other electron is attracted towards the distortion with $M_{\bm{q}}$ \rem{?}. As we also saw, the coulomb repulsion causes a colinear displacement, close to the distortion
+of the homologue. This phenomenon is called the Cooper-pairing and is a coupling that happens in momentum space.\\
+
+An interacting fact is that these interactions are the source of the superconductivity but they are also to main origin of resistivity in clean materials.
+
+\subsection{On our way to the BCS-theory}
+After this introduction on the phonon coupling between the electrons in the momentum space, or Cooper-pairing,
+we aim to describe the energy of the superconductor in a mean-field approach. The goal of it is to reduce the description
+with the neighbours to the description of a site, in the mean field of the other sites. Thefore we are going to describe 
+a one-boby problem which is easier to compute. As known mean-fiels approches requier self-consistent equations that will as well follow.\\
+
+The first step is to introduce the following epexctation values:
+\begin{align}
+    b_{\bm{k}} = &\langle c_{-\bm{k}\downarrow}c_{\bm{k}\uparrow}\rangle \\
+    b_{\bm{k}}^{\dagger} = &\langle c_{\bm{k}\uparrow}^{\dagger}c_{-\bm{k}\downarrow}^{\dagger}\rangle 
+\end{align}
+wich lead to a new expression for the $c$ operators:
+\begin{equation}
+    c_{-\bm{k}\downarrow}c_{\bm{k}\uparrow} = b_{\bm{k}} + \underbrace{c_{-\bm{k}\downarrow}c_{\bm{k}\uparrow} - b_{\bm{k}}}_{\delta_{b_{\bm{k}}}}
+\end{equation}
+where we can see the $\delta_{b_{\bm{k}}}$ as a deviation, or fluctuation term. If we introduce it back into the Hamiltonian, we can write
+\[
+    H = \sum_{\bm{k}\sigma} \epsilon_{\bm{k}} c_{\bm{k}\sigma}^{\dagger}c_{\bm{k}\sigma} + \sum_{\bm{k},\bm{k}'} V_{\bm{k}\bm{k}'} \bigl( b_{\bm{k}}^{\dagger} + \delta_{b_{\bm{k}}}^{\dagger}\bigr)\bigl( b_{\bm{k}} + \delta_{b_{\bm{k}}}\bigr).
+\]
+We can compute the product of the two terms in parenthesis and forget the $\mathcal{O}\left(\delta_{b_{\bm{k}}}^2\right)$ because the fluctuation are small. We then obtain the following expression
+\[
+    H = \sum_{\bm{k}\sigma} \epsilon_{\bm{k}} c_{\bm{k}\sigma}^{\dagger}c_{\bm{k}\sigma} + \sum_{\bm{k},\bm{k}'} V_{\bm{k}\bm{k}'} \left( b_{\bm{k}}^{\dagger}c_{-\bm{k}'\downarrow}c_{\bm{k}'\uparrow}  + b_{\bm{k}'}^{\dagger} c_{\bm{k}\uparrow} ^{\dagger}c_{-\bm{k}\downarrow}^{\dagger} -  b_{\bm{k}}^{\dagger} b_{\bm{k}'}\right).
+\]
+
+The next step is to define the superconduction gap parameter $\Delta$:
+\begin{align}
+    \Delta_{\bm{k}'} = &\sum_{\bm{k}'} V_{\bm{k}\bm{k}'} b_{\bm{k}}^{\dagger}\\
+    \Delta^{\dagger}_{\bm{k}} = &\sum_{\bm{k}'} V_{\bm{k}\bm{k}'} b_{\bm{k}'}
+\end{align}
+wich brings our Hamiltonian in another form:
+\[
+    H = \sum_{\bm{k}\sigma} \epsilon_{\bm{k}} c_{\bm{k}\sigma}^{\dagger}c_{\bm{k}\sigma} + \sum_{\bm{k}} \left( \Delta_{\bm{k}}^{\dagger} b_{\bm{k}}^{\dagger}c_{-\bm{k}'\downarrow}c_{\bm{k}'\uparrow}  + \Delta_{\bm{k}}^{\dagger} c_{\bm{k}\uparrow} ^{\dagger}c_{-\bm{k}\downarrow}^{\dagger} -  b_{\bm{k}}^{\dagger} \Delta_{\bm{k}}^{\dagger} \right).
+\]
+We took the liberty to spilt the sum, rename the $\bm{k}'$ to $\bm{k}$ and recombine the sum. We notice that this form involves a lot of creation and anihilation terms that 
+are not commun for an effective non-interacting electron gaz. We remeber that we aim a one particle descirption in a mean field of its neighbours.
+This complexity will lead to some difficulties to express the quais-particle spectrum. A good soltution is 
+to rotate the basis of the $c$ operators to land in a basis that diagonalises the Hamiltonian and therfore minimises the number of operators.
 \end{document}
 
