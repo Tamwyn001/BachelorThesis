@@ -13,9 +13,9 @@ only applies on fermion is can be derived with the help of the second quantisati
 
 \subsection{Bosons and fermions}
 We consider without loss of generality the following hamiltonian. 
-\[
+\begin{equation}\label{eq:MasterHamiltonian}
     \hat{H} = \hat{H}_0 + \hat{H}_I
-\]
+\end{equation}
 with the single particle operator $\hat{H}_0$ and the interaction operator $\hat{H}_I$:
 \[
     \hat{H}_0 = \sum_{i\in \natset{N}} \hat{h}_i(x_i)~,~~ \hat{h}_i(x_i) = -\frac{\hbar^2}{2m}\nabla_i^2 + \hat{U}(x_i)
@@ -178,15 +178,15 @@ On the right hand side (r.h.s) we introduced the braket scalar product notation.
 of the Hilbert space. One reads it as the complexe transpose of $|\alpha\rangle$.\\
 
 We recall the single particle Hamiltonian we introduced earlyer. Its second quantisation representation reads
-\[
+\begin{equation}\label{eq:SecondQuantisationSingleParticle}
     \hat{H}_0 = \sum_{i \in \natset{N}} \hat{h}(x_i) ~ \leadsto ~~ \sum_{\alpha,\beta} \langle \alpha|\hat{h}|\beta\rangle c_{\alpha}^{\dagger}c_{\beta}
-\] 
+\end{equation}
 where $\alpha$ and $\beta$ are single-particle states of the system. $c_{\alpha}^{\dagger}c_{\beta}$ tries to transfert a fermion
 from the state $|\beta\rangle$ to the state $|\alpha\rangle$.
 We have
-\[
+\begin{equation}\label{eq:Translation_TwoStateOverlap}  
     \langle \alpha|\hat{h}|\beta\rangle = \int  \varphi_{\alpha}^{\ast}(x) \hat{h}(x) \varphi_{\beta}(x) \dd x\\
-\]
+\end{equation}
 where $x$ still represents the position and the spin of the particle.\\
 $\hat{h}$ is a single particle operator, it means it acts on one particle at a time.
 Two states are going to be changed. $|\alpha\rangle$ loses a particle and $|\beta\rangle$ gains one. We say for instance, that the 
@@ -196,13 +196,13 @@ some scattering that we can't describe, so the overlapp must be zero. We allow o
 states differ and due to their orthonal properties, we get a zero.\\
 
 Similarly for the two-particle operator we have
-\[
+\begin{equation}\label{eq:SecondQuantisationDoubleParticle}
     \hat{H}_I = \frac{1}{2}\sum_{i\neq j \in \natset{N}} \hat{v}(x_i, x_j) ~ \leadsto ~~ \frac{1}{2}\sum_{\alpha,\beta,\gamma,\delta} \langle \alpha\beta|\hat{v}|\gamma\delta\rangle c_{\alpha}^{\dagger}c_{\beta}^{\dagger}c_{\gamma}c_{\delta}
-\]
+\end{equation}
 involving a more nested overlap of the four states:
-\[
+\begin{equation}\label{eq:Translation_FourStateOverlap}
     \langle\alpha\beta|\hat{v}|\gamma\delta\rangle = \int \int \varphi_{\alpha}^{\ast}(x) \varphi_{\beta}^{\ast}(x') \hat{v}(x,x') \varphi_{\gamma}(x) \varphi_{\delta}(x') \dd x \dd x'.
-\]
+\end{equation}
 which modifies four states so the overlapp of two slatter determinant vanishes if the determinant differ in at least four states.\\ 
 
 The l.h.s of the equation is the matrix element $\langle\Phi_{\alpha}|\hat{v}|\Phi_{\beta}\rangle$ of the the operator
@@ -217,13 +217,151 @@ A useful tool that one can use is gives a wavefunction of a single-particle stat
 
 \subsubsection{Second quantisation for bosons}
 \subsection{Basis transformation}
-\subsection{Interactive electron gas}
-
-The main transformation beween the second quantisation to the first are the followings:
+\subsubsection{Field operators}
+Later in this thesis we are going to use field opertors to describe an order parameter of a superconductive system. These are 
+creation and annihilation operators that are defined in the $|x\rangle$-space-spin basis regarding antoher basis $\{|\alpha\rangle\}$. We here give the state as an argument
+an not as an index anymore. Despite the notation the following operators musn't be confused with a wavefunction.
+\begin{align}
+    \hat{\psi}^{\dagger}(x) &= \sum_{\alpha} \langle\alpha|x\rangle a_{\alpha}^{\dagger} = \sum_{\alpha} \varphi_{\alpha}^{\ast}(x) a_{\alpha}^{\dagger} \label{eq:FieldOp}\\ 
+    \hat{\psi}(x) &= \sum_{\alpha} \langle\alpha|x\rangle a_{\alpha} = \sum_{\alpha} \varphi_{\alpha}(x) a_{\alpha}^{\dagger}\label{eq:FieldOpDag}
+\end{align}
+involving fermonic or bosonic operators $a$. We can then annihilation and create a particle at a spin-space location $x$. Beacause these operators
+are involded, the commutations property respects which particle we are describing. Using the result we had for $[a_{\alpha}, a_{\alpha'}]_{\xi},
+[a_{\alpha}, a_{\alpha'}^{\dagger}]_{\xi}$ and $[a_{\alpha}^{\dagger}, a_{\alpha'}^{\dagger}]_{\xi}$ where $\xi = +$ for the bosons and $-$ for the fermions. We find the following commutation relations:
 \begin{align*}
-    \langle \alpha |V|\beta\rangle =& \int  \varphi_{\alpha}^{\ast}(x) V(x) \varphi_{\beta}(x) \dd x\\
+    \left[\hat{\psi}(x), \hat{\psi}(x')\right]_{\xi} = & \left[\hat{\psi}(x)^{\dagger}, \hat{\psi}^{\dagger}(x)\right]_{\xi} = 0 \\
+    \left[\hat{\psi}(x), \hat{\psi}^{\dagger}(x')\right]_{\xi} = &~ \delta(x-x')
 \end{align*}
+In the last expression we obtain a $\langle x | x '\rangle$ which cant normalsize the $\{|x\rangle\}$-basis so instead of a Korenker delta $\delta_{xx'}$
+we get a delta distribution $\delta(x-x')$.
+The goal is now to describe the Hamiltonian using this fields operators. Thefore we rebuild the fields operator in the Hamiltonian using a $\{|x\rangle\}$ basis
+\begin{align*}
+    \hat{H}_0 &=  \int \hat{\psi}^{\dagger}(x) \hat{h}(x)\hat{\psi}(x) \dd x\\
+    \hat{H}_I &= \frac{1}{2} \int \int  \hat{\psi}^{\dagger}(x) \hat{\psi}^{\dagger}(x') \hat{v}(x,x')\hat{\psi}(x') \hat{\psi}(x) \dd x' \dd x
+\end{align*}
+We already know that the first and second quantisation are equivalent. We could now insert the definition of the field operators \ref{eq:FieldOp} and \ref{eq:FieldOpDag}
+in the Hamiltonian and obtain a wave function description. Then we can just use the first to second quantisation translation \ref{eq:Translation_TwoStateOverlap} and \ref{eq:Translation_FourStateOverlap}
+to a the second quantised representation. The reulst is a generlisation of the experession with the operators $a$.\\
 
+
+\subsection{Interactive electron gas}
+As we are later going to study, the electron are allowed to interact with each other. During such processes a photon is
+usaly carying the momentum transfert of the scattering. We're going to use the formalism we introduced to 
+find a second quantisation representation of the interacting Hamiltonian.\\
+
+The system we're stying is a cube of side length $L$ with wolume $\Omega = L^3$ with $N$ electrons. Further we consider a periodic boundary condition for an arbitrary 
+position vector $\bm{r} = (x,y,z)$:
+\[
+    (L,y,z) = (0,y,z)~,~(x,L,z) = (x,0,z)~,~(x,y,L) = (x,y,0).
+\]  
+We use the general form of the Hamiltonian \ref{eq:MasterHamiltonian} introduced in the beggining. We have a Coulomb potential and a kinetic energy term.
+\begin{align}
+    H_0 &= - \sum_{i\in \natset{N}} \frac{\hbar^2}{2m}\nabla_i^2 + \sum_{i\in \natset{N}} U(x_i)\\
+    H_I &= \sum_{i\neq j \in \natset{N}} V(x_i, x_j)
+\end{align} 
+\rem{drop of the hat?} We aim to describe the Hamiltonian in the momentum space, which is more convenient for the second quantisation. Therfore we first
+need to find an expression for the wavevector $\bm{k}$. We describe a state $\alpha = (\bm{k}, \sigma)$ at a spin-space coordinate $x = (\bm{r}, s)$. First we take a plane wave solution of the Schrödinger equation:
+\[
+    \psi_{\bm{k}}(\bm{r}) = \frac{1}{\sqrt{\Omega}} e^{\im \bm{k}\cdot\bm{r}} \chi_\sigma(s)
+\]
+The periodicity of the system allows us to write $\psi(x=0) = \psi(x=L)$ using the boundary condition and obtain 
+$1= e^{\im k_x L}$ as well as for the two other coordinates. The results reflects in the wavevector $\bm{k}$:
+\[
+    k = \frac{2\pi}{L}(n_x, n_y, n_z)~,~n_i\in \mathbb{Z}.
+\]
+As we saw earlier the eigenfunctions build a complete basis:
+\begin{align*}
+    \int \psi^{\ast}_{\alpha'}(x) \psi_{\alpha}(x) \dd x &= \int \sum_{s} \psi^{\ast}_{\alpha'}(x) \psi_{\alpha}(x) \dd x \\
+    &=\frac{1}{\Omega} \int e^{\im\bm{r}\left(\bm{k}- \bm{k}'\right)} \underbrace{\sum_s \delta_{s\sigma}\delta_{s\sigma'}}_{\delta_{\sigma\sigma'}} \dd x\\
+    &= \delta_{\bm{k}\bm{k}'}\delta_{\sigma\sigma'} = \delta_{\alpha\alpha'}.
+\end{align*}    
+where the integaral over the exponential function diverges if $\bm{k} \neq \bm{k}'$ so we use the case $\bm{k} = \bm{k}'$ and the integaral is zero otherwise.
+This means, that \\
+
+The kinetic energy operator is a single particle operator so we have according to $\ref{eq:SecondQuantisationSingleParticle}$ we have:
+\[
+    T = \sum_{\alpha,\alpha'} \langle \alpha|\frac{\hat{\bm{p}}^2}{2m}|\alpha'\rangle c_{\alpha}^{\dagger}c_{\alpha'}.
+\]
+Now we can juste use $\hat{\bm{p}} = \im \hbar \nabla$ and to compute this expression we use its 
+first quantised form (see \ref{eq:Translation_TwoStateOverlap}) indvolving the $\delta_{\sigma\sigma'}$ trick we introduced
+in the derivation of the complete basis. We also use  $\bm{k}' = \bm{k}$ and hide the $\frac{1}{\Omega}$ is the $\delta_{\bm{k}\bm{k}'}$. The result is
+\[
+T = \sum_{\alpha,\alpha'} \delta_{\alpha\alpha'} \frac{\hbar \bm{k}^2}{2m} c_{\alpha'}^{\dagger} c_{\alpha} = \sum_{\alpha} \underbrace{\frac{\hbar \bm{k}^2}{2m}}_{=:\epsilon_{\bm{k}}} c_{\alpha}^{\dagger} c_{\alpha}
+\]
+we recognise the occupation number operator $\hat{n}_{\alpha} = c_{\alpha}^{\dagger} c_{\alpha}$ and the energy of the state $\epsilon_{\bm{k}}$. This is a quite
+meaningfull result, the non-interacting energy part of the system is the product of the energy of a state with the number of particle within that state, summed over all states.\\ 
+
+\rem{We don't consider the single particle external potental for now.}\\
+
+For the interaction potential , we have a two-particle operator. This is described by eqaution \ref{eq:SecondQuantisationDoubleParticle} and
+requiers \ref{eq:Translation_FourStateOverlap} to be solved.
+\[
+    V = \frac{1}{2} \sum_{\alpha, \beta, \gamma,\delta} \langle \alpha \beta |v|\gamma\delta\rangle c_{\alpha}^{\dagger}c_{\beta}^{\dagger}c_{\gamma}c_{\delta}
+\]
+
+Introducing these in $V$ using $v(\bm{r}, \bm{r'})= v(\bm{r} - \bm{r'})$ leads to:
+\[
+    \langle \alpha \beta |v|\gamma\delta\rangle = \frac{1}{\Omega^2} \delta_{\sigma_{\alpha}\sigma_{\gamma}}\delta_{\sigma_{\beta}\sigma_{\delta}} \int \int  e^{\im \bm{r}(\bm{k}_{\gamma}-\bm{k}_{\alpha})}  e^{\im \bm{r}'(\bm{k}_{\delta}-\bm{k}_{\beta})} v(\bm{r} - \bm{r'}) \dd \bm{r'} \dd \bm{r}
+\]
+we can make a substitution $\bm{R} = \bm{r} - \bm{r}'$, add and substract a $(\bm{k}_{\gamma}-\bm{k}_{\alpha})\bm{r}'$ and obtain
+\[
+    \langle \alpha \beta |v|\gamma\delta\rangle = \frac{1}{\Omega^2} \delta_{\sigma_{\alpha}\sigma_{\gamma}}\delta_{\sigma_{\beta}\sigma_{\delta}}
+     \underbrace{\int e^{-\im\bm{R}(\bm{k}_{\alpha}- \bm{k}_{\delta})} v(\bm{R}) \dd \bm{R}}_{v_{\bm{k}_{\delta}- \bm{k}_{\alpha}}}
+    \underbrace{\int e^{\im\bm{r}'\left(\bm{k}_{\gamma}-\bm{k}_{\beta} + \bm{k}_{\delta} -\bm{k}_{\alpha}\right)}\dd \bm{r}'}_{= \delta_{\bm{k}_{\gamma}-\bm{k}_{\beta} + \bm{k}_{\delta} , \bm{k}_{\alpha}}}.
+\]
+Almost finished, we derive a combuersom equation
+\[
+    V = \frac{1}{2\Omega} \sum_{\substack{\bm{k}_{\alpha}\bm{k}_{\beta}\bm{k}_{\gamma}\bm{k}_{\delta} \\
+         \sigma_{\alpha}\sigma_{\beta}\sigma_{\gamma}\sigma_{\delta}}}
+    \delta_{\sigma_{\alpha}\sigma_{\gamma}}\delta_{\sigma_{\beta}\sigma_{\delta}}
+    \delta_{\sigma_{\alpha}\sigma_{\gamma}}\delta_{\sigma_{\beta}\sigma_{\delta}}
+    \delta_{ \bm{k}_{\alpha}, \bm{k}_{\gamma}-\bm{k}_{\beta} + \bm{k}_{\delta}}
+    v_{\bm{k}_{\alpha}- \bm{k}_{\delta}} c_{\bm{k}_\alpha\sigma_{\alpha}}^{\dagger}c_{\bm{k}_\beta\sigma_{\beta}}^{\dagger}c_{\bm{k}_\gamma\sigma_{\gamma}}c_{\bm{k}_\delta\sigma_{\delta}}.
+\]
+we can sum over the $\bm{k}_{\alpha}$, rename $\sigma_{\alpha} \rightarrow\sigma$ and $\sigma_{\beta} \rightarrow\sigma'$ and sum up over $\sigma_{\gamma}$ and $\sigma_{\delta}$
+to simplify the Kroneker deltas.
+\[
+    V = \frac{1}{2\Omega} \sum{\sigma\sigma'} \sum_{\bm{k}_{\beta}\bm{k}_{\gamma}\bm{k}_{\delta}} v_{\bm{k}_{\gamma}- \bm{k}_{\beta}} c^{\dagger}_{\bm{k}_{\delta}+ \bm{k}_{\gamma}-\bm{k}_{\beta},\sigma}
+        c^{\dagger}_{\beta\sigma'} c_{\gamma\sigma'} c_{\delta\sigma'} 
+\] 
+where using $k_{\alpha} = \bm{k}_{\gamma}-\bm{k}_{\beta} + \bm{k}_{\delta}$ from the Kroneker delta we get $v_{\bm{k}_{\alpha}- \bm{k}_{\delta}} = v_{\bm{k}_{\gamma}-\bm{k}_{\beta} + \cancel{\bm{k}_{\delta}-\bm{k}_{\delta}}}$.
+Then we can introduce the following variable transformations:
+\[
+    \bm{k}_{\delta} \rightarrow \bm{k} ~,~~ \bm{k}_{\gamma} \rightarrow \bm{k}' ~,~~ \bm{k}_{\beta} \rightarrow \bm{k}' - \bm{q}
+\]
+which yields
+\begin{align*}
+    \bm{k}_{\delta} + \bm{k}_{\gamma} - \bm{k}_{\beta} =& \bm{k}+ \bm{q}\\
+    \bm{k}_{\gamma} - \bm{k}_{\beta} =&  -\bm{q}
+\end{align*}
+and we finaly get our second quantised interaction operator
+\[
+    V = \frac{1}{2\Omega} \sum_{\bm{q}}v_{q} \sum_{\substack{\bm{k}\sigma\\\bm{k}'\sigma'}} c^{\dagger}_{\bm{k}+\bm{q},\sigma}c^{\dagger}_{\bm{k}'-\bm{q},\sigma'}c_{\bm{k}'\sigma'}c_{\bm{k}\sigma}.
+\]
+This describes an electron transfering a momentum $\bm{q}$ to another electron. The fornula tells that we kill the electron we had before the interaction
+and create two in states where one loosed some momentum, that has been transferd the other electron. As we saw earlier this depends on $\bm{r}-\bm{r}'$
+the distance of the electrons, but not $\bm{r}$ $\bm{r}'$ so this process is translation invariant. The following diagramm is a good illustration of this process.\\
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{feynman}
+          \vertex (a) at (3,0){};
+          \vertex (b) at (0,0);
+          \vertex (c) at (-1,2){\(\bm{k}-\bm{q},\sigma'\)};
+          \vertex (d) at (-1,-2){\(\bm{k}',\sigma'\)};*
+          \vertex (c2) at (4,2){\(\bm{k}+\bm{q},\sigma\)};
+          \vertex (d2) at (4,-2){\(\bm{k},\sigma\)};
+          \diagram* {
+            (d) -- [fermion] (b) -- [fermion] (c),
+            (b)-- [photon, momentum'=\(\bm{q}\)] (a),
+            (d2) -- [fermion] (a) -- [fermion] (c2)
+        };
+        \end{feynman}
+    \end{tikzpicture}
+    \label{ref:photon_exchange}
+    \caption{The interaction of two electrons modulated by a photon of momentum $\bm{q}$.}
+\end{figure}
+This closes the introduction theorie on the second quantisation, now we can move on to the descirption of a superconductive state.\\
 %------------------------%
 \section{Superconductivity}
 Superconductivity can be illustrated as a phase transition of a meterial under a crital temperature. In the superconductive state the material 
@@ -256,6 +394,7 @@ Each term consist of a kinetik and potential energy term. For a more mathematica
 We have $m$ and $M$ as the mass of the electron and the ion. $\bm{r}$ and $\bm{R}$ are the position of the electron and the ion. The ion-ion potential
 freezes the ions into the lattice. 
 We first going to introduce some concepts by describing a non-interacting electron and then improve it to include the interactions.
+
 \subsubsection{The non-interacting electron gas}
 In this case of study the Hamiltonian only include a kinetic term
 \[
@@ -319,28 +458,8 @@ In an earlyer section we saw how
     H = \sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma} + \sum_{\bm{k},\sigma,\bm{k}',\sigma'}
         V_{\bm{k}\bm{k}', \bm{q}} c_{\bm{k}-\bm{q},\sigma}^{\dagger}c_{\bm{k}+\bm{q},\sigma'}^{\dagger}c_{\bm{k},\sigma}c_{\bm{k}',\sigma'}
 \end{equation}
-represent the pairwise interaction of multiple electrons and their respective energy. 
-The process the Hamiltonian describes can be illustrated with the following diagram:
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-        \begin{feynman}
-          \vertex (a) at (3,0){};
-          \vertex (b) at (0,0);
-          \vertex (c) at (-1,2){\(\bm{k}-\bm{q},\sigma\)};
-          \vertex (d) at (-1,-2){\(\bm{k},\sigma\)};*
-          \vertex (c2) at (4,2){\(\bm{k}'+\bm{q},\sigma\)};
-          \vertex (d2) at (4,-2){\(\bm{k}',\sigma\)};
-          \diagram* {
-            (d) -- [fermion] (b) -- [fermion] (c),
-            (b)-- [scalar, edge label=\(\bm{q}\)] (a),
-            (d2) -- [fermion] (a) -- [fermion] (c2)
-        };
-        \end{feynman}
-    \end{tikzpicture}
-    \label{ref:photon_exchange}
-    \caption{The interaction of two electrons modulated by a photon of momentum $\bm{q}$.}
-\end{figure}
+represent the pairwise interaction of multiple electrons and their respective energy.\\
+
 To extend the model we now want to introduce two new quantities,
 the propagator $G$ and the one-particle irreductible self-energy $\Sigma$.
 The propagator maps in the complex space and sgives the probability amplitude of finding a the particle in the state $|\bm{k},\sigma\rangle$ at a time $t$. On the other hand 
