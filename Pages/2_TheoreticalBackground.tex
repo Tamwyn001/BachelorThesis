@@ -133,7 +133,7 @@ end and add the particle backwards in the order of the state:
     |n_{1},..,n_{N}\rangle = (c_{1}^{\dagger})^{n_{1}}\cdot ..\cdot (c_{N}^{\dagger})^{n_{N}} |0\rangle
 \]  
 
-\paragraph{Anihilation operator $c_\nu$}
+\paragraph{Annihilation operator $c_\nu$}
 Likewise the anihinaltion operator destroys a particle in the corresponding state. The operator reads
 \[
     c_{\nu}^{\dagger} |n_{1},..,n_{\nu},..\rangle = (-1)^{\sum_{\mu<\nu}n_{\mu}} (n_{\nu})|n_{1},..,n_{\nu}-1,..\rangle.
@@ -147,11 +147,11 @@ We're going to stick with $[A,B]_{+}$ since it's more consitent with the commuta
 
 The follwoing results are obtain by separting the $\nu = \mu$ from the $\nu \neq \mu$. We must also say that the dagger $\dagger$ 
 should be understand as the complex transpose of the operator and $(AB)^{\dagger} = B^{\dagger}A^{\dagger}$.
-\begin{align*}
-    [c_{\nu},c_{\mu}]_+ =&~ 0\\
-    [c^{\dagger}_{\nu},c^{\dagger}_{\mu}]_+ =&~0\\
-    [c^{\dagger}_{\nu},c_{\mu}]_+ =&~ \delta_{\mu,\nu}\\
-\end{align*} 
+\begin{align}
+    [c_{\nu},c_{\mu}]_+ =&~ 0 \label{eq:Fermion1} \tag{$\mathfrak{Fer}_1$}\\
+    [c^{\dagger}_{\nu},c^{\dagger}_{\mu}]_+ =&~0 \label{eq:Fermion2} \tag{$\mathfrak{Fer}_2$}\\
+    [c^{\dagger}_{\nu},c_{\mu}]_+ =&~ \delta_{\mu,\nu}\label{eq:Fermion3} \tag{$\mathfrak{Fer}_3$}
+\end{align} 
 
 We can then combine the creation and anihinaltion operator to count the number of particles in a state:
 \[
@@ -209,14 +209,56 @@ The l.h.s of the equation is the matrix element $\langle\Phi_{\alpha}|\hat{v}|\P
  $\hat{v}$, which involves two basis state |$\Phi_{\alpha}\rangle$ and $|\Phi_{\beta}\rangle$ .
 On the r.h.s we have a description with wavefunctions, which own to the first quantisation. What we have here
 is the bridge between the first and the second quantisation. One could compute each side separately and notice
-that both formalism lead to the same result.\\
-
-A useful tool that one can use is gives a wavefunction of a single-particle state:
-\[\varphi_{\alpha}(x) = \langle x|\alpha\rangle\]
-
+that both formalism lead to the same result.
 
 \subsubsection{Second quantisation for bosons}
 \subsection{Basis transformation}
+Until now considerd the wavefunction in a restricted basis $\{\varphi_{\alpha}(x)\}$. A wave function is defined as the overlapp between the basis and the state:
+\[
+    \phi(x) = \langle x | \alpha \rangle.
+\]
+Let us now define a more general new operator that create a states $|\alpha\rangle = a_{\alpha}|0\rangle$ for fermion and bosons.
+We asume that we have another basis $\{|\tilde{\alpha}\rangle\}$.
+We now want to show, that the new operator $a_{\alpha}$ can be expressed as a linear combination of the other operator  $a_{\tilde{\alpha}}$. This will be a
+usefull too to jump from a basis to another. We first notice the following identity relations:
+\[
+    \mathbb{I} = \sum_{\alpha} | \alpha \rangle \langle \alpha| = \sum_{\tilde{\alpha}} | \tilde{\alpha} \rangle \langle \tilde{\alpha}| 
+\]
+this allow us to write 
+\begin{align*}  
+    a_{\alpha}^{\dagger}|0\rangle &= | \alpha \rangle = \sum_{\tilde{\alpha}}|\tilde{\alpha}\rangle\underbrace{\langle\tilde{\alpha}|\alpha\rangle}_{\text{scalar}} = \sum_{\tilde{\alpha}}\langle\tilde{\alpha}|\alpha\rangle |\tilde{\alpha}\rangle \\
+\end{align*}
+inverting the indicies leads to the same result, which leads to the transformation rules
+\begin{align*}
+    a_{\alpha}^{\dagger} &= \sum_{\tilde{\alpha}}\langle\tilde{\alpha}|\alpha\rangle a_{\tilde{\alpha}}^{\dagger}\\
+    a_{\alpha} &= \sum_{\tilde{\alpha}}\langle\alpha|\tilde{\alpha}\rangle a_{\tilde{\alpha}}.
+\end{align*}
+Further we can use these relations to express a wavefunction in the basis of another wavefunction. We have
+\begin{align*}
+    \phi_{\alpha}(x) = \langle x|\alpha\rangle &= \langle x|\left(\sum_{\tilde{\alpha}} \langle \tilde{\alpha}|\alpha\rangle |\tilde{\alpha}\rangle\right) = \sum_{\tilde{\alpha}}  \langle \tilde{\alpha}|\alpha\rangle\langle x|\tilde{\alpha}\rangle
+    = \sum_{\tilde{\alpha}} \langle \tilde{\alpha}|\alpha\rangle \varphi_{\tilde{\alpha}}(x).
+\end{align*}
+Inverting $\alpha$ and $\tilde{\alpha}$ leads as well $\varphi_{\tilde{\alpha}}(x) = \sum_{\alpha} \langle \alpha|\tilde{\alpha}\rangle \phi_{\alpha}(x)$.\\
+
+Morover we can show that the basis transformation is unitary. This is an important feature because we can simplify the calculation by changing the basis but
+the result we seek for would remain the same after the unitary transformation. Such transformations plays a major role later in the thesis.
+We can save the $\langle \tilde{\alpha} | \alpha\rangle$ in a matrix $D$ and prove that this matrix is unitary. We have
+\begin{align*}
+    \langle \tilde{\alpha} | \tilde{\beta}\rangle  &= \sum_{\gamma} \langle \tilde{\alpha}|\gamma\rangle\langle \gamma | \beta\rangle =  \sum_{\gamma} \langle \tilde{\alpha}|\gamma\rangle \langle \beta | \gamma\rangle^{\ast}\\
+    &=\sum_{\gamma} D_{\alpha\gamma}D_{\beta\gamma}^{\ast} = \sum_{\gamma} D_{\alpha\gamma}D^{\dagger}_{\gamma\beta} = (DD^{\dagger})_{\alpha\beta}.
+\end{align*} 
+meanwhile $\langle \tilde{\alpha} | \tilde{\beta}\rangle = \delta_{\tilde{\alpha} \tilde{\beta}}$ so that $DD^{\dagger} = \mathbb{I}$. The matrix $D$ is therfore unitary. \rem{
+    but do we also have the orthonormality of if we take two different basis?}.\\
+
+The last important step is to show that the basis transformation keeps the anti-, commutation relations. Let us for the seek of readability
+use the notation $[A,B]_{\xi} = AB + \xi BA$ where $\xi = -$ for bosons and $\xi = +$ for fermions. We have for exemple using $[a_{\alpha}, a_{\alpha'}^{\dagger}]_{\xi} = \delta_{\alpha\alpha'}$
+\[
+    [a_{\tilde{\alpha}}, a_{\tilde{\alpha}'}^{\dagger}]_{\xi} = \sum_{\tilde{\alpha}\tilde{\alpha}'} \langle \tilde{\alpha}|\alpha\rangle\langle\alpha'|\tilde{\alpha}'\rangle [a_{\alpha}, a_{\alpha'}^{\dagger}]_{\xi} = \langle \tilde{\alpha}|\tilde{\alpha}'\rangle = \delta_{\tilde{\alpha}\tilde{\alpha}'}.
+\]
+The first step follows after spliting the commutator in two parts, insert the transformation and recombine the new commutator. 
+The last step involves the orthonormality of the basis.
+On the same way one can prove $[a_{\tilde{\alpha}},a_{\tilde{\alpha}'}] = [a_{\tilde{\alpha}}^{\dagger},a_{\tilde{\alpha}'}^{\dagger}] = 0$.
+  
 \subsubsection{Field operators}
 Later in this thesis we are going to use field opertors to describe an order parameter of a superconductive system. These are 
 creation and annihilation operators that are defined in the $|x\rangle$-space-spin basis regarding antoher basis $\{|\alpha\rangle\}$. We here give the state as an argument
@@ -227,7 +269,7 @@ an not as an index anymore. Despite the notation the following operators musn't 
 \end{align}
 involving fermonic or bosonic operators $a$. We can then annihilation and create a particle at a spin-space location $x$. Beacause these operators
 are involded, the commutations property respects which particle we are describing. Using the result we had for $[a_{\alpha}, a_{\alpha'}]_{\xi},
-[a_{\alpha}, a_{\alpha'}^{\dagger}]_{\xi}$ and $[a_{\alpha}^{\dagger}, a_{\alpha'}^{\dagger}]_{\xi}$ where $\xi = +$ for the bosons and $-$ for the fermions. We find the following commutation relations:
+[a_{\alpha}, a_{\alpha'}^{\dagger}]_{\xi}$ and $[a_{\alpha}^{\dagger}, a_{\alpha'}^{\dagger}]_{\xi}$ where $\xi = -$ for the bosons and $+$ for the fermions. We find the following commutation relations:
 \begin{align*}
     \left[\hat{\psi}(x), \hat{\psi}(x')\right]_{\xi} = & \left[\hat{\psi}(x)^{\dagger}, \hat{\psi}^{\dagger}(x)\right]_{\xi} = 0 \\
     \left[\hat{\psi}(x), \hat{\psi}^{\dagger}(x')\right]_{\xi} = &~ \delta(x-x')
@@ -256,9 +298,10 @@ position vector $\bm{r} = (x,y,z)$:
 \]  
 We use the general form of the Hamiltonian \ref{eq:MasterHamiltonian} introduced in the beggining. We have a Coulomb potential and a kinetic energy term.
 \begin{align}
-    H_0 &= - \sum_{i\in \natset{N}} \frac{\hbar^2}{2m}\nabla_i^2 + \sum_{i\in \natset{N}} U(x_i)\\
-    H_I &= \sum_{i\neq j \in \natset{N}} V(x_i, x_j)
+    H_0 &= T+U =- \sum_{i\in \natset{N}} \frac{\hbar^2}{2m}\nabla_i^2 + \sum_{i\in \natset{N}} u(x_i)\\
+    H_I &= V= \sum_{i\neq j \in \natset{N}} v(x_i, x_j)
 \end{align} 
+Where the pairwise potential is just a Coulomb potential $v(x_i, x_j) = \frac{e^2}{4\pi\epsilon_0|x_i - x_j|} = v(|x_i - x_j|)$.\\
 \rem{drop of the hat?} We aim to describe the Hamiltonian in the momentum space, which is more convenient for the second quantisation. Therfore we first
 need to find an expression for the wavevector $\bm{k}$. We describe a state $\alpha = (\bm{k}, \sigma)$ at a spin-space coordinate $x = (\bm{r}, s)$. First we take a plane wave solution of the Schrödinger equation:
 \[
@@ -267,7 +310,7 @@ need to find an expression for the wavevector $\bm{k}$. We describe a state $\al
 The periodicity of the system allows us to write $\psi(x=0) = \psi(x=L)$ using the boundary condition and obtain 
 $1= e^{\im k_x L}$ as well as for the two other coordinates. The results reflects in the wavevector $\bm{k}$:
 \[
-    k = \frac{2\pi}{L}(n_x, n_y, n_z)~,~n_i\in \mathbb{Z}.
+    \bm{k} = \frac{2\pi}{L}(n_x, n_y, n_z)~,~~n_i\in \mathbb{Z}.
 \]
 As we saw earlier the eigenfunctions build a complete basis:
 \begin{align*}
@@ -276,9 +319,8 @@ As we saw earlier the eigenfunctions build a complete basis:
     &= \delta_{\bm{k}\bm{k}'}\delta_{\sigma\sigma'} = \delta_{\alpha\alpha'}.
 \end{align*}    
 where the integaral over the exponential function diverges if $\bm{k} \neq \bm{k}'$ so we use the case $\bm{k} = \bm{k}'$ and the integaral is zero otherwise.
-This means, that \\
 
-The kinetic energy operator is a single particle operator so we have according to $\ref{eq:SecondQuantisationSingleParticle}$ we have:
+The kinetic energy operator is a single particle operator so we have according to \ref{eq:SecondQuantisationSingleParticle} we have:
 \[
     T = \sum_{\alpha,\alpha'} \langle \alpha|\frac{\hat{\bm{p}}^2}{2m}|\alpha'\rangle c_{\alpha}^{\dagger}c_{\alpha'}.
 \]
@@ -324,23 +366,23 @@ to simplify the Kroneker deltas.
     V = \frac{1}{2\Omega} \sum{\sigma\sigma'} \sum_{\bm{k}_{\beta}\bm{k}_{\gamma}\bm{k}_{\delta}} v_{\bm{k}_{\gamma}- \bm{k}_{\beta}} c^{\dagger}_{\bm{k}_{\delta}+ \bm{k}_{\gamma}-\bm{k}_{\beta},\sigma}
         c^{\dagger}_{\beta\sigma'} c_{\gamma\sigma'} c_{\delta\sigma'} 
 \] 
-where using $k_{\alpha} = \bm{k}_{\gamma}-\bm{k}_{\beta} + \bm{k}_{\delta}$ from the Kroneker delta we get $v_{\bm{k}_{\alpha}- \bm{k}_{\delta}} = v_{\bm{k}_{\gamma}-\bm{k}_{\beta} + \cancel{\bm{k}_{\delta}-\bm{k}_{\delta}}}$.
+where using $\bm{k}_{\alpha} = \bm{k}_{\gamma}-\bm{k}_{\beta} + \bm{k}_{\delta}$ from the Kroneker delta we get $v_{\bm{k}_{\alpha}- \bm{k}_{\delta}} = v_{\bm{k}_{\gamma}-\bm{k}_{\beta} + \cancel{\bm{k}_{\delta}-\bm{k}_{\delta}}}$.
 Then we can introduce the following variable transformations:
 \[
-    \bm{k}_{\delta} \rightarrow \bm{k} ~,~~ \bm{k}_{\gamma} \rightarrow \bm{k}' ~,~~ \bm{k}_{\beta} \rightarrow \bm{k}' - \bm{q}
+    \bm{k}_{\delta} \rightarrow \bm{k} ~,~~~ \bm{k}_{\gamma} \rightarrow \bm{k}' ~,~~~ \bm{k}_{\beta} \rightarrow \bm{k}' - \bm{q}
 \]
 which yields
 \begin{align*}
-    \bm{k}_{\delta} + \bm{k}_{\gamma} - \bm{k}_{\beta} =& \bm{k}+ \bm{q}\\
-    \bm{k}_{\gamma} - \bm{k}_{\beta} =&  -\bm{q}
+    \bm{k}_{\delta} + \bm{k}_{\gamma} - \bm{k}_{\beta} &= \bm{k}+ \bm{q}\\
+    \bm{k}_{\gamma} - \bm{k}_{\beta} &=  -\bm{q}
 \end{align*}
 and we finaly get our second quantised interaction operator
 \[
     V = \frac{1}{2\Omega} \sum_{\bm{q}}v_{q} \sum_{\substack{\bm{k}\sigma\\\bm{k}'\sigma'}} c^{\dagger}_{\bm{k}+\bm{q},\sigma}c^{\dagger}_{\bm{k}'-\bm{q},\sigma'}c_{\bm{k}'\sigma'}c_{\bm{k}\sigma}.
 \]
 This describes an electron transfering a momentum $\bm{q}$ to another electron. The fornula tells that we kill the electron we had before the interaction
-and create two in states where one loosed some momentum, that has been transferd the other electron. As we saw earlier this depends on $\bm{r}-\bm{r}'$
-the distance of the electrons, but not $\bm{r}$ $\bm{r}'$ so this process is translation invariant. The following diagramm is a good illustration of this process.\\
+and create two in states where one loosed some momentum, that has been transferd the other electron. As we saw earlier this depends on the distance $\bm{r}-\bm{r}'$
+between the electrons, but not $\bm{r}$ and $\bm{r}'$ respectivly, so this process is translation invariant. The following diagramm is a good illustration of this effect.\\
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -361,7 +403,12 @@ the distance of the electrons, but not $\bm{r}$ $\bm{r}'$ so this process is tra
     \label{ref:photon_exchange}
     \caption{The interaction of two electrons modulated by a photon of momentum $\bm{q}$.}
 \end{figure}
-This closes the introduction theorie on the second quantisation, now we can move on to the descirption of a superconductive state.\\
+This closes the introduction theorie on the second quantisation. We saw how we can express integaral over wavefunctions as bra-kets scalarproducts. 
+This allowed us to introduce some operators that creates and annihilates particles in a certain state. Using this formalism we were able to compute the 
+Hamiltonian of the system in the momentum sapce. We found that the non interacting-part relies on the energy of each state times there occupation number
+and that an interaction between two electrons can be described as a momentum transfert between them wich is modulated by the fourier transform of the Coulomb potential.
+
+Now we can move on to the descirption of a superconductive state.\\
 %------------------------%
 \section{Superconductivity}
 Superconductivity can be illustrated as a phase transition of a meterial under a crital temperature. In the superconductive state the material 
@@ -696,8 +743,8 @@ a one-boby problem which is easier to compute. As known mean-fiels approches req
 
 The first step is to introduce the following epexctation values:
 \begin{align}
-    b_{\bm{k}} = &\langle c_{-\bm{k}\downarrow}c_{\bm{k}\uparrow}\rangle \\
-    b_{\bm{k}}^{\dagger} = &\langle c_{\bm{k}\uparrow}^{\dagger}c_{-\bm{k}\downarrow}^{\dagger}\rangle 
+    b_{\bm{k}} = &\langle c_{-\bm{k}\downarrow}c_{\bm{k}\uparrow}\rangle \label{eq:ExpectBCS} \\
+    b_{\bm{k}}^{\dagger} = &\langle c_{\bm{k}\uparrow}^{\dagger}c_{-\bm{k}\downarrow}^{\dagger}\rangle  \label{eq:ExpectBCSDag}
 \end{align}
 wich lead to a new expression for the $c$ operators:
 \begin{equation}
@@ -714,16 +761,88 @@ We can compute the product of the two terms in parenthesis and forget the $\math
 
 The next step is to define the superconduction gap parameter $\Delta$:
 \begin{align}
-    \Delta_{\bm{k}'} = &\sum_{\bm{k}'} V_{\bm{k}\bm{k}'} b_{\bm{k}}^{\dagger}\\
+    \Delta_{\bm{k}} = &\sum_{\bm{k}'} V_{\bm{k}\bm{k}'} b_{\bm{k}}^{\dagger}\\
     \Delta^{\dagger}_{\bm{k}} = &\sum_{\bm{k}'} V_{\bm{k}\bm{k}'} b_{\bm{k}'}
 \end{align}
 wich brings our Hamiltonian in another form:
-\[
-    H = \sum_{\bm{k}\sigma} \epsilon_{\bm{k}} c_{\bm{k}\sigma}^{\dagger}c_{\bm{k}\sigma} + \sum_{\bm{k}} \left( \Delta_{\bm{k}}^{\dagger} b_{\bm{k}}^{\dagger}c_{-\bm{k}'\downarrow}c_{\bm{k}'\uparrow}  + \Delta_{\bm{k}}^{\dagger} c_{\bm{k}\uparrow} ^{\dagger}c_{-\bm{k}\downarrow}^{\dagger} -  b_{\bm{k}}^{\dagger} \Delta_{\bm{k}}^{\dagger} \right).
-\]
-We took the liberty to spilt the sum, rename the $\bm{k}'$ to $\bm{k}$ and recombine the sum. We notice that this form involves a lot of creation and anihilation terms that 
+\begin{equation} \label{eq:HamiltonianBCS1}
+    H = \sum_{\bm{k}\sigma} \epsilon_{\bm{k}} c_{\bm{k}\sigma}^{\dagger}c_{\bm{k}\sigma} - \sum_{\bm{k}} \left( \Delta_{\bm{k}}^{\dagger} c_{-\bm{k}'\downarrow}c_{\bm{k}'\uparrow}  + \Delta_{\bm{k}}^{\dagger} c_{\bm{k}\uparrow} ^{\dagger}c_{-\bm{k}\downarrow}^{\dagger} -  b_{\bm{k}}^{\dagger} \Delta_{\bm{k}}^{\dagger} \right).
+\end{equation}
+We took the liberty to spilt the sum, rename the $\bm{k}'$ to $\bm{k}$ and recombine the sum. We notice that this form involves a lot of creation and annihilation terms that 
 are not commun for an effective non-interacting electron gaz. We remeber that we aim a one particle descirption in a mean field of its neighbours.
 This complexity will lead to some difficulties to express the quais-particle spectrum. A good soltution is 
-to rotate the basis of the $c$ operators to land in a basis that diagonalises the Hamiltonian and therfore minimises the number of operators.
+to rotate the basis of the $c$ operators to land in a basis that diagonalises the Hamiltonian and therfore minimises the number of operators.\\
+
+The transformation involves two new fermionic operator $\eta$ and $\gamma$ that therfore respect \ref{eq:Fermion1} to \ref{eq:Fermion3} and reads
+\begin{equation*}
+    \begin{pmatrix}
+        c_{\bm{k}\uparrow}\\
+        c_{-\bm{k}\downarrow}^{\dagger}
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        \cos(\theta) & -\sin(\theta)\\
+        \sin(\theta) & \cos(\theta)
+    \end{pmatrix}
+    \begin{pmatrix}
+        \eta_{\bm{k}}\\
+        \gamma_{\bm{k}}
+    \end{pmatrix}
+\end{equation*}
+along with the conjugate transpose of each component of the l.h.s vector rebuild into a matrix-vector equation
+\begin{equation*}
+    \begin{pmatrix}
+        c_{\bm{k}\uparrow}^{\dagger} \\
+        c_{-\bm{k}\downarrow}
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        \cos(\theta) & -\sin(\theta)\\
+        \sin(\theta) & \cos(\theta)
+    \end{pmatrix}
+    \begin{pmatrix}
+        \eta_{\bm{k}}^{\dagger} \\
+        \gamma_{\bm{k}}^{\dagger}
+    \end{pmatrix}.
+\end{equation*}
+We can reintroduce these into the Hamiltonian \ref{eq:HamiltonianBCS1}. 
+Some of the multiplication involves $\cos(\theta)^2 - \sin(\theta)^2 = \cos(2\theta)$ and $\cos(\theta)^2 + \sin(\theta)^2 = 1$. 
+Further due to the anticommutations we have $\eta \gamma^{\dagger} = - \gamma^{\dagger}\eta$ and so on for $\gamma \eta^{\dagger} = - \eta^{\dagger}\gamma$.
+We obtain the following expression
+\begin{equation}
+    \begin{aligned}
+        H =& \sum_{\bm{k}} \epsilon_{\bm{k}}\rem{\cdot 1} + \Delta_{\bm{k}}b_{\bm{k}}^{\dagger}\\
+          +& \sum_{\bm{k}} \left[\epsilon_{\bm{k}}\cos(2\theta) - \cos(\theta)\sin(\theta)\left(\Delta_{\bm{k}}^{\dagger}+ \Delta_{\bm{k}}\right)\right] \eta_{\bm{k}}^{\dagger}\eta_{\bm{k}}\\
+          -& \sum_{\bm{k}} \left[\epsilon_{\bm{k}}\cos(2\theta) -\sin(\theta)\cos(\theta)\left(\Delta_{\bm{k}}^{\dagger}+ \Delta_{\bm{k}}\right)\right]\gamma^{\dagger}_{\bm{k}}\eta_{\bm{k}}\\
+          -& \sum_{\bm{k}} \left[\Delta_{\bm{k}} \cos(\theta)^2 - \Delta_{\bm{k}}^{\dagger}\sin(\theta)^2 \rem{+}2\epsilon_{\bm{k}} \cos(\theta)\sin(\theta) \right]\eta^{\dagger}_{\bm{k}}\gamma_{\bm{k}}\\
+          -& \sum_{\bm{k}} \left[\Delta_{\bm{k}} \cos(\theta)^2 - \Delta_{\bm{k}}^{\dagger}\sin(\theta)^2 \rem{+}2\epsilon_{\bm{k}} \cos(\theta)\sin(\theta) \right]\gamma^{\dagger}_{\bm{k}}\eta_{\bm{k}}.     
+    \end{aligned}
+\end{equation}
+The goal is to diagonalise the Hamiltonian in the $(\gamma, \eta)$ basis. Thefore have to rotate with $\theta$ such that the terms with $\gamma^{\dagger}\eta$ and $\eta^{\dagger}\gamma$ vanish.
+A difficulty that we may entcounter along with this idea is that $\Delta$ is an order parameter and own a complex phase fluctuation. With other words one can write
+$\Delta = |\Delta|e^{\im\tau}$ where $\tau$ has has some fluctuations. We are going to ignore them.\\
+
+We can set
+\[
+    \Delta_{\bm{k}} = \Delta_{\bm{k}}^{\dagger}~~~~ \text{and} ~~~~ \tan(2\theta) = -\frac{\Delta_{\bm{k}}}{\epsilon_{\bm{k}}}
+\]
+and introduce two new variables called the coherence factors
+\begin{align*}
+    v_{\bm{k}}^2 := \sin(\theta)^2 &= \frac{1}{2} \left(1 - \frac{\epsilon_{\bm{k}}}{E_{\bm{k}}}\right),\\
+    u_{\bm{k}}^2 := \cos(\theta)^2 &= \frac{1}{2} \left(1 + \frac{\epsilon_{\bm{k}}}{E_{\bm{k}}}\right)
+\end{align*}
+along with a new energy $E_{\bm{k}} = \sqrt{\epsilon_{\bm{k}}^2 + |\Delta_{\bm{k}}|^2}$. \rem{Historical context?} These factors play an important
+role in NMR as well as in the ultra sound propagation in superconductors. Cooper and Schrieffer made some corrrect
+predictions in an advanced many-body system. This is labeld as one of the greates achievements in condensed matter physics in the 20th century.\\ \rem{source}
+
+We obtain a Hamiltonian that looks very similar to a free fermion qusiparticle gas \rem{source?}
+\[
+H = \underbrace{\sum_{\bm{k}} \left(\epsilon_{\bm{k}} + \Delta_{\bm{k}} b_{\bm{k}}^{\dagger}\right)}_{\substack{=:H_0~ \text{constant}\\\text{ mean-field term}}}  + \underbrace{\sum_{\bm{k}} E_{\bm{k}}\left(\eta_{\bm{k}}^{\dagger}\eta_{\bm{k}} - \gamma_{\bm{k}}^{\dagger}\gamma_{\bm{k}}\right)}_{\substack{\text{Spinless fermion system with} \\\text{two types of fermions of}\\\text{energies }E_{\bm{k}}\text{ and }-E_{\bm{k}}.}}.
+\]
+where we dont describe any interaction, but two types of particles in a mean field. One can also note that we don't have any spins involved. This is due
+to the fact that we describe the quasiparticles as a linear combiantion of electrons and holes with opposite spins. \rem{source}
+Therfore talking about degrees of freedom the two electron-hole singlets replace the $\uparrow$, $\downarrow$ degrees of freedom and they are preserved.\\
+
+The ernegy $E_{\bm{k}}$ shows up a gap in the energy of the qusiparticle whene looking at the fermi-surface $\epsilon_{\bm{k}}=0$ \rem{We count relative to it? But the way it is define in a non interacting Ham. is not relative to it right?}.
+This is due to the fact that the exepectation values we introduced in \ref{eq:ExpectBCS} and \ref{eq:ExpectBCSDag} are not zero. The gap is a result of the Cooper-pairing. These expections values
+are the order parameters of the Meissner state and should be confused with the superconducting gap $\Delta$. They are however zero at the same time. \rem{source?}\\
 \end{document}
 
