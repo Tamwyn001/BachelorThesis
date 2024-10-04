@@ -34,6 +34,8 @@
 \usepackage{bbm} %for the \mathbb{1}
 \newcommand{\indc}{\mathlarger{\mathlarger{\mathbbm{1}\normalsize}}}
 
+\usepackage[backend=biber, style=numeric, sorting=ynt, sortlocale=en_EN]{biblatex}
+\addbibresource{references.bib}
 
 %\input{C:/Users/Tamwyn/Documents/CustomLatexTextMF/mytexmf/tex/latex/UniLaTeXPackage/Arto/ArtoMain.tex}
 
@@ -134,7 +136,7 @@
 \newpage
 
 % -----------------------------------------------------------
-% Inhaltsvorbereitung
+% Content prepartion
 
     \tableofcontents
     \thispagestyle{empty}	
@@ -151,14 +153,10 @@
 
 
 %-----------------------------------------------------------
-% Abspann und Credits
+% Credits
 
-%\newpage
-%    \subfile{Sections/5-Literatur.tex}
-%\newpage
-%    \listoffigures
-%    \listoftables
+\newpage
+    \subfile{Pages/Literature.tex}
 
 
-%\includepdf[pages=1-1,scale=0.9,frame=true]{Protokolle/PATH.pdf}
 \end{document}
