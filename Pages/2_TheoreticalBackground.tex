@@ -845,4 +845,24 @@ Therfore talking about degrees of freedom the two electron-hole singlets replace
 The ernegy $E_{\bm{k}}$ shows up a gap in the energy of the qusiparticle whene looking at the fermi-surface $\epsilon_{\bm{k}}=0$ \rem{We count relative to it? But the way it is define in a non interacting Ham. is not relative to it right?}.
 This is due to the fact that the exepectation values we introduced in \ref{eq:ExpectBCS} and \ref{eq:ExpectBCSDag} are not zero. The gap is a result of the Cooper-pairing. These expections values
 are the order parameters of the Meissner state and should be confused with the superconducting gap $\Delta$. They are however zero at the same time. \\
+
+This context of a free case is a good oportnity to introduce the grand chanonical ensemble of the Hamiltonian. 
+Even if we could give the direct result, deriving this ensemble involves a lot of important step, so for
+the seek of completeness we are going to derive it.\\
+
+We define the particle number operator $N = \sum_{\bm{k}}\mu\left( n_{\eta\bm{k}} + n_{\gamma\bm{k}}\right)$ where the index $\bm{k}$ is proper to this equation. 
+Further the possible states $\bm{k}$ are in a ``continous'' set $\mathfrak{K}= \left\{\bm{k}_1,\bm{k}_2,..\right\}$. $\{n_{\bm{k}}\}$ is the set of
+the diffent occupation numbers of all the states $\bm{k}$. Further we consider fermions so the occupation numbers of the particle
+ type $\eta$ or $\gamma$ in state $\bm{k}$ are labeled $n_{\eta\bm{k}}$ and $n_{\gamma\bm{k}}$ and equals either 0 or 1.
+\begin{align*}
+    Z_G &= \text{Tr}\left(e^{-\beta( H +\mu N)}\right)\\
+    &= \sum_{\{n_{\bm{k}}\}} e^{-\beta H_0} \langle \{n_{\bm{k}}\}|\exp\left(\sum_{\bm{k'}}-\beta E_{\bm{k'}}\eta_{\bm{k'}}^{\dagger}\eta_{\bm{k'}} + \beta E_{\bm{k'}}\gamma_{\bm{k'}}^{\dagger}\gamma_{\bm{k'}}\right)\exp\left( -\beta\mu N \right)|\{n_{\bm{k}}\}\rangle\\
+    &= \sum_{\{n_{\eta\bm{k}}\}} \sum_{\{n_{\gamma\bm{k}}\}} e^{-\beta H_0}\exp\left(\sum_{\bm{k}}-\beta \left[E_{\bm{k}}\eta_{\bm{k}}^{\dagger}\eta_{\bm{k}}+\mu\right]+ \beta \left[E_{\bm{k}}\gamma_{\bm{k}}^{\dagger}\gamma_{\bm{k}}-\mu\right]\right)\\
+    &= e^{-\beta H_0} \sum_{\substack{n_{\eta\bm{k}_1},\\ n_{\eta\bm{k}_2},..}} ~~\sum_{\substack{n_{\gamma\bm{k}_1}, \\n_{\gamma\bm{k}_2},..}}\exp\left(\sum_{\bm{k}}-\beta \left[E_{\bm{k}}n_{\eta\bm{k}}+\mu\right]+ \beta \left[E_{\bm{k}}n_{\gamma\bm{k}}-\mu\right]\right)\\
+    &= e^{-\beta H_0} \sum_{\substack{n_{\eta\bm{k}_1},\\ n_{\eta\bm{k}_2},..}} \prod_{\bm{k}}\exp\left(-\beta\left[ E_{\bm{k}}n_{\eta\bm{k}} + \mu\right]\right)  \sum_{\substack{n_{\gamma\bm{k}_1}, \\n_{\gamma\bm{k}_2},..}}\prod_{\bm{k}} \exp\left(\beta\left[E_{\bm{k}}n_{\gamma\bm{k}}-\mu\right]\right) \\
+    &= e^{-\beta H_0} \sum_{n_{\eta\bm{k}_1}}\exp\left(-\beta\left[E_{\bm{k_1}}n_{\eta\bm{k}_1} +\mu\right]\right)\sum_{n_{\eta\bm{k}_2}}\exp\left(-\beta\left[E_{\bm{k_2}}n_{\eta\bm{k}_2} +\mu\right]\right)\cdot..  \\
+    &~~~~~~~~~~~~\sum_{n_{\gamma\bm{k}_1}} \exp\left(\beta\left[E_{\bm{k}_1}n_{\gamma\bm{k}_1}-\mu\right]\right)\sum_{n_{\gamma\bm{k}_2}} \exp\left(\beta\left[E_{\bm{k}_2}n_{\gamma\bm{k}_2}-\mu\right]\right)\cdot..\\
+    &= e^{-\beta H_0} \prod_{\bm{k}}  \left(1 + e^{-\beta (E_{\bm{k}}+ \rem{\mu})}\right) \left(1 + e^{\beta( E_{\bm{k}} - \rem{\mu})}\right) \\
+\end{align*}
+
 \end{document}
