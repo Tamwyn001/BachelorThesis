@@ -33,22 +33,22 @@ system = system.createLattice();
 system = system.generateHam();
 DELTA = zeros(system.Nx, system.Ny);
 fprintf('Solving the gap equation\n');
+
+%seting the value to compare with after its going to be updated
 dist = computeDistance(delta_old, generateNewCollumnDelta(system));
 t = 1;
 while (not(thresholdReached(dist, treshold)))
     fprintf('\nIteration %d:\n', t);
     fprintf('Diagonalising, convergence = %d\n', max(dist));
     delta_old = generateNewCollumnDelta(system);
+    %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
+
     [chi,ener] = eig(system.hamiltonian);
     for i = 1: system.Nx * system.Ny %for each particle we search a convergence
         delta_elem_sum = 0; %initialize the sum of the delta elements
         Console.progressBar(i, system.Nx * system.Ny);
         
-        %seting the value to compare with after its going to be updated
-        %fprintf('diff = %d\n', delta_old-system.points{i}.delta);
-        %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
 
-        %disp(chi) 
         %create a row energy-vector taking the diagonal
         E = diag(ener);
         
@@ -61,20 +61,16 @@ while (not(thresholdReached(dist, treshold)))
         %to each eigenvalue there is an eigenvector. So we get the right components of the eigenvector
 
         for n = 1 : numel(E) %sum over n, n numbers of eigenvectors. 
-            %fprintf('[i = %d, j = %d], [i = %d, j = %d]\n', 4*(i-1) + 1, n, 4*(i-1) + 2, n);
-            %fprintf('u1 = %d, u2 = %d\n', chi(4*(i-1) + 1, n), chi(4*(i-1) + 2, n));
-            %disp('--');
+
             u_i_n = [chi(4*(i-1) + 1, n), chi(4*(i-1) + 2, n)]; %UP, DOWN
             v_i_n = [chi(4*(i-1) + 3, n), chi(4*(i-1) + 4, n)]; %UP, DOWN
             % We get the number of eigenvectors.
-            %fprintf('[u_1 = %d, u_2 = %d ]\n', u_i_n(1), u_i_n(2));
             delta_elem_sum = delta_elem_sum + u_i_n(2) * conj(v_i_n(1))*Fermi(E(n)) ...
                 + u_i_n(1)*conj(v_i_n(2)) * (1-Fermi(E(n))); %spin-dep variables in H are
                 % defined with general spin sigma and delta with up or dow
             %disp(delta_elem_sum);
         end
-        system.points{i}.delta = system.points{i}.U * delta_elem_sum;     
-        %fprintf('delta = %d\n', system.points{i}.delta);
+        system.points{i}.delta = delta_elem_sum; %system.points{i}.U *      
         %reinserting delta it into the hamiltonian, we rewrite the 4x4 block of the site including supercondctivity and chemical potential
     end
     %correct Hamiltonian
@@ -95,14 +91,19 @@ heatmap(DELTA,'CellLabelColor', 'None');
 
 % Add title
 details = strcat(int2str(system.Nx),'x', int2str(system.Ny));
+sim_deltails = details;
 if System.verticalPeriodicBoundary && System.horizontalPeriodicBoundary
     details = strcat(details, " with horizontal and vertical periodic boundary") ;
+    sim_deltails = strcat(sim_deltails, "VertHorizBC");
 elseif System.verticalPeriodicBoundary
     details = strcat(details, " vertical periodic boundary");
+    sim_deltails = strcat(sim_deltails, "VertBC");
 elseif System.horizontalPeriodicBoundary
     details = strcat(details, " with horizontal periodic boundary");
+    sim_deltails = strcat(sim_deltails, "HorizBC");
 else 
     details = strcat(details, " with no periodic boundary");
+    sim_deltails = strcat(sim_deltails, "NoBC");
 end
 details = strcat(details, " with ");
 for i = 0: (numel(System.layer)/2 - 1)
@@ -112,3 +113,18 @@ for i = 0: (numel(System.layer)/2 - 1)
     details = strcat(details, System.layer{2*i + 2}, " layers of ", System.layer{2*i+1});
 end
 title(strcat("Gap equation solution of the lattice " , details));
+systemMaterial = "";
+for i = 1 : numel(System.layer)
+    systemMaterial = strcat(systemMaterial, System.layer(i));
+end
+path = strcat(".\Results\", systemMaterial,"\Correlation_cdagg_c_\");
+
+if not(isfolder(path))
+    mkdir(path)
+end
+pathDELTA = strcat(path, sim_deltails, ".dat");
+writematrix(DELTA, pathDELTA,'Delimiter',' ')
+mean_delta = MeanLineMatrix(DELTA);
+
+pathMEAN = strcat(path, "meanline_",sim_deltails, ".dat");
+writematrix(mean_delta, pathMEAN,'Delimiter',' ');

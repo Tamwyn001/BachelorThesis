@@ -8,10 +8,11 @@ classdef LatticePoint
         delta %superconducting gap of the site
         type % type of lattice point
         materialLayer % material of the lattice point
+        U %addition parameter for the gap equation
         system
     end
     properties (Constant)
-        U = 1; %addition parameter for the gap equation
+        
     end
     
     methods
@@ -29,7 +30,13 @@ classdef LatticePoint
                 [obj.x ,obj.y] = obj.i_to_xy(obj.i);
                 obj.materialLayer = System.sampleTypeAt(obj.x);
             end
+
             obj = obj.classifyPoint();
+            if strcmp(obj.materialLayer,'SC')
+                obj.U = 1;
+            else
+                obj.U = 0;
+            end
             
             if strcmp(obj.materialLayer, 'SC')
                 obj.delta = 0.2; %random guess for the gap
