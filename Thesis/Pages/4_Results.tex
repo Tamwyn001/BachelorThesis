@@ -2,4 +2,49 @@
 \begin{document}
 \section{Results}
     \input{../Plots/SC10AM10/Correlation_cdagg_c_/MeanLine/plot.tex}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \input{../Plots/SC10AM10/Correlation_cdagg_c_/HeatMap/NoBC/plot.tex}
+        \caption{Surrounded with vaccuum.}
+        \label{fig:first}
+    \end{subfigure}\\
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \input{../Plots/SC10AM10/Correlation_cdagg_c_/HeatMap/VertBC/plot.tex}
+        \caption{Vaccum on the right and left with vertical periodic boundary conditions.}
+        \label{fig:first}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \input{../Plots/SC10AM10/Correlation_cdagg_c_/HeatMap/VertHorizBC/plot.tex}
+        \caption{Both vertical and horizontal periodic boundary conditions.}
+        \label{fig:first}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \input{../Plots/SC10AM10/Correlation_cdagg_c_/Currents/NoBC/plot.tex}
+
+        \caption{Surrounded with vaccuum.}
+        \label{fig:first}
+    \end{subfigure}\\
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \input{../Plots/SC10AM10/Correlation_cdagg_c_/Currents/VertBC/plot.tex}
+        \caption{Vaccum on the right and left with vertical periodic boundary conditions.}
+        \label{fig:first}
+    \end{subfigure}\\
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \input{../Plots/SC10AM10/Correlation_cdagg_c_/Currents/VertHorizBC/plot.tex}
+        \caption{Both vertical and horizontal periodic boundary conditions.}
+        \label{fig:first}
+    \end{subfigure}
+\end{figure}
+
 \end{document}

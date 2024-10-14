@@ -6,3 +6,7 @@
 *.xml
 *.bbl
 *.blg
+
+# auto generated files from latex
+plot-eps-converted-to.pdf
+

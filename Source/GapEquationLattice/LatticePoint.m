@@ -10,6 +10,8 @@ classdef LatticePoint
         materialLayer % material of the lattice point
         U %addition parameter for the gap equation
         system
+        current %current of the site
+        neighbour % cout counter clockwise : 1: +x 2: +y 3: -x 4: -y
     end
     properties (Constant)
         
@@ -43,22 +45,23 @@ classdef LatticePoint
             else
                 obj.delta = 0; %no gap if no superconductor at the start?
             end
-            
+            obj.current = [0, 0];
             %fprintf('Lattice point created at (%d, %d) with type %s\n', obj.x, obj.y, obj.type);
+            obj.neighbour = cell(4,1);  
         end
         function obj = classifyPoint(obj)
             % Classify the lattice point as corner, side or interior
             if (obj.x == 1 && obj.y == 1)
-                obj.type = 'cornerUL';
-                return
-            elseif (obj.x == obj.system.Nx && obj.y == 1)
-                obj.type = 'cornerUR';
-                return
-            elseif (obj.x == 1 && obj.y == obj.system.Ny)
                 obj.type = 'cornerDL';
                 return
-            elseif (obj.x == obj.system.Nx && obj.y == obj.system.Ny)
+            elseif (obj.x == obj.system.Nx && obj.y == 1)
                 obj.type = 'cornerDR';
+                return
+            elseif (obj.x == 1 && obj.y == obj.system.Ny)
+                obj.type = 'cornerUL';
+                return
+            elseif (obj.x == obj.system.Nx && obj.y == obj.system.Ny)
+                obj.type = 'cornerUR';
                 return
             elseif obj.x == 1
                 obj.type = 'sideL';
@@ -67,10 +70,10 @@ classdef LatticePoint
                 obj.type = 'sideR';
                 return
             elseif obj.y == 1
-                obj.type = 'sideU';
+                obj.type = 'sideD';
                 return
             elseif obj.y == obj.system.Ny
-                obj.type = 'sideD';
+                obj.type = 'sideU';
                 return
             end
 
@@ -87,6 +90,26 @@ classdef LatticePoint
             % Convert i index to x, y coordinates
             x = ModNo0(i, obj.system.Nx);
             y = (i - x)/obj.system.Nx + 1;
+        end
+
+        function obj = findNeighbours(obj, system)
+            [mx_cond, mx_id] = CanFindNeigbour(obj.i, '-x', system);
+            [px_cond, px_id] = CanFindNeigbour(obj.i, '+x', system);
+            [my_cond, my_id] = CanFindNeigbour(obj.i, '-y', system);
+            [py_cond, py_id] = CanFindNeigbour(obj.i, '+y', system);
+            if mx_cond
+                obj.neighbour{3} = system.points{mx_id};
+            end
+            if px_cond
+                obj.neighbour{1} = system.points{px_id};
+            end
+            if my_cond
+                obj.neighbour{4} = system.points{my_id};
+            end
+            if py_cond
+                obj.neighbour{2} = system.points{py_id};
+            end
+
         end
 
         

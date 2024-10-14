@@ -1,0 +1,6 @@
+set palette maxcolors 5
+set palette defined ( 0 '#666A86',\
+    	    	      1 '#788AA3',\
+		      2 '#92B6B1',\
+		      3 '#B2C9AB',\
+		      4 '#E8DDB5')

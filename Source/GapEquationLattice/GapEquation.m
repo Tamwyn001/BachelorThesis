@@ -31,6 +31,8 @@ Fermi = @(E) FermiDiarac(E, System.T, System.mu);
 system = System();
 system = system.createLattice();
 system = system.generateHam();
+computation = Computation(system); %holds the eigenvalues and eigenvectors to access them later without passing hige matrices around
+
 DELTA = zeros(system.Nx, system.Ny);
 fprintf('Solving the gap equation\n');
 
@@ -42,16 +44,12 @@ while (not(thresholdReached(dist, treshold)))
     fprintf('Diagonalising, convergence = %d\n', max(dist));
     delta_old = generateNewCollumnDelta(system);
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
-
-    [chi,ener] = eig(system.hamiltonian);
+    [chi, ener] = eig(system.hamiltonian);
+    computation = computation.writeNewEigen(chi, ener);
     for i = 1: system.Nx * system.Ny %for each particle we search a convergence
         delta_elem_sum = 0; %initialize the sum of the delta elements
         Console.progressBar(i, system.Nx * system.Ny);
-        
-
-        %create a row energy-vector taking the diagonal
-        E = diag(ener);
-        
+        %for each particle we calculate the delta element      
         %chi = (chi_1,..,chi_N) set of eigenvectors : as big as the matrix: to N_x
             %chi_n = (chi_n_1,..,chi_n_N )  each eigenvector has 2 components, which have also two compoennts: so 4
                 %chi_n_i = (u_n_i, v_n_i) 2x1 bispinor
@@ -59,14 +57,11 @@ while (not(thresholdReached(dist, treshold)))
                     % Due to the form of ^c we set u_n=(u_nUP, u_nDOWN) and v_n=(v_nUP, v_nDOWN)
 
         %to each eigenvalue there is an eigenvector. So we get the right components of the eigenvector
-
-        for n = 1 : numel(E) %sum over n, n numbers of eigenvectors. 
-
-            u_i_n = [chi(4*(i-1) + 1, n), chi(4*(i-1) + 2, n)]; %UP, DOWN
-            v_i_n = [chi(4*(i-1) + 3, n), chi(4*(i-1) + 4, n)]; %UP, DOWN
+        for n = 1 : numel(computation.E) %sum over n, n numbers of eigenvectors. 
+            [u_i_n, v_i_n] = GetUVatI(computation, i, n);
             % We get the number of eigenvectors.
-            delta_elem_sum = delta_elem_sum + u_i_n(2) * conj(v_i_n(1))*Fermi(E(n)) ...
-                + u_i_n(1)*conj(v_i_n(2)) * (1-Fermi(E(n))); %spin-dep variables in H are
+            delta_elem_sum = delta_elem_sum + u_i_n(2) * conj(v_i_n(1))*Fermi(computation.E(n)) ...
+                + u_i_n(1)*conj(v_i_n(2)) * (1-Fermi(computation.E(n))); %spin-dep variables in H are
                 % defined with general spin sigma and delta with up or dow
             %disp(delta_elem_sum);
         end
@@ -85,6 +80,8 @@ end
 for i = 1: system.Nx * system.Ny
     DELTA(system.points{i}.y, system.points{i}.x) = abs(system.points{i}.delta);
 end
+
+system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 % Plot the matrix as a heatmap
 heatmap(DELTA,'CellLabelColor', 'None');
@@ -112,6 +109,7 @@ for i = 0: (numel(System.layer)/2 - 1)
     end
     details = strcat(details, System.layer{2*i + 2}, " layers of ", System.layer{2*i+1});
 end
+
 title(strcat("Gap equation solution of the lattice " , details));
 systemMaterial = "";
 for i = 1 : numel(System.layer)
@@ -122,9 +120,13 @@ path = strcat(".\Results\", systemMaterial,"\Correlation_cdagg_c_\");
 if not(isfolder(path))
     mkdir(path)
 end
+
 pathDELTA = strcat(path, sim_deltails, ".dat");
-writematrix(DELTA, pathDELTA,'Delimiter',' ')
+writematrix(WriteHeatmap(system), pathDELTA,'Delimiter',' ')
 mean_delta = MeanLineMatrix(DELTA);
 
 pathMEAN = strcat(path, "meanline_",sim_deltails, ".dat");
 writematrix(mean_delta, pathMEAN,'Delimiter',' ');
+
+pathCURRENT = strcat(path, "current_",sim_deltails, ".dat");
+writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');

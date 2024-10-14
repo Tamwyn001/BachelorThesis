@@ -7,7 +7,7 @@ classdef System
         horizontalPeriodicBoundary = true;
         layer = ["SC", 10, "AM", 10]; %superconducting and altermgnet layer separated verticaly
         %the hopping amplitude, t =1 normalizes energies
-        t_ij = 1;   
+        t_ij = 1;  
 
         T = 0.001; %K  muss no be to targe in order to stay under the critical temperature
         mu = 5; %eV
@@ -44,6 +44,9 @@ classdef System
             %   Detailed explanation goes here
             for i = 1: obj.Nx * obj.Ny
                 obj.points{i} = LatticePoint(obj, i); % {i} is the i-th element of the cell array, not a cell but the stored object
+            end
+            for i = 1: numel(obj.points)
+                obj.points{i} = obj.points{i}.findNeighbours(obj);
             end
         end
 
@@ -88,7 +91,7 @@ classdef System
 
     end 
     methods (Static)
-        function matrix=altermagnetMatrix(axe)
+        function m_sigma = getMSigma(axe)
             if strcmp(axe, 'x')    
                 lookup = 0; %the lookup changes to fit an x or y hopping to find the good vector in the m_matrix
             elseif strcmp(axe, 'y')
@@ -99,6 +102,13 @@ classdef System
             m_sigma = System.m_matrix(1 + lookup) * PauliMatrix.sigmaX ...
                 + System.m_matrix(2 + lookup) * PauliMatrix.sigmaY ...
                 + System.m_matrix(3 + lookup) * PauliMatrix.sigmaZ;
+        end
+        function out = getMSigmaElem(axe, spin1, spin2)
+            out = System.getMSigma(axe);
+            out = out(spin1, spin2);
+        end
+        function matrix=altermagnetMatrix(axe)
+            m_sigma = System.getMSigma(axe);
             matrix = [m_sigma, zeros(2); zeros(2), zeros(2)];
         end
         function matrix = hopping_t_ij()

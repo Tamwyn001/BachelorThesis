@@ -15,7 +15,6 @@ function Remove-GhostCharacters {
     for ($i = 0; $i -lt $InputString.Length; $i++) {
         $char = $InputString[$i]
         $unicodeValue = [int][char]$char
-
         # Only append characters that are not ghosts
         if ($unicodeValue -ne 0) {
             $resultString += $char
@@ -29,19 +28,22 @@ $gnuarg = $gnuarg + 'targetSystem = '''+ "$SimulationPath" +''';'   #"'Correlati
 $gnuarg = $gnuarg + 'targetLatex = '''+ "$LatexPath" +''';' 
 $gnuarg = $gnuarg + '"'
 "Plotting and saving"
+"gnuplot -e $gnuarg $GnuScript"
 $tex_path = & gnuplot -e $gnuarg $GnuScript
 #"$tex_path" is splited in [.,./../T] etx
 
-$tex_path = Remove-GhostCharacters -InputString $tex_path
+$tex_path =  $tex_path
 
 
-$target = $tex_path -replace '.tex','' 
-$replace = $target -replace '../../Thesis/', '' -replace '//', '/'
+$target = $tex_path -replace '\.tex','' 
+$replace = $target -replace '\.\./\.\./Thesis/', '' -replace '//', '/'
 
-$content = Get-Content -Path "$tex_path"
+$content = Get-Content -Path "$tex_path" -Encoding UTF8 -RAW
 $target = $target.Substring(0, $target.Length - 1)
 $replace = $replace.Substring(0, $replace.Length - 1)
 $content = $content -replace $target, $replace
+
+$content = $content -replace '0\.00e\{\+00\}', '0'  -replace '0\.0e\{\+00\}', '0'  -replace '0e\{\+00\}', '0'
 Set-Content -Path "$tex_path" -Value $content -Encoding UTF8
-del "`$null"
+del "`$null" # delete the temp outputs file
 "Task completed"
