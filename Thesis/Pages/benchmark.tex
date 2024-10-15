@@ -1,0 +1,29 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\section{Benchmark}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \input{../Plots/M20/Correlation_cdagg_c_/BenchmarkCurrent/NoBC/plot.tex}
+        \caption{Surrounded with vaccuum.}
+        \label{fig:first}
+    \end{subfigure}\\
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \input{../Plots/AM20/Correlation_cdagg_c_/BenchmarkCurrent/NoBC/plot.tex}
+        \caption{Surrounded with vaccuum.}
+        \label{fig:first}
+    \end{subfigure}
+    \hspace{0.1\textwidth}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \input{../Plots/SC20/Correlation_cdagg_c_/BenchmarkCurrent/NoBC/plot.tex}
+        \caption{Surrounded with vaccuum.}
+        \label{fig:first}
+    \end{subfigure}
+    \caption{Benchmark for the currents $\sqrt{\langle I^x_i\rangle^2 + \langle I^y_i\rangle^2}$ in M, AM and SC}
+\end{figure}
+
+\end{document}

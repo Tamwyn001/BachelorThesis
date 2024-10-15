@@ -3,9 +3,9 @@ classdef System
     %   Detailed explanation goes here
 
     properties (Constant)
-        verticalPeriodicBoundary = true;
-        horizontalPeriodicBoundary = true;
-        layer = ["SC", 10, "AM", 10]; %superconducting and altermgnet layer separated verticaly
+        verticalPeriodicBoundary = false;
+        horizontalPeriodicBoundary = false;
+        layer = ["SC", 20]; %superconducting and altermgnet layer separated verticaly
         %the hopping amplitude, t =1 normalizes energies
         t_ij = 1;  
 

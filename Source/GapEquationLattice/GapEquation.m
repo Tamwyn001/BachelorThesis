@@ -22,7 +22,7 @@ function result = computeDistance(delta_old, delta_new)
     end
 end
 
-treshold = 0.01; %convergence treshold
+treshold = 0.0001; %convergence treshold
 delta_old = 4; %initial old delta value
 
 
@@ -41,7 +41,7 @@ dist = computeDistance(delta_old, generateNewCollumnDelta(system));
 t = 1;
 while (not(thresholdReached(dist, treshold)))
     fprintf('\nIteration %d:\n', t);
-    fprintf('Diagonalising, convergence = %d\n', max(dist));
+    fprintf('Diagonalising');
     delta_old = generateNewCollumnDelta(system);
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
     [chi, ener] = eig(system.hamiltonian);
@@ -57,7 +57,8 @@ while (not(thresholdReached(dist, treshold)))
                     % Due to the form of ^c we set u_n=(u_nUP, u_nDOWN) and v_n=(v_nUP, v_nDOWN)
 
         %to each eigenvalue there is an eigenvector. So we get the right components of the eigenvector
-        for n = 1 : numel(computation.E) %sum over n, n numbers of eigenvectors. 
+
+        for n = numel(computation.E)/2 +1 : numel(computation.E) %sum over n, n numbers of eigenvectors with POSITIVE energies.
             [u_i_n, v_i_n] = GetUVatI(computation, i, n);
             % We get the number of eigenvectors.
             delta_elem_sum = delta_elem_sum + u_i_n(2) * conj(v_i_n(1))*Fermi(computation.E(n)) ...
@@ -74,13 +75,14 @@ while (not(thresholdReached(dist, treshold)))
     end
     t = t+1;
     dist = computeDistance(delta_old, generateNewCollumnDelta(system));
+    fprintf('convergence = %d\n', max(dist));
 end 
 
 %generate a plotable matrix
 for i = 1: system.Nx * system.Ny
     DELTA(system.points{i}.y, system.points{i}.x) = abs(system.points{i}.delta);
 end
-
+%disp(computation.E);
 system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 % Plot the matrix as a heatmap

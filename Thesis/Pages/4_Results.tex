@@ -1,7 +1,12 @@
 \documentclass[..\main.tex]{subfile}
 \begin{document}
 \section{Results}
+\begin{figure}[H]
+    \centering
     \input{../Plots/SC10AM10/Correlation_cdagg_c_/MeanLine/plot.tex}
+    \caption{Mean value over the $y$-axis of the correlation function $\langle c^\dagger_i c_j\rangle$ for different boundary conditions.}
+\end{figure}
+   
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.3\textwidth}
@@ -22,7 +27,10 @@
         \caption{Both vertical and horizontal periodic boundary conditions.}
         \label{fig:first}
     \end{subfigure}
+    \caption{Heatmaps of the correlation function $\langle c^\dagger_i c_j\rangle$ for different boundary conditions.}
 \end{figure}
+
+
 
 \begin{figure}[H]
     \centering
@@ -45,6 +53,7 @@
         \caption{Both vertical and horizontal periodic boundary conditions.}
         \label{fig:first}
     \end{subfigure}
+    \caption{And here we plot $\sqrt{\langle I^x_i\rangle^2 + \langle I^y_i\rangle^2}$}
 \end{figure}
 
 \end{document}

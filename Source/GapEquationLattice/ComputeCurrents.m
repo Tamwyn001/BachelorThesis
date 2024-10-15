@@ -4,11 +4,11 @@ function system = ComputeCurrents(system, computation)
         I_y = 0.0;
         target_site = system.points{i};
         
-            for n = 1: numel(computation.E)
+            for n = numel(computation.E)/2 +1 : numel(computation.E)
                 % make a if on is neigbour i : i-1 etc to avoid the vaccum
                 [ui,vi] = GetUVatI(computation, i, n);
 
-                %[mx_cond, mx_id] = CanFindNeigbour(i, '-x', system);
+                %CanFindNeigbour(i, '-x', system);
                 if ~isempty(target_site.neighbour{3}) 
                     %fprintf("Site %d has a neighbour %d in -x\n", i, target_site.neighbour{3}.i );
                     [uim1,vim1] = GetUVatI(computation,  target_site.neighbour{3}.i, n);
@@ -18,7 +18,7 @@ function system = ComputeCurrents(system, computation)
                     vim1 = [0 0];
                 end
 
-                %[px_cond, px_id] = CanFindNeigbour(i, '+x', system);
+                %CanFindNeigbour(i, '+x', system);
                 if ~isempty(target_site.neighbour{1}) 
                     %fprintf("Site %d has a neighbour %d in +x\n", i,  target_site.neighbour{1}.i);
                     [uip1,vip1] = GetUVatI(computation,  target_site.neighbour{1}.i, n);
@@ -29,7 +29,7 @@ function system = ComputeCurrents(system, computation)
                     vip1 = [0 0];
                 end
 
-                %[my_cond, my_id] = CanFindNeigbour(i, '-y', system);
+                % CanFindNeigbour(i, '-y', system);
                 if ~isempty(target_site.neighbour{4}) 
                     %fprintf("Site %d has a neighbour %d in -y\n", i,  target_site.neighbour{4}.i);
                     [uimN,vimN] = GetUVatI(computation,  target_site.neighbour{4}.i, n);
@@ -41,7 +41,7 @@ function system = ComputeCurrents(system, computation)
                 end
 
 
-                %[py_cond, py_id] = CanFindNeigbour(i, '+y', system);
+                % CanFindNeigbour(i, '+y', system);
                 if ~isempty(target_site.neighbour{2}) 
                     %fprintf("Site %d has a neighbour %d in +y\n", i,  target_site.neighbour{2}.i);
                     [uipN,vipN] = GetUVatI(computation, target_site.neighbour{2}.i, n);
@@ -53,8 +53,8 @@ function system = ComputeCurrents(system, computation)
                 hopping_x = @(spin) (conj(uip1(spin))- conj(uim1(spin))) * ui(spin) + (conj(vip1(spin))- conj(vim1(spin))) * vi(spin); 
                 hopping_y = @(spin) (conj(uimN(spin))- conj(uipN(spin))) * ui(spin) + (conj(vimN(spin))- conj(vipN(spin))) * vi(spin); 
 
-                I_x = I_x + (hopping_x(1) + hopping_x(2))* system.t_ij * FermiDiarac(0.5 * computation.E(n), system.T, system.mu);
-                I_y = I_y + (hopping_y(1) + hopping_y(2))* system.t_ij * FermiDiarac(0.5 * computation.E(n), system.T, system.mu);
+                I_x = I_x + imag(hopping_x(1) + hopping_x(2))* system.t_ij * FermiDiarac(0.5 * computation.E(n), system.T, system.mu);
+                I_y = I_y + imag(hopping_y(1) + hopping_y(2))* system.t_ij * FermiDiarac(0.5 * computation.E(n), system.T, system.mu);
                  
                 if strcmp(target_site.materialLayer, 'AM')
                     plusXspin = @(spin) ((System.getMSigmaElem('x', spin, 1) + System.getMSigmaElem('x', spin, 2))... %in + x
@@ -79,9 +79,9 @@ function system = ComputeCurrents(system, computation)
                         * (conj(vipN(spin))*vi(spin) - conj(vi(spin))*vimN(spin))...
                         * FermiDiarac(computation.E(n), system.T, system.mu));
 
-                    disp(plusXspin(1)+ plusXspin(2));
-                    I_x = I_x + plusXspin(1) + plusXspin(2);
-                    I_y = I_y + plusYspin(1) + plusYspin(2);
+                    %disp(plusXspin(1)+ plusXspin(2));
+                    I_x = I_x + imag(plusXspin(1) + plusXspin(2));
+                    I_y = I_y + imag(plusYspin(1) + plusYspin(2));
                 end
             end
 

@@ -18,6 +18,7 @@ set ylabel '$\bm{\langle c_{i\uparrow}c_{i\downarrow}\rangle$}'
 # Title for the plot
 unset title # '\textbf{Correlation of the c operators}' 
 set logscale y
+set ytics offset char -1, char 0  
 
 set mxtics 2
 set key bottom left reverse Left
@@ -33,8 +34,8 @@ set label 'AM' at graph 0.75, materialY
 
 # Plot the data from the file 'data.txt' using columns 1 and 2
 dataroot = './Results'.targetSystem
-plot [1: 20] dataroot.'/meanline_20x20NoBC.dat' using 1:2 with lines title '\footnotesize No BC' lw 8 linecolor rgb "#78C3FB",\
- dataroot.'/meanline_20x20VertBC.dat' using 1:2 with lines title '\footnotesize Vert BC' lw 8 linecolor rgb "#A1E5AB",\
- dataroot.'/meanline_20x20VertHorizBC.dat' using 1:2 with lines title '\footnotesize Vert \& horiz BC' lw 8 linecolor rgb "#545E75"
+plot [1: 20] dataroot.'/meanline_20x20NoBC.dat' using 1:2 with lines title '\footnotesize No BC' lw 5 linecolor rgb "#666A86",\
+ dataroot.'/meanline_20x20VertBC.dat' using 1:2 with lines title '\footnotesize Vert BC' lw 5 linecolor rgb "#92B6B1",\
+ dataroot.'/meanline_20x20VertHorizBC.dat' using 1:2 with lines title '\footnotesize Vert \& horiz BC' lw 5 linecolor rgb "#E8DDB5"
 set out
 # pause -1

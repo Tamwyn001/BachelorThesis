@@ -23,3 +23,8 @@ Place the terminal in `cd .\Source\GapEquation\`
     .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_VertBC.gp" -SimulationPath "/SC10AM10/Correlation_cdagg_c_" -LatexPath "/SC10AM10/Correlation_cdagg_c_/Currents/VertBC/";
     .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_VertHorizBC.gp" -SimulationPath "/SC10AM10/Correlation_cdagg_c_" -LatexPath "/SC10AM10/Correlation_cdagg_c_/Currents/VertHorizBC/"
 
+    # Benchmark currents
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_Benchmark_SC.gp" -SimulationPath "/AM20/Correlation_cdagg_c_" -LatexPath "/AM20/Correlation_cdagg_c_/BenchmarkCurrent/NoBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_Benchmark_AM.gp" -SimulationPath "/SC20/Correlation_cdagg_c_" -LatexPath "/SC20/Correlation_cdagg_c_/BenchmarkCurrent/NoBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_Benchmark_M.gp" -SimulationPath "/M20/Correlation_cdagg_c_" -LatexPath "/M20/Correlation_cdagg_c_/BenchmarkCurrent/NoBC/";
+

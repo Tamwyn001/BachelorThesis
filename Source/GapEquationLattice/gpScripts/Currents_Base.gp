@@ -3,7 +3,9 @@ load 'gnutolatexBase.cfg'
 load 'palettes/SandBeach.pal'
 load 'latticeConfig.cfg'
 load 'gnutolatex_ext2D.cfg'
+
 set ylabel at graph 0, first 0 center offset char 3, char 0 
+set ytics offset char 0, char 0 
 
 dataroot = './Results'.targetSystem
 contrast = 0.5
