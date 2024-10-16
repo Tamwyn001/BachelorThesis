@@ -9,12 +9,17 @@ function result = thresholdReached(dist, treshold)
 end
 
 function result = generateNewCollumnDelta(system)
-
-    result = zeros(system.Nx*system.Ny, 1);
+    index_shift = 0;
+    result = zeros(system.Nx*(system.Ny-2), 1); %subtract the sides 2 Nx elements
     for j = 1: system.Nx * system.Ny
-        result(j) = system.points{j}.delta;
+        if ~system.points{j}.isSubjectToFixedDelta(system)
+            result(j-index_shift) = system.points{j}.delta;
+        else
+            index_shift = index_shift + 1; %we need to come back t0 the right index
+        end
     end
 end
+
 function result = computeDistance(delta_old, delta_new)
     result = zeros(numel(delta_old), 1);
     for i = 1: numel(delta_old)
@@ -22,7 +27,7 @@ function result = computeDistance(delta_old, delta_new)
     end
 end
 
-treshold = 0.0001; %convergence treshold
+treshold = 0.001; %convergence treshold
 delta_old = 4; %initial old delta value
 
 
@@ -40,7 +45,7 @@ fprintf('Solving the gap equation\n');
 dist = computeDistance(delta_old, generateNewCollumnDelta(system));
 t = 1;
 while (not(thresholdReached(dist, treshold)))
-    fprintf('\nIteration %d:\n', t);
+    fprintf('\nIteration %d:', t);
     fprintf('Diagonalising');
     delta_old = generateNewCollumnDelta(system);
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
@@ -66,7 +71,7 @@ while (not(thresholdReached(dist, treshold)))
                 % defined with general spin sigma and delta with up or dow
             %disp(delta_elem_sum);
         end
-        system.points{i}.delta = delta_elem_sum; %system.points{i}.U *      
+        system.points{i} = system.points{i}.updateDelta(delta_elem_sum, system); %system.points{i}.U *      
         %reinserting delta it into the hamiltonian, we rewrite the 4x4 block of the site including supercondctivity and chemical potential
     end
     %correct Hamiltonian
@@ -80,9 +85,11 @@ end
 
 %generate a plotable matrix
 for i = 1: system.Nx * system.Ny
+    %disp(system.points{i}.delta);
     DELTA(system.points{i}.y, system.points{i}.x) = abs(system.points{i}.delta);
 end
 %disp(computation.E);
+fprintf('Computing currents\n');
 system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 % Plot the matrix as a heatmap

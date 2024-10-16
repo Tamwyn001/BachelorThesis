@@ -3,9 +3,15 @@ classdef System
     %   Detailed explanation goes here
 
     properties (Constant)
-        verticalPeriodicBoundary = false;
-        horizontalPeriodicBoundary = false;
-        layer = ["SC", 20]; %superconducting and altermgnet layer separated verticaly
+        verticalPeriodicBoundary = true;
+        horizontalPeriodicBoundary = true;
+
+        guessDelta = 0.002;
+        %makes only sense when no horiz. periodic boundary conditon is applied
+        fixedBoundaryDelta = false;
+        phi_1 = pi/6; %phase of the superconducting gap on the left side
+        phi_2 = pi/6 + ( (27+90) * pi/180); %phase of the superconducting gap on the right side, phase shift of 25°
+        layer = ["SC", 10, "AM", 10]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
         t_ij = 1;  
 
@@ -20,6 +26,7 @@ classdef System
         Ny;
         points;
         hamiltonian;
+        fixedDelta;
     end
 
     methods
@@ -34,6 +41,8 @@ classdef System
             obj.Ny = size;
              %we preallocate the array to gain in speed
             obj.points = cell(obj.Nx * obj.Ny ,1);
+            obj.fixedDelta = [abs(obj.guessDelta)*exp(1i * obj.phi_1), abs(obj.guessDelta)*exp(1i * obj.phi_2)];
+
             fprintf('System created with specs:\n');
             fprintf('   Nx = %d, Ny = %d\n', obj.Nx, obj.Ny);
             fprintf('   T = %d, mu = %d\n', obj.T, obj.mu);
@@ -68,6 +77,7 @@ classdef System
                             elseif strcmp(obj.points{i}.materialLayer,'AM')
                                 to_add = to_add + System.altermagnetMatrix(axe);
                             end
+                        
                             to_add = to_add + System.hopping_t_ij(); %part of the non-interacting hamiltonian
                             %futher interaction processes can be added here
 
@@ -85,6 +95,7 @@ classdef System
         function matrix = onSiteMatrix(obj, i) %site i
             matrix = System.chemicalMatrix(System.mu);
             if strcmp(obj.points{i}.materialLayer, 'SC')
+
                 matrix = matrix + System.superconductingMatrix(obj.points{i}.delta);
             end
         end
@@ -129,6 +140,8 @@ classdef System
                 type = System.layer(1);
             elseif x <= str2num(System.layer(2)) + str2num(System.layer(4))
                 type = System.layer(3);
+            elseif x <= str2num(System.layer(2)) + str2num(System.layer(4)) + str2num(System.layer(6))
+                type = System.layer(5);
             end
         end
     end

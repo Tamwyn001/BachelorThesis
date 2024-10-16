@@ -35,20 +35,25 @@ classdef LatticePoint
 
             obj = obj.classifyPoint();
             if strcmp(obj.materialLayer,'SC')
+                obj.delta = system.guessDelta; %random guess for the gap
                 obj.U = 1;
             else
                 obj.U = 0;
-            end
-            
-            if strcmp(obj.materialLayer, 'SC')
-                obj.delta = 0.2; %random guess for the gap
-            else
                 obj.delta = 0; %no gap if no superconductor at the start?
             end
+
+            if System.fixedBoundaryDelta
+                if obj.x == 1 
+                    obj.delta = system.fixedDelta(1);
+                elseif obj.x == system.Nx
+                    obj.delta = system.fixedDelta(2);
+                end
+            end
+
             obj.current = [0, 0];
-            %fprintf('Lattice point created at (%d, %d) with type %s\n', obj.x, obj.y, obj.type);
             obj.neighbour = cell(4,1);  
         end
+
         function obj = classifyPoint(obj)
             % Classify the lattice point as corner, side or interior
             if (obj.x == 1 && obj.y == 1)
@@ -112,6 +117,15 @@ classdef LatticePoint
 
         end
 
+        function obj = updateDelta(obj, delta, system)
+            if obj.isSubjectToFixedDelta(system)
+                return;
+            end
+            obj.delta = delta;
+        end
         
+        function cond = isSubjectToFixedDelta(obj,system)
+           cond = System.fixedBoundaryDelta && (obj.x == 1 || obj.x == system.Nx);
+        end
     end
 end
