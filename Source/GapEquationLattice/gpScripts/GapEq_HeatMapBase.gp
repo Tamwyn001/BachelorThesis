@@ -24,6 +24,8 @@ set key bottom left reverse Left
 x0 = 10.5
 
 set style line 1 lt 0 lw 2 lc rgb "black" # Dashed line style
+set style line 2 lt 0 lw 4 lc rgb "red" # Dashed line style
+
 set arrow from x0, graph 0 to x0, graph 1 nohead ls 1 #actual dashed line
 
 materialY = 1.06
@@ -37,10 +39,13 @@ dataroot = './Results'.targetSystem
 set pm3d map
 set palette maxcolors 20
 # Set square plot
-set size square 1
+
+
+set mxtics 2
+set mytics 2
 
 # Set the range of x and y axes from 1 to 20
-set xrange [1:20]
-set yrange [1:20]
-
+set xrange [0.5 : 19.5]
+set yrange [0.5 : 19.5]
+set size square 1
 # pause -1

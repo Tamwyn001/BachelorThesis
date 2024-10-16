@@ -38,7 +38,7 @@ system = system.createLattice();
 system = system.generateHam();
 computation = Computation(system); %holds the eigenvalues and eigenvectors to access them later without passing hige matrices around
 
-DELTA = zeros(system.Nx, system.Ny);
+CORREL_C = zeros(system.Nx, system.Ny);
 fprintf('Solving the gap equation\n');
 
 %seting the value to compare with after its going to be updated
@@ -73,6 +73,7 @@ while (not(thresholdReached(dist, treshold)))
         end
         system.points{i} = system.points{i}.updateDelta(delta_elem_sum, system); %system.points{i}.U *      
         %reinserting delta it into the hamiltonian, we rewrite the 4x4 block of the site including supercondctivity and chemical potential
+        
     end
     %correct Hamiltonian
     for i = 1: system.Nx * system.Ny
@@ -86,14 +87,14 @@ end
 %generate a plotable matrix
 for i = 1: system.Nx * system.Ny
     %disp(system.points{i}.delta);
-    DELTA(system.points{i}.y, system.points{i}.x) = abs(system.points{i}.delta);
+    CORREL_C(system.points{i}.y, system.points{i}.x) = abs(system.points{i}.c_up_c_down);
 end
 %disp(computation.E);
 fprintf('Computing currents\n');
 system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 % Plot the matrix as a heatmap
-heatmap(DELTA,'CellLabelColor', 'None');
+heatmap(CORREL_C,'CellLabelColor', 'None');
 
 % Add title
 details = strcat(int2str(system.Nx),'x', int2str(system.Ny));
@@ -130,12 +131,13 @@ if not(isfolder(path))
     mkdir(path)
 end
 
-pathDELTA = strcat(path, sim_deltails, ".dat");
+path_CORREL_C = strcat(path, sim_deltails, ".dat");
 writematrix(WriteHeatmap(system), pathDELTA,'Delimiter',' ')
-mean_delta = MeanLineMatrix(DELTA);
+
+mean_CORREL_C = MeanLineMatrix(CORREL_C);
 
 pathMEAN = strcat(path, "meanline_",sim_deltails, ".dat");
-writematrix(mean_delta, pathMEAN,'Delimiter',' ');
+writematrix(mean_CORREL_C, pathMEAN,'Delimiter',' ');
 
 pathCURRENT = strcat(path, "current_",sim_deltails, ".dat");
 writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');

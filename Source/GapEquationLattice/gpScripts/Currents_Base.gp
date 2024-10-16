@@ -21,5 +21,6 @@ logarrow(v1,v2) = log(1 + enorm(v1,v2))**contrast * scale
 
 
 set mxtics 5
+set mytics 5
 len = 4
 set palette maxcolors 20

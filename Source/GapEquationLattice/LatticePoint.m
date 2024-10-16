@@ -12,6 +12,7 @@ classdef LatticePoint
         system
         current %current of the site
         neighbour % cout counter clockwise : 1: +x 2: +y 3: -x 4: -y
+        c_up_c_down
     end
     properties (Constant)
         
@@ -34,13 +35,14 @@ classdef LatticePoint
             end
 
             obj = obj.classifyPoint();
+            obj.c_up_c_down = system.guessDelta;
             if strcmp(obj.materialLayer,'SC')
-                obj.delta = system.guessDelta; %random guess for the gap
-                obj.U = 1;
+                 obj.U = 1;
             else
-                obj.U = 0;
-                obj.delta = 0; %no gap if no superconductor at the start?
+                obj.U = 0;           
             end
+            
+            obj.delta = obj.U * system.guessDelta;
 
             if System.fixedBoundaryDelta
                 if obj.x == 1 
@@ -121,7 +123,8 @@ classdef LatticePoint
             if obj.isSubjectToFixedDelta(system)
                 return;
             end
-            obj.delta = delta;
+            obj.c_up_c_down = delta;
+            obj.delta = obj.U * delta;
         end
         
         function cond = isSubjectToFixedDelta(obj,system)

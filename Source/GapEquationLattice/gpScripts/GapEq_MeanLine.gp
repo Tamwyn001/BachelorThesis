@@ -28,6 +28,8 @@ x0 = 10.5
 set style line 1 lt 0 lw 2 lc rgb "black" # Dashed line style
 set arrow from x0, graph 0 to x0, graph 1 nohead ls 1 #actual dashed line
 
+set yrange [1e-14: 1e-4]
+
 materialY = 1.06
 set label 'SC' at graph 0.25, materialY
 set label 'AM' at graph 0.75, materialY
