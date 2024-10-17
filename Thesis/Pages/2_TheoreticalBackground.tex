@@ -327,11 +327,12 @@ The kinetic energy operator is a single particle operator so we have according t
 Now we can juste use $\hat{\bm{p}} = \im \hbar \nabla$ and to compute this expression we use its 
 first quantised form (see \ref{eq:Translation_TwoStateOverlap}) indvolving the $\delta_{\sigma\sigma'}$ trick we introduced
 in the derivation of the complete basis. We also use  $\bm{k}' = \bm{k}$ and hide the $\frac{1}{\Omega}$ is the $\delta_{\bm{k}\bm{k}'}$. The result is
-\[
-T = \sum_{\alpha,\alpha'} \delta_{\alpha\alpha'} \frac{\hbar \bm{k}^2}{2m} c_{\alpha'}^{\dagger} c_{\alpha} = \sum_{\alpha} \underbrace{\frac{\hbar \bm{k}^2}{2m}}_{=:\epsilon_{\bm{k}}} c_{\alpha}^{\dagger} c_{\alpha}
-\]
-we recognise the occupation number operator $\hat{n}_{\alpha} = c_{\alpha}^{\dagger} c_{\alpha}$ and the energy of the state $\epsilon_{\bm{k}}$. This is a quite
-meaningfull result, the non-interacting energy part of the system is the product of the energy of a state with the number of particle within that state, summed over all states.\\ 
+\begin{equation}\label{eq:interactingGasT}
+    T = \sum_{\alpha,\alpha'} \delta_{\alpha\alpha'} \frac{\hbar \bm{k}^2}{2m} c_{\alpha'}^{\dagger} c_{\alpha} = \sum_{\alpha} \underbrace{\frac{\hbar \bm{k}^2}{2m}}_{=:\epsilon_{\bm{k}}} c_{\alpha}^{\dagger} c_{\alpha}
+\end{equation}
+we recognise the occupation number operator $\hat{n}_{\alpha} = c_{\alpha}^{\dagger} c_{\alpha}$ and the energy of the state $\epsilon_{\bm{k}}$. This variable plays a central role later.
+We obtain a quite meaningfull result, the non-interacting energy part of the system is the product of the energy of a 
+state with the number of particle within that state, summed over all states.\\ 
 
 \rem{We don't consider the single particle external potental for now.}\\
 
@@ -426,7 +427,9 @@ a lower density of these particles. The penetration is described as some magneti
 The Meissner state is a thermodynamical state. We can show that the free energy of the superconductive state is higher than the normal state. 
 This results in a lower entropy compered to the normal state.
 
-For readability reason we set the reducted Planck constant $\hbar = 1$ in the following.\\
+Along the derivation of the superconductivity formalism we are going to follow closely the work of Fossheim and Sudbø \cite{FossheimSudbo2004} from chapter 2 to 4.
+For readability reason we set the reducted Planck constant $\hbar = 1$ in the following. Furhter they added the chemical potential to the energy of the state such
+that now $\epsilon_k + \mu \rightarrow \epsilon_k $ from eq. \ref{eq:interactingGasT}. \\
 \subsection{Theoretical framework and BCS theory}
 The Hamiltonian of the system is discribed by the solid state physics. The consider the energy of the electrons and the ions in a lattice.
 \[
@@ -441,6 +444,8 @@ Each term consist of a kinetik and potential energy term. For a more mathematica
 We have $m$ and $M$ as the mass of the electron and the ion. $\bm{r}$ and $\bm{R}$ are the position of the electron and the ion. The ion-ion potential
 freezes the ions into the lattice. 
 We first going to introduce some concepts by describing a non-interacting electron and then improve it to include the interactions.
+Usely the potential of a lattice is periodic. If so the wavefunction o f a particle moving in the system is a plane wave modulated
+by a periodic function. Eigenstates of the corresponding hamiltonian are called Bloch state.
 
 \subsubsection{The non-interacting electron gas}
 In this case of study the Hamiltonian only include a kinetic term
@@ -521,7 +526,6 @@ These two quantities are linked trough the Dyson equation, which reads
 \[
     \bigl(G(\bm{k}, \omega)\bigr)^{-1} =  \bigl(G_0(\bm{k}, \omega)\bigr)^{-1} - \Sigma(\bm{k},\omega).
 \]
-\rem{$sigma R$}?\\
 
 One can use a Fourier-transformation to switch from the time representation to the frequency representation $\omega$. Reordering the equation and using the result
 from \ref{eq:single_propa} we obtain
@@ -530,26 +534,72 @@ from \ref{eq:single_propa} we obtain
 \]
 This function has a pole at $\omega = \epsilon_{\bm{k}} + \Sigma_R + \im \Sigma_I$, where in the none interacting case $\omega = \epsilon_{\bm{k}} + \im\Sigma_I$.
 It makes makes sense, the particle spectrum is now shifted due to the finite lifetime of the particle as a result of the interaction.\\
-
+The pole yields to an expression for the spectrum
+\begin{equation} \label{eq:pole_spectrum1}
+    \omega - \epsilon_{\bm{k}} - \left(\Sigma_R(\bm{k},\omega) + \im \Sigma_I(\bm{k},\omega)\right) = 0
+\end{equation}
 In complexe analysis the order of a pole is given as $n$ if $f(z)$ is meromorphic and has a pole at $z_0$ where
 \[
     (z-z_0)^n f(z)
 \]
 is also meromorphic in the neighbourhood of $z_0$. In our case we're interested in the 0.th order of the pole \textit{why?}. 
-We therfore ignor the imaginary part of the pole and we get
+We therfore ignore the imaginary part of the pole and we get
 \[
     \omega = \epsilon_{\bm{k}} + \Sigma_R(\bm{k}, \epsilon_{\bm{k}}) = \tilde{\epsilon}_{\bm{k}}.  
 \]
-Taking in account a small imaginary part requires a Taylor expension of $\Sigma_{R}$ \textit{why?} in the neighbourhood of $\omega = \tilde{\epsilon}_{\bm{k}}$.
-\begin{center}
-    \textit{Follow with the book and check}
-\end{center}
+If we take into account a tiny imaginary part of $\Sigma$ we obtain a shifted pole. Performing a Taylor expension of 
+$\Sigma_{R}$ in the neighbourhood of $\omega = \tilde{\epsilon}_{\bm{k}}$ will help us.
+\begin{equation*}
+    \left.\Sigma_R(\bm{k}, \omega) = \Sigma_R(\bm{k}, \tilde{\epsilon}_{\bm{k}}) + (\omega - \tilde{\epsilon}_{\bm{k}}) \parDif{\Sigma_R}{\omega}\right|_{\omega= \tilde{\epsilon}_{\bm{k}}} + \mathcal{O}(\omega^2)
+\end{equation*}
+We aim to compute to the first order in $\Sigma_I$ such that we evaluate it at $\omega = \tilde{\epsilon}_{\bm{k}}$. 
+This leads to starting from \ref{eq:pole_spectrum1} and, after inserting the Taylor expension for $\Sigma_R$
+\begin{equation}
+    \begin{aligned}
+        \omega - \underbrace{\bigl(\epsilon_{\bm{k}} + \Sigma_R(\bm{k}, \tilde{\epsilon}_{\bm{k}})\bigr)}_{=  \tilde{\epsilon}_{\bm{k}}} 
+        - \left.(\omega - \tilde{\epsilon}_{\bm{k}}) \parDif{\Sigma_R}{\omega}\right|_{\omega= \tilde{\epsilon}_{\bm{k}}} - \im \Sigma_I(\bm{k}, \tilde{\epsilon}_{\bm{k}}) &= 0\\
+        \Longleftrightarrow ~~ (\omega - \tilde{\epsilon}_{\bm{k}}) \left(1 - \left.\parDif{\Sigma_R}{\omega}\right|_{\omega= \tilde{\epsilon}_{\bm{k}}}\right) - \im \Sigma_I(\bm{k}, \tilde{\epsilon}_{\bm{k}}) &= 0
+    \end{aligned}
+\end{equation}
 We define the residue of the propagator as 
 \begin{equation}
     z_{\bm{k}} = \frac{1}{1- \left.\parDif{\Sigma}{\omega}\right|_{\omega = \tilde{\epsilon}_{\bm{k}}}} \label{eq:residue}
 \end{equation}
+which we can insert in the inverse lifetime of the electron occupying the state $|\bm{k},\sigma\rangle$
+\begin{equation}
+    \frac{1}{\tau_{\bm{k}}} = - z_{\bm{k}} \Sigma_I(\bm{k}, \tilde{\epsilon}_{\bm{k}}).
+\end{equation}
+This justifies the statement $ \Sigma_I \propto 1/\tau_{\bm{k}}$
 This residue is a decreasing function of the energy, which means that its influence is more important for low energies. 
-An interpretation could be that the slow moving electrons have less time to interact with their homologues. 
+An interpretation could be that the slow moving electrons have less time to interact with their fast homologues, which results in a
+longer lifetime.\\
+
+We recall once again the difference of the propagators to conclude this section:\vspace{12pt}\\
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+    \begin{center}
+    Free electron
+    \[G_0(\bm{k}, \omega) = \frac{1}{\omega- \epsilon_{\bm{k}}+\im \delta_{\bm{k}}}\]
+\end{center}
+\end{minipage}
+\begin{minipage}{0.05\textwidth}
+    \begin{tikzpicture}
+        \coordinate (a) at (0,0.5);
+        \coordinate (b) at (0,-0.5);
+        \draw[-] (b) -- (a);
+        \filldraw[color=black, fill = white , thin] (a) circle (0.05);
+        \filldraw[color=black, fill = white , thin] (b) circle (0.05);
+       
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+    \begin{center}
+        Interacting electron
+    \[G(\bm{k}, \omega) = \frac{1}{\omega- \tilde{\epsilon}_{\bm{k}}+\im \frac{1}{\tau_{\bm{k}}}}\]
+    \end{center}
+\end{minipage}
+\end{center}
+
 \textit{Interacting electrons are degraded version of the non-interacting case. There remains a} $z_{\bm{k}}<1$.\\ 
 
 \paragraph{Quasi-particles}
@@ -559,10 +609,12 @@ to the exact eigenfunction of an non-interacting Hamiltonian. We call this state
 
 This is it, a Fermi-liquid is a system of interacting electrons and quasi-particles. These quasi-particles are not eigenstates of the interacting Hamiltonian anymore.
 We can't consider them as an electron like excitation in the interaction context.
-The interactions allows to scatter some states in and out of the Bloch-State. \rem{Introduce what a Bloch state is.}\\
+The interactions allows to scatter some states in and out of the Bloch-State.\\
 
-The above expression for the momentum distribution $n(\bm{k})$ can be ploted and we can recognise a gap of $z_{\bm{k}}$ \rem{or $k_F$}?
-wich is an inportant feature of the Fermi-liquid.\\
+The above expression for the momentum distribution $n(\bm{k})$ can be ploted and we can recognise a gap of $z_{\bm{k}_F}<1$. This wich is an inportant feature of
+the Fermi-liquid. Whereas for the non interacting
+system the momentum distribution has a discontinuity from one to zero when crossing the Fermi surface.
+
 
 \paragraph{Repulsive interactions}
 In condensed matter physics the dominant effect is the repulsive interactions between the electrons due to the coulomb potential. We already described it in the Hamiltonian 
@@ -587,6 +639,23 @@ ground stone to our description of the Meissner state.
 
 \subsubsection{Instability due to attractive Interactions}
 \rem{Hier we are going to show how the attractive interactions destabilise the Fermi-liquid:new ground states are open.}
+
+Leon Cooper introduced a very specific context of attraction that has a huge influence on the stability. Taking this exemple we are going
+to make clear that attractive interaction are \rem{finish paragraph and complete}.\\
+
+Let's asume we have an impotent Fermi sea where the electrons as considered non interacting. Adding to electrons requiers to place them
+above the sea. The exotic context lays into the interactions. They can only interact if they are withing a small cover $\omega_0$
+over the Fermi surface, one on each side, facing them trough the complete surface. If this is not the case the interaction vanishes.
+
+Fossheim and Sudbø derivated a methode in \cite{FossheimSudbo2004} from p.67 to 69. They conclude with the fact that allowing such
+interaction leads to a total energy of the interacting system $E$ smaller than $2 \epsilon_{F}$. This means in the attraction of the electrons
+shift them in a state that lays under the Fermi sea. Further they showed that if the Fermi sea vanishes (one could take electrons out of the system) 
+then this attractive pairing disapears. The same is observed as we approche the classical limit.
+By forming a pair the electron share their fermionic properties and act as bosons. The Pauli principle doesn't rule their energies anymore.\\
+
+We now understand why attractive processes create instabilities. An engery gap opens next to the surface,
+reflecting the energy needed to break the new formed Cooper pair. The shell $\omega_0$ is the maximum frequency delivering
+the ``adesive'' that allows the electron to pair.
 Now that we showed the influence of attractive interactions, we seek some candidate process that are attractive.
 
 \subsubsection{Phonon-mediated attractive interactions \rem{reformulate}}
@@ -908,8 +977,7 @@ In this section we saw how to reduce the many body Hamiltonian to a single-body 
 is a non interacting gas of a type electrons and holes. This involves the introduction of the 
 superconducting gap parameter that we can thanks to the statistical mechanics formalism express a in a self-consitent way.
 
-\subsubsection{Transition temperature and energy gap}
-\rem{The goal is derive a unniversial ratio between $\Delta$ and the crital temperature.}
+
 \subsubsection{Generalized gap equation, s-wave and d-wave superconductivity}
 As we introduced in an earlier section, the formalism follows from the attractive phonon exchange but can be generalized. The superconductivity
 is the result of the pairing of the electrons into Cooper-pairs. These pairs shift into a condensate of take part of a coherent matter-wave.
@@ -1078,4 +1146,49 @@ This value is spin independent and using the arguments we've just given in such 
         =& \frac{1}{N} \sum_{\bm{k}} \left(u^2_{\bm{k}}\delta(\omega - E_{\bm{k}}) + v^2_{\bm{k}}\delta(\omega + E_{\bm{k}})\right).
 \end{align*}
 The density of state of the superconductive condensate $D_s$ is also spin independent since we're considering spin-singlet pairings.
+
+\subsubsection{Transition temperature and energy gap}
+The goal of this discussion will to derive a unniversial ratio between $\Delta$ and the crital temperature. In the last section 
+we already introduced some expressions for $\Delta_{\bm{k}}(T)$ and $V_{\bm{k}\bm{k}}$. Let us consider the simplest case where $V_{\bm{k}\bm{k}} = V$.
+
+The phonon modulated interaction has a cover $\omega_0 = \omega_D$ the Debye-frequency. Inserting it back to the BCS gap equation 
+\ref{eq:BCS_gap_eq} we see that the gap loses it's $\bm{k}$-dependence and results as the identity when applying the symmetries
+ruling the crystal:
+\begin{equation*}
+    1 = V\sum_{\bm{k}'} \frac{\tanh\left(\beta E_{\bm{k}'}\right)}{2 E_{\bm{k}'}}.
+\end{equation*}
+This equation can be easely solved for $T=T_C$ or $T = 0$.\\
+
+Considering $T$ approching $T_C$ from bellow, we can asume that the gap vanishes. We replace the $\bm{k}$-sum by an integral over the normal 
+density of state $D_n(\epsilon)$. Due to the shell the sum occurs in a tiny volume arround the Fermi-Surface so that $D_n(\epsilon)$ is 
+evaluated close to the surface. We asume that in this neighbourhood $D_n$ varries slowly such that avoid some van Hove singularities we 
+simply approximate $D_n(\epsilon) \rightarrow D_n(0)$ because $\epsilon$ is counted relative to the surface in our early toughts. 
+We introduce $\lambda = V D_n(0)$. We get 
+\begin{equation*}
+    \begin{aligned}
+        1 =& \lambda \int_{[0,\omega_D]} \frac{\tanh\left(\beta\epsilon/2\right)}{\epsilon} \dd \epsilon\\
+        =& \lambda \ln\left(\frac{2e^{\gamma}\beta \omega_D}{\pi}\right)
+    \end{aligned}
+\end{equation*}
+using $\gamma := \lim_{m \to\infty} \left(\sum_{l\in\natset{m}} 1/l - \ln(m)\right)$ the Euler-Mascheroni constant. More details are provided
+in \cite{FossheimSudbo2004} p.88-89. We obtain
+\[
+    k_B T_C \approx 1.13\cdot  \omega_D e^{-1/\lambda}
+\]
+For $T\rightarrow 0$ the gap equation takes a simpler form to solve:
+\begin{equation*}
+        1 = V \sum_{\bm{k}'} \frac{1}{2 E_{\bm{k}'}} = \lambda\int_{[0,\omega_D]}  \frac{1}{\sqrt{\epsilon^2 + \Delta^2}}\dd \epsilon
+\end{equation*}
+leads 
+\[
+    \Delta(T=0) = 2 \omega_D e^{-1/\lambda}
+\]
+according to the same source. We see how these expressions are closely dependent on $\lambda$. Moreover we can interpret the essential singularity
+at $\lambda\rightarrow 0$ as following: The attractive processes are singular perturbations of the non interacting electron gas.
+$m$ is very demending to solve even for simple metals and is a function of multiple small details of the system. We aim here 
+to aquire a qualitative knowledge. Let us now bring the retio
+\[
+    \frac{2\Delta(T=0)}{k_b T_C} = \frac{2 \pi}{e^{\gamma}} \approx 3.52
+\]  
+which is a unniversial ratio and does not depentd anymore on the properties of the material.
 \end{document}
