@@ -90,8 +90,8 @@ for i = 1: system.Nx * system.Ny
     CORREL_C(system.points{i}.y, system.points{i}.x) = abs(system.points{i}.c_up_c_down);
 end
 %disp(computation.E);
-fprintf('Computing currents\n');
-system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
+%fprintf('Computing currents\n');
+%system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 % Plot the matrix as a heatmap
 heatmap(CORREL_C,'CellLabelColor', 'None');
@@ -132,12 +132,13 @@ if not(isfolder(path))
 end
 
 path_CORREL_C = strcat(path, sim_deltails, ".dat");
-writematrix(WriteHeatmap(system), pathDELTA,'Delimiter',' ')
+writematrix(WriteHeatmap(system, 'correl_c_c'), path_CORREL_C,'Delimiter',' ')
 
-mean_CORREL_C = MeanLineMatrix(CORREL_C);
+path_PHASE = strcat(path, "phase_",sim_deltails, ".dat");
+writematrix(WriteHeatmap(system, 'phase'), path_PHASE,'Delimiter',' ')
 
 pathMEAN = strcat(path, "meanline_",sim_deltails, ".dat");
-writematrix(mean_CORREL_C, pathMEAN,'Delimiter',' ');
+writematrix(MeanLineMatrix(CORREL_C), pathMEAN,'Delimiter',' ');
 
-pathCURRENT = strcat(path, "current_",sim_deltails, ".dat");
-writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');
+%pathCURRENT = strcat(path, "current_",sim_deltails, ".dat");
+%writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');

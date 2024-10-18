@@ -8,6 +8,8 @@ function Highlight(type)
                 target_info = "material";
             case "AM"
                 target_info = "material";
+            case "fixed"
+                target_info = "subject to fixed";
             otherwise
                 target_info = "type";
                 return
@@ -21,6 +23,10 @@ function Highlight(type)
             end
         elseif strcmp(target_info, "material")
             if strcmp(system.points{i}.materialLayer, type)
+                map(system.points{i}.y, system.points{i}.x) = 1 ;
+            end
+        elseif strcmp(target_info, "subject to fixed")
+            if system.points{i}.isSubjectToFixedDelta(system)
                 map(system.points{i}.y, system.points{i}.x) = 1 ;
             end
         end

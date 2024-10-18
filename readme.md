@@ -12,6 +12,8 @@ Place the terminal in `cd .\Source\GapEquation\`
 
     # Mean line
     .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_MeanLine.gp" -SimulationPath "/SC10AM10/Correlation_cdagg_c_" -LatexPath "/SC10AM10/Correlation_cdagg_c_/MeanLine/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_MeanLine30.gp" -SimulationPath "/SC30/Correlation_cdagg_c_" -LatexPath "/SC30/Correlation_cdagg_c_/MeanLine/";
+
 
     # Heatmap
     .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_HeatmapNoBC.gp" -SimulationPath "/SC10AM10/Correlation_cdagg_c_" -LatexPath "/SC10AM10/Correlation_cdagg_c_/HeatMap/NoBC/";
@@ -35,4 +37,10 @@ Place the terminal in `cd .\Source\GapEquation\`
     #Currents for diffrent fixed phase
     .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_SCAMSC_Phase190deg.gp" -SimulationPath "/SC10AM4SC10/Correlation_cdagg_c_/Phase190deg" -LatexPath "/SC10AM4SC10/Correlation_cdagg_c_/Current/Phase190deg/NoBC/";
     .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_SCAMSC_Phase27deg.gp" -SimulationPath "/SC10AM4SC10/Correlation_cdagg_c_/Phase27deg" -LatexPath "/SC10AM4SC10/Correlation_cdagg_c_/Current/Phase27deg/NoBC/";
+
+    #PhaseMaps
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_HeatMap_SCAMSC_NoBC.gp" -SimulationPath "/SC10AM4SC10/Correlation_cdagg_c_/Phase27deg" -LatexPath "/SC10AM4SC10/Correlation_cdagg_c_/Phase/Phase27deg/NoBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_HeatMap_SCAMSC_NoBC.gp" -SimulationPath "/SC10AM4SC10/Correlation_cdagg_c_/Phase190deg" -LatexPath "/SC10AM4SC10/Correlation_cdagg_c_/Phase/Phase90deg/NoBC/";
+
+
 

@@ -26,4 +26,27 @@
     \caption{Benchmark for the currents $\sqrt{\langle I^x_i\rangle^2 + \langle I^y_i\rangle^2}$ in M, AM and SC}
 \end{figure}
 
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC10AM4SC10/Correlation_cdagg_c_/Phase/Phase27deg/NoBC/plot.tex}
+        \caption{Surrounded with vaccuum. $\varphi = 27\deg$}
+        \label{fig:first}
+    \end{subfigure}    
+    \hspace{0.1\textwidth}
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \input{../Plots/SC10AM4SC10/Correlation_cdagg_c_/Phase/Phase90deg/NoBC/plot.tex}
+        \caption{Surrounded with vaccuum. $\varphi = 27+90 \deg$}
+        \label{fig:first}
+    \end{subfigure}
+
+    \caption{Benchmark for the phase $\text{arg}(\Delta)$ in an SC, AM, SC material. On the left most side we have $\Delta = |\Delta_{\text{guess}}|e^{\im \frac{\pi}{6}}$
+    and on the right most side $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
+\end{figure}
+\begin{figure}[H]
+    \input{../Plots/SC30/Correlation_cdagg_c_/MeanLine/plot.tex}
+    \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions in a SC.}
+\end{figure}
 \end{document}
