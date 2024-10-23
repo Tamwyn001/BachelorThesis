@@ -1,0 +1,200 @@
+\documentclass[../main.tex]{subfile}
+\begin{document}
+\section{Simulations and ..}
+In the last chapters we introduced the theoretical background of superconductivity and altermagnets. 
+The goal of this thesis is to use nummerical methodes to help us find some properties of the system.
+We remind here that all the code is avaliable on a GitHub repository at \url{github.io/..}. \\
+
+The repository contains the matlab code (.m) used to generates the datas in the a form of (coordinate, value) files (.dat).
+Gnuplot scripts (.gp) allow us to produce some plots that we can then directly link to the Latex source code
+of this thesis. Finaly some powershell scripts (.ps1) automate the gnuplot-latex process.\\
+
+The matlab code cointains two important files. The system.m file is a class that describes wich
+ material we are using for the lattice, the physical context like the temperature and the chemical potential
+as well as the use or not of periodic boundary conditions. It contains also the Hamiltoninan of the system
+and keeps track of all lattice sites.\\
+The LaticeSites.m describes the position of a lattice sites, stores its neighbours and monitorate the lattice
+site specific physical quantites. These quantites can be the superconducting gap or the current, etc.\\
+
+We introduced earlier the need of a self consitent solution for the gap to correcly describe the Hamiltoninan.
+This is achieved in the GapEquation.m file which is the main script we run. We start with a guess for
+$\Delta_i$ and introduce it in the Hamiltoninan. This guess can depend on the material, or the site 
+if we aim to introduce some phase shift at specific locations.
+We then derive a new site-dependent value using \ref{eq:SelfConsitentDelta} for all site and
+reinsert it into the Hamiltonian. This requires to get eigenvectors and values of the Hamiltonian. This loop will be 
+performed until the difference of each gap with its previous value reaches a treshhold. We then have a proper 
+Hamiltonian and can start to derivate some values like the current. 
+Matlab is a programm that works well with matricies so using it is a wise choice.\\
+
+The site coordinate is stored as $(x,y)$-tuple as well as an index $i$ that iterates over $y$-row and then starts again
+at the begining of the next row. This means that with different boundary conditions we get the following shape for the system:\\
+\begin{center}
+\begin{tikzpicture}
+    \coordinate (o) at (0.5,0.5);
+    \coordinate (x) at (1.5,0.5);
+    \coordinate (y) at (0.5,1.5);
+
+    \foreach \x in {1,2,3}
+    {
+        \foreach \y in {1,2,3}
+        {
+            \draw[fill=white] (\x-0.5,\y-0.5) rectangle (\x+0.5,\y+0.5);
+            \node[anchor=center] at (\x,\y) {\pgfmathparse{int((\y-1)*3+\x)}\pgfmathresult};
+        }
+    } 
+    \draw[->, thick] (o) -- (x) node[anchor = north]{$\bm{e}_x$};
+    \draw[->, thick] (o) -- (y) node[anchor = east]{$\bm{e}_y$};
+\end{tikzpicture}
+\hspace{0.1\textwidth}
+\begin{tikzpicture}
+    \coordinate (topL) at (0.5,2.5);
+    \coordinate (topM) at (1.5,2.5);
+    \coordinate (topR) at (2.5,2.5);
+
+    \foreach \x in {1,2}
+    {
+        \foreach \y in {1,2}
+        {
+            \draw[fill=white] (\x-0.5,\y-0.5) rectangle (\x+0.5,\y+0.5);
+
+        }
+    } 
+    \draw[-, dotted] (topL) -- ++(0,0.5);
+    \draw[-, dotted] (topM) -- ++(0,0.75);
+    \draw[-, dotted] (topR) -- ++(0,0.5);
+
+    \draw[-, dotted] (topL)++(0,-2) -- ++(0,-0.5);
+    \draw[-, dotted] (topM)++(0,-2) -- ++(0,-0.75);
+    \draw[-, dotted] (topR)++(0,-2) -- ++(0,-0.5);
+
+    \node[anchor=center] at (1,1) {1};
+    \node[anchor=center] at (2,1) {2};
+    \node[anchor=center] at (1,2) {3};
+    \node[anchor=center] at (2,2) {4};
+    \node[anchor=center] at (1,3) {1};
+    \node[anchor=center] at (2,3) {2};
+    \node[anchor=center] at (1,0) {3};
+    \node[anchor=center] at (2,0) {4};
+
+
+\end{tikzpicture}
+\hspace{0.1\textwidth}
+\begin{tikzpicture}
+    \coordinate (topL) at (0.5,2.5);
+    \coordinate (topM) at (1.5,2.5);
+    \coordinate (topR) at (2.5,2.5);
+
+    \coordinate (sideL) at (0.5,0.5);
+    \coordinate (sideM) at (0.5,1.5);
+    \coordinate (sideR) at (0.5,2.5);
+
+    \foreach \x in {1,2}
+    {
+        \foreach \y in {1,2}
+        {
+            \draw[fill=white] (\x-0.5,\y-0.5) rectangle (\x+0.5,\y+0.5);
+
+        }
+    } 
+    \draw[-, dotted] (topL) -- ++(0,0.5);
+    \draw[-, dotted] (topM) -- ++(0,0.75);
+    \draw[-, dotted] (topR) -- ++(0,0.5);
+
+    \draw[-, dotted] (topL)++(0,-2) -- ++(0,-0.5);
+    \draw[-, dotted] (topM)++(0,-2) -- ++(0,-0.75);
+    \draw[-, dotted] (topR)++(0,-2) -- ++(0,-0.5);
+
+    \draw[-, dotted] (sideL) -- ++(-0.5,0);
+    \draw[-, dotted] (sideM) -- ++(-0.75,0);
+    \draw[-, dotted] (sideR) -- ++(-0.5,0);
+
+    \draw[-, dotted] (sideL)++(2,0) -- ++(0.5,0);
+    \draw[-, dotted] (sideM)++(2,0) -- ++(0.75,0);
+    \draw[-, dotted] (sideR)++(2,0) -- ++(0.5,0);
+
+    \node[anchor=center] at (1,1) {1};
+    \node[anchor=center] at (2,1) {2};
+    \node[anchor=center] at (1,2) {3};
+    \node[anchor=center] at (2,2) {4};
+
+    \node[anchor=center] at (1,3) {1};
+    \node[anchor=center] at (2,3) {2};
+    \node[anchor=center] at (1,0) {3};
+    \node[anchor=center] at (2,0) {4};
+
+    \node[anchor=center] at (3,2) {1};
+    \node[anchor=center] at (3,1) {3};
+    \node[anchor=center] at (0,1) {2};
+    \node[anchor=center] at (0,2) {4};
+
+    \node[anchor=center, color = gray] at (3,3) {\scriptsize 1};
+    \node[anchor=center, color = gray] at (0,3) {\scriptsize 2};
+    \node[anchor=center, color = gray] at (0,0) {\scriptsize 3};
+    \node[anchor=center, color = gray] at (3,0) {\scriptsize 4};
+
+\end{tikzpicture}
+\end{center}
+Left we ahve a $3\times3$-system. The others are $2\times2$ with vertical periodic boundary conditions (PBC)
+and on the right with both vertical and horizontal PBC. \\
+
+\subsection{Gap parameter}
+As we saw, the gap parameter is the key value to solve before considering computing anything else.
+Following the description of \ref{eq:SelfConsitentDelta}, we see that because of $U_i$, this value should only exist 
+in the superconductor. We thefore start by taking a long superconductor (SC) having 30 lattice site in $\bm{e}_x$ and $\bm{e}_y$. 
+However later studies are going to show that the the expectation value $\langle c_{i\uparrow} c_{i\downarrow}\rangle$ is not
+only defined in the SC. This expectation value can be seen as a Cooper-pair density. \rem{true statment?}.
+Later we are going to stack some layer on the $\bm{e}_x$ axis, so we first achieve a plot showing the gap on each $\bm{e}_x$-slice
+by averaging on the $\bm{e}_y$ axis to a given $\bm{e}_x$. To stay consitent, we are therfore going to plot only the expectation
+part of the gap $\Delta$. However $U_i$ is setted to be one in an SC, so it doesn't make a big difference in a SC.
+
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Correlation_cdagg_c_/MeanLine/plot.tex}
+    \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different
+     boundary conditions in a SC. \rem{remove the logscale}}
+\end{figure} 
+The gap is almost the same for the different boundary conditions (BC). When having vaccum on the left and right side of the 
+material we observe a drop in the gap. This is due to the fect that on these sites the interaction occures with at most three
+neighbours (two for the corners when no BC). Whereas there are four neighbours on the other locations, inside the material.
+In contrast, for an inflinitly-long superconductor in the $\bm{e}_x$
+direction, $\Delta$ approaches a constant value. In this context every site interacts with four others. \\
+
+The next step would be to snap an altermagnets next to the superconductor an plot the same quantity.
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC10AM10/Correlation_cdagg_c_/MeanLine/plot.tex}
+    \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different
+     boundary conditions in a SC and an AM.}
+\end{figure} 
+Taking into account the logarithmic scale on $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$, we see that without horizontal
+PBC the Cooper pairs leak into the altermagnet. Their density degrows expentialy with the ditance from the interface. Following
+this idea, whene enabling the horizontal PBC we allow two SC on both side of an AM. This results in this well form were we observe
+a leaking for the left and the right inside the AM. Some oscilations are also visible on the side of the SC for the vertical and 
+horizontal PBC case. These are known as [..] and results from [..] \rem{ask Jacob}.\\
+
+The repartition of the gap in real space is also intersting to look at. In fact the above averaging blends out the shape 
+of this value in the lattice.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \input{../Plots/SC10AM10/Correlation_cdagg_c_/HeatMap/NoBC/plot.tex}
+        \caption{Surrounded with vaccuum.}
+        \label{fig:first}
+    \end{subfigure}\\
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \input{../Plots/SC10AM10/Correlation_cdagg_c_/HeatMap/VertBC/plot.tex}
+        \caption{Vaccum on the right and left with vertical periodic boundary conditions.}
+        \label{fig:first}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \input{../Plots/SC10AM10/Correlation_cdagg_c_/HeatMap/VertHorizBC/plot.tex}
+        \caption{Both vertical and horizontal periodic boundary conditions.}
+        \label{fig:first}
+    \end{subfigure}
+    \caption{Heatmaps of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions.}
+\end{figure}
+\end{document}

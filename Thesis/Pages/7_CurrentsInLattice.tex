@@ -1,0 +1,165 @@
+\documentclass[../main.tex]{subfile}
+\begin{document}
+\subsection{Currents}
+Using the charge conservation and the Heisenberg picture we are goning to derive an expression
+for the current in the lattice. The system we are taking into account is two dimensional.\\
+
+The charge conservation reads
+\[
+    \partial_t \rho_i = - \nabla \bm{j}_i
+\]
+and identifies the time variation of the charge density on the site $i$ as the negative divergence of the current density.
+Now, performing some transformations, we bring this expression in a more useful form. The goal here is to integrate on both 
+side over our two-dimensional surface $\Omega$. For the charge density this yields to the charge at a site:
+\[
+    \int_{\Omega} \partial_t \rho_i \dd \bm{r} = \partial_t Q_i .
+\]
+For the current density we can use the Gauß law to change the integration set:
+\[
+    \int_{\Omega} \nabla \bm{j}_i \dd \bm{r} = \int_{\partial \Omega} \bm{j}_i \bm{n} = \sum_{n} J_{i,n} a = \sum_{n} I_{i,n}
+\]
+where $\partial \Omega$ is the boundary of $\Omega$. The normal vector $\bm{n}$ points in the 2D-plane, outward from the boundary.
+Asuming we have a square lattice, we can asign to each lattice site a square
+unit cell with side lenght $a$. The sum over $n$ happens to be over all the side.
+
+Now introducing the Heisenberg picture with $\hbar = 1$ we get
+\[
+    \partial_t Q_i = \im [H, Q_i].
+\]
+Finlay we can introduce the second quantisation in the charge:
+\[
+    Q_i = \sum_{\sigma} c_{i\sigma}^{\dagger}  c_{i\sigma} = \sum_{\sigma} n_{i,\sigma}
+\]
+which is quite trivial, summing over all the particle at a site leads the charge of the site. After putting all together, this yields
+\begin{equation}
+ I_{i}^{+x} +  I_{i}^{+y} +  I_{i}^{-x} +  I_{i}^{-y} = -\im \left[H, \sum_{\sigma} n_{i,\sigma}\right]
+\end{equation}
+This mean the last step to perform is to compute the commutator of the different terms of the Hamiltonian with the chrage at a site $i$.\\
+We reming here that our Hamiltonian contains a chemical potentail, a hopping, a superconduting and an altermagnetic term.
+
+\paragraph{The hopping term} $~$ We set remeber the use of a constant hopping amplitude $t_{ij} = t$.
+\[
+    \left[ \sum_{\langle ij\rangle\sigma} c_{i\sigma}^{\dagger}c_{j\sigma} , \sum_{\sigma} n_{l\sigma}\right] 
+    = \sum_{\langle ij\rangle\sigma\sigma'}  c_{i\sigma}^{\dagger}c_{j\sigma}n_{l\sigma'} - n_{l\sigma'}c_{i\sigma}^{\dagger}c_{j\sigma}
+\]
+We can then introduce a useful trick that involves the commutator $[n_{\mu},c_{\nu}] = -\delta_{\mu\nu}c_{\mu}$
+\begin{equation*}
+    \begin{aligned}
+    c_{i\sigma}^{\dagger}c_{j\sigma}n_{i,\sigma'} &= c_{i\sigma}^{\dagger} \bigl( \underbrace{c_{j\sigma}n_{l\sigma'} 
+    -n_{l\sigma'}c_{j\sigma}}_{-[n_{l\sigma'},c_{j\sigma}]} + n_{l\sigma'}c_{j\sigma}\bigr) \\
+    & = c_{i\sigma}^{\dagger} \left(\delta_{\sigma'\sigma}\delta_{lj}c_{i\sigma'} + n_{l\sigma'}c_{j\sigma}\right).
+    \end{aligned}
+\end{equation*}
+Following the same schema we derive the other part of the commutator. Here the expressions involves
+$[n_{\mu}, c^{\dagger}_{\nu}] = \delta_{\mu\nu}c^{\dagger}_{\mu}$:
+\begin{equation*}
+    \begin{aligned}
+        n_{l\sigma'}c_{i\sigma}^{\dagger}c_{j\sigma} &= \bigl( \underbrace{n_{l\sigma'}c_{i\sigma}^{\dagger} 
+        - c_{i\sigma}^{\dagger}n_{l\sigma'}}_{[n_{l\sigma'}, c^{\dagger}_{i\sigma}]} + c_{i\sigma}^{\dagger}n_{l\sigma'} \bigr)c_{j\sigma} \\
+        &= \left(\delta_{\sigma'\sigma}\delta_{li}c_{i\sigma'}^{\dagger} + c_{i\sigma}^{\dagger}n_{l\sigma'} \right)c_{j\sigma}
+    \end{aligned}
+\end{equation*}
+After substracting the second term from the first one we are left with
+\begin{equation}
+    \left[ \sum_{\langle ij\rangle\sigma} c_{i\sigma}^{\dagger}c_{j\sigma} , \sum_{\sigma} n_{i,\sigma}\right] 
+    = \rem{\frac{1}{2}}\sum_{\langle ij\rangle\sigma\sigma'} \delta_{\sigma'\sigma} \left( \delta_{lj}c_{i\sigma}^{\dagger} c_{i\sigma'} - \delta_{li}c_{i\sigma'}^{\dagger}c_{j\sigma}\right).
+\end{equation}
+ \rem{DO we have to avoid summing twice over the nearest neigbhours?}
+Because of the squared lattice we can summerise the neigbour set $\langle ij\rangle$ to $\left\{ i + \delta_x , i - \delta_x, i + \delta_y, i - \delta_y   \right\}$ involving
+$\delta_{\text{axis}}$ the displacemnt from the site to neigbhour one along the given axis.
+We obtain after summing up over the $\sigma'$ and writing explicitely everything we obtain 
+\begin{equation*}
+    \begin{aligned}
+        =\frac{1}{2} \sum_{\sigma} 
+       &~(c_{i\sigma}^{\dagger}c_{l-\delta_x,\sigma} -c_{i\sigma'}^{\dagger}c_{l+\delta_x,\sigma})  
+       +(c_{i\sigma}^{\dagger}c_{l+\delta_x,\sigma} -c_{i\sigma'}^{\dagger}c_{l-\delta_x,\sigma})\\
+       &+(c_{i\sigma}^{\dagger}c_{l-\delta_y,\sigma} -c_{i\sigma'}^{\dagger}c_{l+\delta_y,\sigma})
+       +(c_{i\sigma}^{\dagger}c_{l+\delta_y,\sigma} -c_{i\sigma'}^{\dagger}c_{l-\delta_y,\sigma}).
+\end{aligned}
+\end{equation*}
+For the chemical potential term it is useful to introduce that the commutator between two number operator vanishes. 
+Since the charge and the chenical potential operators involves only number operator, we find that this term dont't take part
+to the current.
+
+\paragraph{Superconduting term} The superconduting term has a particlar behaviour. if one can sovle the gap (self consistently), this term 
+doesn't contribute to the current as we are going to see. We first form the commutator between the Hubbard term and the charge operator:
+\begin{equation*}
+        \left[\sum_i\left(\Delta_i c_{i\uparrow}^{\dagger}c_{i\downarrow}^{\dagger} + 
+        \Delta_i^{\ast} c_{i\uparrow}c_{i\downarrow}\right) , \sum_{\sigma} n_{l,\sigma}\right]
+\end{equation*}
+again make the already introded commutator appear, we obtain
+\begin{equation*}
+    \begin{aligned}
+    &= \sum_{i\sigma} \delta_{il}\left(\Delta_i^{\dagger} (\delta_{\sigma\downarrow} + \delta_{\sigma\uparrow})c_{i\downarrow}c_{i\uparrow} 
+    -\Delta_i(\delta_{\sigma\downarrow} + \delta_{\sigma\uparrow})c_{i\downarrow}^{\dagger} c_{i\uparrow}^{\dagger}\right)\\
+    &= 2 \left( \Delta_i^{\dagger} c_{l\downarrow}c_{l\uparrow} \Delta_i c_{l\downarrow}^{\dagger}c_{l\uparrow}^{\dagger}\right)
+    \end{aligned}
+\end{equation*}
+This expression mixes creation and annihilation operators and makes it hard to recognise a current. One can view this term as a 
+source \rem{need citation?}meaning we havw a new term $\mathcal{C}_i$ that appears in the equation  
+\[
+    -\partial_t Q_i = \mathcal{C}_i +  \sum_n I_{i,n}  .
+\]
+To know the contribution to the current we can investigate the rate of charge generation of this term. This is achieved by taking the quantum
+expectation and the thermal average of the system.
+\begin{align*}
+    &~2\left(\Delta_l^{\dagger}\langle c_{l\downarrow}c_{l\uparrow}\rangle - \Delta_l\langle c_{l\downarrow}^{\dagger}c_{l\uparrow}^{\dagger}\rangle\right)\\
+    =&~ 2 \Delta_l \sum_{n} v_{nl\downarrow}u_{nl\uparrow}^{\ast} \bigl(1-f\left(1/2 E_n\right)\bigr) + 2 \Delta_l^{\dagger} \sum_{n} u_{nl\downarrow}v_{nl\uparrow}^{\ast} f\left(1/2 E_n\right)\\
+    =& ~ \frac{2}{U_i}\left(\Delta_l^{\dagger}\Delta_l -\Delta_l \Delta_l^{\dagger} \right) = 0
+\end{align*}
+Solving $\Delta$ self-consistently will lead to $\Delta\Delta^{\dagger} = \Delta^{\dagger}\Delta$ and therfore we find that the value vanishes.
+
+\paragraph{Altermagnetic term}
+As we introduced it in a previous discussion, the altermagnetic term is more complicated than the last one treated an need more work. In essence we describe an 
+advanced hopping term, that changes regarding of the hopping axis.
+We can first bring the commutator where the matrix element $\bigl(\bm{m}_{ij}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} $ is a scalar:
+\begin{equation*}
+    \left[\sum_{\langle i j \rangle\sigma\sigma'}\bigl(\bm{m}_{ij}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} 
+        \cdot c_{i\sigma}^{\dagger}c_{j\sigma'}, \sum_{\tilde{\sigma}} n_{l,\tilde{\sigma}}\right] 
+    =\sum_{\substack{\langle i j \rangle \\\sigma\sigma'\tilde{\sigma}}} 
+        \bigl(\bm{m}_{ij}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}  \left(c_{i\sigma}^{\dagger}c_{j\sigma'}n_{l\tilde{\sigma}} 
+        -n_{l\tilde{\sigma}}c_{i\sigma}^{\dagger}c_{j\sigma'} \right).
+\end{equation*}
+Using the same transformation we made earlyer to introduce the commutator between $n,c$ and $n,c^{\dagger}$ we obtain after summing over the $\tilde{\sigma}$
+\[
+    = \sum_{\substack{\langle i j \rangle \\\sigma\sigma'}}  \bigl(\bm{m}_{ij}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}  
+        \delta_{\sigma\sigma'} \left(\delta_{lj}c_{i\sigma}^{\dagger}c_{j\sigma} - \delta_{li}c_{i\sigma}^{\dagger}c_{j\sigma}\right)
+\]
+introducing a new set made of  $\bm{\delta}$s as we did before. The summation over the $\bm{\delta}$ results in the following \rem{combersom} expression
+\begin{equation*}
+    \begin{aligned}
+        = \sum_{\sigma}\Biggl[&
+                \left(c_{l-\delta_x,\sigma}^{\dagger}c_{l\sigma} - c_{l\sigma}^{\dagger}c_{l+\delta_x,\sigma} \right) 
+                    \sum_{\sigma'}\bigl(\bm{m}_{l,l+\delta_x}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\\
+                +&\left(c_{l+\delta_x,\sigma}^{\dagger}c_{l\sigma} - c_{l\sigma}^{\dagger}c_{l-\delta_x,\sigma} \right) 
+                    \sum_{\sigma'}\bigl(\bm{m}_{l,l-\delta_x}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\\
+                +&\left(c_{l-\delta_y,\sigma}^{\dagger}c_{l\sigma} - c_{l\sigma}^{\dagger}c_{l+\delta_y,\sigma} \right) 
+                    \sum_{\sigma'}\bigl(\bm{m}_{l,l+\delta_y}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\\
+                +&\left.\left(c_{l+\delta_y,\sigma}^{\dagger}c_{l\sigma} - c_{l\sigma}^{\dagger}c_{-+\delta_y,\sigma} \right) 
+                    \sum_{\sigma'}\bigl(\bm{m}_{l,l-\delta_y}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\right]
+    \end{aligned}
+\end{equation*} 
+
+\paragraph{Side currents}
+
+
+\paragraph{Total currents}
+Until now we are able to describe how the current flows trought each faces of the unit cell. For this we can simply split the term we derived.
+From this we now aim to derive the current flows on each axis.
+This can ealsy be done asuming that the current flowing in the $-x$ direction subtracted from the current in the positive $x$ direction forms the total current in $\bm{e}_x$.
+From this we get for $r\in\{x,y\}$:
+\[
+    I_{i}^{r} = I_{i}^{+r} + I_{i}^{-r}.
+\]
+The real current that we can measure can be obtained by taking the quantum expection value and the thermal average of the currents. Further we also introduce the 
+BdG-transformed operators with the eigenvalues \ref{eq:BdG_transf_c} and \ref{eq:BdG_transf_c_dagg}. \\
+
+For the seak of readability we are going to stick with this $r$-notation. In fact the total currents takes a disproportionate size on the page so we abstract a bit.
+\begin{equation*}
+    \begin{aligned}
+    \langle I_l^r\rangle = \sum_{\sigma}\sum_{n\in\mathcal{N}_+} \bigl(1-f(E_n)) 
+    &\left[ \sum _{\sigma'}\bigl(\bm{m}_{l,l+\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(u_{nl\sigma} u_{n,l+\delta_r,\sigma}^{\ast}  + u_{n,l-\delta_r,\sigma}u_{nl\sigma}^{\ast}\right)\right.\\
+    +&\left.\sum _{\sigma'}\bigl(\bm{m}_{l,l-\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(u_{n,l+\delta_r,\sigma} u_{nl\sigma}^{\ast} + u_{nl\sigma}v_{n,l-\delta_r,\sigma}^{\ast}\right)\right]
+    \end{aligned}
+\end{equation*}
+\end{document}

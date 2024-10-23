@@ -287,12 +287,37 @@ theorie in order to find the gap. This requires a self consistency equation, whi
 
 The gap was defined as $\Delta(\bm{r}) := U(\bm{r}) \langle \psi_{\uparrow}(\bm{r})\psi_{\downarrow}(\bm{r})\rangle$. Back to the tight binding formalism,
 the gap now depends on the lattice site $i$ and reads
-$\Delta_i = \langle c_{i\uparrow}c_{i\downarrow}\rangle$ and we can express $c_{i\sigma}$ in terms of the $\gamma$-operators:
-\begin{align*}
+$\Delta_i = \langle c_{i\uparrow}c_{i\downarrow}\rangle$ and we can express $c_{i\sigma}$ in terms of the $\gamma$-operators:\\
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\begin{equation}
+    \begin{aligned}\label{eq:BdG_transf_c}
     c_{i\sigma} =& \sum_{n\in\mathcal{N}} u_{ni\sigma}\gamma_n \\
         =& \sum_{n\in\mathcal{N}_+} u_{ni\sigma}\gamma_n + u_{-n,i\sigma}\gamma_{-n}\\
         =& \sum_{n\in\mathcal{N}_+} u_{ni\sigma}\gamma_n + v_{ni\sigma}^{\ast}\gamma_{n}^{\dagger}
-\end{align*}
+    \end{aligned}
+\end{equation}
+\end{minipage}\hspace{0.05\textwidth}
+\begin{minipage}{0.03\textwidth}
+    \begin{tikzpicture}
+        \coordinate (a) at (0,1);
+        \coordinate (b) at (0,-1);
+        \draw[-] (b) -- (a);
+        \filldraw[color=black, fill = white , thin] (a) circle (0.05);
+        \filldraw[color=black, fill = white , thin] (b) circle (0.05);
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+    \begin{equation}
+        \begin{aligned}\label{eq:BdG_transf_c_dagg}
+        c_{i\sigma}^{\dagger} =& \sum_{n\in\mathcal{N}_+}( u_{ni\sigma}\gamma_n)^{\dagger} +( v_{ni\sigma}^{\ast}\gamma_{n}^{\dagger})^{\dagger} \\
+            =& \sum_{n\in\mathcal{N}_+} \gamma_n^{\dagger}u_{ni\sigma}^{\dagger} + \gamma_{n}(v_{ni\sigma}^{\ast})^{\dagger} \\
+            =& \sum_{n\in\mathcal{N}_+} u_{ni\sigma}^{\ast}\gamma_n^{\dagger} + v_{ni\sigma}\gamma_{n} \\
+        \end{aligned}
+    \end{equation}
+\end{minipage}
+\end{center}
+
 where we used the symmetry of the eigenvectors. We can now compute expectation value involved in the gap:
 \begin{align*}
     \langle c_{i\uparrow}c_{i\downarrow} \rangle =& \sum_{n,m\in\mathcal{N}_+} \left\langle\left(u_{ni\uparrow}\gamma_n + v_{ni\uparrow}^{\ast}\gamma_{n}^{\dagger}\right)\left(u_{mi\downarrow}\gamma_m + v_{mi\downarrow}^{\ast}\gamma_{m}^{\dagger}\right)\right\rangle\\
@@ -309,9 +334,9 @@ forget the indicies.. \rem{why?}. The Hamiltonian is diagonal in $\gamma\gamma^{
 
 The expectation value $\langle a\hat{A}\rangle_{\Phi}$ of a scalar times an operator reads $\langle \Phi|a \hat{A}|\Phi\rangle_{\Phi} = a \langle \Phi|\hat{A}|\Phi\rangle_{\Phi} = a \langle \hat{A}\rangle_{\Phi}$. 
 To convince onselves, we just take a look at the first quantisation expression of this braket. This result leads to the self consistency equation:
-\[
+\begin{equation}\label{eq:SelfConsitentDelta}
     \Delta_i = U_i\sum_{n\in\mathcal{N}_+} u_{ni\uparrow} v_{ni\downarrow}^{\ast} \left(1-f(E_n)\right) + u_{ni\downarrow} v_{ni\uparrow}^{\ast}f(E_n)
-\]
+\end{equation}
 We plan to solve this equation numerically, inserting some guess in the Hamiltonian, diagonalize it, update $\Delta_i$ and reinsert it into H and repeat until we reach a fixpoint.\\
 \end{document}
 

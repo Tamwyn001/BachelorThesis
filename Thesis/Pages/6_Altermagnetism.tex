@@ -1,0 +1,62 @@
+\documentclass[../main.tex]{main.tex}
+\begin{document}
+\section{Altermagnetism}
+The reader might already be familiar with ferromagnets and all the regular magnetic models. Taking into account the spin and
+wave vector of each particle in a site, one can derive some symmetries under transform operations. For exemple a
+ferromagnet is symmetric under spin-flip (\rem{means time reversal?}) and a rotation. In the exemple of the antiferromagnetism,
+we have two sub-lattice with opposite spins. In such systems the spin compensate eachother resulting in a null magnetism.
+The system is symmetric under spin-flip and translation.\\
+
+Altermagnets implement two or more sub-lattice which might not be related between eachother using the crystal's symmetries.
+Therfore summing up the spin doesn't result in a trivial expression like the antiferromagnetic material. In fact the overall
+spin projection might almost be zero but not exactly. \rem{always integer spin, read e mails}. In a more formal way, we can
+distinguish two types of altermagnet. \\
+
+In the first type, the altermagnet's lattice site have different distance to the neighbours depending on the linking axis and the 
+spin of the particle in the site.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \coordinate (o) at (0,0);
+        \foreach \sign in {-1, 1}
+        {
+        \foreach \dir/\col/\title in {2/TamGreen/t+m, 0.75/red/t-m}
+            {
+            \pgfmathparse{ifthenelse(\dir==2, \dir*\sign, 0)} % Calculate x-coordinate
+            \let\x=\pgfmathresult
+            \pgfmathparse{ifthenelse(\dir==2, 0, \dir*\sign)} % Calculate y-coordinate
+            \let\y=\pgfmathresult
+            
+            % Use the computed coordinates in a let statement
+            \coordinate (a) at (\x,\y);               
+            \path[-, color = \col] (o) -- node[midway]{\(\title\)} (a) ;
+            \filldraw[color=black, fill = white , thick] (a) circle (0.1);
+                
+            }
+        }
+        \filldraw[color=black, fill = white , thick](0,0) circle (0.2);
+        \node[anchor=center] at (o) {\(\scriptsize\uparrow\)};
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        \coordinate (o) at (0,0);
+        \foreach \sign in {-1, 1}
+        {
+        \foreach \dir/\col/\title in {2/TamGreen/t+m, 0.75/red/t-m}
+            {
+            \pgfmathparse{ifthenelse(\dir==2, 0,\dir*\sign )} % Calculate x-coordinate
+            \let\x=\pgfmathresult
+            \pgfmathparse{ifthenelse(\dir==2, \dir*\sign ,0)} % Calculate y-coordinate
+            \let\y=\pgfmathresult
+            
+            % Use the computed coordinates in a let statement
+            \coordinate (a) at (\x,\y);               
+            \path[-, color = \col] (o) -- node[midway]{\(\title\)} (a) ;
+            \filldraw[color=black, fill = white , thick] (a) circle (0.1);
+                
+            }
+        }
+        \filldraw[color=black, fill = white , thick](0,0) circle (0.2);
+        \node[anchor=center] at (o) {\(\scriptsize\downarrow\)};
+    \end{tikzpicture}
+\end{figure}
+\end{document}
