@@ -38,7 +38,7 @@ system = system.createLattice();
 system = system.generateHam();
 computation = Computation(system); %holds the eigenvalues and eigenvectors to access them later without passing hige matrices around
 
-CORREL_C = zeros(system.Nx, system.Ny);
+CORREL_C = zeros(system.Ny, system.Nx);
 fprintf('Solving the gap equation\n');
 
 %seting the value to compare with after its going to be updated
@@ -90,11 +90,11 @@ for i = 1: system.Nx * system.Ny
     CORREL_C(system.points{i}.y, system.points{i}.x) = abs(system.points{i}.c_up_c_down);
 end
 %disp(computation.E);
-%fprintf('Computing currents\n');
-%system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
+fprintf('Computing currents\n');
+system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 % Plot the matrix as a heatmap
-heatmap(CORREL_C,'CellLabelColor', 'None');
+% heatmap(CORREL_C,'CellLabelColor', 'None');
 
 % Add title
 details = strcat(int2str(system.Nx),'x', int2str(system.Ny));
@@ -127,18 +127,28 @@ for i = 1 : numel(System.layer)
 end
 path = strcat(".\Results\", systemMaterial,"\Correlation_cdagg_c_\");
 
-if not(isfolder(path))
-    mkdir(path)
+
+phase_shift_folder = "";
+
+if System.fixedBoundaryDelta
+    phase_shift = round((system.phi_2 - system.phi_1) * (180/pi));
+    phase_shift_folder = strcat("Phase", num2str(phase_shift), "deg\LitteratureModel2\");
 end
 
-path_CORREL_C = strcat(path, sim_deltails, ".dat");
+if not(isfolder(strcat(path, phase_shift_folder)))
+    mkdir(strcat(path, phase_shift_folder))
+end
+
+
+
+path_CORREL_C = strcat(path, phase_shift_folder, sim_deltails, ".dat");
 writematrix(WriteHeatmap(system, 'correl_c_c'), path_CORREL_C,'Delimiter',' ')
 
-path_PHASE = strcat(path, "phase_",sim_deltails, ".dat");
+path_PHASE = strcat(path, phase_shift_folder, "phase_",sim_deltails, ".dat");
 writematrix(WriteHeatmap(system, 'phase'), path_PHASE,'Delimiter',' ')
 
-pathMEAN = strcat(path, "meanline_",sim_deltails, ".dat");
+pathMEAN = strcat(path, phase_shift_folder, "meanline_",sim_deltails, ".dat");
 writematrix(MeanLineMatrix(CORREL_C), pathMEAN,'Delimiter',' ');
 
-%pathCURRENT = strcat(path, "current_",sim_deltails, ".dat");
-%writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');
+pathCURRENT = strcat(path, phase_shift_folder,"current_",sim_deltails, ".dat");
+writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');

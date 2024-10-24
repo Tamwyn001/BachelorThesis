@@ -4,11 +4,11 @@ classdef System
 
     properties (Constant)
         verticalPeriodicBoundary = true;
-        horizontalPeriodicBoundary = true;
+        horizontalPeriodicBoundary = false;
 
         guessDelta = 0.002;
         %makes only sense when no horiz. periodic boundary conditon is applied
-        fixedBoundaryDelta = false;
+        fixedBoundaryDelta = true;
         phi_1 = pi/6; %phase of the superconducting gap on the left side
         phi_2 = pi/6 + ( (27+90) * pi/180); %phase of the superconducting gap on the right side, phase shift of 25°
         layer =  ["SC", 30]; %["SC", 10, "AM", 10] %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
@@ -19,11 +19,11 @@ classdef System
         mu = 5; %eV
         m = 1; %hopping
         m_matrix = [[0,0, System.m], [0,0, -System.m]]; %contributions factor on the pauli matrixies. the submatrices...
-        %  are hopping in x and y directions
+        %  are hopping in x and y directions9
+        Ny = 15; 
     end
     properties
         Nx;
-        Ny;
         points;
         hamiltonian;
         fixedDelta;
@@ -38,7 +38,6 @@ classdef System
                 size = size + str2num(System.layer(2*i));
             end
             obj.Nx = size;
-            obj.Ny = size;
              %we preallocate the array to gain in speed
             obj.points = cell(obj.Nx * obj.Ny ,1);
             obj.fixedDelta = [abs(obj.guessDelta)*exp(1i * obj.phi_1), abs(obj.guessDelta)*exp(1i * obj.phi_2)];

@@ -31,6 +31,7 @@ classdef LatticePoint
             elseif nargin == 2
                 obj.i = x; %the input is the index i
                 [obj.x ,obj.y] = obj.i_to_xy(obj.i);
+                %fprintf('x: %d, y: %d\n', obj.x, obj.y);
                 obj.materialLayer = System.sampleTypeAt(obj.x);
             end
 
@@ -95,8 +96,8 @@ classdef LatticePoint
 
         function [x, y] = i_to_xy(obj,i)
             % Convert i index to x, y coordinates
-            x = ModNo0(i, obj.system.Nx);
-            y = (i - x)/obj.system.Nx + 1;
+            x = mod(i-1, obj.system.Nx) + 1;
+            y = floor((i-1)/obj.system.Nx) + 1;
         end
 
         function obj = findNeighbours(obj, system)

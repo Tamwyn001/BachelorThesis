@@ -2,7 +2,7 @@ function NeigboursMap(x, y)
     system = System();
     system = system.createLattice();
 
-    map = zeros(system.Nx, system.Ny);
+    map = zeros(system.Ny, system.Nx);
     id = system.points{1}.xy_to_i(x, y);
     for i = 1:system.Nx
         for j= 1:system.Ny

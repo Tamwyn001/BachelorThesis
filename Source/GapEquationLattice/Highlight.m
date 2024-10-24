@@ -15,7 +15,7 @@ function Highlight(type)
                 return
         end
     end
-    map = zeros(system.Nx, system.Ny);
+    map = zeros(system.Ny, system.Nx);
     for i = 1:system.Nx*system.Ny
         if strcmp(target_info, "type") 
             if strcmp(system.points{i}.type, type)
@@ -31,5 +31,6 @@ function Highlight(type)
             end
         end
     end
+   
     heatmap(map);
 end
