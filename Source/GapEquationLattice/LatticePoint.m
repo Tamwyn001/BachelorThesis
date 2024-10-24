@@ -38,7 +38,7 @@ classdef LatticePoint
             obj = obj.classifyPoint();
             obj.c_up_c_down = system.guessDelta;
             if strcmp(obj.materialLayer,'SC')
-                 obj.U = 1;
+                obj.U = 1;
             else
                 obj.U = 0;           
             end

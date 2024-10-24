@@ -15,7 +15,7 @@ Place the terminal in `cd .\Source\GapEquation\`
     .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_MeanLine30.gp" -SimulationPath "/SC30/Correlation_cdagg_c_" -LatexPath "/SC30/Correlation_cdagg_c_/MeanLine/";
 
     -- Litterature model 1
-    .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_MeanLine30SC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel" -LatexPath "/SC30/Correlation_cdagg_c_/MeanLine/Phase117deg/LitteratureModel/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_MeanLine30SC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel1" -LatexPath "/SC30/Correlation_cdagg_c_/MeanLine/Phase117deg/LitteratureModel1/";
 
     -- Litterature model 2
     .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_MeanLine30SC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel2" -LatexPath "/SC30/Correlation_cdagg_c_/MeanLine/Phase117deg/LitteratureModel2/";
@@ -32,8 +32,8 @@ Place the terminal in `cd .\Source\GapEquation\`
     .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_HeatMap_SCAMSC_phase27_NoBC.gp" -SimulationPath "/SC10AM4SC10/Correlation_cdagg_c_/Phase27deg" -LatexPath "/SC10AM4SC10/Correlation_cdagg_c_/HeatMap/Phase27deg/NoBC/";
    
     -- Litterature model 1
-    .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_HeatMap_long_SC_NoBC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel" -LatexPath "/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/LitteratureModel/NoBC/";
-    .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_HeatMap_long_SC_VertBC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel" -LatexPath "/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/LitteratureModel/VertBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_HeatMap_long_SC_NoBC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel1" -LatexPath "/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/LitteratureModel1/NoBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_HeatMap_long_SC_VertBC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel1" -LatexPath "/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/LitteratureModel1/VertBC/";
 
     -- Litterature model 2
     .\generateGraph.ps1 -GnuScript "./gpScripts/GapEq_HeatMap_long_SC_NoBC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel2" -LatexPath "/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/LitteratureModel2/NoBC/";
@@ -57,8 +57,8 @@ Place the terminal in `cd .\Source\GapEquation\`
 
     ->LONG
     -- Model litterture 1
-    .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_Benchmark_long_SCNoBC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel" -LatexPath "/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel/NoBC/";
-    .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_Benchmark_long_SCVertBC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel" -LatexPath "/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel/VertBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_Benchmark_long_SCNoBC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel1" -LatexPath "/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel1/NoBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_Benchmark_long_SCVertBC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel1" -LatexPath "/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel1/VertBC/";
 
     -- Model litterture 2
     .\generateGraph.ps1 -GnuScript "./gpScripts/Currents_Benchmark_long_SCNoBC.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel2" -LatexPath "/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel2/NoBC/";
@@ -79,8 +79,8 @@ Place the terminal in `cd .\Source\GapEquation\`
 
     ->LONG
     -- Model litterture 1
-    .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_HeatMap_long_NoBC_Base.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel" -LatexPath "/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel/NoBC/";
-    .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_HeatMap_long_VertBC_Base.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel" -LatexPath "/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel/VertBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_HeatMap_long_NoBC_Base.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel1" -LatexPath "/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel1/NoBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_HeatMap_long_VertBC_Base.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel1" -LatexPath "/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel1/VertBC/";
     -- Model litterture 2
     .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_HeatMap_long_NoBC_Base.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel2" -LatexPath "/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel2/NoBC/";
     .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_HeatMap_long_VertBC_Base.gp" -SimulationPath "/SC30/Correlation_cdagg_c_/Phase117deg/LitteratureModel2" -LatexPath "/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel2/VertBC/";

@@ -49,174 +49,96 @@
     \input{../Plots/SC30/Correlation_cdagg_c_/MeanLine/plot.tex}
     \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions in a SC.}
 \end{figure}
+\subsection{Current}
 
-\subsection{Litterature Model}
 \begin{figure}[H]
     \centering
-    \input{Plots/SC30/Correlation_cdagg_c_/MeanLine/Phase117deg/LitteratureModel/plot.tex}
+    \input{Plots/SC30/Correlation_cdagg_c_/MeanLine/Phase117deg/LitteratureModel1/plot.tex}
     \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions in a SC.}
 \end{figure}
-\begin{figure}[H]
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \hspace{-4cm} % Move 2 cm to the left
-        \input{../Plots/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel/NoBC/plot.tex}
-        \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
-        \label{fig:first}
-    \end{subfigure}    \\
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \hspace{-4cm} % Move 2 cm to the left
-        \input{../Plots/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/LitteratureModel/NoBC/plot.tex}
-        \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
-        \label{fig:first}
-    \end{subfigure}    \\
-
-    \hspace{0.1\textwidth}
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \input{../Plots/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel/NoBC/plot.tex}
-        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}
-
-    \caption{Benchmark for the phase $\text{arg}(\Delta)$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
-\end{figure}    
 \begin{figure}[H]
 \begin{subfigure}{0.4\textwidth}
     \centering
     \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel/VertBC/plot.tex}
+    \input{../Plots/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel1/NoBC/plot.tex}
+    \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
+    \label{fig:first}
+\end{subfigure}    \\
+\begin{subfigure}{0.4\textwidth}
+    \centering
+    \hspace{-4cm} % Move 2 cm to the left
+    \input{../Plots/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/LitteratureModel1/NoBC/plot.tex}
+    \caption{Heat map. Surrounded with vaccuum. $\varphi = 117\deg$}
+    \label{fig:first}
+\end{subfigure}    \\
+\begin{subfigure}{0.4\textwidth}
+    \centering
+    \hspace{-4cm} % Move 2 cm to the left
+    \input{../Plots/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel1/VertBC/plot.tex}
     \caption{Phase map. Vert BC.. $\varphi = 117\deg$}
     \label{fig:first}
 \end{subfigure}    \\
 \begin{subfigure}{0.4\textwidth}
     \centering
     \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/LitteratureModel/VertBC/plot.tex}
+    \input{../Plots/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/LitteratureModel1/VertBC/plot.tex}
     \caption{heat map $\Delta$. Vert BC.. $\varphi = 117\deg$}
     \label{fig:first}
-\end{subfigure}    \\
-\hspace{0.1\textwidth}
+\end{subfigure}    
+\caption{Benchmark for the phase $\text{arg}(\Delta)$ and $|\Delta|$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
+
+\end{figure}
+\subsubsection{Litterature Model}
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \input{../Plots/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel1/NoBC/plot.tex}
+        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
+        \label{fig:first}
+    \end{subfigure}\\
 \begin{subfigure}{0.4\textwidth}
     \centering
-    \input{../Plots/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel/VertBC/plot.tex}
+    \input{../Plots/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel1/VertBC/plot.tex}
     \caption{Current map. Vert BC. $\varphi = 117 \deg$}
     \label{fig:first}
 \end{subfigure}
 
-\caption{Benchmark for the phase $\text{arg}(\Delta)$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
+\caption{Current map for two different boundaries conditions according to literature model 1.}
 \end{figure}
 
-\subsection{Litterature Model 2}
+\subsubsection{Litterature Model 2}
 \begin{figure}[H]
-    \centering
-    \input{Plots/SC30/Correlation_cdagg_c_/MeanLine/Phase117deg/LitteratureModel2/plot.tex}
-    \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions in a SC.}
-\end{figure}
-\begin{figure}[H]
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \hspace{-4cm} % Move 2 cm to the left
-        \input{../Plots/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel2/NoBC/plot.tex}
-        \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
-        \label{fig:first}
-    \end{subfigure}    \\
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \hspace{-4cm} % Move 2 cm to the left
-        \input{../Plots/SC30/Correlation_cdagg_c_/Heatmap/Phase117deg/LitteratureModel2/NoBC/plot.tex}
-        \caption{Heatmap $\Delta$. Surrounded with vaccuum. $\varphi = 117\deg$}
-        \label{fig:first}
-    \end{subfigure}    \\
-    \hspace{0.1\textwidth}
     \begin{subfigure}{0.4\textwidth}
         \centering
         \input{../Plots/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel2/NoBC/plot.tex}
         \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
         \label{fig:first}
-    \end{subfigure}
-
-    \caption{Benchmark for the phase $\text{arg}(\Delta)$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
-\end{figure}    
-\begin{figure}[H]
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC30/Correlation_cdagg_c_/Phase/Phase117deg/LitteratureModel2/VertBC/plot.tex}
-    \caption{Phase map. Vert BC. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    \\
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \hspace{-4cm} % Move 2 cm to the left
-        \input{../Plots/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/LitteratureModel2/VertBC/plot.tex}
-        \caption{Heatmap $\Delta$. Vert BC. $\varphi = 117\deg$}
-        \label{fig:first}
-    \end{subfigure}    \\
-\hspace{0.1\textwidth}
+    \end{subfigure}\\
 \begin{subfigure}{0.4\textwidth}
     \centering
     \input{../Plots/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/LitteratureModel2/VertBC/plot.tex}
     \caption{Current map. Vert BC. $\varphi = 117 \deg$}
     \label{fig:first}
 \end{subfigure}
-
-\caption{Benchmark for the phase $\text{arg}(\Delta)$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
+\caption{Current map for two different boundaries conditions according to literature model 2.}
 \end{figure}
 
-\subsection{Own Model}
+\subsubsection{Own Model}
+
 \begin{figure}[H]
-    \centering
-    \input{Plots/SC30/Correlation_cdagg_c_/MeanLine/Phase117deg/OwnModel/plot.tex}
-    \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions in a SC.}
-\end{figure}
-\begin{figure}[H]
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \hspace{-4cm} % Move 2 cm to the left
-        \input{../Plots/SC30/Correlation_cdagg_c_/Phase/Phase117deg/OwnModel/NoBC/plot.tex}
-        \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
-        \label{fig:first}
-    \end{subfigure}    \\
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \hspace{-4cm} % Move 2 cm to the left
-        \input{../Plots/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/OwnModel/NoBC/plot.tex}
-        \caption{Heatmap $\Delta$. Surrounded with vaccuum. $\varphi = 117\deg$}
-        \label{fig:first}
-    \end{subfigure}    \\
-    \hspace{0.1\textwidth}
     \begin{subfigure}{0.4\textwidth}
         \centering
         \input{../Plots/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/OwnModel/NoBC/plot.tex}
         \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
         \label{fig:first}
+    \end{subfigure}\\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \input{../Plots/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/OwnModel/VertBC/plot.tex}
+        \caption{Current map. Vert BC. $\varphi = 117 \deg$}
+        \label{fig:first}
     \end{subfigure}
+\caption{Current map for two different boundaries conditions according to literature model 1.}
 
-    \caption{Benchmark for the phase $\text{arg}(\Delta)$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
-\end{figure}    
-\begin{figure}[H]
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC30/Correlation_cdagg_c_/Phase/Phase117deg/OwnModel/VertBC/plot.tex}
-    \caption{Phase map. Vert BC.. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    \\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC30/Correlation_cdagg_c_/HeatMap/Phase117deg/OwnModel/VertBC/plot.tex}
-    \caption{Heatmap $\Delta$. Vert BC.. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    \\
-\hspace{0.1\textwidth}
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \input{../Plots/SC30/Correlation_cdagg_c_/BenchmarkCurrent/Phase117deg/OwnModel/VertBC/plot.tex}
-    \caption{Current map. Vert BC. $\varphi = 117 \deg$}
-    \label{fig:first}
-\end{subfigure}
 \end{figure}
 \end{document}
