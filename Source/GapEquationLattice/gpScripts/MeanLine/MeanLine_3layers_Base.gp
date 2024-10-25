@@ -1,4 +1,4 @@
-set loadpath './config'
+set loadpath './gpScripts/'
 load '/MeanLine/MeanLine_Base.gp'
 
 

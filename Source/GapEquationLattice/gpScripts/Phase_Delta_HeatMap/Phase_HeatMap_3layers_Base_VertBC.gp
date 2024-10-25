@@ -1,5 +1,5 @@
 set loadpath './gpscripts/'
-load '/Phase_Delta_HeatMap/GapEq_HeatMapBase.gp'
+load '/Phase_Delta_HeatMap/Phase_HeatMap_Base.gp'
 
 set xrange [0.5:30.5]
 set yrange [0.5:14.5]

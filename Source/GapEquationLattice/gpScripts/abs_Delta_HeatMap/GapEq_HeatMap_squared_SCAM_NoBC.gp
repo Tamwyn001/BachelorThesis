@@ -1,4 +1,4 @@
-set loadpath './gpscripts/'
+set loadpath './gpScripts/'
 
 load '/abs_Delta_HeatMap/GapEq_HeatMap_squared_SCAM_Base.gp'
 

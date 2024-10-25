@@ -1,5 +1,5 @@
 set loadpath './gpScripts/'
-load 'Currents/Currents_3layers_SCMSC_Base.gp'
+load 'Currents/Currents_3layers_SCAMSC_Base.gp'
 
 
 plot dataroot.'/current_31x15NoBC.dat' \

@@ -1,4 +1,4 @@
-set loadpath './config'
+set loadpath './gpScripts/'
 
 load '/SystemDesc/SC.cfg'
-load '/MeanLine/MeanLine_squared_Base.gp'
+load '/MeanLine/MeanLine_long_Base.gp'

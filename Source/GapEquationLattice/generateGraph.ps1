@@ -45,5 +45,6 @@ $content = $content -replace $target, $replace
 
 $content = $content -replace '0\.00e\{\+00\}', '0'  -replace '0\.0e\{\+00\}', '0'  -replace '0e\{\+00\}', '0'
 Set-Content -Path "$tex_path" -Value $content -Encoding UTF8
+
 del "`$null" # delete the temp outputs file
 "Task completed"

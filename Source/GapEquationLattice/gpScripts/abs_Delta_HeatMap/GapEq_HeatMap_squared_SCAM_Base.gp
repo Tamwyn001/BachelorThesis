@@ -1,4 +1,4 @@
-set loadpath './gpscripts/'
+set loadpath './gpScripts/'
 
 load '/SystemDesc/SC10-AM10.cfg'
 load '/abs_Delta_HeatMap/GapEq_HeatMapBase.gp'
