@@ -132,7 +132,8 @@ phase_shift_folder = "";
 
 if System.fixedBoundaryDelta
     phase_shift = round((system.phi_2 - system.phi_1) * (180/pi));
-    phase_shift_folder = strcat("Phase", num2str(phase_shift), "deg\LitteratureModel2\");
+    model = "OwnModel";
+    phase_shift_folder = strcat("Phase", num2str(phase_shift), "deg\", model,"\");
 end
 
 if not(isfolder(strcat(path, phase_shift_folder)))
@@ -152,3 +153,4 @@ writematrix(MeanLineMatrix(CORREL_C), pathMEAN,'Delimiter',' ');
 
 pathCURRENT = strcat(path, phase_shift_folder,"current_",sim_deltails, ".dat");
 writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');
+disp(sprintf('Task finished with current model: %s', model));

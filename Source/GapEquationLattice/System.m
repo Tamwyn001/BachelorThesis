@@ -3,7 +3,7 @@ classdef System
     %   Detailed explanation goes here
 
     properties (Constant)
-        verticalPeriodicBoundary = false;
+        verticalPeriodicBoundary = true;
         horizontalPeriodicBoundary = false;
 
         guessDelta = 0.002;
@@ -11,7 +11,7 @@ classdef System
         fixedBoundaryDelta = true;
         phi_1 = pi/6; %phase of the superconducting gap on the left side
         phi_2 = pi/6 + ( (27+90) * pi/180); %phase of the superconducting gap on the right side, phase shift of 25°
-        layer =  ["SC", 13, "M", 5 "SC", 13]; %["SC", 10, "AM", 10] %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
+        layer =  ["SC", 13, "AM", 5 "SC", 13]; %["SC", 10, "AM", 10] %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
         t_ij = 1;  
 
