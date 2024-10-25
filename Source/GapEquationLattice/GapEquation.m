@@ -132,7 +132,7 @@ phase_shift_folder = "";
 
 if System.fixedBoundaryDelta
     phase_shift = round((system.phi_2 - system.phi_1) * (180/pi));
-    phase_shift_folder = strcat("Phase", num2str(phase_shift), "deg\OwnModel\");
+    phase_shift_folder = strcat("Phase", num2str(phase_shift), "deg\LitteratureModel2\");
 end
 
 if not(isfolder(strcat(path, phase_shift_folder)))
