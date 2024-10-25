@@ -37,12 +37,12 @@ Place the terminal in `cd .\Source\GapEquation\`
 
 ### SC13-AM5-SC13
 
-    .\generateGraph.ps1 -GnuScript "./gpScripts/abs_Delta_HeatMap/GapEq_HeatMap_3layers_SCAMSC_NoBC.gp" -SimulationPath "/SC13AM5SC13/Phase117deg/LitteratureModel1" -LatexPath "/SC13AM5SC13/HeatMap/Phase117deg/NoBC/";
-    .\generateGraph.ps1 -GnuScript "./gpScripts/abs_Delta_HeatMap/GapEq_HeatMap_3layers_SCAMSC_VertBC.gp" -SimulationPath "/SC13AM5SC13/Phase117deg/LitteratureModel1" -LatexPath "/SC13AM5SC13/HeatMap/Phase117deg/VertBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/abs_Delta_HeatMap/GapEq_HeatMap_3layers_SCAMSC_NoBC.gp" -SimulationPath "/SC13AM5SC13/Phase117deg" -LatexPath "/SC13AM5SC13/HeatMap/Phase117deg/NoBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/abs_Delta_HeatMap/GapEq_HeatMap_3layers_SCAMSC_VertBC.gp" -SimulationPath "/SC13AM5SC13/Phase117deg" -LatexPath "/SC13AM5SC13/HeatMap/Phase117deg/VertBC/";
 
 `To be computed:`
 
-    .\generateGraph.ps1 -GnuScript "./gpScripts/abs_Delta_HeatMap/GapEq_HeatMap_3layers_SCAMSC_phase27_NoBC.gp" -SimulationPath "/SC13AM5SC13/Phase27deg/LitteratureModel1" -LatexPath "/SC13AM5SC13/HeatMap/Phase27deg/NoBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/abs_Delta_HeatMap/GapEq_HeatMap_3layers_SCAMSC_phase27_NoBC.gp" -SimulationPath "/SC13AM5SC13/Phase27deg" -LatexPath "/SC13AM5SC13/HeatMap/Phase27deg/NoBC/";
    
 ### SC30
 
@@ -124,8 +124,8 @@ Place the terminal in `cd .\Source\GapEquation\`
 ## Long
 ### SC30
 
-    .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_Delta_HeatMap/Phase_HeatMap_long_SC_NoBC.gp" -SimulationPath "/SC30/Phase117deg/LitteratureModel1" -LatexPath "/SC30/Phase/Phase117deg/NoBC/";
-    .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_Delta_HeatMap/Phase_HeatMap_long_SC_VertBC.gp" -SimulationPath "/SC30/Phase117deg/LitteratureModel1" -LatexPath "/SC30/Phase/Phase117deg/VertBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_Delta_HeatMap/Phase_HeatMap_long_SC_NoBC.gp" -SimulationPath "/SC30/Phase117deg" -LatexPath "/SC30/Phase/Phase117deg/NoBC/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Phase_Delta_HeatMap/Phase_HeatMap_long_SC_VertBC.gp" -SimulationPath "/SC30/Phase117deg" -LatexPath "/SC30/Phase/Phase117deg/VertBC/";
 
 ## 3layers    
 ### SC13-AM5-SC13

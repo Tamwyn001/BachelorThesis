@@ -13,6 +13,6 @@ set mytics 5
 materialY = 1.06
 
 
-set xrange[0.5 : 23.5]
-set yrange[0.5 : 23.5]
+set xrange[0.5 : 30.5]
+set yrange[0.5 : 14.5]
 # pause -1
