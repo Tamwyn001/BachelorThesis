@@ -1,62 +1,361 @@
 \documentclass[../main.tex]{main.tex}
 \begin{document}
 \section{Altermagnetism}
+\subsection{Introduction and overview}
 The reader might already be familiar with ferromagnets and all the regular magnetic models. Taking into account the spin and
 wave vector of each particle in a site, one can derive some symmetries under transform operations. For exemple a
-ferromagnet is symmetric under spin-flip (\rem{means time reversal?}) and a rotation. In the exemple of the antiferromagnetism,
+ferromagnet is symmetric under spin-flip (also called time reversal) and a rotation. In the exemple of the antiferromagnetism,
 we have two sub-lattice with opposite spins. In such systems the spin compensate eachother resulting in a null magnetism.
-The system is symmetric under spin-flip and translation.\\
+The system is symmetric under spin-flip and translation and was theoretised in 1948 by Louis Néel as the Néel antiferromagnets.
+Allowing more complexity one could imagine multiple ions in a unit cell linked by rotation, screw, etc symmetries. The half ions 
+of the cell owns an opposite spin from the other half. These material are labeled as zero $q$ antiferromagnets. Both of these material
+keep the same electron spectra under such transformations. The spectra composente eachother resulting in a zero net magnetisation.
+This section summerises the historical work of \cite{Mazin2024}.\\
 
-Altermagnets implement two or more sub-lattice which might not be related between eachother using the crystal's symmetries.
-Therfore summing up the spin doesn't result in a trivial expression like the antiferromagnetic material. In fact the overall
-spin projection might almost be zero but not exactly. \rem{always integer spin, read e mails}. In a more formal way, we can
+Altermagnets implement two or more sub-lattice which are not related between eachother by translation nor inversion but rotation.
+These class of material was pinpointed in 2019.\\
+These material are similar to complexer structure where the sublatticies aren't linked with the crystal symmetries.
+Therfore summing up the spin might not result in a trivial expression like the antiferromagnetic material. In fact the overall
+spin projection might almost be zero but not exactly.\\
+However studying half metal and insulator leads to different result. Half metal can be seen as an insulator in one spin channel 
+but not both \cite{Mazin2024}. The Quin Luttinger's theorem, showed that such substance must have an integer number of Bohr spin
+magnetic moment. Therfore structures with a small net magnetisation see these quantity be floored to zero. \\
+
+On the search of pratical applciation, reaseachers have found (an exaustive list is provided in \cite{Mazin2024}) that
+domain like tunneling magnetoresistance (TMR) are limited under the properties of the material. For instance the actual use 
+of ferromagnets limits the frequency to the gigahertz range. This has to deal with the ferromagnetic resonance that connects 
+the magnetisation with electromagnetic waves. The altermagnets could be used in the terahertz range.
+Mentioning that TMR is a key component in the magnetic random access memory (MRAM), the reader can easely estimate the performance
+improvment such upgrade could deliver.\\
+ 
+In a more formal way, we can
 distinguish two types of altermagnet. \\
 
 In the first type, the altermagnet's lattice site have different distance to the neighbours depending on the linking axis and the 
-spin of the particle in the site.
+spin of the particle in the site. This is illustrated in $(\bm{a})$. On the other hand we can consider a unit cell beeing unsymmetric
+in its ion position. We consider a square lattice were each unit cell has a non magnetic ion and two magnetic ion with opposite spin.
+Please consider the second schema $(\bm{b})$.\\
+\begin{figure}[H]
+
+    \centering
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            % Define the distance between the two graphs
+            \pgfmathsetmacro{\distance}{7}; % Adjust this value to control distance
+    
+            % First graph (Altermagnet type 1)
+            \begin{scope}
+                \coordinate (o) at (0,0);
+                \foreach \sign in {-1, 1}
+                {
+                    \foreach \dir/\col/\title/\pos in {2/TamYellow/t+m/above, 0.75/TamLightGreen/t-m/left}
+                    {
+                        \pgfmathparse{ifthenelse(\dir==2, \dir*\sign, 0)} % Calculate x-coordinate
+                        \let\x=\pgfmathresult
+                        \pgfmathparse{ifthenelse(\dir==2, 0, \dir*\sign)} % Calculate y-coordinate
+                        \let\y=\pgfmathresult
+    
+                        % Use the computed coordinates in a let statement
+                        \coordinate (a) at (\x,\y);               
+                        \draw[-, color = \col, very thick] (o) --  (a) ;
+                        \ifthenelse{\equal{\sign}{-1}}{\ifthenelse{\equal{\dir}{2}}{
+                            \node[\pos, color = \col!70!black] at ($ (o)!0.5!(a) $) {\(\title\)};
+                        }{
+                            \node[\pos, color = \col] at ($ (o)!0.5!(a) $) {\(\title\)};
+                        }}{}
+                        \filldraw[color=black, fill=white, thick] (a) circle (0.1);
+                    }
+                }
+                \filldraw[color=black, fill=white, thick](0,0) circle (0.2);
+                \node[anchor=center] at (o) {\(\scriptsize\uparrow\)};
+                \pgfmathsetmacro{\shift}{3.5}
+                \coordinate (o2) at (0 + \shift ,0);
+                \foreach \sign in {-1, 1}
+                {
+                \foreach \dir/\col in {2/TamYellow, 0.75/TamLightGreen}
+                    {
+                    \pgfmathparse{ifthenelse(\dir==2, 0,\dir*\sign )} % Calculate x-coordinate
+                    \let\x=\pgfmathresult
+                    \pgfmathparse{ifthenelse(\dir==2, \dir*\sign ,0)} % Calculate y-coordinate
+                    \let\y=\pgfmathresult
+                    
+                    % Use the computed coordinates in a let statement
+                    \coordinate (b) at (\x + \shift ,\y);               
+                    \draw[color = \col , very thick] (o2) -- (b) ;
+                    \filldraw[color=black, fill = white , thick] (b) circle (0.1);
+                        
+                    }
+                }
+                \filldraw[color=black, fill = white , thick](0 + \shift ,0) circle (0.2);
+                \node[anchor=center] at (o2) {\(\scriptsize\downarrow\)};
+            \end{scope}
+    
+            % Second graph (Altermagnet type 2)
+            \begin{scope}[xshift=\distance cm] % Shift the second graph down
+            \coordinate (o) at (0,0.5);
+            \coordinate (a) at (1,0.5); % Added 0.5 to y-coordinate
+            \coordinate (b) at (1,-0.5); % Added 0.5 to y-coordinate
+            \pgfmathsetmacro{\size}{0.5}
+            \coordinate (cell) at (-\size , \size + 0.5); % Added 0.5 to y-coordinate
+            \filldraw[color=black, fill=white , thick] (o) circle (0.2);
+            \node[anchor=center] at (o) {\(\scriptsize\uparrow\)};    
+            \filldraw[color=black, fill=gray!30 , thick] (a) circle (0.1);
+            \filldraw[color=black, fill=white , thick] (b) circle (0.2);
+            \node[anchor=center] at (b) {\(\scriptsize\downarrow\)}; 
+
+            \pgfmathsetmacro{\size}{0.3}           % Set the size for the offset
+            \pgfmathsetmacro{\step}{1 + 2*\size} % Precompute the step size
+            % Define the initial coordinate
+            \coordinate (cell) at (-\size, \size + 0.5); % Added 0.5 to y-coordinate
+
+            % Calculate each vertex position relative to (cell)
+            \coordinate (p1) at ($(cell) + (\step, 0)$);
+            \coordinate (p2) at ($(p1) + (0, -\step)$);
+            \coordinate (p3) at ($(p2) + (-\step, 0)$);
+
+            % Draw the dotted path using the calculated points
+            \draw[-, dotted] (cell) -- (p1) -- (p2) -- (p3) -- cycle;
+
+            \coordinate (lattice) at (2,-0.5);         % Adjusted y-coordinate
+            \pgfmathsetmacro{\lattice}{0.5};         % Set the lattice size
+            \pgfmathsetmacro{\numPoints}{3};         % Define the number of points in the lattice
+        
+            \foreach \x in { 0, 1,2} {               % Loop over x-coordinates
+                \foreach \y in {-1,0, 1} {           % Loop over y-coordinates
+                    \coordinate (current) at ($(lattice) + (\x*\lattice, \y*\lattice + 0.5)$); % Added 0.5 to y-coordinate
+                    
+                    % Calculate fade component based on distance from (2,2)
+                    \pgfmathsetmacro{\scale}{100 - 10*sqrt((\x-2)^2 + (\y-2)^2)};
+                    
+                    % Ensure \scale is within valid color range
+                    \pgfmathsetmacro{\scaleClamped}{max(0, min(100, \scale))}; % Clamp between 0 and 100
+
+                    % Draw the filled circle with the calculated color
+                    \filldraw[fill=TamYellow!\scaleClamped!black] (current) circle (0.1); % Draw the circle
+                } % End of y loop
+            } % End of x loop
+            \draw[dotted] ($(p1) + (0.15,0)$) -- ($(lattice) + (0,\lattice) + (0, 0.1)$);
+            \draw[dotted] ($(p2) + (0.15,0)$)  -- ($(lattice) + (0,\lattice) - (0, 0.1)$);
+        \end{scope}
+
+        % Add labels (a) and (b)
+        \node at (1.5, -2.5) {\(\bm{(a)}\)}; % Adjust position as needed
+        \node at (\distance + 1.75, - 2.5) {\(\bm{(b)}\)}; % Adjust position as needed
+        \coordinate (gizmo) at (-2,-2.5);
+        \draw[->, thick] (gizmo) -- ++(0.75,0) node[anchor = west] {\(x\)};
+        \draw[->, thick] (gizmo) -- ++(0,0.75) node[anchor = south] {\(y\)};
+        \end{tikzpicture}
+    \end{figure}    
+\end{figure}
+\subsection{Symmetries}
+After giving an introduction on the geometric background of altermagnet we can now focus on the symmetries of the material. In this section
+we are going to focus on two simple transformation. The inversion $P$ and the spin flip (time reversal) $T$.
+\begin{alignat*}{2}
+    P : \bm{r} &\mapsto -\bm{r} ~~~~~~~~~~~~~~~~~~~~ &~~~\realnum^3 \rightarrow \realnum^3 \\
+    T : t &\mapsto -t  ~\hat{=} ~\sigma \mapsto -\sigma &\realnum \rightarrow \realnum~
+\end{alignat*}
+We can first asume that the energy $\epsilon$ of the particle (or band structure) depends on the spin $\sigma$ and the wave vector $\bm{k}$.
+This leads to 
+\begin{align*}
+    P \bigl(\epsilon(\bm{k}, \sigma)\bigr) &= \epsilon(-\bm{k}, -\sigma)\\
+    T \bigl(\epsilon(\bm{k}, \sigma)\bigr) &= \epsilon(-\bm{k}, -\sigma)
+\end{align*}
+We observe the $PT$ operation $P\circ T$. If the system is $PT$ symetric one sould get $\epsilon(\bm{k}, \sigma)= P\circ T\bigl(\epsilon(\bm{k}, \sigma)\bigr)$.
+Asuming it's the case we can write
+\[
+    \epsilon(\bm{k}, \sigma)= P\circ T\bigl(\epsilon(\bm{k}, \sigma)\bigr) =  \epsilon(\bm{k}, \downarrow)
+\] 
+and therfore the $PT$-symmetric systems are spin-degenerated. We have the same energy for a given momentum at two opposite spins.
+ Reciproquely this means that the existance 
+of $ \epsilon(\bm{k}, \sigma)$ is followed by an observation of $ \epsilon(\bm{k}, -\sigma)$.\\
+
+\paragraph{A few exemples}
+We can imagine having a small section for the seek of readability. One should imagine the point where we apply the transformation in a the center of a $6\times6$
+lattice, where we only show the second quadrant. In the first illustration the first quandrant (state 1) invert itself in the fourth one (state 2) under the $T$-transformation.
+Afterwards $P$ maps the state (2) to the state (3)
+in the ferromagnetic case:
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}
-        \coordinate (o) at (0,0);
-        \foreach \sign in {-1, 1}
-        {
-        \foreach \dir/\col/\title in {2/TamGreen/t+m, 0.75/red/t-m}
-            {
-            \pgfmathparse{ifthenelse(\dir==2, \dir*\sign, 0)} % Calculate x-coordinate
-            \let\x=\pgfmathresult
-            \pgfmathparse{ifthenelse(\dir==2, 0, \dir*\sign)} % Calculate y-coordinate
-            \let\y=\pgfmathresult
-            
-            % Use the computed coordinates in a let statement
-            \coordinate (a) at (\x,\y);               
-            \path[-, color = \col] (o) -- node[midway]{\(\title\)} (a) ;
-            \filldraw[color=black, fill = white , thick] (a) circle (0.1);
+
+        \begin{tikzpicture}
+            \begin{scope}
+            \coordinate (0) at (0,0);
+            \node at (-1.5,0.75) {\((1)\)};
+            \node at (-1.5,-0.75) {\((2)\)};
+            \pgfmathsetmacro{\lattice}{0.5};         % Set the lattice size
+            \foreach \sign in {-1,1}{
+            \foreach \x in {0,1,2} {               % Loop over x-coordinates
+            \foreach \y in {0,1,2} {           % Loop over y-coordinates
+                \coordinate (current) at ($ (\x*\lattice*\sign, -\y*\lattice*\sign)$); % Added 0.5 to y-coordinate
                 
+                % Calculate fade component based on distance from (2,2)
+                \pgfmathsetmacro{\scale}{100 - 10*sqrt((\x-2)^2 + (\y-2)^2)};
+                
+                % Ensure \scale is within valid color range
+                \pgfmathsetmacro{\scaleClamped}{max(0, min(100, \scale))}; % Clamp between 0 and 100
+                \ifthenelse{\equal{\sign}{-1}}{\node[anchor = south] at ($(current)+ (0,-0.1)$) {\(\uparrow\)};}{\node[anchor = north] at ($(current)+ (0,0.1)$) {\(\downarrow\)};}
+
+                % Draw the filled circle with the calculated color
+                \ifthenelse{\equal{\x}{0}\AND\equal{\y}{0}}
+                {}{ %skip the 0,0
+                \filldraw[fill=TamYellow!\scaleClamped!black] (current) circle (0.1); % Draw the circle
+                }
+            }
+            }
+            }
+            \filldraw[fill=TamGreen!70] (0,0) circle (0.1);
+            \draw[->,semithick, color=TamGreen!70] (0.6,1) arc[radius=0.4, start angle=90, end angle=0];
+            \node[color=TamGreen!70] at (0.5,0.5) {\(T\)}; % Adjust position as needed
+            \end{scope}
+            \begin{scope}[xshift=5 cm]
+                    \coordinate (0) at (0,0);
+                    \pgfmathsetmacro{\lattice}{0.5};         % Set the lattice size
+                    \node at (-1.5,0.75) {\((3)\)};
+                    \node at (-1.5,-0.75) {\((2)\)};
+                    \foreach \sign in {-1,1}{
+                    \foreach \x in {0,1,2} {               % Loop over x-coordinates
+                    \foreach \y in {0,1,2} {           % Loop over y-coordinates
+                        \coordinate (current) at ($ (\x*\lattice*\sign, -\y*\lattice*\sign)$); % Added 0.5 to y-coordinate
+                        
+                        % Calculate fade component based on distance from (2,2)
+                        \pgfmathsetmacro{\scale}{100 - 10*sqrt((\x-2)^2 + (\y-2)^2)};
+                        
+                        % Ensure \scale is within valid color range
+                        \pgfmathsetmacro{\scaleClamped}{max(0, min(100, \scale))}; % Clamp between 0 and 100
+                        \node[anchor = north] at ($(current)+ (0,0.1)$) {\(\downarrow\)};
+        
+                        % Draw the filled circle with the calculated color
+                        \ifthenelse{\equal{\x}{0}\AND\equal{\y}{0}}
+                        {}{ %skip the 0,0
+                        \filldraw[fill=TamYellow!\scaleClamped!black] (current) circle (0.1); % Draw the circle
+                        }
+                    }
+                    }
+                    }
+                    \filldraw[fill=TamGreen!70] (0,0) circle (0.1);
+                    \draw[->,semithick, color=TamGreen!70] (1,0.6) arc[radius=0.4, start angle=0, end angle=90];
+                    \node[color=TamGreen!70] at (0.5,0.5) {\(P\)}; % Adjust position as needed
+                    \node at (5,0) {\(\epsilon(\bm{k}, \uparrow) \neq P\circ T\bigl(\epsilon(\bm{k}, \uparrow)\bigr) =  \epsilon(\bm{k}, \downarrow)\)};       
+            \end{scope}            
+            
+
+        \end{tikzpicture}
+
+\end{figure}
+Letting the spin points upwards again will require to use another operation. Therfore the ferromagnet is not $PT$-symmetric and we observe no spin degenrancy as the
+equation shows it.\\
+
+We alreay discussed how the antiferromagnetism can be splitted in two sublattice of opposite spins. Therfore, performing the same operation on a lattice point
+in the separatelly in the sublattice and adding them up again will lead to the same problem as the ferromagnet. However if we apply the inversion in the inbetween
+we observe something different.\\
+\begin{figure}[H]
+    \centering  
+        \begin{tikzpicture}
+            \begin{scope}
+            \coordinate (0) at (0,0);
+            \node at (-1.5,0.75) {\((1)\)};
+            \node at (1,-0.25) {\((2)\)};
+            \pgfmathsetmacro{\lattice}{0.5};         % Set the lattice size
+            \foreach \x in {0,1,2} {               % Loop over x-coordinates
+            \foreach \y in {0,1,2} {           % Loop over y-coordinates
+                \coordinate (current) at ($(-\x*\lattice, \y*\lattice)$); % Define the current coordinate
+                % Calculate fade component based on distance from (2,2)
+                \pgfmathsetmacro{\scale}{100 - 10*sqrt((\x-2)^2 + (\y-2)^2)};
+                
+                % Ensure \scale is within valid color range
+                \pgfmathsetmacro{\scaleClamped}{max(0, min(100, \scale))}; % Clamp between 0 and 100
+                \pgfmathsetmacro{\modResultX}{mod(\x+\y, 2)}
+                % Check if the point is (0,0) and only add arrow if it is not (0,0)
+                \ifthenelse{\equal{\x}{0} \AND \equal{\y}{0}}{}{ % skip the (0,0) position
+                    \ifthenelse{\equal{\modResultX}{0.0}}{
+                    \node[anchor=south] at ($(current) + (0,-0.1)$) {\(\uparrow\)};
+                    \filldraw[fill=TamLightGreen!\scaleClamped!black] (current) circle (0.1);}{}
+                }
+                
+            \filldraw[fill=TamGreen!70] (-0.25,0.25) circle (0.1);
+            \filldraw[fill=black!10] (-1,0.5) circle (0.1);
+            \filldraw[fill=black!10] (-0.5,1) circle (0.1);
+
+            \filldraw[fill=black!10] (0.5,0) circle (0.1);
+            \filldraw[fill=black!10] (0,-0.5) circle (0.1);
+            \draw[->,semithick, color=TamGreen!70] (0.6,1.5) arc[radius=0.4, start angle=90, end angle=0];
+            \node[color=TamGreen!70] at (0.5,1) {\(T\)}; % Adjust position as needed
             }
         }
-        \filldraw[color=black, fill = white , thick](0,0) circle (0.2);
-        \node[anchor=center] at (o) {\(\scriptsize\uparrow\)};
-    \end{tikzpicture}
-    \begin{tikzpicture}
-        \coordinate (o) at (0,0);
-        \foreach \sign in {-1, 1}
-        {
-        \foreach \dir/\col/\title in {2/TamGreen/t+m, 0.75/red/t-m}
-            {
-            \pgfmathparse{ifthenelse(\dir==2, 0,\dir*\sign )} % Calculate x-coordinate
-            \let\x=\pgfmathresult
-            \pgfmathparse{ifthenelse(\dir==2, \dir*\sign ,0)} % Calculate y-coordinate
-            \let\y=\pgfmathresult
+        \foreach \x in {0,1,2} {           % Loop over x-coordinates
+        \foreach \y in {0,1,2} {       % Loop over y-coordinates
+            \coordinate (current) at ($(\x*\lattice - \lattice, -1*\y*\lattice+0.5)$); % Define the current coordinate
             
-            % Use the computed coordinates in a let statement
-            \coordinate (a) at (\x,\y);               
-            \path[-, color = \col] (o) -- node[midway]{\(\title\)} (a) ;
-            \filldraw[color=black, fill = white , thick] (a) circle (0.1);
+            % Calculate fade component based on distance from (2,2)
+            \pgfmathsetmacro{\scale}{100 - 10*sqrt((\x-2)^2 + (\y-2)^2)};
+            \pgfmathsetmacro{\modResultX}{mod(\x+\y, 2)}
+            % Ensure \scale is within valid color range
+            \pgfmathsetmacro{\scaleClamped}{max(0, min(100, \scale))}; % Clamp between 0 and 100
+    
+            % Check if the point is not (0,0), and only add the arrow if true
+            \ifthenelse{\equal{\x}{0} \AND \equal{\y}{0}}{}{ % skip the (0,0) position
+                    \ifthenelse{\equal{\modResultX}{0.0}}{
+                    \node[anchor=north] at ($(current) + (0,0.1)$) {\(\downarrow\)};
+                    \filldraw[fill=TamLightGreen!\scaleClamped!black] (current) circle (0.1);}{}
+                }
+
+        }
+    }
+            \end{scope}
+        \begin{scope}[xshift=5 cm]
+            \coordinate (0) at (0,0);
+            \node at (-1.5,0.75) {\((1)\)};
+            \node at (1,-0.25) {\((2)\)};
+            \pgfmathsetmacro{\lattice}{0.5};         % Set the lattice size
+            \foreach \x in {0,1,2} {               % Loop over x-coordinates
+            \foreach \y in {0,1,2} {           % Loop over y-coordinates
+                \coordinate (current) at ($(-\x*\lattice, \y*\lattice)$); % Define the current coordinate
+                % Calculate fade component based on distance from (2,2)
+                \pgfmathsetmacro{\scale}{100 - 10*sqrt((\x-2)^2 + (\y-2)^2)};
                 
+                % Ensure \scale is within valid color range
+                \pgfmathsetmacro{\scaleClamped}{max(0, min(100, \scale))}; % Clamp between 0 and 100
+                \pgfmathsetmacro{\modResultX}{mod(\x+\y, 2)}
+                % Check if the point is (0,0) and only add arrow if it is not (0,0)
+                \ifthenelse{\equal{\x}{0} \AND \equal{\y}{0}}{}{ % skip the (0,0) position
+                    \ifthenelse{\equal{\modResultX}{0.0}}{
+                    \node[anchor=south] at ($(current) + (0,-0.1)$) {\(\downarrow\)};
+                    \filldraw[fill=TamLightGreen!\scaleClamped!black] (current) circle (0.1);}{}
+                }
+                
+            \filldraw[fill=TamGreen!70] (-0.25,0.25) circle (0.1);
+            \filldraw[fill=black!10] (-1,0.5) circle (0.1);
+            \filldraw[fill=black!10] (-0.5,1) circle (0.1);
+
+            \filldraw[fill=black!10] (0.5,0) circle (0.1);
+            \filldraw[fill=black!10] (0,-0.5) circle (0.1);
+            \draw[->,semithick, color=TamGreen!70] (1,1.1) arc[radius=0.4, start angle=0, end angle=90];
+            \node[color=TamGreen!70] at (0.5,1) {\(P\)}; % Adjust position as needed
             }
         }
-        \filldraw[color=black, fill = white , thick](0,0) circle (0.2);
-        \node[anchor=center] at (o) {\(\scriptsize\downarrow\)};
-    \end{tikzpicture}
+        \foreach \x in {0,1,2} {           % Loop over x-coordinates
+        \foreach \y in {0,1,2} {       % Loop over y-coordinates
+            \coordinate (current) at ($(\x*\lattice - \lattice, -1*\y*\lattice+0.5)$); % Define the current coordinate
+            
+            % Calculate fade component based on distance from (2,2)
+            \pgfmathsetmacro{\scale}{100 - 10*sqrt((\x-2)^2 + (\y-2)^2)};
+            \pgfmathsetmacro{\modResultX}{mod(\x+\y, 2)}
+            % Ensure \scale is within valid color range
+            \pgfmathsetmacro{\scaleClamped}{max(0, min(100, \scale))}; % Clamp between 0 and 100
+    
+            % Check if the point is not (0,0), and only add the arrow if true
+            \ifthenelse{\equal{\x}{0} \AND \equal{\y}{0}}{}{ % skip the (0,0) position
+                    \ifthenelse{\equal{\modResultX}{0.0}}{
+                    \node[anchor=north] at ($(current) + (0,0.1)$) {\(\downarrow\)};
+                    \filldraw[fill=TamLightGreen!\scaleClamped!black] (current) circle (0.1);}{}
+                }
+
+        }
+    }
+            \node at (5,0) {\(\epsilon(\bm{k}, \uparrow) \neq P\circ T\bigl(\epsilon(\bm{k}, \uparrow)\bigr) =  \epsilon(\bm{k}, \downarrow)\)};
+        \end{scope}
+        \end{tikzpicture}
+
 \end{figure}
 \end{document}

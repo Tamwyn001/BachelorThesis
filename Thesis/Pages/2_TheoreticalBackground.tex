@@ -401,7 +401,7 @@ between the electrons, but not $\bm{r}$ and $\bm{r}'$ respectivly, so this proce
         };
         \end{feynman}
     \end{tikzpicture}
-    \label{ref:photon_exchange}
+    \label{fig:photon_exchange}
     \caption{The interaction of two electrons modulated by a photon of momentum $\bm{q}$.}
 \end{figure}
 This closes the introduction theorie on the second quantisation. We saw how we can express integaral over wavefunctions as bra-kets scalarproducts. 
@@ -449,9 +449,9 @@ by a periodic function. Eigenstates of the corresponding hamiltonian are called 
 
 \subsubsection{The non-interacting electron gas}
 In this case of study the Hamiltonian only include a kinetic term
-\[
+\begin{equation}\label{eq:NonInteractingHamiltonian}
     H=\sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma}.
-\] 
+\end{equation}
 We asume that it exist a the ground state $|0\rangle$, where the system is filled up with a certain amount of electron until the Fermi-energy $\epsilon_F$ is reached. Associated with this
 energy we find a wave vector $\bm{k}_F$, the Fermi-momentum. The set of enery up to $\epsilon_F$ is called the Fermi-sea, as an analogy to the level zero of the topographic maps.
 \[
@@ -485,7 +485,7 @@ this analytical function has a pole given by
     \Longleftrightarrow ~& \omega = \epsilon_{\bm{k}} - \im \delta_{\bm{k}}
 \end{align*}
 where we denote $\im$ as the imaginary unit to avoid confusion with the index $i$.
-The frequency $\omega$ gives the so called spectrum of the exitation from the unique-particle system. The imaginary part serves as a damping term and is 
+The frequency $\omega$ gives the so called spectrum of the excitation from the unique-particle system. The imaginary part serves as a damping term and is 
 inversly proportional to the lifetime of the particle. $\delta$ is a small number due to the infinitely long lifetime. This is a direct result of the abscence
 of scattering.\\
 
@@ -604,7 +604,7 @@ We recall once again the difference of the propagators to conclude this section:
 
 \paragraph{Quasi-particles}
 The main question we have now is how does the residue look like on the fermi surface? We set us in the context of a low energy electron, close to the Fermi-surface and 
-once we had a interaction. It turns out that if there is a $z_{\bm{k}_F}>0$ we find a precise low energy single particle excitation. This exitation is very close
+once we had a interaction. It turns out that if there is a $z_{\bm{k}_F}>0$ we find a precise low energy single particle excitation. This excitation is very close
 to the exact eigenfunction of an non-interacting Hamiltonian. We call this state akin to the free electron a quasi-particle.\\
 
 This is it, a Fermi-liquid is a system of interacting electrons and quasi-particles. These quasi-particles are not eigenstates of the interacting Hamiltonian anymore.
@@ -613,7 +613,22 @@ The interactions allows to scatter some states in and out of the Bloch-State.\\
 
 The above expression for the momentum distribution $n(\bm{k})$ can be ploted and we can recognise a gap of $z_{\bm{k}_F}<1$. This wich is an inportant feature of
 the Fermi-liquid. Whereas for the non interacting
-system the momentum distribution has a discontinuity from one to zero when crossing the Fermi surface.
+system the momentum distribution has a discontinuity from one to zero when crossing the Fermi surface.\\
+
+An important feature to mention that is the key understanding of the Fermi-liquid and revealed itself to be very correct 
+for metals, is the on-to-one correspondance of quantum numbers between the interactinf and non-interacting electrons. 
+This means we can start with simple Hamiltonian like Eq. \ref{eq:NonInteractingHamiltonian} and add new particles by introducing
+some perturbations. The obtained quasi-particles are a result of the excitation of the non-interacting system. We then observe this
+one-to-one correspondance.\\
+
+The last question one can ask is why does this approximation work so well in the most case? The answer lays in the reference system
+we choose to perturb arround. Keeping in mind the Pauli-principle, we notice that the added particle are restricted in their scattering.
+This is so strong that it almost cancels out the ``switching-on'' of the interactions. It's a good decision to perturb arround
+the free system. Due to the fact that we are limitted in the number of ground states, thermodynamic quantites moves in a smooth manner
+when perturbating.\\
+
+We want to emphasize one last time that the Fermi-liquid formalism work because of the momentum restrictions
+due to the Pauli exclusion principle.
 
 
 \paragraph{Repulsive interactions}
@@ -638,10 +653,11 @@ However as we're going to see in the next section, attractive interactiosn also 
 ground stone to our description of the Meissner state.
 
 \subsubsection{Instability due to attractive Interactions}
-\rem{Hier we are going to show how the attractive interactions destabilise the Fermi-liquid:new ground states are open.}
+Hier we are going to show how the attractive interactions destabilise the Fermi-liquid. In other words we are going to show
+that new ground states open.
 
 Leon Cooper introduced a very specific context of attraction that has a huge influence on the stability. Taking this exemple we are going
-to make clear that attractive interaction are \rem{finish paragraph and complete}.\\
+to make clear that attractive interaction can in some cases exeed the Coulomb force resulting in unexpected new eigenstates.\\
 
 Let's asume we have an impotent Fermi sea where the electrons as considered non interacting. Adding to electrons requiers to place them
 above the sea. The exotic context lays into the interactions. They can only interact if they are withing a small cover $\omega_0$
@@ -731,15 +747,17 @@ If we represent this inderaction by linking both $\bm{q}$-edges. The energy of p
 \[
     H_{\text{phonon}} = \sum_{\bm{q}} \omega_{\bm{q}} a_{\bm{q}}^{\dagger}a_{\bm{q}}
 \]
-and we can write a propagator which describes the dashed line in a connected context similar to to photon case described in the figure \ref{ref:photon_exchange}.
+and we can write a propagator which describes the dashed line in a connected context similar to to photon case described in the figure \ref{fig:photon_exchange}.
 \[
-    D_0(\bm{q},\omega) = \frac{1}{\omega^2 - \omega_{\bm{q}}^2 + \im \eta}
+    D_0(\bm{q},\omega) = \frac{2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2 + \im \eta}
 \]
-involving a very small quantity $\eta$. From this \rem{how?} we obtain an expression for the phonon-mediated interaction of two electrons:
+involving a very small quantity $\eta$. From this we obtain an expression for the phonon-mediated interaction of two electrons.
+This is performed using $V^{(ph)}_{\text{eff}}(\bm{q},\omega) = \mathcal{R}\text{e}\left({|M_{\bm{q}}|^2 D_0(\bm{q},\omega)}\right)$ and discarding the second 
+order $\eta$ term which is very small. 
 \begin{equation}\label{eq:Pot_attractive_el_phonon}
     V^{(ph)}_{\text{eff}}(\bm{q},\omega) = \frac{2|M_{\bm{q}}|^2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2}
 \end{equation}
-with $\bm{q}$ the momentum transfert.
+with $\bm{q}$ the momentum transfert. 
 We can now use a more complete potential in the Hamiltonian involving both the electrostatic \ref{eq:Pot_repulsive_el} and effective phonon-mediated interactions \ref{eq:Pot_attractive_el_phonon}.
 \begin{equation}
     V_{\text{eff}}(\bm{k},\bm{k}',\bm{q}) =  V_{\text{el}}(\bm{q}) + V^{(ph)}_{\text{eff}}(\bm{q},\omega) \label{eq:V_eff} = \frac{1}{4\pi\epsilon_0} \frac{2\pi e^2}{\bm{q}^2} + \frac{2|M_{\bm{q}}|^2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2}
@@ -758,28 +776,30 @@ to consider that the two electrons have opposite wavevectors. The folowing figur
         \coordinate (O) at (-3, -3);
         \coordinate (a) at (2.21, -0.981);
         \coordinate (b) at (1.2, 2.078);
-        \filldraw[color=black, fill = white!0 , thick, dotted](0,0) circle (2.7);
-        \filldraw[color=black, fill = white!0, very thick](0,0) circle (1.9);
-        \draw[->, thick] (0,0) -- (a) node[anchor = south]{$\bm{k}'$};
-        \draw[->, thick] (0,0) -- (b) node[anchor = west]{$\bm{k}$};
-        \draw[->, thick, draw = TamGreen ] (a) -- ++(2,-0.3) node[midway, anchor = south]{$\bm{q}$};
-        \draw[->, thick] (b) -- ++(-2,0.3) node[midway, anchor = south]{$-\bm{q}$};
+        \filldraw[color=TamDarkBlue2, fill = white!0 , thick, dotted](0,0) circle (2.7);
+        \filldraw[color=TamDarkBlue, fill = white!0, very thick](0,0) circle (1.9);
+        \draw[->, thick, color = black!70] (0,0) -- (a) node[midway,anchor = south]{$\bm{k}'$};
+        \draw[->, thick, color = black!70] (0,0) -- (b) node[midway,anchor = west]{$\bm{k}$};
+        \draw[->, thick, color = TamGreen] (a) -- ++(2,-0.3) node[midway, anchor = south]{$\bm{q}$};
+        \draw[->, thick, color = black!70] (b) -- ++(-2,0.3) node[midway, anchor = south]{$-\bm{q}$};
         \coordinate (a) at (2.21, -0.981);
-        \draw[->] (O) -- ++(1,0) node[anchor = south]{$\bm{k_x}$};
-        \draw[->] (O) -- ++(0,1) node[anchor = west]{$\bm{k_y}$};
+        \draw[->, thick] (O) -- ++(.75,0) node[anchor = west]{$\bm{k_x}$};
+        \draw[->, thick] (O) -- ++(0,.75) node[anchor = south]{$\bm{k_y}$};
+        \filldraw[color=TamDarkBlue, fill = white!0](0,0) circle (0.05);
     \end{tikzpicture}
     \hspace{0.7cm}
     \begin{tikzpicture}
         \coordinate (a) at (1.697, 1.697);
         \coordinate (b) at (-1.697, -1.697);
         \coordinate (shift) at (0,-3);
-        \filldraw[color=black, fill = white!0 , thick, dotted](0,0) circle (2.7);
-        \filldraw[color=black, fill = white!0, very thick](0,0) circle (1.9);
-        \draw[->, thick] (0,0) -- (a) node[anchor = west]{$\bm{k}$};
-        \draw[->, thick] (0,0) -- (b) node[anchor = north]{$\bm{k}'$};
-        \draw[->, thick] (a) -- ++(-2.3,0.8) node[midway, anchor = south]{$-\bm{q}$};
-        \draw[->, thick] (b) -- ++(2.3,-0.8) node[midway, anchor = north]{$\bm{q}$};
-        \filldraw[color=white, fill = white!0 , thick, dotted] (shift) circle (0.1);3
+        \filldraw[color=TamDarkBlue2, fill = white!0 , thick, dotted](0,0) circle (2.7);
+        \filldraw[color=TamDarkBlue, fill = white!0, very thick](0,0) circle (1.9);
+        \draw[->, thick, color = black!70] (0,0) -- (a) node[midway,anchor = west]{$\bm{k}$};
+        \draw[->, thick, color = black!70] (0,0) -- (b) node[midway,anchor = north]{$\bm{k}'$};
+        \draw[->, thick, color = black!80] (a) -- ++(-2.3,0.8) node[midway, anchor = south]{$-\bm{q}$};
+        \draw[->, thick, color = black!80] (b) -- ++(2.3,-0.8) node[midway, anchor = north]{$\bm{q}$};
+        \filldraw[color=white, fill = white!0 , thick, dotted] (shift) circle (0.1);
+        \filldraw[color=TamDarkBlue, fill = white!0](0,0) circle (0.05);
     \end{tikzpicture}
     \caption{The scattering process of two electrons with opposite wavevectors $\bm{k}$ and $\bm{k}'$. We have a momentum transfert $\bm{q}$ between them. 
     The thick line illustrates the Fermi-surface and the dotted one the thin shell. As we see if the electrons have opposite wavevectors, and the $\bm{k}$ electrons
@@ -804,7 +824,56 @@ Due to the retardation processes we introduced earlier, there remains a distorti
 the other electron is attracted towards the distortion with $M_{\bm{q}}$ \rem{?}. As we also saw, the coulomb repulsion causes a colinear displacement, close to the distortion
 of the homologue. This phenomenon is called the Cooper-pairing and is a coupling that happens in momentum space.\\
 
-An interacting fact is that these interactions are the source of the superconductivity but they are also to main origin of resistivity in clean materials.
+The reader might want to see a picture of what is happing in the real space. To achieve a representation two simple statements are enough. 
+First, the Coulomb force aims to maximize the distance between the electrons in minimal time.
+ This is achieved by moving them collinearly in opposite directions. Second, due to the retardation process, it's energetically more favourable
+for the electron to move along the distortion of the lattice. The result is illustrated in the figure \ref{fig:CooperPairing}. 
+\begin{figure}[H]
+    \centering\label{fif:CooperPairing}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\spacing}{1}
+        \pgfmathsetmacro{\lineA}{0}
+        \foreach \x in {0,1,2,3,4,5}{
+            \foreach \sign in {0,1}
+            {
+                \ifthenelse{\equal{\sign}{0}}{
+                \draw[-] ($(\x*\spacing,0)$) -- ($(\x*\spacing,-6*\spacing)$);
+                }
+                {
+                \draw[-] ($(0,-\x*\spacing)$) -- ($(5*\spacing,-\x*\spacing)$);
+                }
+            }
+        }
+        \draw[-] (0,-6*\spacing) -- (5*\spacing,-6*\spacing);
+        \foreach \ystable in {0,-3,-6}{
+            \foreach \x in {0,1,2,3,4,5}
+            {
+                \filldraw[fill=TamLightGY!70,thick] ($(\x*\spacing, \lineA+ \ystable*\spacing)$) circle (0.05);
+            }
+        }
+        \pgfmathsetmacro{\distor}{0.04}
+        \pgfmathsetmacro{\yRealtiv}{\spacing*1.5}
+        \foreach \distortion in {0,1}
+        {
+            \foreach \sign in {1,-1}
+            {
+            \pgfmathsetmacro{\yDistor}{(\sign + 1)/2}
+                \foreach \x in {0,1,2,3,4,5}
+                {
+                    \ifthenelse{\equal{\distortion}{1}}{\pgfmathsetmacro{\X}{5-\x}}{\pgfmathsetmacro{\X}{\x}}
+                    \filldraw[fill=TamGreen!70,thick] ($(\X*\spacing, \lineA-\yRealtiv - \sign*\distor*\x - \sign*\spacing/5 -  \distortion*3 )$) circle (0.05);
+                    \draw[->,thick] ($(\X*\spacing, \lineA-\yRealtiv -\sign*\distor*\x - \sign*\spacing/5 -  \distortion*3 )$) -- ($(\X*\spacing, \lineA-\yRealtiv +\sign*\distor*\x  -0.3*\sign*\distor -0.3*\sign - \sign*\spacing/5 -  \distortion*3 )$);
+                }
+            }
+        }
+        \draw[->,semithick] (5.5,-1.5) -- (-1,-1.5) node[anchor = east]{$e^-$};
+        \draw[->,semithick] (-0.5,-4.5) -- (6,-4.5) node[anchor = west]{$e^-$};
+
+    \end{tikzpicture}
+\end{figure}
+Here the moved ions in blue are shifting back to their equilibrium position but it is important to remember that when the other 
+electron passes, it expriences almost the same distortion everywhere.
+An interacting fact is that these interactions are the source of the superconductivity but they are also the main origin of resistivity in clean materials.
 
 \subsubsection{On our way to the BCS-theory}
 After this introduction on the phonon coupling between the electrons in the momentum space, or Cooper-pairing,
@@ -997,16 +1066,15 @@ $\eta$ is also often labeld as the channel \cite{FossheimSudbo2004}. Asuming we 
     \centering
     \begin{tikzpicture}
         \filldraw[color=black, fill = white , thick](0,0) circle (0.1);
-        \filldraw[color=black, fill = TamGreen , thick](1,0) circle (0.1);
-        \filldraw[color=black, fill = TamGreen , thick](-1,0) circle (0.1);
-        \filldraw[color=black, fill = TamGreen , thick](0,1) circle (0.1);
-        \filldraw[color=black, fill = TamGreen , thick](0,-1) circle (0.1);
-        \filldraw[color=black, fill = TamGreen , thick](0,-1) circle (0.1);
+        \filldraw[color=black, fill = TamLightGreen , thick](1,0) circle (0.1);
+        \filldraw[color=black, fill = TamLightGreen , thick](-1,0) circle (0.1);
+        \filldraw[color=black, fill = TamLightGreen , thick](0,1) circle (0.1);
+        \filldraw[color=black, fill = TamLightGreen , thick](0,-1) circle (0.1);
         
-        \filldraw[color=black, fill = violet , thick](1,1) circle (0.1);
-        \filldraw[color=black, fill = violet , thick](-1,1) circle (0.1);
-        \filldraw[color=black, fill = violet , thick](1,-1) circle (0.1);
-        \filldraw[color=black, fill = violet , thick](-1,-1) circle (0.1);
+        \filldraw[color=black, fill = TamYellow , thick](1,1) circle (0.1);
+        \filldraw[color=black, fill = TamYellow , thick](-1,1) circle (0.1);
+        \filldraw[color=black, fill = TamYellow , thick](1,-1) circle (0.1);
+        \filldraw[color=black, fill = TamYellow , thick](-1,-1) circle (0.1);
     \end{tikzpicture}
 \end{figure}
 with interaction strengh $U/2$ on site, for nearest neighbours $2V$ and $4W$ for second-nearest neighbours. \rem{need of more details from Jacob.}

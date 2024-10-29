@@ -149,17 +149,55 @@ From this we now aim to derive the current flows on each axis.
 This can ealsy be done asuming that the current flowing in the $-x$ direction subtracted from the current in the positive $x$ direction forms the total current in $\bm{e}_x$.
 From this we get for $r\in\{x,y\}$:
 \[
-    I_{i}^{r} = I_{i}^{+r} + I_{i}^{-r}.
+    I_{i}^{r} = I_{i}^{+r} - I_{i}^{-r}.
 \]
 The real current that we can measure can be obtained by taking the quantum expection value and the thermal average of the currents. Further we also introduce the 
 BdG-transformed operators with the eigenvalues \ref{eq:BdG_transf_c} and \ref{eq:BdG_transf_c_dagg}. \\
 
 For the seak of readability we are going to stick with this $r$-notation. In fact the total currents takes a disproportionate size on the page so we abstract a bit.
+Further du to the linearity of the commutator one can split the current in different terms. We first start with the derivation of the physical current
+that comes from the hopping term.
 \begin{equation*}
     \begin{aligned}
-    \langle I_l^r\rangle = \sum_{\sigma}\sum_{n\in\mathcal{N}_+} \bigl(1-f(E_n)) 
+    \langle I_i^r\rangle_{\text{hop}} = \mathcal{I}\text{m}\left[ \frac{t}{2} \sum_{\sigma} 
+        \langle c_{i-\delta_{r},\sigma}^{\dagger} c_{i\sigma}\rangle
+        -\langle c_{i\sigma}^{\dagger}            c_{i-\delta_{r},\sigma}\rangle
+        -\langle c_{i+\delta_{r},\sigma}^{\dagger} c_{i\sigma}\rangle
+        +\langle c_{,\sigma}^{\dagger}            c_{i+\delta_{r},\sigma}\rangle\right]
+\end{aligned}
+\end{equation*}
+and after introducing the BdG-transformed operators we obtain for the first term:
+\begin{equation*}
+    \begin{aligned}
+    \langle c_{i-\delta_r,\sigma}^{\dagger} c_{i\sigma}\rangle = \sum_{n,m\in\mathcal{N}_+} 
+        &u_{n,i-\delta_r,\sigma}^{\ast} u_{ni\sigma} \underbrace{\langle \gamma_n^{\dagger}\gamma_m\rangle}_{\delta_{mn}f(E_n)} 
+        +~ u_{n,i-\delta_r,\sigma}^{\ast} v_{mi\sigma}^{\ast} \underbrace{\langle \gamma_n^{\dagger}\gamma_m^{\dagger}\rangle}_{0}\\
+        +~& v_{n,i-\delta_r,\sigma}u_{mi\sigma}\underbrace{\langle \gamma_n\gamma_m\rangle}_{0}
+        +~ v_{n,i-\delta_r,\sigma}v_{mi\sigma}^{\ast}\underbrace{\langle \gamma_n\gamma_m^{\dagger}\rangle}_{\delta_{mn}\bigl(1-f(E_n)\bigr)}.
+    \end{aligned}
+\end{equation*}
+In the same way, we obtain for the other terms:
+\begin{alignat*}{2}
+    -\langle c_{i\sigma}^{\dagger}c_{i-\delta_{r},\sigma}\rangle &= -&\sum_{n\in\mathcal{N}_+} u_{ni\sigma}^{\ast}u_{n,i-\delta_r,\sigma} f(E_n) + v_{ni\sigma}v_{n,i-\delta_r,\sigma}^{\ast}\bigl(1-f(E_n)\bigr)\\
+    -\langle c_{i+\delta_{r},\sigma}^{\dagger}c_{i\sigma}\rangle &= -&\sum_{n\in\mathcal{N}_+} u_{n,i+\delta_r,\sigma}^{\ast}u_{ni\sigma} f(E_n) + v_{n,i+\delta_r,\sigma}v_{ni\sigma}^{\ast}\bigl(1-f(E_n)\bigr)\\
+     \langle c_{i\sigma}^{\dagger}c_{i+\delta_{r},\sigma}\rangle &=  &~\sum_{n\in\mathcal{N}_+} u_{ni\sigma}^{\ast}u_{n,i+\delta_r,\sigma} f(E_n) + v_{ni\sigma}v_{n,i+\delta_r,\sigma}^{\ast}\bigl(1-f(E_n)\bigr).
+\end{alignat*}
+After summing up the terms we obtain the following expression for current of the hopping term along the axis $r$:
+\begin{equation}
+    \begin{aligned}
+        \langle I_i^r\rangle_{\text{hop}} = \sum_{\sigma}\sum_{n\in\mathcal{N}_+} 
+            f(E_n)\left[u_{ni\sigma}\left(u_{n,i-\delta_r,\sigma}^{\ast} - u_{n,i+\delta_r,\sigma}^{\ast}\right) + u_{ni\sigma}^{\ast}\left(u_{n,i+\delta_x} - u_{n,i-\delta_x,\sigma}\right)\right]&\\
+            +\bigl(1-f(E_n)\bigr)\left[v_{ni\sigma}^{\ast}\left(v_{n,i-\delta_r,\sigma} - v_{n,i+\delta_r,\sigma}\right) + v_{ni\sigma}\left(u_{n,i+\delta_x}^{\ast} - u_{n,i-\delta_x,\sigma}^{\ast}\right)\right]&.
+    \end{aligned}
+\end{equation}
+And with inside the altermagnet we add the following term:
+\begin{equation*}
+    \begin{aligned}
+    \langle I_l^r\rangle_{\text{AM}} = \sum_{\sigma}\sum_{n\in\mathcal{N}_+} \bigl(1-f(E_n)) 
     &\left[ \sum _{\sigma'}\bigl(\bm{m}_{l,l+\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(u_{nl\sigma} u_{n,l+\delta_r,\sigma}^{\ast}  + u_{n,l-\delta_r,\sigma}u_{nl\sigma}^{\ast}\right)\right.\\
-    +&\left.\sum _{\sigma'}\bigl(\bm{m}_{l,l-\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(u_{n,l+\delta_r,\sigma} u_{nl\sigma}^{\ast} + u_{nl\sigma}v_{n,l-\delta_r,\sigma}^{\ast}\right)\right]
+    +&~\left.\sum _{\sigma'}\bigl(\bm{m}_{l,l-\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(u_{n,l+\delta_r,\sigma} u_{nl\sigma}^{\ast} + u_{nl\sigma}v_{n,l-\delta_r,\sigma}^{\ast}\right)\right]\\
+    f(E_n)&\left[ \sum _{\sigma'}\bigl(\bm{m}_{l,l+\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(v_{nl\sigma}^{\ast} u_{n,l+\delta_r,\sigma}  + v_{n,l-\delta_r,\sigma}^{\ast}v_{nl\sigma}^{\ast}\right)\right.\\
+    +&~\left.\sum _{\sigma'}\bigl(\bm{m}_{l,l-\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(v_{n,l+\delta_r,\sigma}^{\ast} v_{nl\sigma} + v_{nl\sigma}^{\ast}v_{n,l-\delta_r,\sigma}\right)\right]
     \end{aligned}
 \end{equation*}
 \end{document}

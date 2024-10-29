@@ -7,7 +7,7 @@
 \usepackage[english]{babel}
 \usepackage{bibgerm}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+\usepackage[OT1]{fontenc}
 \usepackage{graphicx}
 \usepackage{latexsym}
 \usepackage{subcaption} 
@@ -57,6 +57,14 @@
 \addbibresource{references.bib}
 
 %\input{C:/Users/Tamwyn/Documents/CustomLatexTextMF/mytexmf/tex/latex/UniLaTeXPackage/Arto/ArtoMain.tex}
+\makeatletter
+\newcommand\modulo[2]{\@tempcnta=#1
+        \divide\@tempcnta by #2
+        \multiply\@tempcnta by #2
+        \multiply\@tempcnta by -1
+        \advance\@tempcnta by #1\relax
+        \the\@tempcnta}
+\makeatother
 
 
 \geometry{ 
@@ -109,6 +117,12 @@
 
 \begin{document}
 \definecolor{TamGreen}{HTML}{00C4F6}
+
+\definecolor{TamDarkBlue}{HTML}{666A86}
+\definecolor{TamDarkBlue2}{HTML}{788AA3}
+\definecolor{TamLightGreen}{HTML}{92B6B1}
+\definecolor{TamLightGY}{HTML}{B2C9AB}
+\definecolor{TamYellow}{HTML}{E8DDB5}
 \newcommand{\rem}[1]{\textcolor{TamGreen}{#1}}
 \thispagestyle{empty}
 \begin{center} 

@@ -46,6 +46,7 @@ dist = computeDistance(delta_old, generateNewCollumnDelta(system));
 t = 1;
 while (not(thresholdReached(dist, treshold)))
     fprintf('\nIteration %d:', t);
+    
     fprintf('Diagonalising');
     delta_old = generateNewCollumnDelta(system);
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j

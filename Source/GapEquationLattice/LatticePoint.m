@@ -28,6 +28,7 @@ classdef LatticePoint
                 obj.i = obj.xy_to_i(x, y);
                 obj.materialLayer = System.sampleTypeAt(obj.x);
 
+         
             elseif nargin == 2
                 obj.i = x; %the input is the index i
                 [obj.x ,obj.y] = obj.i_to_xy(obj.i);
@@ -38,12 +39,12 @@ classdef LatticePoint
             obj = obj.classifyPoint();
             obj.c_up_c_down = system.guessDelta;
             if strcmp(obj.materialLayer,'SC')
-                obj.U = 1;
+                obj.U = 2;
             else
                 obj.U = 0;           
             end
             
-            obj.delta = obj.U * system.guessDelta;
+            obj.delta = obj.U * abs(system.guessDelta)*exp(1i *obj.x*(System.phi_2 - System.phi_1)/system.Nx);
 
             if System.fixedBoundaryDelta
                 if obj.x == 1 
