@@ -6,8 +6,12 @@ function points = WriteHeatmap(system, to_write)
         point = system.points{i};
         if strcmp(to_write, 'correl_c_c')
              attrib = string(abs(point.c_up_c_down));
-        elseif strcmp(to_write, 'phase')
-            attrib = string(angle(point.delta));
+        elseif num2str(to_write, 'phase')
+            attrib = num2str(angle(point.delta));
+        elseif strcmp(to_write, 'continuity')
+            cont_X = GetCurrentOfNeigbour(system.points{i}.neighbour{1}, 'x') - GetCurrentOfNeigbour(system.points{i}.neighbour{3}, 'x');
+            cont_Y = GetCurrentOfNeigbour(system.points{i}.neighbour{2}, 'y') - GetCurrentOfNeigbour(system.points{i}.neighbour{4}, 'y');
+            attrib = num2str(cont_X + cont_Y);
         end
         
         points(i+t, :) = [string(point.x), string(point.y), attrib];

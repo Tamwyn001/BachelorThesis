@@ -50,20 +50,7 @@ function system = ComputeCurrents(system, computation)
                     uipN = [0 0];
                     vipN = [0 0];
                 end
-                %LITTERATURE MODEL 1 : sum up two spin expressions at the end
-                % hopping_x = @(spin) (conj(uip1(spin))- conj(uim1(spin))) * ui(spin) + (conj(vip1(spin))- conj(vim1(spin))) * vi(spin); 
-                % hopping_y = @(spin) (conj(uimN(spin))- conj(uipN(spin))) * ui(spin) + (conj(vimN(spin))- conj(vipN(spin))) * vi(spin); 
-
-                % I_x = I_x + imag(hopping_x(1) + hopping_x(2))* system.t_ij * FermiDiarac(0.5 * computation.E(n), system.T, system.mu);
-                % I_y = I_y + imag(hopping_y(1) + hopping_y(2))* system.t_ij * FermiDiarac(0.5 * computation.E(n), system.T, system.mu);
-
-                % LITTERATURE MODEL 2 : sum up two spins in the expressions 
-                % hopping_x =  (conj(uip1(1) + uip1(2))- conj(uim1(1) + uim1(2))) * ( ui(1)+ ui(2)) + (conj(vip1(1) + vip1(2))- conj(vim1(1) + vim1(2))) * (vi(1)+ vi(2)); 
-                % hopping_y =  (conj(uimN(1) + uimN(2))- conj(uipN(1) + uipN(2))) * ( ui(1)+ ui(2)) + (conj(vimN(1) + vimN(1))- conj(vipN(1) + vipN(2))) * (vi(1)+ vi(2)); 
-
-                % I_x = I_x + imag(hopping_x)* system.t_ij * FermiDiarac(0.5 * computation.E(n), system.T, system.mu);
-                % I_y = I_y + imag(hopping_y)* system.t_ij * FermiDiarac(0.5 * computation.E(n), system.T, system.mu);
-
+    
              % OWN MODEL : derivated on the notes
                 hopping_x = @(spin) (conj(uim1(spin) - uip1(spin)) * ui(spin) + conj(ui(spin)) * (uip1(spin) - uim1(spin))) ...
                     * FermiDiarac(computation.E(n), system.T, system.mu)...

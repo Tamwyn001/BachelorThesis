@@ -1,7 +1,5 @@
 function  meanLine = MeanLineMatrix(matrix)
-    % fileID = fopen(path,'r');
-    % formatSpec = '%f %f';
-    % sizeA = [size size];
+
     sizeMM = (size(matrix));
     meanLine = zeros(sizeMM(2),2);
 
@@ -14,7 +12,3 @@ function  meanLine = MeanLineMatrix(matrix)
         end
         meanLine(j,2) = total/double(sizeMM(1));
     end
-    % [filepath,name,ext]= fileparts(path);
-    % out_path= strcat(filepath,'\meanLine_', name,'.dat');
-    % writematrix(meanLine, out_path,'Delimiter',';')
-    % fclose(fileID);

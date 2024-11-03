@@ -43,8 +43,10 @@ classdef LatticePoint
             else
                 obj.U = 0;           
             end
-            
-            obj.delta = obj.U * abs(system.guessDelta)*exp(1i *obj.x*(System.phi_2 - System.phi_1)/system.Nx);
+
+             obj.delta = obj.U * abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
+            % obj.delta = obj.U * abs(system.guessDelta)*exp(1i * 0);
+
 
             if System.fixedBoundaryDelta
                 if obj.x == 1 
@@ -55,7 +57,7 @@ classdef LatticePoint
             end
 
             obj.current = [0, 0];
-            obj.neighbour = cell(4,1);  
+            obj.neighbour = cell(4,1);   % cout counter clockwise : 1: +x 2: +y 3: -x 4: -y
         end
 
         function obj = classifyPoint(obj)
@@ -131,6 +133,11 @@ classdef LatticePoint
         
         function cond = isSubjectToFixedDelta(obj,system)
            cond = System.fixedBoundaryDelta && (obj.x == 1 || obj.x == system.Nx);
+        end
+    end
+    methods (Static)
+        function angle = SamplePhaseAtGradient(x,system)
+            angle = x*(System.phi_2 - System.phi_1)/system.Nx;
         end
     end
 end

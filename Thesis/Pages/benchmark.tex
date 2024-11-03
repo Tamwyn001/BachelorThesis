@@ -2,308 +2,302 @@
 \begin{document}
 
 \section{Benchmark}
-\subsection{Current M20, AM20, SC20}
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}{0.3\textwidth}
-        \centering
-        \input{../Plots/M20/Currents/NoBC/plot.tex}
-        \caption{Surrounded with vaccuum.}
-        \label{fig:first}
-    \end{subfigure}\\
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \input{../Plots/AM20/Currents/NoBC/plot.tex}
-        \caption{Surrounded with vaccuum.}
-        \label{fig:first}
-    \end{subfigure}
-    \hspace{0.1\textwidth}
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \input{../Plots/SC20/Currents/NoBC/plot.tex}
-        \caption{Surrounded with vaccuum.}
-        \label{fig:first}
-    \end{subfigure}
-    \caption{Benchmark for the currents $\sqrt{\langle I^x_i\rangle^2 + \langle I^y_i\rangle^2}$ in M, AM and SC}
-\end{figure}
+% \subsection{Current M20, AM20, SC20}
+% \begin{figure}[H]
+%     \centering
+%     \begin{subfigure}{0.3\textwidth}
+%         \centering
+%         \input{../Plots/M20/Currents/NoBC/plot.tex}
+%         \caption{Surrounded with vaccuum.}
+%         \label{fig:first}
+%     \end{subfigure}\\
+%     \begin{subfigure}{0.45\textwidth}
+%         \centering
+%         \input{../Plots/AM20/Currents/NoBC/plot.tex}
+%         \caption{Surrounded with vaccuum.}
+%         \label{fig:first}
+%     \end{subfigure}
+%     \hspace{0.1\textwidth}
+%     \begin{subfigure}{0.45\textwidth}
+%         \centering
+%         \input{../Plots/SC20/Currents/NoBC/plot.tex}
+%         \caption{Surrounded with vaccuum.}
+%         \label{fig:first}
+%     \end{subfigure}
+%     \caption{Benchmark for the currents $\sqrt{\langle I^x_i\rangle^2 + \langle I^y_i\rangle^2}$ in M, AM and SC}
+% \end{figure}
 
 
-
-\begin{figure}[H]
-    \centering
-    \input{Plots/SC30/MeanLine/Phase117deg/plot.tex}
-    \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions in a SC.}
-\end{figure}
-\begin{figure}[H]
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC30/Phase/Phase117deg/NoBC/plot.tex}
-    \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    \\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC30/HeatMap/Phase117deg/NoBC/plot.tex}
-    \caption{Heat map. Surrounded with vaccuum. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    \\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC30/Phase/Phase117deg/VertBC/plot.tex}
-    \caption{Phase map. Vert BC.. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    \\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC30/HeatMap/Phase117deg/VertBC/plot.tex}
-    \caption{heat map $\Delta$. Vert BC.. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    
-\caption{Benchmark for the phase $\text{arg}(\Delta)$ and $|\Delta|$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
-
-\end{figure}
-\subsubsection{Litterature Model}
+\subsection{SC30}
+\subsubsection{Length and arguement for different $\mu$}
+\paragraph{Zero Phase}
+..
 \begin{figure}[H]
     \begin{subfigure}{0.4\textwidth}
         \centering
-        \input{../Plots/SC30/Currents/Phase117deg/LitteratureModel1/NoBC/plot.tex}
-        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/MeanLine/Phase117deg/mu/ZeroPhase/plot.tex}
+        \caption{Meanline. Surrounded with vaccuum for different mu. Zero Phase $\varphi = 117\deg$}
         \label{fig:first}
-    \end{subfigure}\\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \input{../Plots/SC30/Currents/Phase117deg/LitteratureModel1/VertBC/plot.tex}
-    \caption{Current map. Vert BC. $\varphi = 117 \deg$}
-    \label{fig:first}
-\end{subfigure}
-
-\caption{Current map for two different boundaries conditions according to literature model 1.}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/MeanLine_Phase/Phase117deg/mu/ZeroPhase/plot.tex}
+        \caption{Meanline of the phase. Surrounded with vaccuum for different mu. Zero Phase  $\varphi = 117\deg$}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \caption{Using a model where the phase is set to \textbf{zero erverywhere but right and left side} on the start.}
 \end{figure}
 
-\subsubsection{Litterature Model 2}
+\paragraph{Linear Gradient}
+..
 \begin{figure}[H]
     \begin{subfigure}{0.4\textwidth}
         \centering
-        \input{../Plots/SC30/Currents/Phase117deg/LitteratureModel2/NoBC/plot.tex}
-        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/MeanLine/Phase117deg/mu/LinearGradient/plot.tex}
+        \caption{Meanline. Surrounded with vaccuum for different mu. Phase Gradient $\varphi = 117\deg$}
         \label{fig:first}
-    \end{subfigure}\\
-\begin{subfigure}{0.4\textwidth}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/MeanLine_Phase/Phase117deg/mu/LinearGradient/plot.tex}
+        \caption{Meanline of the phase. Surrounded with vaccuum for different mu. Phase Gradient $\varphi = 117\deg$}
+        \label{fig:first}
+    \end{subfigure}    
+    \caption{Using a model where the phase is set to be a \textbf{gradient from left to the right side} on the start.}
+    \end{figure}
+
+The ability of the system to form Cooper pairs is heigher when the chemical potential approaches zero and reach a minimum 
+whene $|\mu|$ get far from zero. According to \url{https://abhirup-m.github.io/assets/pdfs/tbm.pdf} when $\mu$ is positive,
+we fill up the band. We are going to stay with a filled band This $|\mu|$-dependence can be understood
+as follow. When the band is not filled $\mu<-4$ we have no electron to fill cooper pairs. When $\mu>4$ there is no degree of freedom
+left for the electrons to move around (metal become an insulator) and we can't form Cooper pairs.
+
+What we also see is that at the same $|\mu|$, the negative mu gives significantly more Cooper pairs than the positive one.
+A reason for it could be that the Fermi surface is smaller in the first case than the second one.\\
+
+As we are going to see the $\mu = -3.75$ is not converging. The results alternates between its positive and negative value in the real part.
+This means the phase drop we have isn't realy a result, depending on when we stop, we get $-120$ or $-120+180 = 60$ which lays among the other curves. 
+
+
+
+
+We have $\pi/6$ on the left, then $0$ then $\pi/6 + 117$ on the right. In the Zero phase, we have a drop to zero and then a jump to $\pi/6 + 117$.
+
+Here we setup a linear gradient from $\pi/6$ to $\pi/6 + 117$. The phase has a plateau in the middle and then jumps at the end. The
+heigher the $|\mu|$, the more the gradient is observable. 
+\subsubsection{Convergence of the meanline} 
+
+This section shows how the meanline converges for different $\mu$ and different phase setup. 
+The key point is to see that $\mu = -3.75$ doesn't and then oscillates arround the same value. 
+The more step, the closer the absolute value of the 
+oscillation will be to end one. We also see the influence of the phase gradient oand the zero phase.\\
+\paragraph{Zero Phase}..
+\begin{figure}[H]
     \centering
-    \input{../Plots/SC30/Currents/Phase117deg/LitteratureModel2/VertBC/plot.tex}
-    \caption{Current map. Vert BC. $\varphi = 117 \deg$}
-    \label{fig:first}
-\end{subfigure}
-\caption{Current map for two different boundaries conditions according to literature model 2.}
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/MeanLine_Phase/Phase117deg/mu/ZeroPhase/long-3.75/plot.tex}
+        \caption{Meanlines of $\mu = -3.75$ not converging. Surrounded with vaccuum for different mu. Zero Phase $\varphi = 117\deg$ over 20 iterations.}
+        \label{fig:first}
+        \end{subfigure}    \\
+        \begin{subfigure}{0.4\textwidth}
+            \centering
+            \hspace{-4cm} % Move 2 cm to the left
+            \input{../Plots/SC30/MeanLine_Phase/Phase117deg/mu/ZeroPhase/long-4.75/plot.tex}
+            \caption{Meanlines of $\mu = -4.75$ converging. Surrounded with vaccuum for different mu. Zero Phase $\varphi = 117\deg$  over 5 iterations.}
+            \label{fig:first}
+            \end{subfigure}    \\
+
 \end{figure}
 
-\subsubsection{Own Model}
-
+\paragraph{Linear Gradient}..
 \begin{figure}[H]
     \begin{subfigure}{0.4\textwidth}
         \centering
-        \input{../Plots/SC30/Currents/Phase117deg/OwnModel/NoBC/plot.tex}
-        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}\\
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \input{../Plots/SC30/Currents/Phase117deg/OwnModel/VertBC/plot.tex}
-        \caption{Current map. Vert BC. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}
-\caption{Current map for two different boundaries conditions according to literature model 1.}
-
-\end{figure}
-
-\subsection{Current SC13-M5-SC13}
-
-\begin{figure}[H]
-    \centering
-    \input{Plots/SC13M5SC13/MeanLine/Phase117deg/plot.tex}
-    \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions in a SC.}
-\end{figure}
-\begin{figure}[H]
-\begin{subfigure}{0.4\textwidth}
-    \centering
     \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC13M5SC13/Phase/Phase117deg/NoBC/plot.tex}
-    \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
+    \input{../Plots/SC30/MeanLine_Phase/Phase117deg/mu/LinearGradient/long-3.75/plot.tex}
+    \caption{Meanlines of $\mu = -3.75$ not converging. Surrounded with vaccuum for different mu. LinearGradient Phase $\varphi = 117\deg$  over 20 iterations.}
     \label{fig:first}
-\end{subfigure}    \\
-\begin{subfigure}{0.4\textwidth}
-    \centering
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
     \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC13M5SC13/HeatMap/Phase117deg/NoBC/plot.tex}
-    \caption{Heat map. Surrounded with vaccuum. $\varphi = 117\deg$}
+    \input{../Plots/SC30/MeanLine_Phase/Phase117deg/mu/LinearGradient/long-4.75/plot.tex}
+    \caption{Meanlines of $\mu = -4.75$ not converging. Surrounded with vaccuum for different mu. LinearGradient Phase $\varphi = 117\deg$  over 5 iterations.}
     \label{fig:first}
-\end{subfigure}    \\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC13M5SC13/Phase/Phase117deg/VertBC/plot.tex}
-    \caption{Phase map. Vert BC.. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    \\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC13M5SC13/HeatMap/Phase117deg/VertBC/plot.tex}
-    \caption{heat map $\Delta$. Vert BC.. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    
-\caption{Benchmark for the phase $\text{arg}(\Delta)$ and $|\Delta|$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
-
-\end{figure}
-\subsubsection{Litterature Model}
-\begin{figure}[H]
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \input{../Plots/SC13M5SC13/Currents/Phase117deg/LitteratureModel1/NoBC/plot.tex}
-        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}\\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \input{../Plots/SC13M5SC13/Currents/Phase117deg/LitteratureModel1/VertBC/plot.tex}
-    \caption{Current map. Vert BC. $\varphi = 117 \deg$}
-    \label{fig:first}
-\end{subfigure}
-
-\caption{Current map for two different boundaries conditions according to literature model 1.}
+    \end{subfigure}    
 \end{figure}
 
-\subsubsection{Litterature Model 2}
-\begin{figure}[H]
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \input{../Plots/SC13M5SC13/Currents/Phase117deg/LitteratureModel2/NoBC/plot.tex}
-        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}\\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \input{../Plots/SC13M5SC13/Currents/Phase117deg/LitteratureModel2/VertBC/plot.tex}
-    \caption{Current map. Vert BC. $\varphi = 117 \deg$}
-    \label{fig:first}
-\end{subfigure}
-\caption{Current map for two different boundaries conditions according to literature model 2.}
-\end{figure}
+% \begin{figure}[H]
+%     \begin{subfigure}{0.4\textwidth}
+%         \centering
+%         \hspace{-4cm} % Move 2 cm to the left
+%         \input{../Plots/SC30/Phase/Phase117deg/NoBC/plot.tex}
+%         \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
+%         \label{fig:first}
+%     \end{subfigure}    \\
+%     \begin{subfigure}{0.4\textwidth}
+%         \centering
+%         \hspace{-4cm} % Move 2 cm to the left
+%         \input{../Plots/SC30/HeatMap/Phase117deg/NoBC/plot.tex}
+%         \caption{Heat map. Surrounded with vaccuum. $\varphi = 117\deg$}
+%         \label{fig:first}
+%     \end{subfigure}    \\
+%     \begin{subfigure}{0.4\textwidth}
+%         \centering
+%         \hspace{-4cm} % Move 2 cm to the left
+%         \input{../Plots/SC30/Phase/Phase117deg/VertBC/plot.tex}
+%         \caption{Phase map. Vert BC.. $\varphi = 117\deg$}
+%         \label{fig:first}
+%     \end{subfigure}    \\
+%     \begin{subfigure}{0.4\textwidth}
+%         \centering
+%         \hspace{-4cm} % Move 2 cm to the left
+%         \input{../Plots/SC30/HeatMap/Phase117deg/VertBC/plot.tex}
+%         \caption{heat map $\Delta$. Vert BC.. $\varphi = 117\deg$}
+%         \label{fig:first}
+%     \end{subfigure}    
+%     \caption{Benchmark for the phase $\text{arg}(\Delta)$ and $|\Delta|$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
+    
+% \end{figure}
+% \begin{figure}[H]
+%     \begin{subfigure}{0.4\textwidth}
+%         \centering
+%         \input{../Plots/SC30/Currents/Phase117deg/OwnModel/NoBC/plot.tex}
+%         \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
+%         \label{fig:first}
+%     \end{subfigure}\\
+%     \begin{subfigure}{0.4\textwidth}
+%         \centering
+%         \input{../Plots/SC30/Currents/Phase117deg/OwnModel/VertBC/plot.tex}
+%         \caption{Current map. Vert BC. $\varphi = 117 \deg$}
+%         \label{fig:first}
+%     \end{subfigure}
+% \caption{Current map for two different boundaries conditions according to literature model 1.}
 
-\subsubsection{Own Model}
+% \end{figure}
 
-\begin{figure}[H]
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \input{../Plots/SC13M5SC13/Currents/Phase117deg/OwnModel/NoBC/plot.tex}
-        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}\\
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \input{../Plots/SC13M5SC13/Currents/Phase117deg/OwnModel/VertBC/plot.tex}
-        \caption{Current map. Vert BC. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}
-\caption{Current map for two different boundaries conditions according to literature model 1.}
+% \subsection{Current SC13-M5-SC13}
 
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{Plots/SC13M5SC13/MeanLine/Phase117deg/plot.tex}
+%     \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions in a SC.}
+% \end{figure}
+% \begin{figure}[H]
+% \begin{subfigure}{0.4\textwidth}
+%     \centering
+%     \hspace{-4cm} % Move 2 cm to the left
+%     \input{../Plots/SC13M5SC13/Phase/Phase117deg/NoBC/plot.tex}
+%     \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
+%     \label{fig:first}
+% \end{subfigure}    \\
+% \begin{subfigure}{0.4\textwidth}
+%     \centering
+%     \hspace{-4cm} % Move 2 cm to the left
+%     \input{../Plots/SC13M5SC13/HeatMap/Phase117deg/NoBC/plot.tex}
+%     \caption{Heat map. Surrounded with vaccuum. $\varphi = 117\deg$}
+%     \label{fig:first}
+% \end{subfigure}    \\
+% \begin{subfigure}{0.4\textwidth}
+%     \centering
+%     \hspace{-4cm} % Move 2 cm to the left
+%     \input{../Plots/SC13M5SC13/Phase/Phase117deg/VertBC/plot.tex}
+%     \caption{Phase map. Vert BC.. $\varphi = 117\deg$}
+%     \label{fig:first}
+% \end{subfigure}    \\
+% \begin{subfigure}{0.4\textwidth}
+%     \centering
+%     \hspace{-4cm} % Move 2 cm to the left
+%     \input{../Plots/SC13M5SC13/HeatMap/Phase117deg/VertBC/plot.tex}
+%     \caption{heat map $\Delta$. Vert BC.. $\varphi = 117\deg$}
+%     \label{fig:first}
+% \end{subfigure}    
+% \caption{Benchmark for the phase $\text{arg}(\Delta)$ and $|\Delta|$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
 
-\subsection{Current SC13-AM5-SC13}
+% \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \input{Plots/SC13AM5SC13/MeanLine/Phase117deg/plot.tex}
-    \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions in a SC.}
-\end{figure}
-\begin{figure}[H]
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC13AM5SC13/Phase/Phase117deg/NoBC/plot.tex}
-    \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    \\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC13AM5SC13/HeatMap/Phase117deg/NoBC/plot.tex}
-    \caption{Heat map. Surrounded with vaccuum. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    \\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC13AM5SC13/Phase/Phase117deg/VertBC/plot.tex}
-    \caption{Phase map. Vert BC.. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    \\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \hspace{-4cm} % Move 2 cm to the left
-    \input{../Plots/SC13AM5SC13/HeatMap/Phase117deg/VertBC/plot.tex}
-    \caption{heat map $\Delta$. Vert BC.. $\varphi = 117\deg$}
-    \label{fig:first}
-\end{subfigure}    
-\caption{Benchmark for the phase $\text{arg}(\Delta)$ and $|\Delta|$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
+% \subsubsection{Own Model}
 
-\end{figure}
-\subsubsection{Litterature Model}
-\begin{figure}[H]
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \input{../Plots/SC13AM5SC13/Currents/Phase117deg/LitteratureModel1/NoBC/plot.tex}
-        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}\\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \input{../Plots/SC13AM5SC13/Currents/Phase117deg/LitteratureModel1/VertBC/plot.tex}
-    \caption{Current map. Vert BC. $\varphi = 117 \deg$}
-    \label{fig:first}
-\end{subfigure}
+% \begin{figure}[H]
+%     \begin{subfigure}{0.4\textwidth}
+%         \centering
+%         \input{../Plots/SC13M5SC13/Currents/Phase117deg/OwnModel/NoBC/plot.tex}
+%         \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
+%         \label{fig:first}
+%     \end{subfigure}\\
+%     \begin{subfigure}{0.4\textwidth}
+%         \centering
+%         \input{../Plots/SC13M5SC13/Currents/Phase117deg/OwnModel/VertBC/plot.tex}
+%         \caption{Current map. Vert BC. $\varphi = 117 \deg$}
+%         \label{fig:first}
+%     \end{subfigure}
+% \caption{Current map for two different boundaries conditions according to literature model 1.}
 
-\caption{Current map for two different boundaries conditions according to literature model 1.}
-\end{figure}
+% \end{figure}
 
-\subsubsection{Litterature Model 2}
-\begin{figure}[H]
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \input{../Plots/SC13AM5SC13/Currents/Phase117deg/LitteratureModel2/NoBC/plot.tex}
-        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}\\
-\begin{subfigure}{0.4\textwidth}
-    \centering
-    \input{../Plots/SC13AM5SC13/Currents/Phase117deg/LitteratureModel2/VertBC/plot.tex}
-    \caption{Current map. Vert BC. $\varphi = 117 \deg$}
-    \label{fig:first}
-\end{subfigure}
-\caption{Current map for two different boundaries conditions according to literature model 2.}
-\end{figure}
+% \subsection{Current SC13-AM5-SC13}
 
-\subsubsection{Own Model}
+% \begin{figure}[H]
+%     \centering
+%     \input{Plots/SC13AM5SC13/MeanLine/Phase117deg/plot.tex}
+%     \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions in a SC.}
+% \end{figure}
+% \begin{figure}[H]
+% \begin{subfigure}{0.4\textwidth}
+%     \centering
+%     \hspace{-4cm} % Move 2 cm to the left
+%     \input{../Plots/SC13AM5SC13/Phase/Phase117deg/NoBC/plot.tex}
+%     \caption{Phase map. Surrounded with vaccuum. $\varphi = 117\deg$}
+%     \label{fig:first}
+% \end{subfigure}    \\
+% \begin{subfigure}{0.4\textwidth}
+%     \centering
+%     \hspace{-4cm} % Move 2 cm to the left
+%     \input{../Plots/SC13AM5SC13/HeatMap/Phase117deg/NoBC/plot.tex}
+%     \caption{Heat map. Surrounded with vaccuum. $\varphi = 117\deg$}
+%     \label{fig:first}
+% \end{subfigure}    \\
+% \begin{subfigure}{0.4\textwidth}
+%     \centering
+%     \hspace{-4cm} % Move 2 cm to the left
+%     \input{../Plots/SC13AM5SC13/Phase/Phase117deg/VertBC/plot.tex}
+%     \caption{Phase map. Vert BC.. $\varphi = 117\deg$}
+%     \label{fig:first}
+% \end{subfigure}    \\
+% \begin{subfigure}{0.4\textwidth}
+%     \centering
+%     \hspace{-4cm} % Move 2 cm to the left
+%     \input{../Plots/SC13AM5SC13/HeatMap/Phase117deg/VertBC/plot.tex}
+%     \caption{heat map $\Delta$. Vert BC.. $\varphi = 117\deg$}
+%     \label{fig:first}
+% \end{subfigure}    
+% \caption{Benchmark for the phase $\text{arg}(\Delta)$ and $|\Delta|$ in an SC material. We have $\Delta = |\Delta_{\text{guess}}|e^{\im \left(\frac{\pi}{6} + \varphi\frac{\pi}{180}\right)}$}
 
-\begin{figure}[H]
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \input{../Plots/SC13AM5SC13/Currents/Phase117deg/OwnModel/NoBC/plot.tex}
-        \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}\\
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        \input{../Plots/SC13AM5SC13/Currents/Phase117deg/OwnModel/VertBC/plot.tex}
-        \caption{Current map. Vert BC. $\varphi = 117 \deg$}
-        \label{fig:first}
-    \end{subfigure}
-\caption{Current map for two different boundaries conditions according to literature model 1.}
+% \end{figure}
 
-\end{figure}
+% \subsubsection{Own Model}
+
+% \begin{figure}[H]
+%     \begin{subfigure}{0.4\textwidth}
+%         \centering
+%         \input{../Plots/SC13AM5SC13/Currents/Phase117deg/OwnModel/NoBC/plot.tex}
+%         \caption{Current map. Surrounded with vaccuum. $\varphi = 117 \deg$}
+%         \label{fig:first}
+%     \end{subfigure}\\
+%     \begin{subfigure}{0.4\textwidth}
+%         \centering
+%         \input{../Plots/SC13AM5SC13/Currents/Phase117deg/OwnModel/VertBC/plot.tex}
+%         \caption{Current map. Vert BC. $\varphi = 117 \deg$}
+%         \label{fig:first}
+%     \end{subfigure}
+% \caption{Current map for two different boundaries conditions according to literature model 1.}
+
+% \end{figure}
 
 \end{document}

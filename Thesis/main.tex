@@ -57,14 +57,6 @@
 \addbibresource{references.bib}
 
 %\input{C:/Users/Tamwyn/Documents/CustomLatexTextMF/mytexmf/tex/latex/UniLaTeXPackage/Arto/ArtoMain.tex}
-\makeatletter
-\newcommand\modulo[2]{\@tempcnta=#1
-        \divide\@tempcnta by #2
-        \multiply\@tempcnta by #2
-        \multiply\@tempcnta by -1
-        \advance\@tempcnta by #1\relax
-        \the\@tempcnta}
-\makeatother
 
 
 \geometry{ 
@@ -184,7 +176,7 @@
 \subfile{Pages/2_TheoreticalBackground.tex} 
 \subfile{Pages/3_BdGFormalism.tex}
 \subfile{Pages/6_Altermagnetism.tex}
-%\subfile{Pages/5_Simulations.tex} 
+\subfile{Pages/5_Simulations.tex} 
 \subfile{pages/7_CurrentsInLattice.tex}
 %\subfile{Pages/4_Results.tex}\newpage
 %\subfile{Pages/benchmark.tex}

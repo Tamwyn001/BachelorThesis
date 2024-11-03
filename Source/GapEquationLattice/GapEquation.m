@@ -1,16 +1,24 @@
 function result = thresholdReached(dist, treshold)
     result = true;
-    for i = 1: numel(dist)
-        if dist(i) > treshold
+    for i = 1: size(dist,1)
+        if dist(i,1) > treshold
             result = false;
-            break;
+            return;
+        end
+        if dist(i,2) > treshold
+            result = false;
+            return;
         end
     end
 end
 
 function result = generateNewCollumnDelta(system)
     index_shift = 0;
-    result = zeros(system.Nx*(system.Ny-2), 1); %subtract the sides 2 Nx elements
+    if system.fixedBoundaryDelta
+        result = zeros(system.Nx*(system.Ny-2), 1); %subtract the sides 2 Nx elements
+    else
+        result = zeros(system.Nx*system.Ny, 1);
+    end
     for j = 1: system.Nx * system.Ny
         if ~system.points{j}.isSubjectToFixedDelta(system)
             result(j-index_shift) = system.points{j}.delta;
@@ -20,15 +28,27 @@ function result = generateNewCollumnDelta(system)
     end
 end
 
-function result = computeDistance(delta_old, delta_new)
-    result = zeros(numel(delta_old), 1);
-    for i = 1: numel(delta_old)
-        result(i) = abs(delta_old(i) - delta_new(i));
+function result = computeDistance(delta_old, delta_new)  
+    length = size(delta_old, 1);
+    result = zeros(length, 2);
+    for i = 1: length
+        result(i,1) = abs(real(delta_new(i)) - real(delta_old(i)));
+        result(i,2) = abs(imag(delta_new(i)) - imag(delta_old(i)));
     end
 end
 
-treshold = 0.001; %convergence treshold
-delta_old = 4; %initial old delta value
+function loop_on = canLoop(terminated, dist, treshold)
+    loop_on = true;
+    if thresholdReached(dist, treshold) 
+        loop_on = false;
+        return;
+    elseif terminated
+        loop_on = false;
+        return;
+    end
+end
+
+treshold = 0.0001; %convergence treshold
 
 
 Fermi = @(E) FermiDiarac(E, System.T, System.mu);
@@ -41,10 +61,18 @@ computation = Computation(system); %holds the eigenvalues and eigenvectors to ac
 CORREL_C = zeros(system.Ny, system.Nx);
 fprintf('Solving the gap equation\n');
 
+if system.fixedBoundaryDelta
+    delta_old = 4.0*ones(system.Nx*(system.Ny-2), 1); %subtract the sides 2 Nx elements
+else
+    delta_old = 4.0*ones(system.Nx*system.Ny, 1);
+end
 %seting the value to compare with after its going to be updated
 dist = computeDistance(delta_old, generateNewCollumnDelta(system));
+
 t = 1;
-while (not(thresholdReached(dist, treshold)))
+CORREL_C_trace = zeros(10,system.Ny, system.Nx);
+terminated = false;
+while (canLoop(t>20, dist, treshold)) 
     fprintf('\nIteration %d:', t);
     
     fprintf('Diagonalising');
@@ -52,6 +80,7 @@ while (not(thresholdReached(dist, treshold)))
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
     [chi, ener] = eig(system.hamiltonian);
     computation = computation.writeNewEigen(chi, ener);
+
     for i = 1: system.Nx * system.Ny %for each particle we search a convergence
         delta_elem_sum = 0; %initialize the sum of the delta elements
         Console.progressBar(i, system.Nx * system.Ny);
@@ -74,15 +103,26 @@ while (not(thresholdReached(dist, treshold)))
         end
         system.points{i} = system.points{i}.updateDelta(delta_elem_sum, system); %system.points{i}.U *      
         %reinserting delta it into the hamiltonian, we rewrite the 4x4 block of the site including supercondctivity and chemical potential
+        % for id = 1: system.Nx * system.Ny
+        %     CORREL_C_trace(t, system.points{id}.y, system.points{id}.x) = real(system.points{id}.delta);
+        % end
         
+
     end
+    % loop(:,:) = CORREL_C_trace(t, :, :);
+    % for i = 1:size(loop, 1)
+    %     fprintf('%.7f %.7f %.7f\n', loop(i, :));  % Adjust the format to match the number of columns
+    % end
+    
     %correct Hamiltonian
     for i = 1: system.Nx * system.Ny
         system.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4) = system.onSiteMatrix(i);
     end
     t = t+1;
     dist = computeDistance(delta_old, generateNewCollumnDelta(system));
-    fprintf('convergence = %d\n', max(dist));
+    [x_valu, x_id] = max(dist(:,1));
+    [y_valu, y_id] = max(dist(:,2));
+    fprintf('convergence  RE = %d at %d, IM = %d at %d\n', x_valu, x_id, y_valu, y_id);
 end 
 
 %generate a plotable matrix
@@ -133,13 +173,13 @@ phase_shift_folder = "";
 
 if System.fixedBoundaryDelta
     phase_shift = round((system.phi_2 - system.phi_1) * (180/pi));
-    % model for the current 
-    model = "OwnModel";
     phase_shift_folder = strcat("\Phase", num2str(phase_shift), "deg\");
 end
 
+details = "diffMU\LinearGradient\";
+phase_shift_folder = strcat(phase_shift_folder, details, num2str(System.mu),"\");
 if not(isfolder(strcat(path, phase_shift_folder)))
-    mkdir(strcat(path, phase_shift_folder, model,"\"));
+    mkdir(strcat(path, phase_shift_folder));
 end
 
 
@@ -150,10 +190,19 @@ writematrix(WriteHeatmap(system, 'correl_c_c'), path_CORREL_C,'Delimiter',' ')
 path_PHASE = strcat(path, phase_shift_folder, "phase_",sim_deltails, ".dat");
 writematrix(WriteHeatmap(system, 'phase'), path_PHASE,'Delimiter',' ')
 
+path_CONTINUITY = strcat(path, phase_shift_folder, "continuity_",sim_deltails, ".dat");
+writematrix(WriteHeatmap(system, 'continuity'), path_CONTINUITY,'Delimiter',' ')
+
 pathMEAN = strcat(path, phase_shift_folder, "meanline_",sim_deltails, ".dat");
 writematrix(MeanLineMatrix(CORREL_C), pathMEAN,'Delimiter',' ');
 
-pathCURRENT = strcat(path, phase_shift_folder,  model,"\", "current_",sim_deltails, ".dat");
+pathCURRENT = strcat(path, phase_shift_folder, "current_",sim_deltails, ".dat");
 writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');
-disp(sprintf('Task finished with current model: %s', model));
+
+% step_correl = zeros(system.Ny, system.Nx);
+% for steps = 1:size(CORREL_C_trace,1)
+%     pathMEAN_trace = strcat(path, phase_shift_folder, "meanline", sim_deltails, "_step_", num2str(steps),".dat");
+%     step_correl(:,:) = CORREL_C_trace(steps,:,:);
+%     writematrix(MeanLineMatrix(step_correl), pathMEAN_trace,'Delimiter',' ');
+% end
 disp(sprintf('Saved at: %s', strcat(path, phase_shift_folder)));
