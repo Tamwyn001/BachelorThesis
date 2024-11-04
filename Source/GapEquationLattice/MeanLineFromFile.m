@@ -1,6 +1,6 @@
 
 path = ".\Results\";
-model = "SC30\Phase117deg\diffMU\ZeroPhase\";
+model = "SC30\Phase117deg\diffMU\FixedPhase\ZeroPhase\";
 file_to_check = ["-4.75" , "-3.75" , "-2.75" , "-1.75" , "-0.75" , "0" , "0.75", "1.75", "2.75", "3.75", "4.75"];
 for i = 1:numel(file_to_check)
     file = strcat(path, model, file_to_check(i), "\phase_30x15NoBC.dat");

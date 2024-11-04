@@ -37,18 +37,18 @@ classdef LatticePoint
             end
 
             obj = obj.classifyPoint();
-            obj.c_up_c_down = system.guessDelta;
+
             if strcmp(obj.materialLayer,'SC')
                 obj.U = 2;
             else
                 obj.U = 0;           
             end
+            % obj.delta = abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
+            obj.delta = obj.U * abs(system.guessDelta)*exp(1i * 0);
 
-             obj.delta = obj.U * abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
-            % obj.delta = obj.U * abs(system.guessDelta)*exp(1i * 0);
+            obj.c_up_c_down = obj.delta / obj.U;
 
-
-            if System.fixedBoundaryDelta
+            if System.fixedBoundaryDelta || System.fixedBoundaryDeltaArg
                 if obj.x == 1 
                     obj.delta = system.fixedDelta(1);
                 elseif obj.x == system.Nx
@@ -124,11 +124,23 @@ classdef LatticePoint
         end
 
         function obj = updateDelta(obj, delta, system)
-            if obj.isSubjectToFixedDelta(system)
-                return;
+            if (obj.x == 1 || obj.x == system.Nx)
+                if System.fixedBoundaryDelta
+                    return;
+                elseif System.fixedBoundaryDeltaArg
+                    
+                    if obj.x == 1
+                        rot = system.phi_1;
+                    else
+                        rot = system.phi_2;
+                    end
+                    obj.delta =  abs(delta)*exp(1i*rot);
+                    obj.c_up_c_down = obj.delta/obj.U;
+                    return;
+                end
             end
-            obj.c_up_c_down = delta;
-            obj.delta = obj.U * delta;
+            obj.delta = delta;
+            obj.c_up_c_down = obj.delta/obj.U;
         end
         
         function cond = isSubjectToFixedDelta(obj,system)

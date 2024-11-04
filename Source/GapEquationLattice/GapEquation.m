@@ -48,7 +48,7 @@ function loop_on = canLoop(terminated, dist, treshold)
     end
 end
 
-treshold = 0.0001; %convergence treshold
+treshold = 0.00061; %convergence treshold
 
 
 Fermi = @(E) FermiDiarac(E, System.T, System.mu);
@@ -161,7 +161,7 @@ for i = 0: (numel(System.layer)/2 - 1)
     details = strcat(details, System.layer{2*i + 2}, " layers of ", System.layer{2*i+1});
 end
 
-title(strcat("Gap equation solution of the lattice " , details));
+% title(strcat("Gap equation solution of the lattice " , details));
 systemMaterial = "";
 for i = 1 : numel(System.layer)
     systemMaterial = strcat(systemMaterial, System.layer(i));
@@ -170,13 +170,13 @@ path = strcat(".\Results\", systemMaterial);
 
 
 phase_shift_folder = "";
-
-if System.fixedBoundaryDelta
+    
+if System.fixedBoundaryDelta || System.fixedBoundaryDeltaArg
     phase_shift = round((system.phi_2 - system.phi_1) * (180/pi));
     phase_shift_folder = strcat("\Phase", num2str(phase_shift), "deg\");
 end
 
-details = "diffMU\LinearGradient\";
+details = "diffMU\FixedPhase\ZeroPhase\";
 phase_shift_folder = strcat(phase_shift_folder, details, num2str(System.mu),"\");
 if not(isfolder(strcat(path, phase_shift_folder)))
     mkdir(strcat(path, phase_shift_folder));

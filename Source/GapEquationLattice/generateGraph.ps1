@@ -43,7 +43,7 @@ $target = $target.Substring(0, $target.Length - 1)
 $replace = $replace.Substring(0, $replace.Length - 1)
 $content = $content -replace $target, $replace
 
-$content = $content -replace '0\.00e\{\+00\}', '0'  -replace '0\.0e\{\+00\}', '0'  -replace '0e\{\+00\}', '0'
+$content = $content -replace '0\.00e\{\+00\}', '0'  -replace '0\.0e\{\+00\}', '0'  -replace '0e\{\+00\}', '0' -replace 'e\{\+00\}', ''
 Set-Content -Path "$tex_path" -Value $content -Encoding UTF8
 
 del "`$null" # delete the temp outputs file

@@ -9,15 +9,15 @@ dataroot = './Results'.targetSystem
 
 plot [1:30] \
     dataroot.'/4.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize 4.75' dashtype 3 lw 3 lc palette frac 0, \
-    dataroot.'/3.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize 3.75' dashtype 3 lw 3 lc palette frac 0.1, \
-    dataroot.'/2.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize 2.75' dashtype 3 lw 3 lc palette frac 0.3, \
-    dataroot.'/1.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize 1.75' dashtype 3 lw 3 lc palette frac 0.5, \
-    dataroot.'/0.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize 0.75' dashtype 3 lw 3 lc palette frac 0.7, \
+    dataroot.'/3.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize 3.75' dashtype 3 lw 3 lc palette frac 0.2, \
+    dataroot.'/2.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize 2.75' dashtype 3 lw 3 lc palette frac 0.4, \
+    dataroot.'/1.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize 1.75' dashtype 3 lw 3 lc palette frac 0.6, \
+    dataroot.'/0.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize 0.75' dashtype 3 lw 3 lc palette frac 0.8, \
     dataroot.'/0/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize 0' lw 3 lc palette frac 1, \
-    dataroot.'/-0.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -0.75' dashtype 1 lw 3 lc palette frac 0.7, \
-    dataroot.'/-1.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -1.75' dashtype 1 lw 3 lc palette frac 0.5, \
-    dataroot.'/-2.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -2.75' dashtype 1 lw 3 lc palette frac 0.3, \
-    dataroot.'/-3.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -3.75' dashtype 1 lw 3 lc palette frac 0.1, \
+    dataroot.'/-0.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -0.75' dashtype 1 lw 3 lc palette frac 0.8, \
+    dataroot.'/-1.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -1.75' dashtype 1 lw 3 lc palette frac 0.6, \
+    dataroot.'/-2.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -2.75' dashtype 1 lw 3 lc palette frac 0.4, \
+    dataroot.'/-3.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -3.75' dashtype 1 lw 3 lc palette frac 0.2, \
     dataroot.'/-4.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -4.75' dashtype 1 lw 3 lc palette frac 0
 
 set out

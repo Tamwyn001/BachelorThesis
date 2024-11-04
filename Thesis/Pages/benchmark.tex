@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-\section{Benchmark}
+\section{Benchmark on SC30}
 % \subsection{Current M20, AM20, SC20}
 % \begin{figure}[H]
 %     \centering
@@ -27,9 +27,8 @@
 %     \caption{Benchmark for the currents $\sqrt{\langle I^x_i\rangle^2 + \langle I^y_i\rangle^2}$ in M, AM and SC}
 % \end{figure}
 
-
-\subsection{SC30}
-\subsubsection{Length and arguement for different $\mu$}
+\subsection{Length and arguement for different $\mu$}
+\subsubsection{Fixed $\Delta$ on both sides}
 \paragraph{Zero Phase}
 ..
 \begin{figure}[H]
@@ -89,7 +88,46 @@ We have $\pi/6$ on the left, then $0$ then $\pi/6 + 117$ on the right. In the Ze
 
 Here we setup a linear gradient from $\pi/6$ to $\pi/6 + 117$. The phase has a plateau in the middle and then jumps at the end. The
 heigher the $|\mu|$, the more the gradient is observable. 
-\subsubsection{Convergence of the meanline} 
+\subsubsection{Fixed phase on both sides}
+\paragraph{Linear Gradient}..
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/MeanLine/Phase117deg/mu/FixedPhase/LinearGradient/plot.tex}
+        \caption{All mean line. Surrounded with vaccuum. LinearGradient Phase $\varphi = 117\deg$.}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Phase_MeanLine/Phase117deg/mu/FixedPhase/LinearGradient/plot.tex}
+        \caption{Phase mean line. Surrounded with vaccuum. LinearGradient Phase $\varphi = 117\deg$.}
+        \label{fig:first}
+    \end{subfigure}   
+    \caption{Using a model where the phase is set to be a \textbf{gradient from left to the right side} on the start.}
+\end{figure}
+
+\paragraph{Zero Phase}..
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/MeanLine/Phase117deg/mu/FixedPhase/ZeroPhase/plot.tex}
+        \caption{All mean line. Surrounded with vaccuum. ZeroPhase Phase $\varphi = 117\deg$.}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Phase_MeanLine/Phase117deg/mu/FixedPhase/ZeroPhase/plot.tex}
+        \caption{Phase mean line. Surrounded with vaccuum. ZeroPhase Phase $\varphi = 117\deg$.}
+        \label{fig:first}
+    \end{subfigure}   
+    \caption{Using a model where the phase is set to \textbf{zero erverywhere but right and left side} on the start.}
+\end{figure}
+
+\subsection{Convergence of the meanline} 
 
 This section shows how the meanline converges for different $\mu$ and different phase setup. 
 The key point is to see that $\mu = -3.75$ doesn't and then oscillates arround the same value. 
@@ -131,6 +169,165 @@ oscillation will be to end one. We also see the influence of the phase gradient 
     \caption{Meanlines of $\mu = -4.75$ not converging. Surrounded with vaccuum for different mu. LinearGradient Phase $\varphi = 117\deg$  over 5 iterations.}
     \label{fig:first}
     \end{subfigure}    
+\end{figure}
+
+\subsection{Contiuity of the current}
+\subsubsection{Fixed $\Delta$ on both sides}
+\paragraph{Zero Phase}..
+
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Continuity/Phase117deg/mu/ZeroPhase/long0.75/plot.tex}
+        \caption{Current continuity map. Surrounded with vaccuum. Zero Phase $\varphi = 117\deg$, $\mu = 0.75$}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Continuity/Phase117deg/mu/ZeroPhase/long-0.75/plot.tex}
+        \caption{Current continuity map. Surrounded with vaccuum. Zero Phase $\varphi = 117\deg$, $\mu = -0.75$}
+        \label{fig:first}
+    \end{subfigure}    
+    \caption{ Current continuity map $J(i+1) - J(i-1) + J(i+N)- J(i-N)$. Using a model where the phase is set to \textbf{zero erverywhere but right and left side} on the start.}
+\end{figure}
+\paragraph{Linear Gradient}..
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Continuity/Phase117deg/mu/LinearGradient/long0.75/plot.tex}
+        \caption{Current continuity map Surrounded with vaccuum. LinearGradient Phase $\varphi = 117\deg$, $\mu = 0.75$}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Continuity/Phase117deg/mu/LinearGradient/long-0.75/plot.tex}
+        \caption{Current continuity map. Surrounded with vaccuum. LinearGradient Phase $\varphi = 117\deg$, $\mu = -0.75$}
+        \label{fig:first}
+    \end{subfigure}    
+    \caption{Current continuity map $J(i+1) - J(i-1) + J(i+N)- J(i-N)$. Using a model where the phase is set to be a \textbf{gradient from left to the right side} on the start.}
+\end{figure}
+
+\subsubsection{Fixed phase on both sides}
+\paragraph{Zero Phase}..
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Continuity/Phase117deg/mu/FixedPhase/ZeroPhase/long0.75/plot.tex}
+        \caption{Current continuity map. Surrounded with vaccuum. Zero Phase $\varphi = 117\deg$, $\mu = 0.75$}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Continuity/Phase117deg/mu/FixedPhase/ZeroPhase/long-0.75/plot.tex}
+        \caption{Current continuity map. Surrounded with vaccuum. Zero Phase $\varphi = 117\deg$, $\mu = -0.75$}
+        \label{fig:first}
+    \end{subfigure}    
+    \caption{ Current continuity map $J(i+1) - J(i-1) + J(i+N)- J(i-N)$. Using a model where the phase is set to \textbf{zero erverywhere but right and left side} on the start.}
+\end{figure}
+
+\paragraph{Linear Gradient}..
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Continuity/Phase117deg/mu/FixedPhase/LinearGradient/long0.75/plot.tex}
+        \caption{Current continuity map Surrounded with vaccuum. LinearGradient Phase $\varphi = 117\deg$, $\mu = 0.75$}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Continuity/Phase117deg/mu/FixedPhase/LinearGradient/long-0.75/plot.tex}
+        \caption{Current continuity map. Surrounded with vaccuum. LinearGradient Phase $\varphi = 117\deg$, $\mu = -0.75$}
+        \label{fig:first}
+    \end{subfigure}    
+    \caption{Current continuity map $J(i+1) - J(i-1) + J(i+N)- J(i-N)$. Using a model where the phase is set to be a \textbf{gradient from left to the right side} on the start.}
+\end{figure}
+
+
+\subsection{Current}
+\subsubsection{Fixed $\Delta$ on both sides}
+\paragraph{Zero Phase}..
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Current/Phase117deg/mu/ZeroPhase/long0.75/plot.tex}
+        \caption{Current  map. Surrounded with vaccuum. Zero Phase $\varphi = 117\deg$, $\mu = 0.75$}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Current/Phase117deg/mu/ZeroPhase/long-0.75/plot.tex}
+        \caption{Current  map. Surrounded with vaccuum. Zero Phase $\varphi = 117\deg$, $\mu = -0.75$}
+        \label{fig:first}
+    \end{subfigure}    
+    \caption{ Current map. Using a model where the phase is set to \textbf{zero erverywhere but right and left side} on the start.}
+\end{figure}
+
+\paragraph{Linear Gradient}..
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Current/Phase117deg/mu/LinearGradient/long0.75/plot.tex}
+        \caption{Current map Surrounded with vaccuum. LinearGradient Phase $\varphi = 117\deg$, $\mu = 0.75$}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Current/Phase117deg/mu/LinearGradient/long-0.75/plot.tex}
+        \caption{Current map. Surrounded with vaccuum. LinearGradient Phase $\varphi = 117\deg$, $\mu = -0.75$}
+        \label{fig:first}
+    \end{subfigure}    
+    \caption{Current map . Using a model where the phase is set to be a \textbf{gradient from left to the right side} on the start.}
+\end{figure}
+
+\subsubsection{Fixed phase on both sides}
+\paragraph{Zero Phase}..
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Current/Phase117deg/mu/FixedPhase/ZeroPhase/long0.75/plot.tex}
+        \caption{Current  map. Surrounded with vaccuum. Zero Phase $\varphi = 117\deg$, $\mu = 0.75$}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Current/Phase117deg/mu/FixedPhase/ZeroPhase/long-0.75/plot.tex}
+        \caption{Current map. Surrounded with vaccuum. Zero Phase $\varphi = 117\deg$, $\mu = -0.75$}
+        \label{fig:first}
+    \end{subfigure}    
+    \caption{ Current map. Using a model where the phase is set to \textbf{zero erverywhere but right and left side} on the start.}
+\end{figure}
+
+\paragraph{Linear Gradient}..
+\begin{figure}[H]
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Current/Phase117deg/mu/FixedPhase/LinearGradient/long0.75/plot.tex}
+        \caption{Current map Surrounded with vaccuum. LinearGradient Phase $\varphi = 117\deg$, $\mu = 0.75$}
+        \label{fig:first}
+    \end{subfigure}    \\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \hspace{-4cm} % Move 2 cm to the left
+        \input{../Plots/SC30/Current/Phase117deg/mu/FixedPhase/LinearGradient/long-0.75/plot.tex}
+        \caption{Current map. Surrounded with vaccuum. LinearGradient Phase $\varphi = 117\deg$, $\mu = -0.75$}
+        \label{fig:first}
+    \end{subfigure}    
+    \caption{Current map . Using a model where the phase is set to be a \textbf{gradient from left to the right side} on the start.}
 \end{figure}
 
 % \begin{figure}[H]
@@ -182,6 +379,11 @@ oscillation will be to end one. We also see the influence of the phase gradient 
 
 % \end{figure}
 
+
+|
+
+
+|
 % \subsection{Current SC13-M5-SC13}
 
 % \begin{figure}[H]
