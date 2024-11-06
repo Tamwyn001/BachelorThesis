@@ -3,22 +3,38 @@ function NeigboursMap(x, y)
     system = system.createLattice();
 
     map = zeros(system.Ny, system.Nx);
+    
     id = system.points{1}.xy_to_i(x, y);
-    for i = 1:system.Nx
-        for j= 1:system.Ny
-            if j == x && i == y 
-                map(i, j) = 0.5;
-            else
-                [are_neigh, axe] = Neighbours(system.points{id}, system.points{system.points{id}.xy_to_i(j,i)}, system);
-                if are_neigh && strcmp(axe, 'x')
-                    map(i, j) = 1;
-                elseif are_neigh && strcmp(axe, 'y')
-                    map(i, j) = -1;
-                else
-                    map(i, j) = 0;
-                end
-            end
-        end
+    map(y, x) = 0.5;
+    if ~isempty(system.points{id}.neighbour{1})
+        map(system.points{id}.neighbour{1}.y, system.points{id}.neighbour{1}.x) = 1;
     end
+    if ~isempty(system.points{id}.neighbour{2})
+        map(system.points{id}.neighbour{2}.y, system.points{id}.neighbour{2}.x) = -1;
+    end
+    if ~isempty(system.points{id}.neighbour{3})
+        map(system.points{id}.neighbour{3}.y, system.points{id}.neighbour{3}.x) = 1;
+    end
+    if ~isempty(system.points{id}.neighbour{4})
+        map(system.points{id}.neighbour{4}.y, system.points{id}.neighbour{4}.x) = -1;
+    end
+    % id = system.points{1}.xy_to_i(x, y);
+    % for i = 1:system.Nx
+    %     for j= 1:system.Ny
+    %         if i == x && j == y 
+    %             map(j, i) = 0.5;
+    %         else
+    %             fprintf('location at x %d, y %d   gives i %d\n', i, j ,system.points{id}.xy_to_i(i,j));
+    %             [are_neigh, axe] = Neighbours(system.points{id}, system.points{system.points{id}.xy_to_i(i,j)}, system);
+    %             if are_neigh && strcmp(axe, 'x')
+    %                 map(j, i) = 1;
+    %             elseif are_neigh && strcmp(axe, 'y')
+    %                 map(j, i) = -1;
+    %             else
+    %                 map(j, i) = 0;
+    %             end
+    %         end
+    %     end
+    % end
     heatmap(map);
 end

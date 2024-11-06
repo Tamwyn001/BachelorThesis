@@ -6,18 +6,18 @@ classdef System
         verticalPeriodicBoundary = false;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 0.002;
+        guessDelta = 0.001;
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDelta = false;
         fixedBoundaryDeltaArg = true;
-        phi_1 = pi/6; %phase of the superconducting gap on the left side
-        phi_2 = pi/6 + ( (27+90) * pi/180); %phase of the superconducting gap on the right side, phase shift of 25°
-        layer =  ["SC", 30]%["SC", 13, "M", 5 "SC", 13]; %["SC", 10, "AM", 10] %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
+        phi_1 = -2.0*pi/6.0; %phase of the superconducting gap on the left side
+        phi_2 = pi/6.0 + ( (27+90) * pi/180.0); %phase of the superconducting gap on the right side, phase shift of 25°
+        layer =  ["SC", 30];%["SC", 13, "M", 5 "SC", 13]; %["SC", 10, "AM", 10] %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
         t_ij = 1;  
 
         T = 0.001; %K  muss no be to targe in order to stay under the critical temperature
-        mu = -4.75; % * t_ij  -3.75
+        mu = 2.75; % * t_ij  -3.75
         m = 1; %hopping
         m_matrix = [[0,0, System.m], [0,0, -System.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions9
@@ -94,10 +94,7 @@ classdef System
         end
 
         function matrix = onSiteMatrix(obj, i) %site i
-            matrix = System.chemicalMatrix(System.mu);
-            if strcmp(obj.points{i}.materialLayer, 'SC')
-                matrix = matrix + System.superconductingMatrix(obj.points{i}.delta);
-            end
+            matrix = System.chemicalMatrix(System.mu) + System.superconductingMatrix(obj.points{i}.delta); %U takes care of masking this value for the material
         end
 
     end 
@@ -126,11 +123,8 @@ classdef System
             matrix = [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
         end
         function matrix = superconductingMatrix(delta)
-            %UNTITLED5 Summary of this method goes here
-            %   Detailed explanation goes here
-
-            matrix = [zeros(2), (delta * (-1i)) .* PauliMatrix.sigmaY; ...
-                conj(delta)*(1i).*PauliMatrix.sigmaY, zeros(2)];
+            matrix = [zeros(2), (delta * (-1i)) * PauliMatrix.sigmaY; ...
+                conj(delta) * (1i) * PauliMatrix.sigmaY, zeros(2)];
         end
         function matrix= chemicalMatrix(mu)
             matrix = mu * [eye(2), zeros(2); zeros(2), -eye(2)];

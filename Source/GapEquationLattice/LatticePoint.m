@@ -44,8 +44,9 @@ classdef LatticePoint
                 obj.U = 0;           
             end
             % obj.delta = abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
-            obj.delta = obj.U * abs(system.guessDelta)*exp(1i * 0);
+            % obj.delta = obj.U * abs(system.guessDelta)*exp(1i * 0);
 
+            obj.delta = abs(system.guessDelta)*exp(1i * System.phi_1);
             obj.c_up_c_down = obj.delta / obj.U;
 
             if System.fixedBoundaryDelta || System.fixedBoundaryDeltaArg
@@ -123,24 +124,25 @@ classdef LatticePoint
 
         end
 
-        function obj = updateDelta(obj, delta, system)
+        function obj = updateDelta(obj, c_up_c_down, system)
             if (obj.x == 1 || obj.x == system.Nx)
                 if System.fixedBoundaryDelta
                     return;
-                elseif System.fixedBoundaryDeltaArg
                     
-                    if obj.x == 1
-                        rot = system.phi_1;
-                    else
-                        rot = system.phi_2;
-                    end
-                    obj.delta =  abs(delta)*exp(1i*rot);
+                elseif System.fixedBoundaryDeltaArg
+                    rot = system.phi_1;
+                    % if obj.x == 1
+                    %     rot = system.phi_1;
+                    % else
+                    %     rot = system.phi_2;
+                    % end
+                    obj.delta =  abs(c_up_c_down)*exp(1i*rot)*obj.U;
                     obj.c_up_c_down = obj.delta/obj.U;
                     return;
                 end
             end
-            obj.delta = delta;
-            obj.c_up_c_down = obj.delta/obj.U;
+            obj.delta = c_up_c_down*obj.U;
+            obj.c_up_c_down = c_up_c_down;
         end
         
         function cond = isSubjectToFixedDelta(obj,system)

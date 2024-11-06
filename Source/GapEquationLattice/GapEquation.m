@@ -32,8 +32,8 @@ function result = computeDistance(delta_old, delta_new)
     length = size(delta_old, 1);
     result = zeros(length, 2);
     for i = 1: length
-        result(i,1) = abs(real(delta_new(i)) - real(delta_old(i)));
-        result(i,2) = abs(imag(delta_new(i)) - imag(delta_old(i)));
+        result(i,1) = abs((real(delta_new(i)) - real(delta_old(i)))/ real(delta_old(i)))*100.0; %relative error from the old to new step
+        result(i,2) = abs((imag(delta_new(i)) - imag(delta_old(i)))/ imag(delta_old(i)))*100.0;
     end
 end
 
@@ -48,7 +48,7 @@ function loop_on = canLoop(terminated, dist, treshold)
     end
 end
 
-treshold = 0.00061; %convergence treshold
+treshold = 5.0; %convergence treshold in percentage of change
 
 
 Fermi = @(E) FermiDiarac(E, System.T, System.mu);
@@ -71,7 +71,7 @@ dist = computeDistance(delta_old, generateNewCollumnDelta(system));
 
 t = 1;
 CORREL_C_trace = zeros(10,system.Ny, system.Nx);
-terminated = false;
+
 while (canLoop(t>20, dist, treshold)) 
     fprintf('\nIteration %d:', t);
     
@@ -82,7 +82,7 @@ while (canLoop(t>20, dist, treshold))
     computation = computation.writeNewEigen(chi, ener);
 
     for i = 1: system.Nx * system.Ny %for each particle we search a convergence
-        delta_elem_sum = 0; %initialize the sum of the delta elements
+        c_up_c_down = 0; %initialize the sum of the delta elements
         Console.progressBar(i, system.Nx * system.Ny);
         %for each particle we calculate the delta element      
         %chi = (chi_1,..,chi_N) set of eigenvectors : as big as the matrix: to N_x
@@ -96,33 +96,25 @@ while (canLoop(t>20, dist, treshold))
         for n = numel(computation.E)/2 +1 : numel(computation.E) %sum over n, n numbers of eigenvectors with POSITIVE energies.
             [u_i_n, v_i_n] = GetUVatI(computation, i, n);
             % We get the number of eigenvectors.
-            delta_elem_sum = delta_elem_sum + u_i_n(2) * conj(v_i_n(1))*Fermi(computation.E(n)) ...
-                + u_i_n(1)*conj(v_i_n(2)) * (1-Fermi(computation.E(n))); %spin-dep variables in H are
+            c_up_c_down = c_up_c_down + u_i_n(2) * conj(v_i_n(1)) * Fermi(computation.E(n)) ...
+                + u_i_n(1) * conj(v_i_n(2)) * (1-Fermi(computation.E(n))); %spin-dep variables in H are
                 % defined with general spin sigma and delta with up or dow
-            %disp(delta_elem_sum);
         end
-        system.points{i} = system.points{i}.updateDelta(delta_elem_sum, system); %system.points{i}.U *      
-        %reinserting delta it into the hamiltonian, we rewrite the 4x4 block of the site including supercondctivity and chemical potential
-        % for id = 1: system.Nx * system.Ny
-        %     CORREL_C_trace(t, system.points{id}.y, system.points{id}.x) = real(system.points{id}.delta);
-        % end
-        
+        system.points{i} = system.points{i}.updateDelta(c_up_c_down, system); %system.points{i}.U *      
+
 
     end
-    % loop(:,:) = CORREL_C_trace(t, :, :);
-    % for i = 1:size(loop, 1)
-    %     fprintf('%.7f %.7f %.7f\n', loop(i, :));  % Adjust the format to match the number of columns
-    % end
     
     %correct Hamiltonian
     for i = 1: system.Nx * system.Ny
         system.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4) = system.onSiteMatrix(i);
     end
+
     t = t+1;
     dist = computeDistance(delta_old, generateNewCollumnDelta(system));
     [x_valu, x_id] = max(dist(:,1));
     [y_valu, y_id] = max(dist(:,2));
-    fprintf('convergence  RE = %d at %d, IM = %d at %d\n', x_valu, x_id, y_valu, y_id);
+    fprintf('convergence  RE = %.2f %% at %d, IM = %.2f %% at %d\n', x_valu, x_id, y_valu, y_id);
 end 
 
 %generate a plotable matrix
@@ -173,11 +165,10 @@ phase_shift_folder = "";
     
 if System.fixedBoundaryDelta || System.fixedBoundaryDeltaArg
     phase_shift = round((system.phi_2 - system.phi_1) * (180/pi));
-    phase_shift_folder = strcat("\Phase", num2str(phase_shift), "deg\");
+    phase_shift_folder = ''; % strcat("\Phase", num2str(phase_shift), "deg\");
 end
 
-details = "diffMU\FixedPhase\ZeroPhase\";
-phase_shift_folder = strcat(phase_shift_folder, details, num2str(System.mu),"\");
+phase_shift_folder = strcat(phase_shift_folder,"diffMU\", num2str(System.mu),"\", "FixedFlatPhase\", num2str(System.phi_1),"\");
 if not(isfolder(strcat(path, phase_shift_folder)))
     mkdir(strcat(path, phase_shift_folder));
 end
@@ -194,7 +185,13 @@ path_CONTINUITY = strcat(path, phase_shift_folder, "continuity_",sim_deltails, "
 writematrix(WriteHeatmap(system, 'continuity'), path_CONTINUITY,'Delimiter',' ')
 
 pathMEAN = strcat(path, phase_shift_folder, "meanline_",sim_deltails, ".dat");
-writematrix(MeanLineMatrix(CORREL_C), pathMEAN,'Delimiter',' ');
+writematrix(MeanLineMatrix(CORREL_C, ''), pathMEAN,'Delimiter',' ');
+
+pathMEAN_RE = strcat(path, phase_shift_folder, "meanline_RE_",sim_deltails, ".dat");
+writematrix(MeanLineMatrix(CORREL_C, 'real'), pathMEAN_RE,'Delimiter',' ');
+
+pathMEAN_IM = strcat(path, phase_shift_folder, "meanline_IM_",sim_deltails, ".dat");
+writematrix(MeanLineMatrix(CORREL_C,'imag'), pathMEAN_IM,'Delimiter',' ');
 
 pathCURRENT = strcat(path, phase_shift_folder, "current_",sim_deltails, ".dat");
 writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');

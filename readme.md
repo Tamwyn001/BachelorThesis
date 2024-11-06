@@ -31,6 +31,11 @@ Place the terminal in `cd .\Source\GapEquation\`
     .\generateGraph.ps1 -GnuScript "./gpScripts/MeanLine/MeanLine_long_SC_mu.gp" -SimulationPath "/SC30/Phase117deg/diffMU/FixedPhase/LinearGradient" -LatexPath "/SC30/MeanLine/Phase117deg/mu/FixedPhase/LinearGradient/";
     .\generateGraph.ps1 -GnuScript "./gpScripts/MeanLine/MeanLine_long_SC_mu.gp" -SimulationPath "/SC30/Phase117deg/diffMU/FixedPhase/ZeroPhase" -LatexPath "/SC30/MeanLine/Phase117deg/mu/FixedPhase/ZeroPhase/";
 
+-> Benchmark week 3
+Fixed flat phase
+
+    .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_long_SC_mu_Flat.gp" -SimulationPath "/SC30diffMU/2.75/FixedFlatPhase" -LatexPath "SC30/MeanLine/PhaseFlat/mu/2.75/FixedFlatPhase/";
+    .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_long_SC_mu_Flat.gp" -SimulationPath "/SC30diffMU/0.75/FixedFlatPhase" -LatexPath "SC30/MeanLine/PhaseFlat/mu/0.75/FixedFlatPhase/";
 
 For the phase meanline
 
@@ -42,7 +47,11 @@ For the phase meanline
     .\generateGraph.ps1 -GnuScript "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30/Phase117deg/diffMU/FixedPhase/LinearGradient" -LatexPath "/SC30/Phase_MeanLine/Phase117deg/mu/FixedPhase/LinearGradient/";
     .\generateGraph.ps1 -GnuScript "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30/Phase117deg/diffMU/FixedPhase/ZeroPhase" -LatexPath "/SC30/Phase_MeanLine/Phase117deg/mu/FixedPhase/ZeroPhase/";
 
+-> Benchmark week 3
+Fixed flat phase
 
+    .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30diffMU/2.75/FixedFlatPhase" -LatexPath "SC30/MeanLine_Phase/PhaseFlat/mu/2.75/FixedFlatPhase/";
+    .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30diffMU/0.75/FixedFlatPhase" -LatexPath "SC30/MeanLine_Phase/PhaseFlat/mu/0.75/FixedFlatPhase/";
 
 Mutli line of -3.75
 
