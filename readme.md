@@ -37,9 +37,15 @@ Fixed flat phase
     .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_long_SC_mu_Flat.gp" -SimulationPath "/SC30diffMU/2.75/FixedFlatPhase" -LatexPath "SC30/MeanLine/PhaseFlat/mu/2.75/FixedFlatPhase/";
     .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_long_SC_mu_Flat.gp" -SimulationPath "/SC30diffMU/0.75/FixedFlatPhase" -LatexPath "SC30/MeanLine/PhaseFlat/mu/0.75/FixedFlatPhase/";
 
+LinearPhaseGradient
+
+    .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_long_SC_mu_Flat.gp" -SimulationPath "/SC30diffMU/2.75/LinearPhaseGradient" -LatexPath "SC30/MeanLine/Phase117deg/mu/2.75/LinearPhaseGradient/";
+    .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_long_SC_mu_Flat.gp" -SimulationPath "/SC30diffMU/0.75/LinearPhaseGradient" -LatexPath "SC30/MeanLine/Phase117deg/mu/0.75/LinearPhaseGradient/";
+
+
 For the phase meanline
 
-    .\generateGraph.ps1 -GnuScript "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30/Phase117deg/diffMU/LinearGradient"    -LatexPath "/SC30/MeanLine_Phase/Phase117deg/mu/LinearGradient/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30/Phase117deg/diffMU/LinearGradient" -LatexPath "/SC30/MeanLine_Phase/Phase117deg/mu/LinearGradient/";
     .\generateGraph.ps1 -GnuScript "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30/Phase117deg/diffMU/ZeroPhase" -LatexPath "/SC30/MeanLine_Phase/Phase117deg/mu/ZeroPhase/";
 
 -- FixedPhase, Linear Gradient and Zero Phase
@@ -52,6 +58,11 @@ Fixed flat phase
 
     .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30diffMU/2.75/FixedFlatPhase" -LatexPath "SC30/MeanLine_Phase/PhaseFlat/mu/2.75/FixedFlatPhase/";
     .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30diffMU/0.75/FixedFlatPhase" -LatexPath "SC30/MeanLine_Phase/PhaseFlat/mu/0.75/FixedFlatPhase/";
+
+LinearPhaseGradient
+
+    .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30diffMU/2.75/LinearPhaseGradient" -LatexPath "SC30/MeanLine_Phase/Phase117deg/mu/2.75/LinearPhaseGradient/";
+    .\generateGraph.ps1 "./gpScripts/MeanLine/MeanLine_phase_long_SC_mu.gp" -SimulationPath "/SC30diffMU/0.75/LinearPhaseGradient" -LatexPath "SC30/MeanLine_Phase/Phase117deg/mu/0.75/LinearPhaseGradient/";
 
 Mutli line of -3.75
 
@@ -147,6 +158,22 @@ Mutli line of -3.75
         .\generateGraph.ps1 -GnuScript "./gpScripts/Currents/Currents_long_SC_NoBC.gp" -SimulationPath "/SC30/Phase117deg/diffMU/FixedPhase/LinearGradient/-0.75" -LatexPath "/SC30/Current/Phase117deg/mu/FixedPhase/LinearGradient/long-0.75/";
         .\generateGraph.ps1 -GnuScript "./gpScripts/Currents/Currents_long_SC_NoBC.gp" -SimulationPath "/SC30/Phase117deg/diffMU/FixedPhase/LinearGradient/0.75" -LatexPath "/SC30/Current/Phase117deg/mu/FixedPhase/LinearGradient/long0.75/";
 
+-- week 3 benchmark
+
+LinearPhaseGradient
+
+    .\generateGraph.ps1 "./gpScripts/Currents/Currents_long_SC_NoBC.gp" -SimulationPath "/SC30diffMU/2.75/LinearPhaseGradient/1.0472" -LatexPath "SC30/Current/mu/2.75/LinearPhaseGradient/1.0472/";
+    .\generateGraph.ps1 "./gpScripts/Currents/Currents_long_SC_NoBC.gp" -SimulationPath "/SC30diffMU/0.75/LinearPhaseGradient/1.0472" -LatexPath "SC30/Current/mu/0.75/LinearPhaseGradient/1.0472/";
+
+    .\generateGraph.ps1 "./gpScripts/Currents/Currents_long_SC_NoBC.gp" -SimulationPath "/SC30diffMU/2.75/LinearPhaseGradient/-1.0472" -LatexPath "SC30/Current/mu/2.75/LinearPhaseGradient/-1.0472/";
+    .\generateGraph.ps1 "./gpScripts/Currents/Currents_long_SC_NoBC.gp" -SimulationPath "/SC30diffMU/0.75/LinearPhaseGradient/-1.0472" -LatexPath "SC30/Current/mu/0.75/LinearPhaseGradient/-1.0472/";
+
+    
+    .\generateGraph.ps1 "./gpScripts/Currents/Currents_long_SC_NoBC.gp" -SimulationPath "/SC30diffMU/2.75/LinearPhaseGradient/0.5236" -LatexPath "SC30/Current/mu/2.75/LinearPhaseGradient/0.5236/";
+    .\generateGraph.ps1 "./gpScripts/Currents/Currents_long_SC_NoBC.gp" -SimulationPath "/SC30diffMU/0.75/LinearPhaseGradient/0.5236" -LatexPath "SC30/Current/mu/0.75/LinearPhaseGradient/0.5236/";
+
+        .\generateGraph.ps1 "./gpScripts/Currents/Currents_long_SC_NoBC.gp" -SimulationPath "/SC30diffMU/2.75/LinearPhaseGradient/2.618" -LatexPath "SC30/Current/mu/2.75/LinearPhaseGradient/2.618/";
+    .\generateGraph.ps1 "./gpScripts/Currents/Currents_long_SC_NoBC.gp" -SimulationPath "/SC30diffMU/0.75/LinearPhaseGradient/2.618" -LatexPath "SC30/Current/mu/0.75/LinearPhaseGradient/2.618/";
 ### SC13-M5-SC13
 
 
@@ -180,3 +207,15 @@ Mutli line of -3.75
 
     .\generateGraph.ps1 -GnuScript "./gpScripts/Continuity/Continuity_long_SC.gp" -SimulationPath "/SC30/Phase117deg/diffMU/FixedPhase/LinearGradient/-0.75" -LatexPath "/SC30/Continuity/Phase117deg/mu/FixedPhase/LinearGradient/long-0.75/";
     .\generateGraph.ps1 -GnuScript "./gpScripts/Continuity/Continuity_long_SC.gp" -SimulationPath "/SC30/Phase117deg/diffMU/FixedPhase/LinearGradient/0.75" -LatexPath "/SC30/Continuity/Phase117deg/mu/FixedPhase/LinearGradient/long0.75/";
+
+-- week 3 benchmark
+
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Continuity/Continuity_long_SC.gp" -SimulationPath "/SC30DiffMU/0.75/LinearPhaseGradient/-1.0472" -LatexPath "/SC30/Continuity/Phase117deg/mu/0.75/LinearPhaseGradient/-1.0472/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Continuity/Continuity_long_SC.gp" -SimulationPath "/SC30DiffMU/0.75/LinearPhaseGradient/0.5236" -LatexPath "/SC30/Continuity/Phase117deg/mu/0.75/LinearPhaseGradient/0.5236/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Continuity/Continuity_long_SC.gp" -SimulationPath "/SC30DiffMU/0.75/LinearPhaseGradient/1.0472" -LatexPath "/SC30/Continuity/Phase117deg/mu/0.75/LinearPhaseGradient/1.0472/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Continuity/Continuity_long_SC.gp" -SimulationPath "/SC30DiffMU/0.75/LinearPhaseGradient/2.618" -LatexPath "/SC30/Continuity/Phase117deg/mu/0.75/LinearPhaseGradient/2.618/";
+
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Continuity/Continuity_long_SC.gp" -SimulationPath "/SC30DiffMU/2.75/LinearPhaseGradient/-1.0472" -LatexPath "/SC30/Continuity/Phase117deg/mu/2.75/LinearPhaseGradient/-1.0472/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Continuity/Continuity_long_SC.gp" -SimulationPath "/SC30DiffMU/2.75/LinearPhaseGradient/0.5236" -LatexPath "/SC30/Continuity/Phase117deg/mu/2.75/LinearPhaseGradient/0.5236/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Continuity/Continuity_long_SC.gp" -SimulationPath "/SC30DiffMU/2.75/LinearPhaseGradient/1.0472" -LatexPath "/SC30/Continuity/Phase117deg/mu/2.75/LinearPhaseGradient/1.0472/";
+    .\generateGraph.ps1 -GnuScript "./gpScripts/Continuity/Continuity_long_SC.gp" -SimulationPath "/SC30DiffMU/2.75/LinearPhaseGradient/2.618" -LatexPath "/SC30/Continuity/Phase117deg/mu/2.75/LinearPhaseGradient/2.618/";

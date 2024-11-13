@@ -7,12 +7,14 @@ set key at graph 1.6, 0 # Adjusts the legend position on the x-axis
 
 set ylabel '$\bm{\varphi}$'
 unset logscale y
-
+#set yrange[-50:200]
 dataroot = './Results'.targetSystem
 plot [1:30] \
-    dataroot.'/0.5236/meanline_Phase_30x15NoBC.dat' using 1:2 with lines title '\footnotesize $\pi/6$' dashtype 3 lw 3 lc palette frac 0.3, \
-    dataroot.'/1.0472/meanline_Phase_30x15NoBC.dat' using 1:2 with lines title '\footnotesize $\pi/3$' dashtype 3 lw 3 lc palette frac 0.5, \
-    dataroot.'/-1.0472/meanline_Phase_30x15NoBC.dat' using 1:2 with lines title '\footnotesize $-\pi/3$' dashtype 3 lw 3 lc palette frac 0.8 
+    dataroot.'/0.5236/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\pi/6$' dashtype 3 lw 3 lc palette frac 0.3, \
+    dataroot.'/1.0472/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\pi/3$' dashtype 3 lw 3 lc palette frac 0.5, \
+    dataroot.'/-1.0472/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $-\pi/3$' dashtype 3 lw 3 lc palette frac 0.8 , \
+    dataroot.'/2.618/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $5\pi/6$' dashtype 3 lw 3 lc palette frac 1
+
 
 set out
 

@@ -2,6 +2,8 @@ function system = ComputeCurrents(system, computation)
     for i = 1: system.Nx * system.Ny
         I_x = 0.0;
         I_y = 0.0;
+
+        altermagnHopp = @(spin, axis) System.getMSigmaElem(axis, spin, 1) + System.getMSigmaElem(axis, spin, 2);
         target_site = system.points{i};
         
             for n = numel(computation.E)/2 +1 : numel(computation.E)
@@ -52,47 +54,30 @@ function system = ComputeCurrents(system, computation)
                 end
     
              % OWN MODEL : derivated on the notes
-                hopping_x = @(spin) (conj(uim1(spin) - uip1(spin)) * ui(spin) + conj(ui(spin)) * (uip1(spin) - uim1(spin))) ...
+                hopping_x = @(spin) (ui(spin) * conj(uip1(spin) - uim1(spin)) + conj(ui(spin)) * (uim1(spin) - uip1(spin))) ...
                     * FermiDiarac(computation.E(n), system.T, system.mu)...
-                    + ( (vim1(spin) - vip1(spin))* conj(vi(spin)) + vi(spin) * conj(vip1(spin)- vim1(spin)))...
+                    + ( conj(vi(spin)) * (vip1(spin) - vim1(spin)) + vi(spin) * conj(vim1(spin) - vip1(spin)))...
                     * (1 - FermiDiarac(computation.E(n), system.T, system.mu));
             
-                hopping_y =  @(spin) (conj(uimN(spin) - uipN(spin)) * ui(spin) + conj(ui(spin)) * (uipN(spin) - uimN(spin))) ...
+                hopping_y =  @(spin) (ui(spin) * conj(uipN(spin) - uimN(spin)) + conj(ui(spin)) * (uimN(spin) - uipN(spin))) ...
                     * FermiDiarac(computation.E(n), system.T, system.mu)...
-                    + ( (vimN(spin) - vipN(spin))* conj(vi(spin)) + vi(spin) * conj(vipN(spin)- vimN(spin)))...
+                    + ( conj(vi(spin)) * (vipN(spin) - vimN(spin)) + vi(spin) * conj(vimN(spin) - vipN(spin)))...
                     * (1 - FermiDiarac(computation.E(n), system.T, system.mu));
-                
-                I_x = I_x + imag(hopping_x(1) + hopping_x(2))* system.t_ij;
-                I_y = I_y + imag(hopping_y(1) + hopping_y(2))* system.t_ij;
-                 
-                if strcmp(target_site.materialLayer, 'AM')
-                    plusXspin = @(spin) ((System.getMSigmaElem('x', spin, 1) + System.getMSigmaElem('x', spin, 2))... %in + x
-                        * (ui(spin) * conj(uip1(spin)) - uim1(spin) * conj(ui(spin)))...
-                        + (System.getMSigmaElem('x', spin, 1) + System.getMSigmaElem('x', spin, 2))... %in - x
-                        * (uip1(spin) * conj(ui(spin)) - ui(spin) * conj(uim1(spin))))...
-                        * (1 - FermiDiarac(computation.E(n), system.T, system.mu))...%---------------------
-                        + ((System.getMSigmaElem('y', spin, 1) + System.getMSigmaElem('y', spin, 2))... %in + y
-                        * (conj(vi(spin))*vip1(spin) - conj(vim1(spin))*vi(spin))...
-                        + (System.getMSigmaElem('y', spin, 1) + System.getMSigmaElem('y', spin, 2))... %in - y
-                        * (conj(vip1(spin))*vi(spin) - conj(vi(spin))*vim1(spin)))...
-                        * FermiDiarac(computation.E(n), system.T, system.mu);
-                        
-                    plusYspin = @(spin) ((System.getMSigmaElem('x', spin, 1) + System.getMSigmaElem('x', spin, 2))... %in + x
-                        * (ui(spin) * conj(uipN(spin)) - uimN(spin) * conj(ui(spin)))...
-                        + (System.getMSigmaElem('x', spin, 1) + System.getMSigmaElem('x', spin, 2))... %in - x
-                        * (uipN(spin) * conj(ui(spin)) - ui(spin) * conj(uimN(spin))))...
-                        * (1 - FermiDiarac(computation.E(n), system.T, system.mu))...%---------------------
-                        + ((System.getMSigmaElem('y', spin, 1) + System.getMSigmaElem('y', spin, 2))... %in + y
-                        * (conj(vi(spin))*vipN(spin) - conj(vimN(spin))*vi(spin))...
-                        + (System.getMSigmaElem('y', spin, 1) + System.getMSigmaElem('y', spin, 2))... %in - y
-                        * (conj(vipN(spin))*vi(spin) - conj(vi(spin))*vimN(spin))...
-                        * FermiDiarac(computation.E(n), system.T, system.mu));
+            
+                if strcmp(target_site.materialLayer, 'SC')
 
-                    %disp(plusXspin(1)+ plusXspin(2));
-                    I_x = I_x + imag(plusXspin(1) + plusXspin(2));
-                    I_y = I_y + imag(plusYspin(1) + plusYspin(2));
+                        I_x = I_x + imag(hopping_x(1) + hopping_x(2))* system.t_ij;
+                        I_y = I_y + imag(hopping_y(1) + hopping_y(2))* system.t_ij;
+                        
+                elseif strcmp(target_site.materialLayer, 'AM')
+
+                        I_x = I_x + imag(hopping_x(1) * altermagnHopp(1, 'x') + hopping_x(2) * altermagnHopp(2, 'x')); %different hopping absed on the spin
+                        I_y = I_y + imag(hopping_y(1) * altermagnHopp(1, 'y') + hopping_y(2) * altermagnHopp(2, 'y'));
+
                 end
+
             end
+    
         Console.progressBar(i, system.Nx * system.Ny);
         system.points{i}.current = [I_x I_y];
     end

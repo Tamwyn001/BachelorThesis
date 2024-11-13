@@ -1,0 +1,126 @@
+﻿% GNUPLOT: LaTeX picture with Postscript
+\begingroup
+  % Encoding inside the plot.  In the header of your document, this encoding
+  % should to defined, e.g., by using
+  % \usepackage[cp1252,<other encodings>]{inputenc}
+  \inputencoding{cp1252}%
+  \makeatletter
+  \providecommand\color[2][]{%
+    \GenericError{(gnuplot) \space\space\space\@spaces}{%
+      Package color not loaded in conjunction with
+      terminal option `colourtext'%
+    }{See the gnuplot documentation for explanation.%
+    }{Either use 'blacktext' in gnuplot or load the package
+      color.sty in LaTeX.}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\includegraphics[2][]{%
+    \GenericError{(gnuplot) \space\space\space\@spaces}{%
+      Package graphicx or graphics not loaded%
+    }{See the gnuplot documentation for explanation.%
+    }{The gnuplot epslatex terminal needs graphicx.sty or graphics.sty.}%
+    \renewcommand\includegraphics[2][]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \@ifundefined{ifGPcolor}{%
+    \newif\ifGPcolor
+    \GPcolortrue
+  }{}%
+  \@ifundefined{ifGPblacktext}{%
+    \newif\ifGPblacktext
+    \GPblacktextfalse
+  }{}%
+  % define a \g@addto@macro without @ in the name:
+  \let\gplgaddtomacro\g@addto@macro
+  % define empty templates for all commands taking text:
+  \gdef\gplbacktext{}%
+  \gdef\gplfronttext{}%
+  \makeatother
+  \ifGPblacktext
+    % no textcolor at all
+    \def\colorrgb#1{}%
+    \def\colorgray#1{}%
+  \else
+    % gray or color?
+    \ifGPcolor
+      \def\colorrgb#1{\color[rgb]{#1}}%
+      \def\colorgray#1{\color[gray]{#1}}%
+      \expandafter\def\csname LTw\endcsname{\color{white}}%
+      \expandafter\def\csname LTb\endcsname{\color{black}}%
+      \expandafter\def\csname LTa\endcsname{\color{black}}%
+      \expandafter\def\csname LT0\endcsname{\color[rgb]{1,0,0}}%
+      \expandafter\def\csname LT1\endcsname{\color[rgb]{0,1,0}}%
+      \expandafter\def\csname LT2\endcsname{\color[rgb]{0,0,1}}%
+      \expandafter\def\csname LT3\endcsname{\color[rgb]{1,0,1}}%
+      \expandafter\def\csname LT4\endcsname{\color[rgb]{0,1,1}}%
+      \expandafter\def\csname LT5\endcsname{\color[rgb]{1,1,0}}%
+      \expandafter\def\csname LT6\endcsname{\color[rgb]{0,0,0}}%
+      \expandafter\def\csname LT7\endcsname{\color[rgb]{1,0.3,0}}%
+      \expandafter\def\csname LT8\endcsname{\color[rgb]{0.5,0.5,0.5}}%
+    \else
+      % gray
+      \def\colorrgb#1{\color{black}}%
+      \def\colorgray#1{\color[gray]{#1}}%
+      \expandafter\def\csname LTw\endcsname{\color{white}}%
+      \expandafter\def\csname LTb\endcsname{\color{black}}%
+      \expandafter\def\csname LTa\endcsname{\color{black}}%
+      \expandafter\def\csname LT0\endcsname{\color{black}}%
+      \expandafter\def\csname LT1\endcsname{\color{black}}%
+      \expandafter\def\csname LT2\endcsname{\color{black}}%
+      \expandafter\def\csname LT3\endcsname{\color{black}}%
+      \expandafter\def\csname LT4\endcsname{\color{black}}%
+      \expandafter\def\csname LT5\endcsname{\color{black}}%
+      \expandafter\def\csname LT6\endcsname{\color{black}}%
+      \expandafter\def\csname LT7\endcsname{\color{black}}%
+      \expandafter\def\csname LT8\endcsname{\color{black}}%
+    \fi
+  \fi
+    \setlength{\unitlength}{0.0500bp}%
+    \ifx\gptboxheight\undefined%
+      \newlength{\gptboxheight}%
+      \newlength{\gptboxwidth}%
+      \newsavebox{\gptboxtext}%
+    \fi%
+    \setlength{\fboxrule}{0.5pt}%
+    \setlength{\fboxsep}{1pt}%
+    \definecolor{tbcol}{rgb}{1,1,1}%
+\begin{picture}(5760.00,3772.00)%
+    \gplgaddtomacro\gplbacktext{%
+      \csname LTb\endcsname%%
+      \put(-132,578){\makebox(0,0){\scriptsize 0}}%
+      \put(-132,938){\makebox(0,0){\scriptsize 2}}%
+      \put(-132,1298){\makebox(0,0){\scriptsize 4}}%
+      \put(-132,1658){\makebox(0,0){\scriptsize 6}}%
+      \put(-132,2018){\makebox(0,0){\scriptsize 8}}%
+      \put(-132,2377){\makebox(0,0){\scriptsize 10}}%
+      \put(-132,2737){\makebox(0,0){\scriptsize 12}}%
+      \put(-132,3097){\makebox(0,0){\scriptsize 14}}%
+      \put(-132,3457){\makebox(0,0){\scriptsize 16}}%
+      \put(0,512){\makebox(0,0){\scriptsize 0}}%
+      \put(929,512){\makebox(0,0){\scriptsize 5}}%
+      \put(1858,512){\makebox(0,0){\scriptsize 10}}%
+      \put(2787,512){\makebox(0,0){\scriptsize 15}}%
+      \put(3715,512){\makebox(0,0){\scriptsize 20}}%
+      \put(4644,512){\makebox(0,0){\scriptsize 25}}%
+      \put(5573,512){\makebox(0,0){\scriptsize 30}}%
+      \put(2880,3630){\makebox(0,0){\strut{}SC}}%
+    }%
+    \gplgaddtomacro\gplfronttext{%
+      \csname LTb\endcsname%%
+      \put(-473,2017){\rotatebox{-270.00}{\makebox(0,0){\small\textbf{Lattice site $i_y$ in $\bm{e}_y$}}}}%
+      \put(2879,248){\makebox(0,0){\small\textbf{Lattice site $i_x$ in $\bm{e}_x$}}}%
+      \put(6080,377){\makebox(0,0){\tiny \(6e{-04}\)}}%
+      \put(6080,807){\makebox(0,0){\tiny \(8e{-04}\)}}%
+      \put(6080,1238){\makebox(0,0){\tiny \(1e{-03}\)}}%
+      \put(6080,1669){\makebox(0,0){\tiny \(1e{-03}\)}}%
+      \put(6080,2100){\makebox(0,0){\tiny \(1e{-03}\)}}%
+      \put(6080,2531){\makebox(0,0){\tiny \(2e{-03}\)}}%
+      \put(6080,2962){\makebox(0,0){\tiny \(2e{-03}\)}}%
+      \put(6080,3393){\makebox(0,0){\tiny \(2e{-03}\)}}%
+    }%
+    \gplbacktext
+    \put(0,0){\includegraphics[width={288.00bp},height={188.60bp}]{Plots/SC30/Current/mu/0.75/LinearPhaseGradient/0.5236/plot}}%
+    \gplfronttext
+  \end{picture}%
+\endgroup
+

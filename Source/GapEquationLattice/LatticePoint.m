@@ -43,10 +43,10 @@ classdef LatticePoint
             else
                 obj.U = 0;           
             end
-            % obj.delta = abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
+            obj.delta = abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
             % obj.delta = obj.U * abs(system.guessDelta)*exp(1i * 0);
 
-            obj.delta = abs(system.guessDelta)*exp(1i * System.phi_1);
+            % obj.delta = abs(system.guessDelta)*exp(1i * System.phi_1);
             obj.c_up_c_down = obj.delta / obj.U;
 
             if System.fixedBoundaryDelta || System.fixedBoundaryDeltaArg
@@ -104,6 +104,17 @@ classdef LatticePoint
             y = floor((i-1)/obj.system.Nx) + 1;
         end
 
+
+        % function id = findInNeighbours(obj, point)
+        %     id = -1;
+        %     for j = 1:4
+        %         if obj.neighbour{j} == point
+        %             id = j;
+        %             return;
+        %         end
+        %     end
+        % end
+
         function obj = findNeighbours(obj, system)
             [mx_cond, mx_id] = CanFindNeigbour(obj.i, '-x', system);
             [px_cond, px_id] = CanFindNeigbour(obj.i, '+x', system);
@@ -130,18 +141,19 @@ classdef LatticePoint
                     return;
                     
                 elseif System.fixedBoundaryDeltaArg
-                    rot = system.phi_1;
-                    % if obj.x == 1
-                    %     rot = system.phi_1;
-                    % else
-                    %     rot = system.phi_2;
-                    % end
-                    obj.delta =  abs(c_up_c_down)*exp(1i*rot)*obj.U;
+                    % rot = system.phi_1;
+                    if obj.x == 1
+                        rot = system.phi_1;
+                    else
+                        rot = system.phi_2;
+                    end
+                    obj.delta =  abs(c_up_c_down ) *exp(1i*rot) * obj.U;
+                    %fprintf('fixed delta at %d with angle %d\n', obj.x, angle(obj.delta));
                     obj.c_up_c_down = obj.delta/obj.U;
                     return;
                 end
             end
-            obj.delta = c_up_c_down*obj.U;
+            obj.delta = c_up_c_down * obj.U;
             obj.c_up_c_down = c_up_c_down;
         end
         
@@ -151,7 +163,7 @@ classdef LatticePoint
     end
     methods (Static)
         function angle = SamplePhaseAtGradient(x,system)
-            angle = x*(System.phi_2 - System.phi_1)/system.Nx;
+            angle = x/system.Nx * (System.phi_2 - System.phi_1) + System.phi_1;
         end
     end
 end

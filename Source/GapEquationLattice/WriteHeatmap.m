@@ -6,15 +6,17 @@ function points = WriteHeatmap(system, to_write)
         point = system.points{i};
         if strcmp(to_write, 'correl_c_c')
              attrib = string(abs(point.c_up_c_down));
-        elseif num2str(to_write, 'correl_c_c_RE')   
+        elseif strcmp(to_write, 'correl_c_c_RE')   
             attrib = string(real(point.c_up_c_down));
-        elseif num2str(to_write, 'correl_c_c_IM')
+        elseif strcmp(to_write, 'correl_c_c_IM')
             attrib = string(imag(point.c_up_c_down));
-        elseif num2str(to_write, 'phase')
+        elseif strcmp(to_write, 'phase')
+
             attrib = num2str(angle(point.delta));
+            
         elseif strcmp(to_write, 'continuity')
-            cont_X = GetCurrentOfNeigbour(system.points{i}.neighbour{1}, 'x') - GetCurrentOfNeigbour(system.points{i}.neighbour{3}, 'x');
-            cont_Y = GetCurrentOfNeigbour(system.points{i}.neighbour{2}, 'y') - GetCurrentOfNeigbour(system.points{i}.neighbour{4}, 'y');
+            cont_X = GetCurrentOfNeighbour(system, point.neighbour{1}, 'x') - GetCurrentOfNeighbour(system, point.neighbour{3}, 'x');
+            cont_Y = GetCurrentOfNeighbour(system, point.neighbour{2}, 'y') - GetCurrentOfNeighbour(system, point.neighbour{4}, 'y');
             attrib = num2str(cont_X + cont_Y);
         end
         

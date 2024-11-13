@@ -1,11 +1,11 @@
 function result = thresholdReached(dist, treshold)
     result = true;
     for i = 1: size(dist,1)
-        if dist(i,1) > treshold
+        if dist(i,1) > treshold && dist(i,1) < 0
             result = false;
             return;
         end
-        if dist(i,2) > treshold
+        if dist(i,2) > treshold && dist(i,2) < 0
             result = false;
             return;
         end
@@ -32,8 +32,8 @@ function result = computeDistance(delta_old, delta_new)
     length = size(delta_old, 1);
     result = zeros(length, 2);
     for i = 1: length
-        result(i,1) = abs((real(delta_new(i)) - real(delta_old(i)))/ real(delta_old(i)))*100.0; %relative error from the old to new step
-        result(i,2) = abs((imag(delta_new(i)) - imag(delta_old(i)))/ imag(delta_old(i)))*100.0;
+        result(i,1) = (real(delta_new(i)) - real(delta_old(i))) / real(delta_old(i)) *100.0; %relative error from the old to new step
+        result(i,2) = (imag(delta_new(i)) - imag(delta_old(i))) / imag(delta_old(i)) *100.0;
     end
 end
 
@@ -48,7 +48,7 @@ function loop_on = canLoop(terminated, dist, treshold)
     end
 end
 
-treshold = 5.0; %convergence treshold in percentage of change
+treshold = 0.75; %convergence treshold in percentage of change
 
 
 Fermi = @(E) FermiDiarac(E, System.T, System.mu);
@@ -71,8 +71,11 @@ dist = computeDistance(delta_old, generateNewCollumnDelta(system));
 
 t = 1;
 CORREL_C_trace = zeros(10,system.Ny, system.Nx);
-
-while (canLoop(t>20, dist, treshold)) 
+% for i = 1: system.Nx * system.Ny
+%     disp('BEGIN');
+%     disp(system.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4));
+% end
+while (canLoop(false, dist, treshold)) 
     fprintf('\nIteration %d:', t);
     
     fprintf('Diagonalising');
@@ -82,7 +85,7 @@ while (canLoop(t>20, dist, treshold))
     computation = computation.writeNewEigen(chi, ener);
 
     for i = 1: system.Nx * system.Ny %for each particle we search a convergence
-        c_up_c_down = 0; %initialize the sum of the delta elements
+        c_up_c_down = 0.0; %initialize the sum of the delta elements
         Console.progressBar(i, system.Nx * system.Ny);
         %for each particle we calculate the delta element      
         %chi = (chi_1,..,chi_N) set of eigenvectors : as big as the matrix: to N_x
@@ -96,7 +99,7 @@ while (canLoop(t>20, dist, treshold))
         for n = numel(computation.E)/2 +1 : numel(computation.E) %sum over n, n numbers of eigenvectors with POSITIVE energies.
             [u_i_n, v_i_n] = GetUVatI(computation, i, n);
             % We get the number of eigenvectors.
-            c_up_c_down = c_up_c_down + u_i_n(2) * conj(v_i_n(1)) * Fermi(computation.E(n)) ...
+            c_up_c_down = c_up_c_down + conj(v_i_n(1)) * u_i_n(2) *  Fermi(computation.E(n)) ...
                 + u_i_n(1) * conj(v_i_n(2)) * (1-Fermi(computation.E(n))); %spin-dep variables in H are
                 % defined with general spin sigma and delta with up or dow
         end
@@ -107,14 +110,18 @@ while (canLoop(t>20, dist, treshold))
     
     %correct Hamiltonian
     for i = 1: system.Nx * system.Ny
+        %disp(system.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4));
         system.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4) = system.onSiteMatrix(i);
+        %disp('After');
+        %disp(system.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4));
     end
 
     t = t+1;
     dist = computeDistance(delta_old, generateNewCollumnDelta(system));
     [x_valu, x_id] = max(dist(:,1));
     [y_valu, y_id] = max(dist(:,2));
-    fprintf('convergence  RE = %.2f %% at %d, IM = %.2f %% at %d\n', x_valu, x_id, y_valu, y_id);
+    fprintf('convergence  RE = %.2f %% at %d, IM = %.2f %% at %d : re:%d, im: %d\n', x_valu, x_id, y_valu, y_id, real(system.points{x_id}.delta),  imag(system.points{x_id}.delta));
+    %fprintf('Debug at location 62 RE: %d, %d%% ; IM: %d, %d%%', real(system.points{x_id}.delta), dist(62, 1), imag(system.points{x_id}.delta), dist(62, 2));
 end 
 
 %generate a plotable matrix
@@ -168,7 +175,7 @@ if System.fixedBoundaryDelta || System.fixedBoundaryDeltaArg
     phase_shift_folder = ''; % strcat("\Phase", num2str(phase_shift), "deg\");
 end
 
-phase_shift_folder = strcat(phase_shift_folder,"diffMU\", num2str(System.mu),"\", "FixedFlatPhase\", num2str(System.phi_1),"\");
+phase_shift_folder = strcat(phase_shift_folder,"diffMU\", num2str(System.mu),"\", "LinearPhaseGradient\", num2str(System.phi_1),"\");
 if not(isfolder(strcat(path, phase_shift_folder)))
     mkdir(strcat(path, phase_shift_folder));
 end
