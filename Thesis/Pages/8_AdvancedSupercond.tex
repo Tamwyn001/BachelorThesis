@@ -4,4 +4,22 @@
 In this section we are going to highlight how the neighbour-depending potential can lead to a new kind of superconductivity.
 These new superconductive states are label $s$, $p$ and extended $d$-wave superconductivity.
 
+To begin this new study we first need a desciption of the Hamiltonian in the reciproquial space. 
+To achieve this we use a descrete Fourier transformation \rem{write the explicit coeficient as well as the transformation}.
+
+\begin{equation*}
+    H = \sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k}\sigma}^{\dagger} c_{\bm{k}\sigma} 
+    - V \sum_{\bm{k}} \left( F_{\bm{k}} c^{\dagger}_{\bm{k}\uparrow} c^{\dagger}_{-\bm{k}\downarrow}
+    - F_{\bm{k}}^{\ast} c_{-\bm{k}\downarrow} c_{\bm{k}\uparrow} \right)
+\end{equation*}
+Involving 
+\begin{equation*}
+    \epsilon_{\bm{k}} = -2t \left( \cos(k_x) + \cos(k_y) \right) - \mu
+    F_{\bm{k}} = - V \left(F^{x+} e^{\im k_x} + F^{x-}e^{-\im k_x} + F^{y+} e^{\im k_y} + F^{y-}e^{-\im k_y} \right). 
+\end{equation*}
+having $F{ij} = \langle c_{i\uparrow} c_{j\downarrow}$ and $F^{r\pm} = F_{i, \pm r}$. We do as well see that the correlation functions is the same
+for each lattice site $i$.\\
+
+In a similar way as before, we aim to use the BdG-formalism to solve the Hamiltonian thanks to the eigenvalues and -vector of the system.
+To achieve this earlier discussions outligned the need to bring the Hamiltonian in a matrix shape.
 \end{document}

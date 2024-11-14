@@ -3,10 +3,10 @@ function system = ComputeCurrents(system, computation)
         I_x = 0.0;
         I_y = 0.0;
 
-        altermagnHopp = @(spin, axis) System.getMSigmaElem(axis, spin, 1) + System.getMSigmaElem(axis, spin, 2);
+        altermagnHopp = @(spin, axis) SystemBase.getMSigmaElem(axis, spin, 1) + SystemBase.getMSigmaElem(axis, spin, 2);
         target_site = system.points{i};
         
-            for n = numel(computation.E)/2 +1 : numel(computation.E)
+            for n = numel(computation.E)/2 + 1 : numel(computation.E)
                 % make a if on is neigbour i : i-1 etc to avoid the vaccum
                 [ui,vi] = GetUVatI(computation, i, n);
 

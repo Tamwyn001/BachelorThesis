@@ -1,7 +1,7 @@
 treshold = 0.001; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T, SystemBase.mu);
 
-system = System();
+system = SystemFourier();
 system = system.createLattice();
 system = system.generateHam();
 computation = Computation(system); %holds the eigenvalues and eigenvectors to access them later without passing huge matrices around
@@ -19,10 +19,9 @@ end
 dist = GapEquationBase.computeDistance(delta_old, generateNewCollumnDelta(system));
 
 
-
-
 fprintf('Solving the gap equation\n');
 while (GapEquationBase.canLoop(false, dist, treshold)) 
+
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising');
     delta_old = GapEquationBase.generateNewCollumnDelta(system);

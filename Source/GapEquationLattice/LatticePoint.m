@@ -26,14 +26,14 @@ classdef LatticePoint
                 obj.x = x;
                 obj.y = y;
                 obj.i = obj.xy_to_i(x, y);
-                obj.materialLayer = System.sampleTypeAt(obj.x);
+                obj.materialLayer = SystemBase.sampleTypeAt(obj.x);
 
          
             elseif nargin == 2
                 obj.i = x; %the input is the index i
                 [obj.x ,obj.y] = obj.i_to_xy(obj.i);
                 %fprintf('x: %d, y: %d\n', obj.x, obj.y);
-                obj.materialLayer = System.sampleTypeAt(obj.x);
+                obj.materialLayer = SystemBase.sampleTypeAt(obj.x);
             end
 
             obj = obj.classifyPoint();
@@ -49,7 +49,7 @@ classdef LatticePoint
             % obj.delta = abs(system.guessDelta)*exp(1i * System.phi_1);
             obj.c_up_c_down = obj.delta / obj.U;
 
-            if System.fixedBoundaryDelta || System.fixedBoundaryDeltaArg
+            if SystemBase.fixedBoundaryDelta || SystemBase.fixedBoundaryDeltaArg
                 if obj.x == 1 
                     obj.delta = system.fixedDelta(1);
                 elseif obj.x == system.Nx
@@ -137,10 +137,10 @@ classdef LatticePoint
 
         function obj = updateDelta(obj, c_up_c_down, system)
             if (obj.x == 1 || obj.x == system.Nx)
-                if System.fixedBoundaryDelta
+                if SystemBase.fixedBoundaryDelta
                     return;
                     
-                elseif System.fixedBoundaryDeltaArg
+                elseif SystemBase.fixedBoundaryDeltaArg
                     % rot = system.phi_1;
                     if obj.x == 1
                         rot = system.phi_1;
@@ -158,12 +158,12 @@ classdef LatticePoint
         end
         
         function cond = isSubjectToFixedDelta(obj,system)
-           cond = System.fixedBoundaryDelta && (obj.x == 1 || obj.x == system.Nx);
+           cond = SystemBase.fixedBoundaryDelta && (obj.x == 1 || obj.x == system.Nx);
         end
     end
     methods (Static)
         function angle = SamplePhaseAtGradient(x,system)
-            angle = x/system.Nx * (System.phi_2 - System.phi_1) + System.phi_1;
+            angle = x/system.Nx * (SystemBase.phi_2 - SystemBase.phi_1) + SystemBase.phi_1;
         end
     end
 end

@@ -8,13 +8,13 @@ axe = 'null';
 %upper line linked with lower line in periodic boundary conditions
 if ((strcmp(PointA.type, 'cornerUL') && strcmp(PointB.type, 'cornerDL')) ...
     || (strcmp(PointA.type, 'cornerDL') && strcmp(PointB.type, 'cornerUL'))) ...
-    && System.verticalPeriodicBoundary
+    && SystemBase.verticalPeriodicBoundary
     areNeighbours = true;
     axe = 'y';
     return
 elseif ((strcmp(PointA.type, 'cornerUL') && strcmp(PointB.type, 'cornerUR')) ...
     || (strcmp(PointA.type, 'cornerUR') && strcmp(PointB.type, 'cornerUL')))...
-    && System.horizontalPeriodicBoundary
+    && SystemBase.horizontalPeriodicBoundary
     areNeighbours = true;
     axe = 'x';
     return
@@ -22,20 +22,20 @@ end
 
 if ((strcmp(PointA.type, 'cornerDR') && strcmp(PointB.type, 'cornerUR')) ...
     || (strcmp(PointA.type, 'cornerUR') && strcmp(PointB.type, 'cornerDR'))) ...
-    && System.verticalPeriodicBoundary
+    && SystemBase.verticalPeriodicBoundary
     areNeighbours = true;
     axe = 'y';
     return
 elseif ((strcmp(PointA.type, 'cornerDR') && strcmp(PointB.type, 'cornerDL')) ...
     || (strcmp(PointA.type, 'cornerDL') && strcmp(PointB.type, 'cornerDR')))...
-    && System.horizontalPeriodicBoundary
+    && SystemBase.horizontalPeriodicBoundary
     areNeighbours = true;
     axe = 'x';
     return
 end
 if ((strcmp(PointA.type, 'sideU') && strcmp(PointB.type, 'sideD'))...
     || (strcmp(PointA.type, 'sideD') && strcmp(PointB.type, 'sideU')))...
-    && System.verticalPeriodicBoundary
+    && SystemBase.verticalPeriodicBoundary
     areNeighbours = (PointA.x == PointB.x);
     axe = 'y';
     return
@@ -43,7 +43,7 @@ end
 %left line linked with right line in periodic boundary conditions
 if ((strcmp(PointA.type, 'sideL') && strcmp(PointB.type, 'sideR'))...
     || (strcmp(PointA.type, 'sideR') && strcmp(PointB.type, 'sideL')))...
-    && System.horizontalPeriodicBoundary
+    && SystemBase.horizontalPeriodicBoundary
     areNeighbours = (PointA.y == PointB.y);
     axe = 'x';
     return

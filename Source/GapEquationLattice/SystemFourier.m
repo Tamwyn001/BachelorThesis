@@ -1,11 +1,14 @@
-classdef System < SystemBase
-    % This system describes the formalism that let pick some periodic boundary conditions
-    % this is intended to diagonalize a 4NxNy x 4NxNy matrix
+classdef SystemFourier < SystemBase
+    % This system describes the formalism that has vertical periodic boundary conditions
+    % therfore we can use a fourier transformation in y resulting in a Ny times a 4Nx x 4Nx matrix
+
+    %!alwys VERTICAL PERIODIC BOUNDARY CONDITIONS TO TRUE and HORIZONTAL TO FALSE :)
 
     methods
-        function obj = System()
+        function obj = SystemFourier()
             %% object intialization
             obj = obj@SystemBase();
+            assert(SystemBase.verticalPeriodicBoundary,'Please set verticalPeriodicBoundary to true to use the fourier formalism.');
         end
 
         function obj = generateHam(obj)
@@ -48,7 +51,7 @@ classdef System < SystemBase
 
     end 
     methods (Static)
-        
+
         function matrix=altermagnetMatrix(axe)
             m_sigma = System.getMSigma(axe);
             matrix = [m_sigma, zeros(2); zeros(2), zeros(2)];
@@ -63,5 +66,6 @@ classdef System < SystemBase
         function matrix= chemicalMatrix(mu)
             matrix = mu * [eye(2), zeros(2); zeros(2), -eye(2)];
         end
+
     end
 end
