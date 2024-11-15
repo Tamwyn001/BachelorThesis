@@ -192,9 +192,10 @@ along with the system Hamiltonian-matrix $\check{H}_{ij} := \hat{H}_{ij}$ wich a
 \end{align}
 \subsection{Eigenvalues}
 We now have a look at the following eigenvalue problem, wich later helps from the diagonalization of the Hamiltonian:
-\[
+\begin{equation}
+    \label{eq:BdG_eigenVal_H} 
     \check{H} \check{\chi}_n = E_n \check{\chi}_n
-\]
+\end{equation}
 $n$ runs over the number of the eigenvalue and $\check{\chi}_n$ is the corresponding eigenvector.
 we can decompose the $\check{\chi}_n$ to reflect each lattice site: $\check{\chi}_n = (\hat{\chi}_{n1},..,\hat{\chi}_{nN})$. 
 This means $\chi_{n,i}$ refers to a $4\times4$ block, i.e. the on the submatrix we had earlier talked about.
@@ -231,7 +232,7 @@ so should be $(v_{n1}^{\ast}, u_{n1}^{\ast},v_{n2}^{\ast}, u_{n2}^{\ast},.. )$ w
 This leads to a symmetry in the energy spectrum of $H = E_0 \pm \frac{1}{2}\check{c}^{\dagger}\check{H}\check{c}^{\dagger}$.
 This flexibility allows us to choose the version of $H$ with the positive sign, which is more communly used.\\
 
-\subsection{Diagonalization}
+\subsection{Diagonalization} \label{sec:Diagonalization}
 Our goal is now to express the Hamiltonian relative to its energy eigenvalues, which is more practicle to work with.
 As we have seen in the last section, eigenvectors $\chi_n$ allows us to compute the energies. Therfore we are going 
 to diagonalize the Hamiltonian by using the eigenvectors $\chi_n$ to express the Hamiltonian according to its eigenvalues.\\
