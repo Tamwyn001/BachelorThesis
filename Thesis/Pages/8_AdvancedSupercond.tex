@@ -134,11 +134,39 @@ The eigenvectors and -values are given as
         \mathfrak{x}_{n1k}\\
         \vdots\\
         \mathfrak{x}_{nN_xk}\\
-    \end{pmatrix},~~ \mathfrak{x}_{nN_xk} = \begin{pmatrix}
+    \end{pmatrix},~~ \mathfrak{x}_{nik} = \begin{pmatrix}
         u_{nik}\\
         v_{nik}
     \end{pmatrix}
 \end{equation*}
 if we stick to the formalism we already derived in the earlier Sec.\label{sec:Diagonalization} we obtain similar 
-eigenvectors where $u_{nik}$ corresponds to $c$ 
+eigenvectors where $u_{nik}$ corresponds to $c$. We are now going to transform the $c$ operators. First we need
+to define $\mathfrak{X}_k = [\mathfrak{X}_{1k}, ..,\mathfrak{X}_{2Nk}]$ and $\mathfrak{g}_k\in\mathbb{C}^{2N}$ along with $D_{k} := \mathfrak{X}_k\mathfrak{g}_k$, \rem{recheck all}
+delivering $\mathfrak{g}_k = \mathfrak{X}^{\dagger}_k D_{k}$ which is equivalent to:
+\begin{equation}
+    \mathfrak{g}_{nk} = u_{nk}c_{k\uparrow} + v_{nk}c^{\dagger}_{-k\downarrow}
+\end{equation}
+which then delivers 
+\begin{center}
+    \begin{minipage}{0.4\textwidth}
+    \begin{equation}\label{eq:BdG_transf_c}
+        c_{k\uparrow} = \sum_{n\in\natset{2N}} u_{nk}\mathfrak{g}_{nk} 
+    \end{equation}
+    \end{minipage}\hspace{0.05\textwidth}
+    \begin{minipage}{0.03\textwidth}
+        \begin{tikzpicture}
+            \coordinate (a) at (0,0.5);
+            \coordinate (b) at (0,-0.5);
+            \draw[-] (b) -- (a);
+            \filldraw[color=black, fill = white , thin] (a) circle (0.05);
+            \filldraw[color=black, fill = white , thin] (b) circle (0.05);
+        \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \begin{equation}
+        \label{eq:BdG_transf_c_dagg}
+            c_{-k\downarrow}^{\dagger} =\sum_{n\in\natset{2N}} v_{nk}\mathfrak{g}_{nk} 
+        \end{equation}
+    \end{minipage}
+    \end{center}
 \end{document}
