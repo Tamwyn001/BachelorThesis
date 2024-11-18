@@ -78,7 +78,7 @@ classdef GapEquationBase
         
         function loop_on = canLoop(terminated, dist, treshold)
             loop_on = true;
-            if thresholdReached(dist, treshold) 
+            if GapEquationBase.thresholdReached(dist, treshold) 
                 loop_on = false;
                 return;
             elseif terminated

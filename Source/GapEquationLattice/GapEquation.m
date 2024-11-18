@@ -16,7 +16,7 @@ else
 end
 
 %seting the value to compare with after its going to be updated
-dist = GapEquationBase.computeDistance(delta_old, generateNewCollumnDelta(system));
+dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDelta(system));
 
 
 
@@ -60,7 +60,7 @@ while (GapEquationBase.canLoop(false, dist, treshold))
     end
 
     t = t+1;
-    dist = GapEquationBase.computeDistance(delta_old, generateNewCollumnDelta(system));
+    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDelta(system));
 
     abs_dist_re = abs(dist(:,1));
     abs_dist_im = abs(dist(:,2));
