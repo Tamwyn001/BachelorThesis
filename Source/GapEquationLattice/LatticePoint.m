@@ -27,7 +27,6 @@ classdef LatticePoint
                 obj.y = y;
                 obj.i = obj.xy_to_i(x, y);
                 obj.materialLayer = SystemBase.sampleTypeAt(obj.x);
-
          
             elseif nargin == 2
                 obj.i = x; %the input is the index i
@@ -43,18 +42,22 @@ classdef LatticePoint
             else
                 obj.U = 0;           
             end
-            obj.delta = abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
-            % obj.delta = obj.U * abs(system.guessDelta)*exp(1i * 0);
-
-            % obj.delta = abs(system.guessDelta)*exp(1i * System.phi_1);
+            if SystemBase.fixedBoundaryDeltaArg
+                obj.delta = abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
+            else
+                 obj.delta = obj.U * abs(system.guessDelta)*exp(1i * 0);
+            end
+            
             obj.c_up_c_down = obj.delta / obj.U;
 
-            if SystemBase.fixedBoundaryDelta || SystemBase.fixedBoundaryDeltaArg
+            if  SystemBase.fixedBoundaryDeltaArg
                 if obj.x == 1 
                     obj.delta = system.fixedDelta(1);
                 elseif obj.x == system.Nx
                     obj.delta = system.fixedDelta(2);
                 end
+            elseif (SystemBase.fixedBoundaryDeltaNorm) && (obj.x == 1 || obj.x == system.Nx)
+                obj.delta = system.guessDelta;
             end
 
             obj.current = [0, 0];
@@ -93,7 +96,7 @@ classdef LatticePoint
             return
         end
 
-        function i = xy_to_i(obj,x, y)
+        function i = xy_to_i(obj, x, y)
             % Convert x, y coordinates to i index
             i = (y-1)*obj.system.Nx + x;
         end
@@ -137,7 +140,10 @@ classdef LatticePoint
 
         function obj = updateDelta(obj, c_up_c_down, system)
             if (obj.x == 1 || obj.x == system.Nx)
-                if SystemBase.fixedBoundaryDelta
+                if SystemBase.fixedBoundaryDeltaNorm
+
+                    obj.delta = SystemBase.guessDelta * angle(c_up_c_down) ;
+                    obj.c_up_c_down = obj.delta / obj.U; %we never intend to have two diffent object when fixing the phase
                     return;
                     
                 elseif SystemBase.fixedBoundaryDeltaArg
@@ -147,19 +153,15 @@ classdef LatticePoint
                     else
                         rot = system.phi_2;
                     end
-                    obj.delta =  abs(c_up_c_down ) *exp(1i*rot) * obj.U;
-                    %fprintf('fixed delta at %d with angle %d\n', obj.x, angle(obj.delta));
-                    obj.c_up_c_down = obj.delta/obj.U;
+                    obj.c_up_c_down =  abs(c_up_c_down) *exp(1i*rot);
+                    obj.delta = obj.U * obj.c_up_c_down;
                     return;
                 end
             end
-            obj.delta = c_up_c_down * obj.U;
             obj.c_up_c_down = c_up_c_down;
+            obj.delta = c_up_c_down * obj.U;
         end
-        
-        function cond = isSubjectToFixedDelta(obj,system)
-           cond = SystemBase.fixedBoundaryDelta && (obj.x == 1 || obj.x == system.Nx);
-        end
+
     end
     methods (Static)
         function angle = SamplePhaseAtGradient(x,system)

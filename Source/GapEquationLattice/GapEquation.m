@@ -9,22 +9,17 @@ CORREL_C = zeros(system.Ny, system.Nx);
 t = 1;
 CORREL_C_trace = zeros(10,system.Ny, system.Nx);
 
-if system.fixedBoundaryDelta
-    delta_old = ones(system.Nx*(system.Ny-2), 1); %subtract the sides 2 Nx elements
-else
-    delta_old = ones(system.Nx*system.Ny, 1);
-end
+
+delta_old = ones(system.Nx*system.Ny, 1);
+
 
 %seting the value to compare with after its going to be updated
 dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDelta(system));
 
-
-
-
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(false, dist, treshold)) 
+while (GapEquationBase.canLoop(t>200, dist, treshold)) 
     fprintf('\nIteration %d:', t);
-    fprintf('Diagonalising');
+    fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDelta(system);
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
     [chi, ener] = eig(system.hamiltonian);
@@ -32,7 +27,7 @@ while (GapEquationBase.canLoop(false, dist, treshold))
 
     for i = 1: system.Nx * system.Ny %for each particle we search a convergence
         c_up_c_down = 0.0; %initialize the sum of the delta elements
-        Console.progressBar(i, system.Nx * system.Ny);
+        %Console.progressBar(i, system.Nx * system.Ny);
         %for each particle we calculate the delta element      
         %chi = (chi_1,..,chi_N) set of eigenvectors : as big as the matrix: to N_x
             %chi_n = (chi_n_1,..,chi_n_N )  each eigenvector has 2 components, which have also two compoennts: so 4
@@ -42,16 +37,17 @@ while (GapEquationBase.canLoop(false, dist, treshold))
 
         %to each eigenvalue there is an eigenvector. So we get the right components of the eigenvector
         %disp(numel(computation.E));
-        for n = numel(computation.E)/2 + 1 : numel(computation.E) %numel(computation.E)/2+1 : numel(computation.E) %sum over n, n numbers of eigenvectors with POSITIVE energies.
-            [u_i_n, v_i_n] = GetUVatI(computation, i, n);
 
-            c_up_c_down = c_up_c_down + conj(v_i_n(1)) * u_i_n(2) *  Fermi(computation.E(n)) ...
-                + u_i_n(1) * conj(v_i_n(2)) * (1-Fermi(computation.E(n))); %spin-dep variables in H are
-                % defined with general spin sigma and delta with up or dow
+        for index_eigen = 1 : numel(computation.n) %sum over n, the numbers of eigenvectors with POSITIVE energies.
+            n = computation.n(index_eigen);
+            [u_i_n, v_i_n] = computation.GetUVatI(i, n);
+
+            c_up_c_down = c_up_c_down + conj(v_i_n(1)) * u_i_n(2) *  (Fermi(-1*computation.E(n))) ...
+                + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(-1*computation.E(n))); %spin-dep variables in H are
+                % defined with general spin sigma and delta with up or down
+                % ! this works when using the negative energies : iow if the swap 1-f and f.
         end
-        system.points{i} = system.points{i}.updateDelta(c_up_c_down, system); %system.points{i}.U *      
-
-
+        system.points{i} = system.points{i}.updateDelta(c_up_c_down, system); 
     end
 
     %correct Hamiltonian
@@ -81,18 +77,19 @@ fprintf('Computing currents\n');
 system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 
-sim_deltails = GapEquationBase.getSimulationDetails();
+sim_deltails = GapEquationBase.getSimulationDetails(system);
 
-
+systemMaterial = "";
+for i = 1 : numel(SystemBase.layer)
+    systemMaterial = strcat(systemMaterial, SystemBase.layer(i));
+end
 path = strcat(".\Results\", systemMaterial);
-phase_shift_folder = GapEquationBase.getPhaseShiftFolder();
+phase_shift_folder = GapEquationBase.getPhaseShiftFolder(system);
 
-
-phase_shift_folder = strcat(phase_shift_folder,"diffMU\", num2str(SystemBase.mu),"\", "LinearPhaseGradient\", num2str(SystemBase.phi_1),"\");
 if not(isfolder(strcat(path, phase_shift_folder)))
     mkdir(strcat(path, phase_shift_folder));
 end
 
 
-GapEquationBase.saveResults(strcat(path, phase_shift_folder), system, CORREL_C)
+GapEquationBase.saveResults(strcat(path, phase_shift_folder), sim_deltails, system, CORREL_C);
 

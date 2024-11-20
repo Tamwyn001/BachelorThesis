@@ -32,16 +32,14 @@ $gnuarg = $gnuarg + '"'
 $tex_path = & gnuplot -e $gnuarg $GnuScript
 #"$tex_path" is splited in [.,./../T] etx
 
-$tex_path =  $tex_path
 
 
-$target = $tex_path -replace '\.tex','' 
-$replace = $target -replace '\.\./\.\./Thesis/', '' -replace '//', '/'
+$target = $tex_path -replace '\.tex',''  -replace '//', '/'
 
 $content = Get-Content -Path "$tex_path" -Encoding UTF8 -RAW
-$target = $target.Substring(0, $target.Length - 1)
-$replace = $replace.Substring(0, $replace.Length - 1)
-$content = $content -replace $target, $replace
+# $target = $target.Substring(0, $target.Length - 1)
+# $replace = $replace.Substring(0, $replace.Length - 1)
+$content = $content  -replace '//', '/' -replace '\.\./\.\./Thesis/', ''
 
 $content = $content -replace '0\.00e\{\+00\}', '0'  -replace '0\.0e\{\+00\}', '0'  -replace '0e\{\+00\}', '0' -replace 'e\{\+00\}', ''
 Set-Content -Path "$tex_path" -Value $content -Encoding UTF8

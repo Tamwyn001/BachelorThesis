@@ -1,56 +1,26 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-\section{Benchamrk week 4}
+\section{Benchamrk week 5}
 Context: $30\times 15$ SC with open boundary conditons.\\
 
 We have a phase gradient of $117^{\circ}$. Starting from $\pi/2$. $T=10^{-3}K$ and we iterrate until a relative
 change in both the real and imaginary part of $\Delta$ reach 0.001\%. \\
 
-For the negative $\mu$ we have to pick $\gamma_{-n}$ and $E_{-n}$ instead of $\gamma_{n}$ and $E_{n}$ to converge.
-\subsection{Phase}
+The way matlab deals with the eigenvectors and eigenvalues seams strange. So if we take $\chi_n$ along with $E_n$
+like the theory does, the algorithm dosnt converge for: 
+1
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC30DiffMU/Meanline_Phase/mu2.75/plot.tex}
-    \caption{$\mu=2.75$}
+    \input{../Plots/SC30/MeanLine/FreeDelta/allMU/plot.tex}
+    \caption{}
 \end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30DiffMU/Meanline_Phase/mu0.75/plot.tex}
-    \caption{$\mu=0.75$}
-\end{figure}
+From this we can read the following parameters: $\mu = \pm 1.75 -> 0.0651$, $\mu = \pm 2.75 -> 0.02836$, $\mu = \pm 3.75 -> 0.00568$.
+\\
 
+2
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC30DiffMU/Meanline_Phase/mu-3.75/plot.tex}
-    \caption{$\mu -3.75$}
+    \input{../Plots/SC30/MeanLine/FixedDeltaNorm/allMU/plot.tex}
+    \caption{}
 \end{figure}
-The stronger the $|\mu|$, the weaker the gradient. The current grows with on the density of state.
-
-\subsection{Current}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30DiffMU/Current/mu2.75/plot.tex}
-    \caption{$\mu 2.75$}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30DiffMU/Current/mu0.75/plot.tex}
-    \caption{$\mu 0.75$}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30DiffMU/Current/mu-3.75/plot.tex}
-    \caption{$\mu -3.75$}
-\end{figure}
-
-\subsection{Current Continuity}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30DiffMU/Meanline_Continuity/mu2.75/plot.tex}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30DiffMU/Meanline_Continuity/mu0.75/plot.tex}
-\end{figure}
-The current for $\mu=-3.75$ is very weak (e-6 in -x, e-9 in y) and the continuity lays in e-9 so it doesn't need to be shown.
 \end{document}

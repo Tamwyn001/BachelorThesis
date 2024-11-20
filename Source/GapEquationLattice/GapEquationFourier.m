@@ -9,11 +9,9 @@ CORREL_C = zeros(system.Ny, system.Nx);
 t = 1;
 CORREL_C_trace = zeros(10,system.Ny, system.Nx);
 
-if system.fixedBoundaryDelta
-    delta_old = ones(system.Nx*(system.Ny-2), 1); %subtract the sides 2 Nx elements
-else
-    delta_old = ones(system.Nx*system.Ny, 1);
-end
+
+delta_old = ones(system.Nx*system.Ny, 1);
+
 
 %seting the value to compare with after its going to be updated
 dist = GapEquationBase.computeDistance(delta_old, generateNewCollumnDelta(system));

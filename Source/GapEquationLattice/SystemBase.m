@@ -5,10 +5,12 @@ classdef SystemBase
         verticalPeriodicBoundary = false;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 0.001;
+        guessDelta = 0.00568;
         %makes only sense when no horiz. periodic boundary conditon is applied
-        fixedBoundaryDelta = false;
-        fixedBoundaryDeltaArg = true;
+        fixedBoundaryDeltaNorm = true;
+
+
+        fixedBoundaryDeltaArg = false;
         phi_1 = 2.0*pi/6.0; %phase of the superconducting gap on the left side
         phi_2 = 2.0*pi/6.0 + ( (117) * pi/180.0); %phase of the superconducting gap on the right side, phase shift of 25°
         layer =  ["SC", 30];%["SC", 13, "M", 5 "SC", 13]; %["SC", 10, "AM", 10] %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
@@ -17,7 +19,7 @@ classdef SystemBase
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
-        mu = 2.75; % * t_ij  -3.75
+        mu = -3.75; % * t_ij  -3.75
         m = 1; %hopping
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions
@@ -41,8 +43,11 @@ classdef SystemBase
             obj.Nx = size;
              %we preallocate the array to gain in speed
             obj.points = cell(obj.Nx * obj.Ny ,1);
-
-            obj.fixedDelta = [abs(obj.guessDelta)*exp(1i * obj.phi_1), abs(obj.guessDelta)*exp(1i * obj.phi_2)];
+            if SystemBase.fixedBoundaryDeltaArg
+                obj.fixedDelta = [abs(obj.guessDelta)*exp(1i * obj.phi_1), abs(obj.guessDelta)*exp(1i * obj.phi_2)];
+            elseif SystemBase.fixedBoundaryDeltaNorm
+                obj.fixedDelta = [obj.guessDelta, obj.guessDelta];
+            end
 
             fprintf('System created with specs:\n');
             fprintf('   Nx = %d, Ny = %d\n', obj.Nx, obj.Ny);
