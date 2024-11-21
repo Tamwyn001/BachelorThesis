@@ -23,10 +23,19 @@ function Remove-GhostCharacters {
 
     return $resultString
 }
+
+$LatexPath = $LatexPath  -replace '//', '/'  -replace '\\\\', '\\'
+# remove the old pdf
+$to_del = "../../Thesis/Plots/" + $LatexPath
+$to_del = $to_del + '*.pdf'
+./removepdf.ps1 -Path $to_del
+
+
 $gnuarg = '"'
 $gnuarg = $gnuarg + 'targetSystem = '''+ "$SimulationPath" +''';'   #"'Correlation_cdagg_c_/meanline20x20/'"""
 $gnuarg = $gnuarg + 'targetLatex = '''+ "$LatexPath" +''';' 
 $gnuarg = $gnuarg + '"'
+$gnuarg -replace '//', '/'
 "Plotting and saving"
 "gnuplot -e $gnuarg $GnuScript"
 $tex_path = & gnuplot -e $gnuarg $GnuScript

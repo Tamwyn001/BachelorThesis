@@ -42,23 +42,22 @@ classdef LatticePoint
             else
                 obj.U = 0;           
             end
-            if SystemBase.fixedBoundaryDeltaArg
-                obj.delta = abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
-            else
-                 obj.delta = obj.U * abs(system.guessDelta)*exp(1i * 0);
-            end
-            
-            obj.c_up_c_down = obj.delta / obj.U;
 
-            if  SystemBase.fixedBoundaryDeltaArg
+            if SystemBase.fixedBoundaryDeltaArg
                 if obj.x == 1 
                     obj.delta = system.fixedDelta(1);
                 elseif obj.x == system.Nx
                     obj.delta = system.fixedDelta(2);
+                else
+                    obj.delta = abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
                 end
             elseif (SystemBase.fixedBoundaryDeltaNorm) && (obj.x == 1 || obj.x == system.Nx)
+                obj.delta = abs(system.guessDelta)*exp(1i * 0);
+            else
                 obj.delta = system.guessDelta;
             end
+
+            obj.c_up_c_down = obj.delta / obj.U;
 
             obj.current = [0, 0];
             obj.neighbour = cell(4,1);   % cout counter clockwise : 1: +x 2: +y 3: -x 4: -y
@@ -140,10 +139,23 @@ classdef LatticePoint
 
         function obj = updateDelta(obj, c_up_c_down, system)
             if (obj.x == 1 || obj.x == system.Nx)
-                if SystemBase.fixedBoundaryDeltaNorm
+                if SystemBase.fixedBoundaryDeltaNorm && SystemBase.fixedBoundaryDeltaArg
 
-                    obj.delta = SystemBase.guessDelta * angle(c_up_c_down) ;
+                    if obj.x == 1
+                        rot = system.phi_1;
+                    else
+                        rot = system.phi_2;
+                    end
+                    obj.delta = SystemBase.guessDelta * exp(1i*rot);
                     obj.c_up_c_down = obj.delta / obj.U; %we never intend to have two diffent object when fixing the phase
+                    %disp(obj.delta);
+                    return;
+                    
+                elseif SystemBase.fixedBoundaryDeltaNorm
+
+                    obj.delta = SystemBase.guessDelta * exp(1i* angle(c_up_c_down)) ;
+                    obj.c_up_c_down = obj.delta / obj.U; %we never intend to have two diffent object when fixing the phase
+                    %disp(obj.delta);
                     return;
                     
                 elseif SystemBase.fixedBoundaryDeltaArg

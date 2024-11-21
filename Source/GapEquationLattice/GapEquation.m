@@ -69,7 +69,7 @@ end
 %generate a plotable matrix
 for i = 1: system.Nx * system.Ny
     %disp(system.points{i}.delta);
-    CORREL_C(system.points{i}.y, system.points{i}.x) = abs(system.points{i}.c_up_c_down);
+    CORREL_C(system.points{i}.y, system.points{i}.x) = system.points{i}.c_up_c_down;
 end   
 
 

@@ -9,13 +9,14 @@ set ylabel '$\bm{\varphi}$'
 unset logscale y
 #set yrange[-50:200]
 dataroot = './Results'.targetSystem
+set yrange[118:122]
 plot [1:30] \
-    dataroot.'/0.5236/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\pi/6$' dashtype 3 lw 3 lc palette frac 0.3, \
-    dataroot.'/1.0472/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\pi/3$' dashtype 3 lw 3 lc palette frac 0.5, \
-    dataroot.'/-1.0472/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $-\pi/3$' dashtype 3 lw 3 lc palette frac 0.8 , \
-    dataroot.'/2.618/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $5\pi/6$' dashtype 3 lw 3 lc palette frac 1
-
-
+    dataroot.'/3.75/Starting_at/1.0472/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\mu =3.75$' dashtype 1 lw 3 lc palette frac 0, \
+    dataroot.'/-3.75/Starting_at/1.0472/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\mu =-3.75$' dashtype 3 lw 3 lc palette frac 1,\
+    # dataroot.'/2.75/Starting_at/1.0472/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\mu =2.75$' dashtype 1 lw 3 lc palette frac 0.2, \
+    # dataroot.'/1.75/Starting_at/1.0472/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\mu =1.75$' dashtype 1 lw 3 lc palette frac 0.4, \
+    # dataroot.'/-2.75/Starting_at/1.0472/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\mu =-2.75$' dashtype 3 lw 3 lc palette frac 0.8, \
+    # dataroot.'/-1.75/Starting_at/1.0472/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\mu =-1.75$' dashtype 3 lw 3 lc palette frac 0.6
 set out
 
 # TODO USE MUTLIPLE ANFANGSWERTMETHODEN (constant etc) TO GET A BETTER MEANLINE

@@ -29,7 +29,7 @@ classdef GapEquationBase
             pathMEAN_IM = strcat(path, "meanline_IM_",sim_deltails, ".dat");
             writematrix(MeanLineMatrix(CORREL_C,'imag'), pathMEAN_IM,'Delimiter',' ');
 
-            pathCURRENT = strcat(path, "current_",sim_deltails, ".dat");
+            pathCURRENT = strcat(path, "currentV1_",sim_deltails, ".dat");
             writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');
             
             disp(sprintf('Saved at: %s', path));
@@ -100,17 +100,22 @@ classdef GapEquationBase
 
   
         function phase_shift_folder = getPhaseShiftFolder(system)
-            if SystemBase.fixedBoundaryDeltaNorm
-                phase_shift_folder = strcat("\FixedDeltaNorm\diffMU\mu_delta_", num2str(SystemBase.mu),"_",num2str(SystemBase.guessDelta),"\");
-            elseif SystemBase.fixedBoundaryDeltaArg
+            if SystemBase.fixedBoundaryDeltaArg
+                phase_shift_folder = "\Fixed";
+                if SystemBase.fixedBoundaryDeltaNorm
+                    phase_shift_folder = strcat(phase_shift_folder, "Norm");
+                end
                 phase_shift = round((system.phi_2 - system.phi_1) * (180/pi));
                 if phase_shift == 0
-                    phase_shift_folder = strcat("FixedDeltaPhase\PhaseSide", num2str(SystemBase.phi_1), ...
+                    phase_shift_folder = strcat(phase_shift_folder, "PhaseDelta\PhaseSide", num2str(SystemBase.phi_1), ...
                         "\diffMU\", num2str(SystemBase.mu),"\");
                 else
-                    phase_shift_folder = strcat("LinearPhaseGradient\Phase", num2str(phase_shift), "deg\",...
+                    phase_shift_folder = strcat(phase_shift_folder, "LinearPhaseGradient\Phase", num2str(phase_shift), "deg\",...
                         "diffMU\", num2str(SystemBase.mu),"\", "Starting_at\", num2str(SystemBase.phi_1),"\");
                 end
+
+            elseif SystemBase.fixedBoundaryDeltaNorm
+                phase_shift_folder = strcat("\FixedDeltaNorm\diffMU\mu_delta_", num2str(SystemBase.mu),"_",num2str(SystemBase.guessDelta),"\");
             else            
                 phase_shift_folder = strcat("\FreeDelta\diffMU\", num2str(SystemBase.mu),"\");
             end

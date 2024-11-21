@@ -8,7 +8,7 @@ change in both the real and imaginary part of $\Delta$ reach 0.001\%. \\
 
 The way matlab deals with the eigenvectors and eigenvalues seams strange. So if we take $\chi_n$ along with $E_n$
 like the theory does, the algorithm dosnt converge for: 
-1
+\paragraph{1. Real guess of $\Delta$ and all parameters are free}$~$\\
 \begin{figure}[H]
     \centering
     \input{../Plots/SC30/MeanLine/FreeDelta/allMU/plot.tex}
@@ -17,10 +17,94 @@ like the theory does, the algorithm dosnt converge for:
 From this we can read the following parameters: $\mu = \pm 1.75 -> 0.0651$, $\mu = \pm 2.75 -> 0.02836$, $\mu = \pm 3.75 -> 0.00568$.
 \\
 
-2
+\paragraph{2. Fixed norm of $\Delta$ on the side according to 1.}$~$\\
 \begin{figure}[H]
     \centering
     \input{../Plots/SC30/MeanLine/FixedDeltaNorm/allMU/plot.tex}
     \caption{}
+\end{figure}
+And we try with a longer SC to try to minimise the fluctuations.
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC45/MeanLine/FixedDeltaNorm/allMU/plot.tex}
+    \caption{}
+\end{figure}
+Until now everything works as expected :) so we can stick with the model of SC30 which is faster to compute.\\
+
+\paragraph{3.Fixed $|\Delta_0|$ and a phase of $\pi/3$ on the sides.}$~$\\
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/MeanLine_Phase/FixedNormPhaseDelta/PhaseSide1.0472/allMU/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides}
+\end{figure}
+The algorithme doesn't seam to converge and the relative change sattles at 0.00285\%.\\
+
+\paragraph{4.Fixed phase of $\pi/3$ on the sides left and a gradient of $117^{\circ}$.}$~$\\
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/allMU/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU3.75/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU1.75/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides.}
+\end{figure}
+
+And the current map:
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V1/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides. V1 $\mu = 2.75$.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V2/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides. V2 $\mu = 2.75$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V1/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides. V1 $\mu = -2.75$.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V2/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides. V2 $\mu = -2.75$.}
+\end{figure}
+
+
+And the continuity maps:
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V1/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides. V1 $\mu = 2.75$.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V2/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides. V2 $\mu = 2.75$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V1/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides. V1 $\mu = -2.75$.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V2/plot.tex}
+    \caption{using a start of $\pi/3$ on the sides. V2 $\mu = -2.75$.}
 \end{figure}
 \end{document}
