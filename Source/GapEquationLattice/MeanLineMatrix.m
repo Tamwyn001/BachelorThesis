@@ -12,8 +12,10 @@ function  meanLine = MeanLineMatrix(matrix, part)
                 total = total + real(matrix(i,j));
             elseif strcmp(part, 'imag')
                 total = total + imag(matrix(i,j));
-            else
+            elseif strcmp(part, 'abs')
                 total = total + abs(matrix(i,j));
+            else 
+                total = total + matrix(i,j);
             end
         end
         meanLine(j,2) = total/double(sizeMM(1));

@@ -107,4 +107,35 @@ And the continuity maps:
     \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V2/plot.tex}
     \caption{using a start of $\pi/3$ on the sides. V2 $\mu = -2.75$.}
 \end{figure}
+
+The different versions are very symmetric. However the eigenvector were derived using $\chi_n$ and $E_{-n}$ so we are going to stick with V2 for the current. 
+
+\paragraph{5. Phase start independance of the gradient.}$~$\\
+One last important physical property to show is the independance of the phase start of the gradient. The gradient is relevant for the current so the physic 
+should stay invariant under phase start change.\\
+
+We use $\mu = -2.75$ with $\varphi_1 = -\pi/3$ and $\varphi_2 = 3\pi/4$.
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide-1.0472/MU-2.75/plot.tex}
+    \caption{Using a start of $-\pi/3$ on the side.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide2.3562/MU-2.75/plot.tex}
+    \caption{Using a start of $3\pi/4$ on the side.}
+\end{figure}
+The gradient has the same shape so the current will eb very much the same. The low variations makes the 
+continuity map very similar. We admit that this works fine. The pick on the lattice point numer 3 results 
+of some asumed numerical error. A better accuracy should solve this. The algorithm had 200 iterrations here.\\ 
+
+Here is a map of the phase to track down this specific point:
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Phase/FixedLinearPhaseGradient/PhaseSide2.3652/MU-2.75/plot.tex}
+    \caption{Using a start of $3\pi/4$ on the side.}
+\end{figure}
+
+Let's go.
+
 \end{document}

@@ -17,7 +17,7 @@ classdef GapEquationBase
             path_PHASE = strcat(path, "phase_",sim_deltails, ".dat");
             writematrix(WriteHeatmap(system, 'phase'), path_PHASE,'Delimiter',' ')
 
-            path_CONTINUITY = strcat(path, "continuity_",sim_deltails, ".dat");
+            path_CONTINUITY = strcat(path, "continuityV2_",sim_deltails, ".dat");
             writematrix(WriteHeatmap(system, 'continuity'), path_CONTINUITY,'Delimiter',' ')
 
             path_MEAN_CORREL_C = strcat(path, "meanline_",sim_deltails, ".dat");
@@ -29,7 +29,7 @@ classdef GapEquationBase
             pathMEAN_IM = strcat(path, "meanline_IM_",sim_deltails, ".dat");
             writematrix(MeanLineMatrix(CORREL_C,'imag'), pathMEAN_IM,'Delimiter',' ');
 
-            pathCURRENT = strcat(path, "currentV1_",sim_deltails, ".dat");
+            pathCURRENT = strcat(path, "currentV2_",sim_deltails, ".dat");
             writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');
             
             disp(sprintf('Saved at: %s', path));
