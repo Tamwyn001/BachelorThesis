@@ -7,16 +7,16 @@ classdef Computation
     end
     methods
         function obj = StorePositiveIndex(obj)
-            obj.n = zeros(numel(obj.E)/2, 1);
+            %obj.n = zeros(numel(obj.E)/2, 1);
             t = 1;
             for i = 1: numel(obj.E)
-
-                if obj.E(i) < 0.0
+                if real(obj.E(i)) > 0.0
                     obj.n(t) = i;
                     t = t + 1;
                 end
-                
+
             end
+            disp(numel(obj.n));
             % fprintf('%d %d\n', obj.E(obj.n(1)), obj.E(obj.n(numel(obj.E)/2)));
         end
         function [u,v] = GetUVatI(obj, i,n)
@@ -34,6 +34,7 @@ classdef Computation
             obj.eigenvectors = vector;
             obj.E = diag(obj.eigenvalues);
             obj = obj.StorePositiveIndex();
+            %disp(obj.E);
         end
     end
 end

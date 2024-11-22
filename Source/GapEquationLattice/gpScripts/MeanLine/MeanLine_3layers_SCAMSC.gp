@@ -1,4 +1,4 @@
 set loadpath './gpScripts/'
 
-load '/SystemDesc/SC13-AM5-SC13.cfg'
+load '/SystemDesc/SC12-AM6-SC12.cfg'
 load '/MeanLine/MeanLine_3layers_Base.gp'

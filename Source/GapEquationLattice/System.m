@@ -22,14 +22,14 @@ classdef System < SystemBase
                         [are_neigh, axe] = Neighbours(obj.points{i}, obj.points{j}, obj); %returns the interaction as well
                         if are_neigh
                             to_add = zeros(4);
-                            if strcmp(obj.points{i}.materialLayer, 'SC')
-                                %if superconductive neigbours interactions
-                            elseif strcmp(obj.points{i}.materialLayer,'AM')
+                            if strcmp(obj.points{i}.materialLayer,'AM')
                                 to_add = to_add + System.altermagnetMatrix(axe);
+                            else 
+                                to_add = to_add + System.hopping_t_ij(); %part of the non-interacting hamiltonian
+                                %futher interaction processes can be added here
                             end
                         
-                            to_add = to_add + System.hopping_t_ij(); %part of the non-interacting hamiltonian
-                            %futher interaction processes can be added here
+                           
 
                             obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = to_add;
                                 
@@ -43,7 +43,11 @@ classdef System < SystemBase
         end
 
         function matrix = onSiteMatrix(obj, i) %site i
-            matrix = System.chemicalMatrix(System.mu) + System.superconductingMatrix(obj.points{i}.delta); %U takes care of masking this value for the material
+            matrix = System.chemicalMatrix(System.mu);
+            
+            if strcmp(obj.points{i}.materialLayer, 'SC')
+                matrix = matrix + System.superconductingMatrix(obj.points{i}.delta);
+            end
         end
 
     end 
@@ -51,7 +55,7 @@ classdef System < SystemBase
         
         function matrix=altermagnetMatrix(axe)
             m_sigma = System.getMSigma(axe);
-            matrix = [m_sigma, zeros(2); zeros(2), zeros(2)];
+            matrix = -1 .* [m_sigma, zeros(2); zeros(2), zeros(2)];
         end
         function matrix = hopping_t_ij()
             matrix = [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];

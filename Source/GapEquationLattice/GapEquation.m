@@ -46,8 +46,14 @@ while (GapEquationBase.canLoop(t>200, dist, treshold))
                 + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(-1*computation.E(n))); %spin-dep variables in H are
                 % defined with general spin sigma and delta with up or down
                 % ! this works when using the negative energies : iow if the swap 1-f and f.
+                % if system.points{i}.x> 15
+                %     fprintf('cc: %d, %d, %d, %d\n',u_i_n(1), u_i_n(2), v_i_n(1), v_i_n(2));
+                % end
         end
         system.points{i} = system.points{i}.updateDelta(c_up_c_down, system); 
+        % if system.points{i}.x> 15
+        %     fprintf('cc: %d\n', system.points{i}.c_up_c_down);
+        % end
     end
 
     %correct Hamiltonian
