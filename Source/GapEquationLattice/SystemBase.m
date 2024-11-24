@@ -13,7 +13,7 @@ classdef SystemBase
         phi_2 = pi/3.0 + ( (117) * pi/180.0); %phase of the superconducting gap on the right side, phase shift of 117°
         layer =  ["SC", 15, "AM", 15]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
-        t_ij = 1;  
+
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
@@ -52,15 +52,8 @@ classdef SystemBase
             fprintf('   T = %d, mu = %d\n', obj.T, obj.mu);
             fprintf('   vertical = %d, horizontal = %d\n', obj.verticalPeriodicBoundary, obj.horizontalPeriodicBoundary);
         end
+
         function obj = createLattice(obj)
-            %METHOD1 Summary of this method goes here
-            %   Detailed explanation goes here
-            for i = 1: obj.Nx * obj.Ny
-                obj.points{i} = LatticePoint(obj, i); % {i} is the i-th element of the cell array, not a cell but the stored object
-            end
-            for i = 1: numel(obj.points)
-                obj.points{i} = obj.points{i}.findNeighbours(obj);
-            end
         end
 
         function obj = generateHam(obj)

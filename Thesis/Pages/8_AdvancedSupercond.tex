@@ -56,7 +56,10 @@ $c_{xy\sigma} = c_{x,y+N_x,\sigma}$ this means the following condition must be f
     \Leftrightarrow &k_y = \frac{2\pi n}{N_y}.
 \end{align*}
 
-We know that the momentum index should cover the entire first Brilloin zone. This means we have $n\in \left[-N_y/2 ; -N_y/2\right]$ including $0$. \\
+We know that the momentum index should cover the entire first Brilloin zone. This covers the momentum from $-\pi/a$ to $\pi/a$ 
+where $a$ is the lattice constant. Further due to the $2\pi/a$ periodicity we have the same $k_y$ at $-\pi/a$ and $\pi/a$.
+For this reason we need to map $k_y $ in $[-\pi/a ;\pi/a)$.
+This means we have $n\in \left[-N_y/2  ; N_y/2-1\right]$ including $0$. For $n=4$ we then have $k_y\in\{ -\pi, -\pi/2, 0,  \pi/2\}$. \\
 
 For the readebility we are going to use $k_y \rightarrow k$.
 Further to an index $i$  can associate $(x,y)$ and to $j$, $(x',y')$.
@@ -86,7 +89,7 @@ And now we can reintroduce an arbitray second coordinate $x'$ to describe the ne
 \end{equation}
 The chemical potential term is more easly given. In fact the number opertor yields to use two operators $c^{\dagger}c$ at a same coordinate $i$.
 \begin{equation}
-    H_{\mu} = -\mu \sum_{x kk' \sigma} c_{x k\sigma}^{\dagger} c_{x k'\sigma} e^{\im (k-k')y} = \sum_{xx'k\sigma} \mu c_{xk\sigma}^{\dagger} c_{xk'\sigma} \delta_{xx'}     
+    H_{\mu} = -\mu \sum_{x kk' \sigma} c_{x k\sigma}^{\dagger} c_{x k'\sigma} e^{\im (k-k')y} = -   \sum_{xx'k\sigma} \mu c_{xk\sigma}^{\dagger} c_{xk'\sigma} \delta_{xx'}     
 \end{equation}
 We finaly have for the terms involving $c^{\dagger}_{xx'\sigma} c_{xx'\sigma}$:
 \begin{equation*}

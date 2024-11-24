@@ -2,12 +2,28 @@ classdef System < SystemBase
     % This system describes the formalism that let pick some periodic boundary conditions
     % this is intended to diagonalize a 4NxNy x 4NxNy matrix
 
+    properties (Constant)
+        t_ij = 1;
+    end
     methods
         function obj = System()
             %% object intialization
             obj = obj@SystemBase();
         end
 
+        function obj = createLattice(obj)
+            
+            obj = createLattice@SystemBase();
+
+            %this requieres a Nx*Ny lattice system
+            for i = 1: obj.Nx * obj.Ny
+                obj.points{i} = LatticePoint(obj, i); % {i} is the i-th element of the cell array, not a cell but the stored object
+            end
+            for i = 1: numel(obj.points)
+                obj.points{i} = obj.points{i}.findNeighbours(obj);
+            end
+        end
+        
         function obj = generateHam(obj)
             obj = generateHam@SystemBase(obj);
 

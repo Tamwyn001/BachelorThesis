@@ -3,68 +3,121 @@ classdef SystemFourier < SystemBase
     % therfore we can use a fourier transformation in y resulting in a Ny times a 4Nx x 4Nx matrix
 
     %!alwys VERTICAL PERIODIC BOUNDARY CONDITIONS TO TRUE and HORIZONTAL TO FALSE :)
+    properties (Constant)
+        t_SC = 1;
+        t_AM = 1;
+        t_transition = 1;
+        V = 1;	
+    end
+    properties
+        k
 
+    end
     methods
         function obj = SystemFourier()
             %% object intialization
             obj = obj@SystemBase();
             assert(SystemBase.verticalPeriodicBoundary,'Please set verticalPeriodicBoundary to true to use the fourier formalism.');
+
+            tot_k = SystemBase.Ny;
+            obj.k = zeros(tot_k, 1);
+            % we need n from [-Ny/2 to Ny/2).
+            for i = 1:tot_k 
+                n = -1 * SystemBase.Ny / 2 + i -1; % i starts at 1. 
+                obj.k(i) = 2 * pi * n / SystemBase.Ny;
+            end
         end
 
         function obj = generateHam(obj)
             obj = generateHam@SystemBase(obj);
 
-            obj.hamiltonian = zeros(4 * obj.Nx * obj.Ny, 4 *obj.Nx * obj.Ny); % have obj.Nx * obj.Ny matrices of the size 4x4
+            % have  obj.Ny matricies of size 2obj.Nx * 2obj.Nx
+            obj.hamiltonian = zeros(2 * obj.Nx, 2 *obj.Nx, obj.Ny); % stores (x,x',k): k array of 2Nx x 2Nx matrices
             Console.progressBar(0, obj.Nx * obj.Ny);
-            for i = 1 : obj.Nx * obj.Ny
-                for j = 1 : obj.Nx * obj.Ny
-                    if i == j %we are on the diagonal. We find the superconducting and chemical potential terms
-                        obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = obj.onSiteMatrix(i);
 
-                    else %we consider the neighbours, that possbile are bc of the periodic boundary
-                        [are_neigh, axe] = Neighbours(obj.points{i}, obj.points{j}, obj); %returns the interaction as well
-                        if are_neigh
-                            to_add = zeros(4);
-                            if strcmp(obj.points{i}.materialLayer, 'SC')
-                                %if superconductive neigbours interactions
-                            elseif strcmp(obj.points{i}.materialLayer,'AM')
-                                to_add = to_add + System.altermagnetMatrix(axe);
+            for id_k =1 : numel(obj.k)
+                k_local = obj.k(id_k);
+                for x = 1 : obj.Nx
+                    for x_prime = 1 : obj.Nx
+                        if x == x_prime
+                            obj.hamiltonian(2*(x - 1) + 1 : 2*(x - 1) + 2 ,...
+                                 2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2 ) = obj.OnSiteMatrix(x, k_local);
+                        else
+                            if x == x_prime + 1 && x == x_prime - 1 %here the neighbouring system is waaay easier bc one axis
+                                to_add = obj.hopping_t_ij_Interac(obj,x, x_prime);
+                                to_add = to_add + obj.superconductingMatrix(x, x_prime, k_local);
+
+                                obj.hamiltonian(2*(x - 1) + 1 : 2*(x - 1) + 2 , ...
+                                    2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2 ) = to_add;
                             end
-                        
-                            to_add = to_add + System.hopping_t_ij(); %part of the non-interacting hamiltonian
-                            %futher interaction processes can be added here
-
-                            obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = to_add;
-                                
                         end
-                        %we are not neighbours, no contribution of the c operators
-                        % already zeros
                     end
                 end
-                Console.progressBar(i, obj.Nx * obj.Ny);
+                Console.progressBar((k_local-1) * x + x, obj.Nx * obj.Ny);
+            end 
+        end
+
+        function obj = createLattice(obj)
+            
+            obj = createLattice@SystemBase();
+
+            %this requieres a Nx*Ny lattice system
+            for i = 1: obj.Nx
+                obj.points{i} = LatticePoint(obj, i); % {i} is the i-th element of the cell array, not a cell but the stored object
+            end
+            for i = 1: numel(obj.points)
+                obj.points{i} = obj.points{i}.findNeighbours(obj);
             end
         end
 
-        function matrix = onSiteMatrix(obj, i) %site i
-            matrix = System.chemicalMatrix(System.mu) + System.superconductingMatrix(obj.points{i}.delta); %U takes care of masking this value for the material
+        function matrix = onSiteMatrix(obj, x, k_local) %site i
+            matrix = SystemFourier.chemicalMatrix(SystemBase.mu) ...
+            + obj.hopping_t_ij_OnSite(obj, x, k_local)...
+            + obj.superconductingMatrix(obj, x, x, k_local); %U takes care of masking this value for the material
+        end
+        
+        function matrix = hopping_t_ij_OnSite(obj, x, k_local)
+            matrix = -obj.getTAtX(x,x) * 2 * cos(k_local) * eye(2); %In the diag, first 1 is spin up and second 1 ist spin down.
+        end
+        function matrix = hopping_t_ij_Interac(obj, x, x_prime)
+            matrix = -obj.getTAtX(x,x_prime) * eye(2); %In the diag, first 1 is spin up and second 1 ist spin down.
         end
 
+        function t = getTAtX(x,x_prime, obj)
+            if strcmp(obj.points{x}.materialLayer,'SC') && strcmp(obj.points{x_prime}.materialLayer,'SC')
+                t = SystemFourier.t_SC;
+            elseif  strcmp(obj.points{x}.materialLayer,'AM') && strcmp(obj.points{x_prime}.materialLayer,'AM')
+                t = SystemFourier.t_AM;
+            else
+                t = SystemFourier.t_transition;
+            end
+        end
+        function matrix = superconductingMatrix(x,x_prime, k_local)
+            f_ijk = 0;
+            V_ij = 0;
+            if strcmp(obj.points{x}.materialLayer,'SC') && strcmp(obj.points{x_prime}.materialLayer,'SC')
+                V_ij = SystemFourier.V;
+            end
+
+            if x == x_prime
+                f_ijk = obj.points{x}.F_y(1) * exp(1i* k_local) + obj.points{x}.F_y(2) * exp(-1i* k_local);
+
+            elseif x + 1 == x_prime
+                f_ijk = obj.points{x}.F_x(1);
+
+            elseif x - 1 == x_prime
+                f_ijk =  obj.points{x}.F_x(2);
+            end
+            f_ijk = V_ij * f_ijk;
+
+            matrix = [0, f_ijk ; conj(f_ijk), 0];
+        end
     end 
-    methods (Static)
+    
 
-        function matrix=altermagnetMatrix(axe)
-            m_sigma = System.getMSigma(axe);
-            matrix = [m_sigma, zeros(2); zeros(2), zeros(2)];
-        end
-        function matrix = hopping_t_ij()
-            matrix = [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
-        end
-        function matrix = superconductingMatrix(delta)
-            matrix = [zeros(2), (delta * (-1i)) * PauliMatrix.sigmaY; ...
-                conj(delta) * (1i) * PauliMatrix.sigmaY, zeros(2)];
-        end
+    methods (Static)
         function matrix= chemicalMatrix(mu)
-            matrix = mu * [eye(2), zeros(2); zeros(2), -eye(2)];
+            matrix = -mu * eye(2);
         end
 
     end
