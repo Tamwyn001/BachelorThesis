@@ -1,4 +1,4 @@
-function f = FermiDiarac(E,T, mu)
+function f = FermiDiarac(E,T)
 %FERMIDIARAC Summary of this function goes here
 %   Detailed explanation goes here
     % Constants

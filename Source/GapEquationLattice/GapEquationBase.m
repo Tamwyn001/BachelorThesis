@@ -8,6 +8,82 @@ classdef GapEquationBase
     end
     
     methods(Static)
+        function result = thresholdReached(dist, treshold, num)
+            result = true;
+            for v = 1 : num
+                if ~result % one break causes everything to stop
+                    break;
+                end
+                if num == 1
+                    total = size(dist,1);
+                else
+                    total = size(dist,1,1);
+                end
+                for i = 1 : total
+                    if abs(dist(i,1,v)) > treshold
+                        %fprintf('RE not reached at %d with %d\n', i,dist(i,1));
+                        result = false;
+                        break;
+                    end
+                    if abs(dist(i,2,v)) > treshold
+                        %fprintf('IM not reached at %d with %d\n', i,dist(i,2));
+                        result = false;
+                        break;
+                    end
+                end
+            end
+            return;
+        end
+        
+        function result = generateNewCollumnDeltaOrF(system)
+            
+            if isa(system, 'SystemFourier')
+                result = zeros(system.Nx, 4); % +x, -x, +y, -y 
+                for j = 1: system.Nx
+                    result(j,1) = system.points{j}.F_x(1);
+                    result(j,2) = system.points{j}.F_x(2);
+                    result(j,3) = system.points{j}.F_y(1);
+                    result(j,4) = system.points{j}.F_y(2);
+                end
+
+            elseif isa(system, 'System')
+                result = zeros(system.Nx*system.Ny, 1);
+                for j = 1: system.Nx * system.Ny
+                    result(j) = system.points{j}.delta;
+                end
+            end
+        end
+        
+        function result = computeDistance(delta_old, delta_new, num)  
+            length = size(delta_old, 1);
+            result = zeros(length, 2, num);
+            %the data is SiteX (imag) x Direction F
+            %we generate SiteX (imag) x 2 (real , imag) x Direction F
+            for dir = 1 : num
+                for i = 1 : length
+                    result(i, 1, dir) = (real(delta_new(i,dir)) - real(delta_old(i,dir))) / real(delta_old(i, dir)) * 100.0; %relative error from the old to new step
+                    if ~isnan(imag(delta_old(i)))
+                        result(i, 2, dir) = (imag(delta_new(i, dir)) - imag(delta_old(i, dir))) / imag(delta_old(i, dir)) * 100.0;
+                    else
+                        result(i, 2, dir) = 0.0;
+                    end
+                end
+            end
+        end
+        
+        function loop_on = canLoop(terminated, dist, treshold, num)
+            loop_on = true;
+            if GapEquationBase.thresholdReached(dist, treshold, num) 
+                loop_on = false;
+                return;
+            elseif terminated
+                loop_on = false;
+                return;
+            end
+        end
+        
+        
+
         function saveResults(path, sim_deltails, system, CORREL_C) 
                     
             path_CORREL_C = strcat(path, sim_deltails, ".dat");
@@ -34,56 +110,7 @@ classdef GapEquationBase
             
             disp(sprintf('Saved at: %s', path));
 
-        end
-
-        function result = thresholdReached(dist, treshold)
-            result = true;
-            for i = 1: size(dist,1)
-                if abs(dist(i,1)) > treshold
-                    %fprintf('RE not reached at %d with %d\n', i,dist(i,1));
-                    result = false;
-                    break;
-                end
-                if abs(dist(i,2)) > treshold
-                    %fprintf('IM not reached at %d with %d\n', i,dist(i,2));
-                    result = false;
-                    break;
-                end
-            end
-            return;
-        end
-        
-        function result = generateNewCollumnDelta(system)
-            index_shift = 0;
-            result = zeros(system.Nx*system.Ny, 1);
-            for j = 1: system.Nx * system.Ny
-                result(j - index_shift) = system.points{j}.delta;
-            end
-        end
-        
-        function result = computeDistance(delta_old, delta_new)  
-            length = size(delta_old, 1);
-            result = zeros(length, 2);
-            for i = 1: length
-                result(i,1) = (real(delta_new(i)) - real(delta_old(i))) / real(delta_old(i)) * 100.0; %relative error from the old to new step
-                if ~isnan(imag(delta_old(i)))
-                    result(i,2) = (imag(delta_new(i)) - imag(delta_old(i))) / imag(delta_old(i)) * 100.0;
-                else
-                    result(i,2) = 0.0;
-                end
-            end
-        end
-        
-        function loop_on = canLoop(terminated, dist, treshold)
-            loop_on = true;
-            if GapEquationBase.thresholdReached(dist, treshold) 
-                loop_on = false;
-                return;
-            elseif terminated
-                loop_on = false;
-                return;
-            end
-        end
+        end        
 
         function sim_deltails = getSimulationDetails(system)
             sim_deltails = strcat(int2str(system.Nx),'x', int2str(system.Ny));
@@ -98,7 +125,6 @@ classdef GapEquationBase
             end
         end
 
-  
         function phase_shift_folder = getPhaseShiftFolder(system)
             if SystemBase.fixedBoundaryDeltaArg
                 phase_shift_folder = "\Fixed";

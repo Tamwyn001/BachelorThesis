@@ -19,16 +19,19 @@ classdef Computation
         end
 
         function obj = StorePositiveIndex(obj)
-            %obj.n = zeros(numel(obj.E)/2, 1);
-            t = 1;
-            for i = 1: numel(obj.E)
-                if real(obj.E(i)) > 0.0
-                    obj.n(t) = i;
-                    t = t + 1;
+            size_e = size(obj.E, 2); %E(n,k)
+            if size_e == 1
+                t = 1;
+                for i = 1: numel(obj.E)
+                    if real(obj.E(i)) > 0.0
+                        obj.n(t) = i;
+                        t = t + 1;
+                    end
                 end
-                
+            else
+                obj.n = 0; % here we dont need to sort out the indicies because we sum over all n.
             end
-            disp(numel(obj.n));
+            %disp(numel(obj.n));
             % fprintf('%d %d\n', obj.E(obj.n(1)), obj.E(obj.n(numel(obj.E)/2)));
         end
         function [u,v] = GetUVatI(obj, i,n)
@@ -37,8 +40,8 @@ classdef Computation
         end
 
         function [u,v] = GetUVatXK(obj, x, n, k)
-            u = obj.eigenvectors(2*(x - 1) + 1, n, k); %UP , DOWN
-            v = obj.eigenvectors(2*(x - 1) + 2, n, k); %UP , DOWN
+            u = obj.eigenvectors(2*(x - 1) + 1, n, k); %UP , DOWN (xnk)
+            v = obj.eigenvectors(2*(x - 1) + 2, n, k); %UP , DOWN (xnk)
         end
 
 
@@ -46,7 +49,14 @@ classdef Computation
         function obj = writeNewEigen(obj, vector, val)
             obj.eigenvalues = val;
             obj.eigenvectors = vector;
-            obj.E = diag(obj.eigenvalues);
+            size_e = size(obj.eigenvalues);
+            if numel(size_e) == 2
+                obj.E = diag(obj.eigenvalues);
+            elseif numel(size_e) == 3
+                for k_id = 1 : size_e(3)
+                    obj.E(:, k_id) = diag(obj.eigenvalues(:, :, k_id));
+                end 
+            end
             obj = obj.StorePositiveIndex();
             %disp(obj.E);
         end

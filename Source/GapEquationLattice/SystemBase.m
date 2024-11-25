@@ -11,7 +11,7 @@ classdef SystemBase
         fixedBoundaryDeltaArg = false;
         phi_1 = pi/3.0; %phase of the superconducting gap on the left side
         phi_2 = pi/3.0 + ( (117) * pi/180.0); %phase of the superconducting gap on the right side, phase shift of 117°
-        layer =  ["SC", 15, "AM", 15]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
+        layer =  ["SC", 30]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
 
 
@@ -40,7 +40,7 @@ classdef SystemBase
             end
             obj.Nx = size;
              %we preallocate the array to gain in speed
-            obj.points = cell(obj.Nx * obj.Ny ,1);
+            
             if SystemBase.fixedBoundaryDeltaArg
                 obj.fixedDelta = [abs(obj.guessDelta)*exp(1i * obj.phi_1), abs(obj.guessDelta)*exp(1i * obj.phi_2)];
             elseif SystemBase.fixedBoundaryDeltaNorm

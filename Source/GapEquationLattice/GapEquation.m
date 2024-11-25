@@ -1,5 +1,8 @@
+
+
+
 treshold = 0.001; %convergence treshold in percentage of change
-Fermi = @(E) FermiDiarac(E, SystemBase.T, SystemBase.mu);
+Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system = System();
 system = system.createLattice();
@@ -14,13 +17,14 @@ delta_old = ones(system.Nx*system.Ny, 1);
 
 
 %seting the value to compare with after its going to be updated
-dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDelta(system));
+dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 1);
+
 
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>200, dist, treshold)) 
+while (GapEquationBase.canLoop(t>200, dist, treshold, 1)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
-    delta_old = GapEquationBase.generateNewCollumnDelta(system);
+    delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
     [chi, ener] = eig(system.hamiltonian);
     computation = computation.writeNewEigen(chi, ener);
@@ -62,7 +66,7 @@ while (GapEquationBase.canLoop(t>200, dist, treshold))
     end
 
     t = t+1;
-    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDelta(system));
+    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 1);
 
     abs_dist_re = abs(dist(:,1));
     abs_dist_im = abs(dist(:,2));

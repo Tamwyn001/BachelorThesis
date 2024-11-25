@@ -214,7 +214,7 @@ able to solve these parameters self-consistently using the eigenvectors and -val
 
 \begin{equation*}
     F_i^{\pm a} = \langle c_{i\uparrow} c_{i\pm a,\downarrow}\rangle =
-    \frac{1}{N_y} \sum_{kk'} \langle c_{xk\uparrow} c_{x\pm a,k',\downarrow} \rangle e^{\im(k + k')y} e^{\pm\im k'_a}
+    \frac{1}{N_y} \sum_{kk'} \langle c_{i_x k\uparrow} c_{i_x\pm a,k',\downarrow} \rangle e^{\im(k + k')i_y} e^{\pm\im k' \delta_y}
 \end{equation*}
 using $y\pm a = y'$. Here for the brevety we have to sacrifice the notation. This is unformal and might be confusing so we clarify the point in first place.\\
 So $a$ describes a displacement in the $x$- or $y$-direction. On one hand $i+a$ refers to 
@@ -226,21 +226,21 @@ The expectaion value is independant of the site vertical coordinate $y$. This me
 we can write:
 \begin{equation*}
     F^{\pm a}_i = 
-    \frac{1}{N_y}\sum_{y\in\natset{N_y}} \frac{1}{N_y} \sum_{kk'} \langle c_{xk\uparrow} c_{x+a,k',\downarrow} \rangle e^{\im(k + k')\bm{r}_i} e^{\pm\im k'_a}
+    \frac{1}{N_y}\sum_{y\in\natset{N_y}} \frac{1}{N_y} \sum_{kk'} \langle c_{i_x k\uparrow} c_{i_x \pm a,k',\downarrow} \rangle e^{\im(k + k')\bm{r}_i} e^{\pm\im k'\delta_y}
 \end{equation*}
-which after the sumation over $i$ results as we covered earlier as $1/N_y \sum_{y} e^{\im(k + k')y} = \delta_{k,-k'}$
+which after the sumation over $i$ results as we covered earlier as $1/N_y \sum_{y} e^{\im(k + k')i_y} = \delta_{k,-k'}$
 \begin{equation*}
     F^{\pm x}_i = 
-    \frac{1}{N_y} \sum_{k} \langle c_{xk\uparrow} c_{x\pm a,k,\downarrow} \rangle e^{\mp\im k_a}
+    \frac{1}{N_y} \sum_{k} \langle c_{i_x k\uparrow} c_{i_x\pm a,k,\downarrow} \rangle e^{\mp\im k_a}
 \end{equation*}
 Now that we have simplifed the Fourier transform we can incorporate the BdG-transformation. The process is very similar to Eq.\ref{eq:transfo_c_up_c_down_BdG} and yields
 \begin{equation}\label{eq:transfo_F_x}
-    F^{\pm a}_i =\frac{1}{N_y}\sum_{k}\sum_{nn'} u_{nxk}v_{n'xk}^{\ast} \langle \mathfrak{g}_{nk} \mathfrak{g}_{n'k}^{\dagger} \rangle e^{\mp\im k_a}
+    F^{\pm a}_i =\frac{1}{N_y}\sum_{k}\sum_{nn'} u_{ni_x k}v_{n',i_x \pm a,k}^{\ast} \langle \mathfrak{g}_{nk} \mathfrak{g}_{n'k}^{\dagger} \rangle e^{\mp\im k \delta_y}
 \end{equation}
 Recalling the use of $a$ to abstractise the axis we get:
 \begin{align}
-    F^{\pm x}_i =& \frac{1}{N_y} \sum_{nk} u_{nk} v_{nk}^{\ast}\left(1 - f(E_{nk})\right)\\
-    F^{\pm y}_i =& \frac{1}{N_y} \sum_{nk} u_{nk} v_{nk}^{\ast}\left(1 - f(E_{nk})\right) e^{\mp \im k_y}.
+    F^{\pm x}_i =& \frac{1}{N_y} \sum_{nk} u_{ni_x k} v_{n,i_x\pm x,k}^{\ast}\left(1 - f(E_{nk})\right)\\
+    F^{\pm y}_i =& \frac{1}{N_y} \sum_{nk} u_{ni_x k} v_{n i_x k}^{\ast}\left(1 - f(E_{nk})\right) e^{\mp \im k}.
 \end{align}
 
 \subsection{Advanced order parameters}

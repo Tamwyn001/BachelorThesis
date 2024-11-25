@@ -9,11 +9,12 @@ classdef System < SystemBase
         function obj = System()
             %% object intialization
             obj = obj@SystemBase();
+            obj.points = cell(obj.Nx * obj.Ny ,1);
         end
 
         function obj = createLattice(obj)
             
-            obj = createLattice@SystemBase();
+            obj = createLattice@SystemBase(obj);
 
             %this requieres a Nx*Ny lattice system
             for i = 1: obj.Nx * obj.Ny

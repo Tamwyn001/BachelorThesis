@@ -2,7 +2,7 @@ classdef SystemFourier < SystemBase
     % This system describes the formalism that has vertical periodic boundary conditions
     % therfore we can use a fourier transformation in y resulting in a Ny times a 4Nx x 4Nx matrix
 
-    %!alwys VERTICAL PERIODIC BOUNDARY CONDITIONS TO TRUE and HORIZONTAL TO FALSE :)
+    %!always VERTICAL PERIODIC BOUNDARY CONDITIONS TO TRUE and HORIZONTAL TO FALSE :)
     properties (Constant)
         t_SC = 1;
         t_AM = 1;
@@ -18,7 +18,7 @@ classdef SystemFourier < SystemBase
             %% object intialization
             obj = obj@SystemBase();
             assert(SystemBase.verticalPeriodicBoundary,'Please set verticalPeriodicBoundary to true to use the fourier formalism.');
-
+            obj.points = cell(obj.Nx, 1);
             tot_k = SystemBase.Ny;
             obj.k = zeros(tot_k, 1);
             % we need n from [-Ny/2 to Ny/2).
@@ -28,27 +28,29 @@ classdef SystemFourier < SystemBase
             end
         end
 
-        function obj = generateHam(obj)
-            obj = generateHam@SystemBase(obj);
+        function obj = generateHam(obj, first_call)
+            if first_call
+                obj = generateHam@SystemBase(obj);
 
-            % have  obj.Ny matricies of size 2obj.Nx * 2obj.Nx
-            obj.hamiltonian = zeros(2 * obj.Nx, 2 *obj.Nx, obj.Ny); % stores (x,x',k): k array of 2Nx x 2Nx matrices
+                % have  obj.Ny matricies of size 2obj.Nx * 2obj.Nx
+                obj.hamiltonian = zeros(2 * obj.Nx, 2 *obj.Nx, obj.Ny); % stores (x,x',k): k array of 2Nx x 2Nx matrices
+            end
             Console.progressBar(0, obj.Nx * obj.Ny);
 
-            for id_k =1 : numel(obj.k)
-                k_local = obj.k(id_k);
+            for k_id =1 : numel(obj.k)
+                k_local = obj.k(k_id);
                 for x = 1 : obj.Nx
                     for x_prime = 1 : obj.Nx
                         if x == x_prime
                             obj.hamiltonian(2*(x - 1) + 1 : 2*(x - 1) + 2 ,...
-                                 2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2 ) = obj.OnSiteMatrix(x, k_local);
+                                 2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2, k_id ) = obj.onSiteMatrix(x, k_local);
                         else
                             if x == x_prime + 1 && x == x_prime - 1 %here the neighbouring system is waaay easier bc one axis
-                                to_add = obj.hopping_t_ij_Interac(obj,x, x_prime);
+                                to_add = obj.hopping_t_ij_Interac(x, x_prime);
                                 to_add = to_add + obj.superconductingMatrix(x, x_prime, k_local);
 
                                 obj.hamiltonian(2*(x - 1) + 1 : 2*(x - 1) + 2 , ...
-                                    2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2 ) = to_add;
+                                    2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2, k_id ) = to_add;
                             end
                         end
                     end
@@ -59,7 +61,7 @@ classdef SystemFourier < SystemBase
 
         function obj = createLattice(obj)
             
-            obj = createLattice@SystemBase();
+            obj = createLattice@SystemBase(obj);
 
             %this requieres a Nx*Ny lattice system
             for i = 1: obj.Nx
@@ -72,18 +74,19 @@ classdef SystemFourier < SystemBase
 
         function matrix = onSiteMatrix(obj, x, k_local) %site i
             matrix = SystemFourier.chemicalMatrix(SystemBase.mu) ...
-            + obj.hopping_t_ij_OnSite(obj, x, k_local)...
-            + obj.superconductingMatrix(obj, x, x, k_local); %U takes care of masking this value for the material
+            + obj.hopping_t_ij_OnSite(x, k_local)...
+            + obj.superconductingMatrix(x, x, k_local); %U takes care of masking this value for the material
         end
         
         function matrix = hopping_t_ij_OnSite(obj, x, k_local)
             matrix = -obj.getTAtX(x,x) * 2 * cos(k_local) * eye(2); %In the diag, first 1 is spin up and second 1 ist spin down.
         end
+        
         function matrix = hopping_t_ij_Interac(obj, x, x_prime)
             matrix = -obj.getTAtX(x,x_prime) * eye(2); %In the diag, first 1 is spin up and second 1 ist spin down.
         end
 
-        function t = getTAtX(x,x_prime, obj)
+        function t = getTAtX(obj, x,x_prime )
             if strcmp(obj.points{x}.materialLayer,'SC') && strcmp(obj.points{x_prime}.materialLayer,'SC')
                 t = SystemFourier.t_SC;
             elseif  strcmp(obj.points{x}.materialLayer,'AM') && strcmp(obj.points{x_prime}.materialLayer,'AM')
@@ -92,7 +95,7 @@ classdef SystemFourier < SystemBase
                 t = SystemFourier.t_transition;
             end
         end
-        function matrix = superconductingMatrix(x,x_prime, k_local)
+        function matrix = superconductingMatrix(obj, x, x_prime, k_local)
             f_ijk = 0;
             V_ij = 0;
             if strcmp(obj.points{x}.materialLayer,'SC') && strcmp(obj.points{x_prime}.materialLayer,'SC')
@@ -112,6 +115,8 @@ classdef SystemFourier < SystemBase
 
             matrix = [0, f_ijk ; conj(f_ijk), 0];
         end
+    
+
     end 
     
 
