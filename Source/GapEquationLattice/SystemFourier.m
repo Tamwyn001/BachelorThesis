@@ -43,14 +43,14 @@ classdef SystemFourier < SystemBase
                     for x_prime = 1 : obj.Nx
                         if x == x_prime
                             obj.hamiltonian(2*(x - 1) + 1 : 2*(x - 1) + 2 ,...
-                                 2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2, k_id ) = obj.onSiteMatrix(x, k_local);
+                                 2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2, k_id) = obj.onSiteMatrix(x, k_local);
                         else
-                            if x == x_prime + 1 && x == x_prime - 1 %here the neighbouring system is waaay easier bc one axis
+                            if x == x_prime + 1 || x == x_prime - 1 %here the neighbouring system is waaay easier bc one axis
                                 to_add = obj.hopping_t_ij_Interac(x, x_prime);
                                 to_add = to_add + obj.superconductingMatrix(x, x_prime, k_local);
 
                                 obj.hamiltonian(2*(x - 1) + 1 : 2*(x - 1) + 2 , ...
-                                    2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2, k_id ) = to_add;
+                                    2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2, k_id) = to_add;
                             end
                         end
                     end
@@ -103,7 +103,7 @@ classdef SystemFourier < SystemBase
             end
 
             if x == x_prime
-                f_ijk = obj.points{x}.F_y(1) * exp(1i* k_local) + obj.points{x}.F_y(2) * exp(-1i* k_local);
+                f_ijk = obj.points{x}.F_y(1) * exp(-1i* k_local) + obj.points{x}.F_y(2) * exp(1i* k_local);
 
             elseif x + 1 == x_prime
                 f_ijk = obj.points{x}.F_x(1);

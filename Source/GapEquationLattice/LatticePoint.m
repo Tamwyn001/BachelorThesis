@@ -29,12 +29,12 @@ classdef LatticePoint
             if nargin == 3
                 obj.x = x;
                 obj.y = y;
-                obj.i = obj.xy_to_i(x, y);
+                obj.i = system.xy_to_i(x, y);
                 obj.materialLayer = SystemBase.sampleTypeAt(obj.x);
          
             elseif nargin == 2
                 obj.i = x; %the input is the index i
-                [obj.x ,obj.y] = obj.i_to_xy(obj.i);
+                [obj.x ,obj.y] = system.i_to_xy(obj.i);
                 %fprintf('x: %d, y: %d\n', obj.x, obj.y);
                 obj.materialLayer = SystemBase.sampleTypeAt(obj.x);
             end
@@ -56,7 +56,7 @@ classdef LatticePoint
                     obj.delta = system.guessDelta;
                 end
                 obj.c_up_c_down = obj.delta / obj.U;
-                obj.F_x = [1, 1]; %according to mjos p19
+                obj.F_x = [1, 1]; %according to mjøs p19
                 obj.F_y = [-1, -1];
             else
                 obj.U = 0;    
@@ -106,16 +106,7 @@ classdef LatticePoint
             return
         end
 
-        function i = xy_to_i(obj, x, y)
-            % Convert x, y coordinates to i index
-            i = (y-1)*obj.system.Nx + x;
-        end
 
-        function [x, y] = i_to_xy(obj,i)
-            % Convert i index to x, y coordinates
-            x = mod(i-1, obj.system.Nx) + 1;
-            y = floor((i-1)/obj.system.Nx) + 1;
-        end
 
 
         % function id = findInNeighbours(obj, point)
@@ -209,7 +200,6 @@ classdef LatticePoint
             for n_id = 1 : size(neighbour_uv, 2)
                 for k_id = 1 : size(neighbour_uv, 3) %here we are going to reuse the u and v for different purposes
 
-                    %todo: check for similar expressions, for ex. v_2 
                     % F _{i-1 , i} along x
                     u_1 = neighbour_uv(1, n_id, k_id, 1); %1 means the site x-1
                     v_2 = neighbour_uv(2, n_id, k_id, 2); %2 means the site x, is used in each expressions

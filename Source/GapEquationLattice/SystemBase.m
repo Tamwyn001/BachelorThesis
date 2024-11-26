@@ -8,7 +8,7 @@ classdef SystemBase
         guessDelta = 2 * 0.02836;
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaNorm = false;
-        fixedBoundaryDeltaArg = false;
+        fixedBoundaryDeltaArg = true;
         phi_1 = pi/3.0; %phase of the superconducting gap on the left side
         phi_2 = pi/3.0 + ( (117) * pi/180.0); %phase of the superconducting gap on the right side, phase shift of 117°
         layer =  ["SC", 30]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
@@ -60,6 +60,16 @@ classdef SystemBase
             fprintf('Generating Hamiltonian\n');
         end
 
+        function i = xy_to_i(obj, x, y)
+            % Convert x, y coordinates to i index
+            i = (y-1)*obj.Nx + x;
+        end
+
+        function [x, y] = i_to_xy(obj,i)
+            % Convert i index to x, y coordinates
+            x = mod(i-1, obj.Nx) + 1;
+            y = floor((i-1)/obj.Nx) + 1;
+        end
 
 
     end 

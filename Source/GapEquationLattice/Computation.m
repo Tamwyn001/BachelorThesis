@@ -40,6 +40,11 @@ classdef Computation
         end
 
         function [u,v] = GetUVatXK(obj, x, n, k)
+            if  (x <= 0) || (x >= size(obj.E, 1)/2 ) %we look to a x not in the system
+                u= 0.0;
+                v= 0.0;
+            return;
+            end
             u = obj.eigenvectors(2*(x - 1) + 1, n, k); %UP , DOWN (xnk)
             v = obj.eigenvectors(2*(x - 1) + 2, n, k); %UP , DOWN (xnk)
         end
@@ -51,11 +56,12 @@ classdef Computation
             obj.eigenvectors = vector;
             size_e = size(obj.eigenvalues);
             if numel(size_e) == 2
-                obj.E = diag(obj.eigenvalues);
+                obj.E = diag(obj.eigenvalues); %size is 4Nxny x 4Nxny
             elseif numel(size_e) == 3
                 for k_id = 1 : size_e(3)
-                    obj.E(:, k_id) = diag(obj.eigenvalues(:, :, k_id));
-                end 
+                    obj.E(:, k_id) = diag(obj.eigenvalues(:, :, k_id)); % size is 2Nx x 2Nx x Ny
+                    
+                end   
             end
             obj = obj.StorePositiveIndex();
             %disp(obj.E);

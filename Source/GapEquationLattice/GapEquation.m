@@ -13,18 +13,19 @@ t = 1;
 CORREL_C_trace = zeros(10,system.Ny, system.Nx);
 
 
-delta_old = ones(system.Nx*system.Ny, 1);
+delta_old = ones(system.Nx*system.Ny, 2); %angle and || of delta
 
 
 %seting the value to compare with after its going to be updated
-dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 1);
+dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 2);
 
 
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>200, dist, treshold, 1)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+while (GapEquationBase.canLoop(t>200, dist, treshold, 2)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);
+
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
     [chi, ener] = eig(system.hamiltonian);
     computation = computation.writeNewEigen(chi, ener);
@@ -46,8 +47,8 @@ while (GapEquationBase.canLoop(t>200, dist, treshold, 1)) % last values gives ho
             n = computation.n(index_eigen);
             [u_i_n, v_i_n] = computation.GetUVatI(i, n);
 
-            c_up_c_down = c_up_c_down + conj(v_i_n(1)) * u_i_n(2) *  (Fermi(-1*computation.E(n))) ...
-                + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(-1*computation.E(n))); %spin-dep variables in H are
+            c_up_c_down = c_up_c_down + conj(v_i_n(1)) * u_i_n(2) *  (Fermi(1*computation.E(n))) ...
+                + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(1*computation.E(n))); %spin-dep variables in H are
                 % defined with general spin sigma and delta with up or down
                 % ! this works when using the negative energies : iow if the swap 1-f and f.
                 % if system.points{i}.x> 15
@@ -66,14 +67,14 @@ while (GapEquationBase.canLoop(t>200, dist, treshold, 1)) % last values gives ho
     end
 
     t = t+1;
-    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 1);
+    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 2);
 
-    abs_dist_re = abs(dist(:,1));
-    abs_dist_im = abs(dist(:,2));
-    [x_valu, x_id] = max(abs_dist_re);
-    [y_valu, y_id] = max(abs_dist_im);
-    fprintf('convergence  RE = %.5f %% at %d, IM = %.5f %% at %d : re:%d, im: %d\n', ...
-      dist(x_id,1), x_id, dist(y_id,2), y_id, real(system.points{x_id}.delta),  imag(system.points{x_id}.delta));
+    abs_dist_abs = abs(dist(:,1,1));
+    abs_dist_phase = abs(dist(:,1,2));
+    [x_valu, x_id] = max(abs_dist_abs);
+    [y_valu, y_id] = max(abs_dist_phase);
+    fprintf('convergence  ABS = %.5f %% at %d, PHASE = %.5f %% at %d -- |D|=%.5f and |arg(D)|=%.5f\n', ...
+        x_valu, x_id, y_valu, y_id, abs(system.points{x_id}.delta), delta_old(y_id,2));
 end 
 
 %generate a plotable matrix
@@ -89,17 +90,14 @@ system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 sim_deltails = GapEquationBase.getSimulationDetails(system);
 
-systemMaterial = "";
-for i = 1 : numel(SystemBase.layer)
-    systemMaterial = strcat(systemMaterial, SystemBase.layer(i));
-end
+systemMaterial = GapEquationBase.getSimMaterial();
 path = strcat(".\Results\", systemMaterial);
 phase_shift_folder = GapEquationBase.getPhaseShiftFolder(system);
 
-if not(isfolder(strcat(path, phase_shift_folder)))
-    mkdir(strcat(path, phase_shift_folder));
+folder = strcat(path, '\NotFourier', phase_shift_folder);
+if not(isfolder(folder))
+    mkdir(folder);
 end
-
 
 GapEquationBase.saveResults(strcat(path, phase_shift_folder), sim_deltails, system, CORREL_C);
 

@@ -111,29 +111,34 @@ We can now insert our Fourier transformation introduced in Eq.\ref{eq:C_dagg_For
     H_V =& \sum_{xy} \frac{1}{N_y} \sum_{kk'} \left( V_{x,x+1} F_{x}^{x+} c^{\dagger}_{x+1,k,\downarrow}c^{\dagger}_{xk'\uparrow} + V_{x,x-1} F_{x}^{x-} c^{\dagger}_{x+1,k,\downarrow} c^{\dagger}_{xk'\uparrow} \right.\\
         &+ \left.V_{xx}\left( F_{x}^{y+} e^{-\im k}  - F_{x}^{y-} e^{\im k}\right) c^{\dagger}_{xk\downarrow} c^{\dagger}_{xk'\uparrow} \right) e^{-\im(k + k')y} + \text{h.c.}\\
 \end{align*}
-Defining 
+Defining a more general form for the summand involving two site $i$ and $j$:
 \begin{equation*}
     \begin{aligned}
-    F_{xx'k} =& - V_{x,x+1} F_{x}^{x+} c^{\dagger}_{x+1,k,\downarrow}c^{\dagger}_{xk'\uparrow} + V_{x,x-1} F_{x}^{x-} c^{\dagger}_{x+1,k,\downarrow} c^{\dagger}_{xk'\uparrow} \\
-        &+ V_{xx}\left( F_{x}^{y+} e^{-\im k}  - F_{x}^{y-} e^{\im k}\right)
+    F_{xx'k} =& - V_{x,x'}\left( F_{x}^{x+} \delta_{x+1,x'} +  F_{x}^{x-} \delta_{x-1,x'}\right. \\
+        &+ \left.\left( F_{x}^{y+} e^{-\im k}  - F_{x}^{y-} e^{\im k}\right)\delta_{xx'}\right),
     \end{aligned}
 \end{equation*} 
-
-we obtain a BdG-transformed Hamiltonian
+where we got $k' = -k$ from the sum over the $y$-direction. We can rewrite the expression of $H_V$ as
 \begin{align*}
+    H_V =& \sum_{x} \sum_{kk'} F_{xx'k} c^{\dagger}_{xk\uparrow} c^{\dagger}_{x',-k,\downarrow} + F_{xx'k}^{\ast} c_{x',-k,\downarrow} c_{xk\uparrow}.
+\end{align*}
+Now using $H_{\text{hop}}, H_{\mu}$ and $H_{V}$ we can write the full Hamiltonian as
+\begin{equation}
+    \begin{aligned}
     H =& \sum_{xx'k} D_{xk}^{\dagger} H_{xx'k} D_{x'k}\\
       =& \sum_{xx'k} \begin{pmatrix}
         c^{\dagger}_{xk\uparrow} & c_{x,-k,\downarrow}
       \end{pmatrix}
         \begin{pmatrix}
             \epsilon_{xx'k\uparrow} & F_{xx'k}\\
-            -F_{xx'k}^{\ast} & -\epsilon_{xx'k\downarrow}
+            F_{xx'k}^{\ast} & -\epsilon_{xx'k\downarrow}
         \end{pmatrix}
         \begin{pmatrix}
             c_{x'k\uparrow}\\
             c^{\dagger}_{x',-k,\downarrow}
-        \end{pmatrix}
-\end{align*}
+        \end{pmatrix}.
+    \end{aligned}
+\end{equation}
 The summation over all $x,x'$ can be represented in a new matrix.
 \[
     H = \sum_k D_k^{\dagger} H_k D_k
@@ -183,7 +188,7 @@ delivering $\mathfrak{g}_k = \mathfrak{X}^{\dagger}_k D_{k}$ which is equivalent
 \begin{equation}
     \mathfrak{g}_{nk} = \sum_{x\in{N_x}} u_{nxk}c_{xk\uparrow} + v_{nxk}c^{\dagger}_{x,-k,\downarrow}.
 \end{equation}
-Looking at $D_{k} = \mathfrak{X}_k\mathfrak{g}_k$ we have:
+Looking at $D_{k} = \mathfrak{X}_k\mathfrak{g}_k$ we can derive two very usefull expressions:
 \begin{center}
     \begin{minipage}{0.4\textwidth}
     \begin{equation}\label{eq:BdG_transf_c}
@@ -237,7 +242,7 @@ Now that we have simplifed the Fourier transform we can incorporate the BdG-tran
 \begin{equation}\label{eq:transfo_F_x}
     F^{\pm a}_i =\frac{1}{N_y}\sum_{k}\sum_{nn'} u_{ni_x k}v_{n',i_x \pm a,k}^{\ast} \langle \mathfrak{g}_{nk} \mathfrak{g}_{n'k}^{\dagger} \rangle e^{\mp\im k \delta_y}
 \end{equation}
-Recalling the use of $a$ to abstractise the axis we get:
+where we can as well write $i_x = x$. Recalling the use of $a$ to abstractise the axis we get:
 \begin{align}
     F^{\pm x}_i =& \frac{1}{N_y} \sum_{nk} u_{ni_x k} v_{n,i_x\pm x,k}^{\ast}\left(1 - f(E_{nk})\right)\\
     F^{\pm y}_i =& \frac{1}{N_y} \sum_{nk} u_{ni_x k} v_{n i_x k}^{\ast}\left(1 - f(E_{nk})\right) e^{\mp \im k}.

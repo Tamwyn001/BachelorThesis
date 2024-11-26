@@ -6,7 +6,7 @@ classdef GapEquationBase
     methods
 
     end
-    
+
     methods(Static)
         function result = thresholdReached(dist, treshold, num)
             result = true;
@@ -14,11 +14,8 @@ classdef GapEquationBase
                 if ~result % one break causes everything to stop
                     break;
                 end
-                if num == 1
-                    total = size(dist,1);
-                else
-                    total = size(dist,1,1);
-                end
+                total = size(dist,1); %this works for both cases
+
                 for i = 1 : total
                     if abs(dist(i,1,v)) > treshold
                         %fprintf('RE not reached at %d with %d\n', i,dist(i,1));
@@ -34,11 +31,11 @@ classdef GapEquationBase
             end
             return;
         end
-        
+
         function result = generateNewCollumnDeltaOrF(system)
-            
+
             if isa(system, 'SystemFourier')
-                result = zeros(system.Nx, 4); % +x, -x, +y, -y 
+                result = zeros(system.Nx, 4); % +x, -x, +y, -y
                 for j = 1: system.Nx
                     result(j,1) = system.points{j}.F_x(1);
                     result(j,2) = system.points{j}.F_x(2);
@@ -47,22 +44,45 @@ classdef GapEquationBase
                 end
 
             elseif isa(system, 'System')
-                result = zeros(system.Nx*system.Ny, 1);
+                result = zeros(system.Nx*system.Ny, 2); %stores angle and |delta|
                 for j = 1: system.Nx * system.Ny
-                    result(j) = system.points{j}.delta;
+                    result(j,1) = abs(system.points{j}.delta);
+
+                    result(j,2) = 0.0;
+                    coord_check = zeros(4,1);
+                    for nei_id = 1 : 4
+                        nei = system.points{j}.neighbour{nei_id};
+                        if ~isempty(nei)
+                            coord_check(nei_id) = system.xy_to_i(nei.x, nei.y); %we store a zero id nei not valid
+                        end
+                    end
+                    % if j == 245
+                    %     fprintf('Checking on site 245 having angle %.5f\n', angle(system.points{245}.delta));
+                    % end
+                    for i = 1: numel(coord_check)
+                        if coord_check(i) ~= 0 % i represent the direction of the neighbour clockwise starting from the right
+
+                            if coord_check(i) < j %sign is for (f+x) - f (-x)
+                                sign = -1;
+                            else
+                                sign = 1;
+                            end
+                            result(j,2) = result(j,2) + sign * angle(system.points{coord_check(i)}.delta);
+                        end
+                    end
                 end
             end
         end
-        
-        function result = computeDistance(delta_old, delta_new, num)  
+
+        function result = computeDistance(delta_old, delta_new, num)
             length = size(delta_old, 1);
-            result = zeros(length, 2, num);
+            result = zeros(length, 2, num); %site x real/imag x number of vars to check
             %the data is SiteX (imag) x Direction F
             %we generate SiteX (imag) x 2 (real , imag) x Direction F
             for dir = 1 : num
                 for i = 1 : length
                     result(i, 1, dir) = (real(delta_new(i,dir)) - real(delta_old(i,dir))) / real(delta_old(i, dir)) * 100.0; %relative error from the old to new step
-                    if ~isnan(imag(delta_old(i)))
+                    if ~isnan(imag(delta_old(i,dir)))
                         result(i, 2, dir) = (imag(delta_new(i, dir)) - imag(delta_old(i, dir))) / imag(delta_old(i, dir)) * 100.0;
                     else
                         result(i, 2, dir) = 0.0;
@@ -70,10 +90,10 @@ classdef GapEquationBase
                 end
             end
         end
-        
+
         function loop_on = canLoop(terminated, dist, treshold, num)
             loop_on = true;
-            if GapEquationBase.thresholdReached(dist, treshold, num) 
+            if GapEquationBase.thresholdReached(dist, treshold, num)
                 loop_on = false;
                 return;
             elseif terminated
@@ -81,11 +101,11 @@ classdef GapEquationBase
                 return;
             end
         end
-        
-        
 
-        function saveResults(path, sim_deltails, system, CORREL_C) 
-                    
+
+
+        function saveResults(path, sim_deltails, system, CORREL_C)
+
             path_CORREL_C = strcat(path, sim_deltails, ".dat");
             disp(path_CORREL_C);
             writematrix(WriteHeatmap(system, 'correl_c_c'), path_CORREL_C,'Delimiter',' ')
@@ -107,10 +127,10 @@ classdef GapEquationBase
 
             pathCURRENT = strcat(path, "currentV2_",sim_deltails, ".dat");
             writematrix(WriteVectorField(system), pathCURRENT,'Delimiter',' ');
-            
+
             disp(sprintf('Saved at: %s', path));
 
-        end        
+        end
 
         function sim_deltails = getSimulationDetails(system)
             sim_deltails = strcat(int2str(system.Nx),'x', int2str(system.Ny));
@@ -120,7 +140,7 @@ classdef GapEquationBase
                 sim_deltails = strcat(sim_deltails, "VertBC");
             elseif SystemBase.horizontalPeriodicBoundary
                 sim_deltails = strcat(sim_deltails, "HorizBC");
-            else 
+            else
                 sim_deltails = strcat(sim_deltails, "NoBC");
             end
         end
@@ -142,9 +162,16 @@ classdef GapEquationBase
 
             elseif SystemBase.fixedBoundaryDeltaNorm
                 phase_shift_folder = strcat("\FixedDeltaNorm\diffMU\mu_delta_", num2str(SystemBase.mu),"_",num2str(SystemBase.guessDelta),"\");
-            else            
+            else
                 phase_shift_folder = strcat("\FreeDelta\diffMU\", num2str(SystemBase.mu),"\");
             end
         end
+        function mat = getSimMaterial()
+            mat = "";
+            for i = 1 : numel(SystemBase.layer)
+                mat = strcat(mat, SystemBase.layer(i));
+            end
+        end
     end
+
 end
