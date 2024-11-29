@@ -56,35 +56,38 @@ $[n_{\mu}, c^{\dagger}_{\nu}] = \delta_{\mu\nu}c^{\dagger}_{\mu}$:
     \begin{aligned}
         n_{l\sigma'}c_{i\sigma}^{\dagger}c_{j\sigma} &= \bigl( \underbrace{n_{l\sigma'}c_{i\sigma}^{\dagger} 
         - c_{i\sigma}^{\dagger}n_{l\sigma'}}_{[n_{l\sigma'}, c^{\dagger}_{i\sigma}]} + c_{i\sigma}^{\dagger}n_{l\sigma'} \bigr)c_{j\sigma} \\
-        &= \left(\delta_{\sigma'\sigma}\delta_{li}c_{i\sigma'}^{\dagger} + c_{i\sigma}^{\dagger}n_{l\sigma'} \right)c_{j\sigma}
+        &= \left(\delta_{\sigma'\sigma}\delta_{li}c_{j\sigma'}^{\dagger} + c_{i\sigma}^{\dagger}n_{l\sigma'} \right)c_{j\sigma}
     \end{aligned}
 \end{equation*}
 After substracting the second term from the first one we are left with
 \begin{equation*}
-    \left[ \sum_{\langle ij\rangle\sigma} c_{i\sigma}^{\dagger}c_{j\sigma} , \sum_{\sigma} n_{i,\sigma}\right] 
-    = \rem{\frac{1}{2}}\sum_{\langle ij\rangle\sigma\sigma'} \delta_{\sigma'\sigma} \left( \delta_{lj}c_{i\sigma}^{\dagger} c_{j\sigma'} - \delta_{li}c_{i\sigma'}^{\dagger}c_{j\sigma}\right).
+    \begin{aligned}
+    \left[ \sum_{\langle ij\rangle\sigma} c_{i\sigma}^{\dagger}c_{j\sigma} , \sum_{\sigma} n_{i\sigma}\right] 
+    =&\sum_{\langle ij\rangle\sigma\sigma'} \delta_{\sigma'\sigma} \left( \delta_{lj}c_{i\sigma}^{\dagger} c_{j\sigma'} - \delta_{li}c_{i\sigma'}^{\dagger}c_{j\sigma}\right)\\
+    =& \frac{1}{2}\sum_{ i \bm{\delta}\sigma\sigma'} \delta_{\sigma'\sigma} \left( \delta_{l,i+ \bm{\delta}}c_{i\sigma}^{\dagger} c_{i+ \bm{\delta},\sigma'} - \delta_{li}c_{i\sigma'}^{\dagger}c_{i+ \bm{\delta},\sigma}\right)
+\end{aligned}
 \end{equation*}
- \rem{DO we have to avoid summing twice over the nearest neigbhours?}
 Because of the squared lattice we can summerise the neigbour set $\langle ij\rangle$ to $\left\{ i + \delta_x , i - \delta_x, i + \delta_y, i - \delta_y   \right\}$ involving
-$\delta_{\text{axis}}$ the displacemnt from the site to neigbhour one along the given axis.
-We obtain after summing up over the $\sigma'$ and writing explicitely everything we obtain 
+$\delta_{\text{axis}}$ the displacemnt from the site to neigbhour one along the given axis. This is abstracted in $i+ \bm{\delta}$.
+We obtain after summing up over the $\sigma'$ and $i$, and writing explicitely everything we obtain 
 \begin{equation}\label{Eq:CurrentHoppingCommu}
     \begin{aligned}
         =\frac{1}{2} \sum_{\sigma} 
-       &~(c_{i\sigma}^{\dagger}c_{l-\delta_x,\sigma} -c_{i\sigma}^{\dagger}c_{l+\delta_x,\sigma})  
-       +(c_{i\sigma}^{\dagger}c_{l+\delta_x,\sigma} -c_{i\sigma}^{\dagger}c_{l-\delta_x,\sigma})\\
-       &+(c_{i\sigma}^{\dagger}c_{l-\delta_y,\sigma} -c_{i\sigma}^{\dagger}c_{l+\delta_y,\sigma})
-       +(c_{i\sigma}^{\dagger}c_{l+\delta_y,\sigma} -c_{i\sigma}^{\dagger}c_{l-\delta_y,\sigma}).
+       &~(c_{l-\delta_x\sigma}^{\dagger}c_{l,\sigma} -c_{l\sigma}^{\dagger}c_{l+\delta_x,\sigma})  
+       +(c_{l+\delta_x\sigma}^{\dagger}c_{l,\sigma} -c_{l\sigma}^{\dagger}c_{l-\delta_x,\sigma})\\
+       &+(c_{l-\delta_y\sigma}^{\dagger}c_{l,\sigma} -c_{l\sigma}^{\dagger}c_{l+\delta_y,\sigma})
+       +(c_{l+\delta_y\sigma}^{\dagger}c_{l,\sigma} -c_{l\sigma}^{\dagger}c_{l-\delta_y,\sigma}),
 \end{aligned}
 \end{equation}
-The current of one side is represnted by a pair of $c_{i\sigma}^{\dagger}c_{l-\delta_x,\sigma} -c_{i\sigma}^{\dagger}c_{l-\delta_x,\sigma}$
+where the one half factor avoids summing twice over the nearest neigbhours. This proportional to the current at a site $l$.
+The current of one side of the square unit cell is represnted by a pair of $c_{l\pm\delta_x,\sigma}^{\dagger}c_{l\sigma} -c_{l\sigma}^{\dagger}c_{l\pm\delta_x,\sigma}$
 where the same displacement $\delta_x$ is involved. This will be an important consideration when coming to the altermagnet.\\
 
 \paragraph{Chemical potentail term} For the chemical potential term it is useful to introduce that the commutator between two number operator vanishes. 
 Since the charge and the chenical potential operators involves only number operator, we find that this term dont't take part
 to the current.
 
-\paragraph{Superconduting term} The superconduting term has a particlar behaviour. If one can sovle the gap (self consistently), this term 
+\paragraph{Superconducting term} The superconduting term has a particlar behaviour. If one can sovle the gap (self consistently), this term 
 doesn't contribute to the current as we are going to see. We first form the commutator between the Hubbard term and the charge operator:
 \begin{equation*}
         \left[\sum_i\left(\Delta_i c_{i\uparrow}^{\dagger}c_{i\downarrow}^{\dagger} + 
@@ -117,17 +120,19 @@ As we introduced it in a previous discussion, the altermagnetic term is more com
 advanced hopping term, that changes regarding of the hopping axis.
 We can first bring the commutator where the matrix element $\bigl(\bm{m}_{ij}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} $ is a scalar:
 \begin{equation*}
+    \begin{aligned}
     \left[\sum_{\langle i j \rangle\sigma\sigma'}\bigl(\bm{m}_{ij}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} 
-        \cdot c_{i\sigma}^{\dagger}c_{j\sigma'}, \sum_{\tilde{\sigma}} n_{l,\tilde{\sigma}}\right] 
-    =\sum_{\substack{\langle i j \rangle \\\sigma\sigma'\tilde{\sigma}}} 
-        \bigl(\bm{m}_{ij}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}  \left(c_{i\sigma}^{\dagger}c_{j\sigma'}n_{l\tilde{\sigma}} 
-        -n_{l\tilde{\sigma}}c_{i\sigma}^{\dagger}c_{j\sigma'} \right).
+         \cdot c_{i\sigma}^{\dagger}c_{j\sigma'}, \sum_{\tilde{\sigma}} n_{l,\tilde{\sigma}}\right] 
+        =&\sum_{\substack{\langle i j \rangle \\\sigma\sigma'\tilde{\sigma}}} 
+         \bigl(\bm{m}_{ij}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}  \left(c_{i\sigma}^{\dagger}c_{j\sigma'}n_{l\tilde{\sigma}} 
+        -n_{l\tilde{\sigma}}c_{i\sigma}^{\dagger}c_{j\sigma'} \right)\\
+        = &\sum_{\substack{\langle i j \rangle \\\sigma\sigma'\tilde{\sigma}}}  \bigl(\bm{m}_{ij}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}  
+         \delta_{\sigma\tilde{\sigma}} \left(\delta_{lj}c_{i\sigma}^{\dagger}c_{j\tilde{\sigma}} - \delta_{li}c_{i\tilde{\sigma}}^{\dagger}c_{j\sigma}\right)\\
+        = &\frac{1}{2}\sum_{\substack{ i \bm{\delta}\sigma\sigma'}}  \bigl(\bm{m}_{i,i+\bm{\delta}}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}  
+         \left(\delta_{l,i+\bm{\delta}}c_{i\sigma}^{\dagger}c_{i+\bm{\delta},\sigma} - \delta_{li}c_{i\sigma}^{\dagger}c_{i+\bm{\delta},\sigma}\right)
+    \end{aligned}
 \end{equation*}
 Using the same transformation we made earlyer to introduce the commutator between $n,c$ and $n,c^{\dagger}$ we obtain after summing over the $\tilde{\sigma}$
-\[
-    = \sum_{\substack{\langle i j \rangle \\\sigma\sigma'}}  \bigl(\bm{m}_{ij}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}  
-        \delta_{\sigma\sigma'} \left(\delta_{lj}c_{i\sigma}^{\dagger}c_{j\sigma} - \delta_{li}c_{i\sigma}^{\dagger}c_{j\sigma}\right)
-\]
 introducing a new set made of  $\bm{\delta}$s as we did before. The summation over the $\bm{\delta}$ results in the following \rem{combersom} expression
 \begin{equation}\label{eq:CurrentAltermagCommu}
     \begin{aligned}
@@ -138,12 +143,13 @@ introducing a new set made of  $\bm{\delta}$s as we did before. The summation ov
                     \sum_{\sigma'}\bigl(\bm{m}_{l,l-\delta_x}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\\
                 +&\left(c_{l-\delta_y,\sigma}^{\dagger}c_{l\sigma} - c_{l\sigma}^{\dagger}c_{l+\delta_y,\sigma} \right) 
                     \sum_{\sigma'}\bigl(\bm{m}_{l,l+\delta_y}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\\
-                +&\left.\left(c_{l+\delta_y,\sigma}^{\dagger}c_{l\sigma} - c_{l\sigma}^{\dagger}c_{-\delta_y,\sigma} \right) 
+                +&\left.\left(c_{l+\delta_y,\sigma}^{\dagger}c_{l\sigma} - c_{l\sigma}^{\dagger}c_{l-\delta_y,\sigma} \right) 
                     \sum_{\sigma'}\bigl(\bm{m}_{l,l-\delta_y}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\right]
     \end{aligned}
 \end{equation} 
-When it will come to identify the current on each side of the unit cell, we will have to take into account the displacement $\delta$ that is involved in the $c^{\dagger}_a c_b - c^{\dagger}_b c_a$.
-This is to be consitent with what we already did for the hopping term. This means each current side will be dependent on the spin hopping on both direction of the same axis.
+When it will come to identify the current on each side of the unit cell, we will have to take into account the displacement $\delta$ that is involved in the 
+$c_{l\pm\delta_x,\sigma}^{\dagger}c_{l\sigma} -c_{l\sigma}^{\dagger}c_{l\pm\delta_x,\sigma}$.
+This has to be consitent with what we already did for the hopping term. This means each current side will be dependent on the spin hopping on both direction of the same axis.
 This will become clear in the derivation.\\
 
 \paragraph{Side currents}
@@ -153,11 +159,11 @@ for $r\in\{x,y\}$. Using Eq.\ref{Eq:CurrentHoppingCommu} and Eq.\ref{eq:CurrentA
 We as well reintroduce the minus of every summand of the Hamiltonian (due to their attractive nature) we let aside for the commutator relations. This multiplies 
 with the minus one from the Heisenberg picture resulting in a plus sign. Futher taking $\im = -1/\im$ we get:
 \begin{align}
-    \left(I_{i}^{\pm r}\right)_{hop} &= -\frac{t}{2\im}\sum_{\sigma}(c_{i\pm\delta_r,\sigma}^{\dagger}c_{i\sigma} -c_{i\sigma}^{\dagger}c_{i\pm\delta_r,\sigma})  \\
-    \left(I_{i}^{\pm r}\right)_{AM} &= \sum_{\sigma}\left(c_{i\mp\delta_r,\sigma}^{\dagger}c_{i\sigma} - c_{i\sigma}^{\dagger}c_{i\pm\delta_r,\sigma} \right) 
-    \sum_{\sigma'}\bigl(\bm{m}_{i,i\pm\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}
+    \left(I_{i}^{\pm r}\right)_{hop} &= -\frac{t}{2\im}\sum_{\sigma}c_{i\pm\delta_r,\sigma}^{\dagger}c_{i\sigma} -c_{i\sigma}^{\dagger}c_{i\pm\delta_r,\sigma}  \\
+    \left(I_{i}^{\pm r}\right)_{AM} &=  -\frac{1}{2\im}\sum_{\sigma\sigma'}c_{i\pm\delta_r,\sigma}^{\dagger}c_{i\sigma}\bigl(\bm{m}_{i,i\mp\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} - c_{i\sigma}^{\dagger}c_{i\pm\delta_r,\sigma}\bigl(\bm{m}_{i,i\pm\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} 
 \end{align}
-
+In this sense the hopping and altermagnetic term are very similar from nature. However the altermagnetic term is scaled by the hopping amplitude $t$ on each summand, 
+which shows a spin-dependent behaviour.
 
 \paragraph{Total currents}
 Until now we are able to describe how the current flows trought each faces of the unit cell. For this we can simply split the term we derived.

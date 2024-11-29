@@ -80,13 +80,13 @@ And  with a different starting phase:
     \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting_-1.0472/plot.tex}
     \caption{$\mu = -2.75$, using a start of $-\pi/3$ on the sides and a gradient of $117\si{\deg}$.}
 \end{figure}
-\footnote{./generateGraph.ps1 -GnuScript "gpScripts/Continuity/MeanLine\_continuity\_long\_SC.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_at/-1.0472" -LatexPath "/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting\_-1.0472/";}
-As we see the current conservation is three to four order of magnitude lower than the current itself. On the sides we have some huge drop. 
+\footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_continuity\_long\_SC.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_at/-1.0472" -LatexPath "/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting\_-1.0472/";}
+As we see the current conservation $\nabla I$ is three to four order of magnitude lower than the current itself. On the sides we have some huge drop. 
 Recalling the fact that the current should be directly proportional to the phase gradient, having this sudden phase change 
 on the sides resuts in drop of current which is then not conserved anymore. The way we look at the gradient in a discrete
-way is $\nabla f_i = (\f_{i+1} - f_{i-1})/2a$. Here we setted $a$ to one and we ommited the factor $\frac{1}{2}$. This
-means the plots represent $2\nabla f_i$. This explains why the conservation have opposite sign on each side of the lattice
-when we look at the current flow.\\
+way is $\nabla f_i = (f_{i+1} - f_{i-1})/2a$. Here we setted $a$ to one and we ommited the factor $\frac{1}{2}$. This
+means the plots represent $2\nabla f_i$. This explains why the current conservation $\nabla I$ has an opposite sign on each side of the lattice
+when we look at the current flow's direction. For exemple on the left we have $f_{i+1} > f_{i-1}$ so $\nabla f_i > 0$. 
 % And we try with a longer SC to try to minimise the fluctuations.
 % \begin{figure}[H]
 %     \centering

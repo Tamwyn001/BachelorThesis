@@ -71,7 +71,7 @@ classdef System < SystemBase
         
         function matrix=altermagnetMatrix(axe)
             m_sigma = System.getMS2igma(axe);
-            matrix = -1 .* [m_sigma, zeros(2); zeros(2), zeros(2)];
+            matrix = -0.5.* [m_sigma, zeros(2); zeros(2), -1 .* m_sigma];
         end
         function matrix = hopping_t_ij()
             matrix = -1 .* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
