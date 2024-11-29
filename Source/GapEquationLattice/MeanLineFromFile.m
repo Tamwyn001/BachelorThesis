@@ -1,14 +1,14 @@
 
-path = ".\Results\SC30\FixedLinearPhaseGradient\Phase117deg\diffMU\";
+path = ".\Results\SC30\NotFourier\FixedLinearPhaseGradient\Phase117deg\diffMU\";
 pot = ["-3.75", "-2.75", "-1.75", "3.75", "2.75", "1.75"];
 for p = 1:numel(pot)
-    file = strcat(path, pot(p),  "\Starting_at\-1.0472\Phase_30x15NoBC.dat");
+    file = strcat(path, pot(p),  "\Starting_at\1.0472\continuity_30x15NoBC.dat");
     if isfile(file)
         T = readmatrix(file);
         matrix = Dat2Matrix(T);
 
         out = MeanLineMatrix(matrix,'');
-        dest = strcat(path,pot(p),  "\Starting_at\-1.0472\meanline_Phase_30x15NoBC.dat");
+        dest = strcat(path,pot(p),  "\Starting_at\1.0472\meanline_Continuity_30x15NoBC.dat");
         writematrix(out, dest,'Delimiter',' ');
         fprintf("File %s created\n", dest);
     else

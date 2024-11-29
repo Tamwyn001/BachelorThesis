@@ -84,7 +84,7 @@ where the same displacement $\delta_x$ is involved. This will be an important co
 Since the charge and the chenical potential operators involves only number operator, we find that this term dont't take part
 to the current.
 
-\paragraph{Superconduting term} The superconduting term has a particlar behaviour. if one can sovle the gap (self consistently), this term 
+\paragraph{Superconduting term} The superconduting term has a particlar behaviour. If one can sovle the gap (self consistently), this term 
 doesn't contribute to the current as we are going to see. We first form the commutator between the Hubbard term and the charge operator:
 \begin{equation*}
         \left[\sum_i\left(\Delta_i c_{i\uparrow}^{\dagger}c_{i\downarrow}^{\dagger} + 
@@ -138,7 +138,7 @@ introducing a new set made of  $\bm{\delta}$s as we did before. The summation ov
                     \sum_{\sigma'}\bigl(\bm{m}_{l,l-\delta_x}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\\
                 +&\left(c_{l-\delta_y,\sigma}^{\dagger}c_{l\sigma} - c_{l\sigma}^{\dagger}c_{l+\delta_y,\sigma} \right) 
                     \sum_{\sigma'}\bigl(\bm{m}_{l,l+\delta_y}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\\
-                +&\left.\left(c_{l+\delta_y,\sigma}^{\dagger}c_{l\sigma} - c_{l\sigma}^{\dagger}c_{-+\delta_y,\sigma} \right) 
+                +&\left.\left(c_{l+\delta_y,\sigma}^{\dagger}c_{l\sigma} - c_{l\sigma}^{\dagger}c_{-\delta_y,\sigma} \right) 
                     \sum_{\sigma'}\bigl(\bm{m}_{l,l-\delta_y}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\right]
     \end{aligned}
 \end{equation} 
@@ -149,9 +149,11 @@ This will become clear in the derivation.\\
 \paragraph{Side currents}
 Each unit cell were introduced as a square. We can from the last derived equation identify the contribution of the current on each side of the cell. We have a side on 
 each axis direction $+x, +y, -x, -y$ as introduced in Eq.\ref{eq:CurrentSidesCommutator}. Due to the symmetric properties of the current, we can abstract the notation
-for $r\in\{x,y\}$. Using Eq.\ref{Eq:CurrentHoppingCommu} and Eq.\ref{eq:CurrentAltermagCommu} we can write the current on each side $r$ as
+for $r\in\{x,y\}$. Using Eq.\ref{Eq:CurrentHoppingCommu} and Eq.\ref{eq:CurrentAltermagCommu} we can write the current on each side $r$ as follow.
+We as well reintroduce the minus of every summand of the Hamiltonian (due to their attractive nature) we let aside for the commutator relations. This multiplies 
+with the minus one from the Heisenberg picture resulting in a plus sign. Futher taking $\im = -1/\im$ we get:
 \begin{align}
-    \left(I_{i}^{\pm r}\right)_{hop} &= \frac{t}{2}\sum_{\sigma}(c_{i\pm\delta_r,\sigma}^{\dagger}c_{i\sigma} -c_{i\sigma}^{\dagger}c_{i\pm\delta_r,\sigma})  \\
+    \left(I_{i}^{\pm r}\right)_{hop} &= -\frac{t}{2\im}\sum_{\sigma}(c_{i\pm\delta_r,\sigma}^{\dagger}c_{i\sigma} -c_{i\sigma}^{\dagger}c_{i\pm\delta_r,\sigma})  \\
     \left(I_{i}^{\pm r}\right)_{AM} &= \sum_{\sigma}\left(c_{i\mp\delta_r,\sigma}^{\dagger}c_{i\sigma} - c_{i\sigma}^{\dagger}c_{i\pm\delta_r,\sigma} \right) 
     \sum_{\sigma'}\bigl(\bm{m}_{i,i\pm\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}
 \end{align}
@@ -170,10 +172,11 @@ BdG-transformed operators with the eigenvalues \ref{eq:BdG_transf_c} and \ref{eq
 
 For the seak of readability we are going to stick with this $r$-notation. In fact the total currents takes a disproportionate size on the page so we abstract a bit.
 Further du to the linearity of the commutator one can split the current in different terms. We first start with the derivation of the physical current
-that comes from the hopping term.
+that comes from the hopping term.\\
+
 \begin{equation*}
     \begin{aligned}
-    \langle I_i^r\rangle_{\text{hop}} = \rem{\mathcal{I}\text{m}}\left[ \frac{t}{2} \sum_{\sigma} 
+    \langle I_i^r\rangle_{\text{hop}} = \frac{t}{2\im}\left[ \sum_{\sigma} 
         \langle c_{i-\delta_{r},\sigma}^{\dagger} c_{i\sigma}\rangle
         -\langle c_{i\sigma}^{\dagger}            c_{i-\delta_{r},\sigma}\rangle
         -\langle c_{i+\delta_{r},\sigma}^{\dagger} c_{i\sigma}\rangle
@@ -183,7 +186,7 @@ that comes from the hopping term.
 and after introducing the BdG-transformed operators we obtain for the first term:
 \begin{equation*}
     \begin{aligned}
-    \langle c_{i-\delta_r,\sigma}^{\dagger} c_{i\sigma}\rangle = \sum_{n,m\in\mathcal{N}_+} 
+        \color{TamGreen}{\langle c_{i-\delta_r,\sigma}^{\dagger} c_{i\sigma}\rangle} \color{black}= \sum_{n,m\in\mathcal{N}_+} 
         &u_{n,i-\delta_r,\sigma}^{\ast} u_{ni\sigma} \underbrace{\langle \gamma_n^{\dagger}\gamma_m\rangle}_{\delta_{mn}f(E_n)} 
         +~ u_{n,i-\delta_r,\sigma}^{\ast} v_{mi\sigma}^{\ast} \underbrace{\langle \gamma_n^{\dagger}\gamma_m^{\dagger}\rangle}_{0}\\
         +~& v_{n,i-\delta_r,\sigma}u_{mi\sigma}\underbrace{\langle \gamma_n\gamma_m\rangle}_{0}
@@ -192,16 +195,19 @@ and after introducing the BdG-transformed operators we obtain for the first term
 \end{equation*}
 In the same way, we obtain for the other terms:
 \begin{alignat*}{2}
-    -\langle c_{i\sigma}^{\dagger}c_{i-\delta_{r},\sigma}\rangle &= -&\sum_{n\in\mathcal{N}_+} u_{ni\sigma}^{\ast}u_{n,i-\delta_r,\sigma} f(E_n) + v_{ni\sigma}v_{n,i-\delta_r,\sigma}^{\ast}\bigl(1-f(E_n)\bigr)\\
-    -\langle c_{i+\delta_{r},\sigma}^{\dagger}c_{i\sigma}\rangle &= -&\sum_{n\in\mathcal{N}_+} u_{n,i+\delta_r,\sigma}^{\ast}u_{ni\sigma} f(E_n) + v_{n,i+\delta_r,\sigma}v_{ni\sigma}^{\ast}\bigl(1-f(E_n)\bigr)\\
-     \langle c_{i\sigma}^{\dagger}c_{i+\delta_{r},\sigma}\rangle &=  &~\sum_{n\in\mathcal{N}_+} u_{ni\sigma}^{\ast}u_{n,i+\delta_r,\sigma} f(E_n) + v_{ni\sigma}v_{n,i+\delta_r,\sigma}^{\ast}\bigl(1-f(E_n)\bigr).
+    -\color{TamGreen}{\langle c_{i\sigma}^{\dagger}c_{i-\delta_{r},\sigma}\rangle} &= -&\sum_{n\in\mathcal{N}_+} u_{ni\sigma}^{\ast}u_{n,i-\delta_r,\sigma} f(E_n) + v_{ni\sigma}v_{n,i-\delta_r,\sigma}^{\ast}\bigl(1-f(E_n)\bigr)\\
+    -\color{TamTangerine}{\langle c_{i+\delta_{r},\sigma}^{\dagger}c_{i\sigma}\rangle} &= -&\sum_{n\in\mathcal{N}_+} u_{n,i+\delta_r,\sigma}^{\ast}u_{ni\sigma} f(E_n) + v_{n,i+\delta_r,\sigma}v_{ni\sigma}^{\ast}\bigl(1-f(E_n)\bigr)\\
+    \color{TamTangerine}{\langle c_{i\sigma}^{\dagger}c_{i+\delta_{r},\sigma}\rangle} &=  &~\sum_{n\in\mathcal{N}_+} u_{ni\sigma}^{\ast}u_{n,i+\delta_r,\sigma} f(E_n) + v_{ni\sigma}v_{n,i+\delta_r,\sigma}^{\ast}\bigl(1-f(E_n)\bigr).
 \end{alignat*}
+Here we can recognise a very usefull relation that is going to simplify everything. We have $\langle c_{i\pm\delta_r,\sigma}^{\dagger} c_{i\sigma}\rangle = \langle c_{i\sigma}^{\dagger}c_{i\pm\delta_{r},\sigma} \rangle^{\ast}$.
+We can then recall a useful realtion that we can use in these expressions. Have $z$ a complexe we obtain $\mathcal{I}\text{m}(z) = \frac{1}{2\im}(z-z^{\ast})$. Further $\mathcal{I}\text{m}(z)+\mathcal{I}\text{m}(z') = \mathcal{I}\text{m}(z+z')$.
 After summing up the terms we obtain the following expression for current of the hopping term along the axis $r$:
+
 \begin{equation}
     \begin{aligned}
-        \langle I_i^r\rangle_{\text{hop}} = \sum_{\sigma}\sum_{n\in\mathcal{N}_+} 
-            f(E_n)\left[u_{ni\sigma}\left(u_{n,i-\delta_r,\sigma}^{\ast} - u_{n,i+\delta_r,\sigma}^{\ast}\right) + u_{ni\sigma}^{\ast}\left(u_{n,i+\delta_x} - u_{n,i-\delta_x,\sigma}\right)\right]&\\
-            +\bigl(1-f(E_n)\bigr)\left[v_{ni\sigma}^{\ast}\left(v_{n,i-\delta_r,\sigma} - v_{n,i+\delta_r,\sigma}\right) + v_{ni\sigma}\left(u_{n,i+\delta_x}^{\ast} - u_{n,i-\delta_x,\sigma}^{\ast}\right)\right]&.
+        \langle I_i^r\rangle_{\text{hop}} = t\cdot\mathcal{I}\text{m}\biggl[ \sum_{\sigma}\sum_{n\in\mathcal{N}_+} 
+            f(E_n)u_{ni\sigma}\left(u_{n,i-\delta_r,\sigma}^{\ast} - u_{n,i+\delta_r,\sigma}^{\ast}\right) &\\
+            +\bigl(1-f(E_n)\bigr) v_{ni\sigma}\left(v_{n,i+\delta_x}^{\ast} - v_{n,i-\delta_x,\sigma}^{\ast}\right)&\biggr].
     \end{aligned}
 \end{equation}
 And inside the altermagnet we add the following term using the same derivation method:

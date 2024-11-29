@@ -2,22 +2,22 @@ classdef SystemBase
     %Sotres the basic properties of and methodes the physical system
 
     properties (Constant)
-        verticalPeriodicBoundary = true;
+        verticalPeriodicBoundary = false;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 2 * 0.02836;
+        guessDelta = 2 * 0.0650; %for 1.75: 0.0650, for the 2.75: 0.02937, for 3.75:  0.003723
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaNorm = false;
         fixedBoundaryDeltaArg = true;
         phi_1 = pi/3.0; %phase of the superconducting gap on the left side
-        phi_2 = pi/3.0 + ( (117) * pi/180.0); %phase of the superconducting gap on the right side, phase shift of 117°
+        phi_2 = pi/3.0 + (117*pi/180); %phase of the superconducting gap on the right side, phase shift of 117°
         layer =  ["SC", 30]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
 
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
-        mu = -2.75; % * t_ij  -3.75
+        mu = 1.75; % * t_ij  -3.75
         m = 1; %hopping
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions

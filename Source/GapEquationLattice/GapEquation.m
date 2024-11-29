@@ -1,7 +1,7 @@
 
 
 
-treshold = 0.001; %convergence treshold in percentage of change
+treshold = 0.014; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system = System();
@@ -21,7 +21,7 @@ dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCol
 
 
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>200, dist, treshold, 2)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+while (GapEquationBase.canLoop(t>400, dist, treshold, 2)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);
@@ -29,7 +29,6 @@ while (GapEquationBase.canLoop(t>200, dist, treshold, 2)) % last values gives ho
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
     [chi, ener] = eig(system.hamiltonian);
     computation = computation.writeNewEigen(chi, ener);
-
     for i = 1: system.Nx * system.Ny %for each particle we search a convergence
         c_up_c_down = 0.0; %initialize the sum of the delta elements
         %Console.progressBar(i, system.Nx * system.Ny);
@@ -41,24 +40,16 @@ while (GapEquationBase.canLoop(t>200, dist, treshold, 2)) % last values gives ho
                     % Due to the form of ^c we set u_n=(u_nUP, u_nDOWN) and v_n=(v_nUP, v_nDOWN)
 
         %to each eigenvalue there is an eigenvector. So we get the right components of the eigenvector
-        %disp(numel(computation.E));
 
         for index_eigen = 1 : numel(computation.n) %sum over n, the numbers of eigenvectors with POSITIVE energies.
             n = computation.n(index_eigen);
             [u_i_n, v_i_n] = computation.GetUVatI(i, n);
 
-            c_up_c_down = c_up_c_down + conj(v_i_n(1)) * u_i_n(2) *  (Fermi(1*computation.E(n))) ...
-                + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(1*computation.E(n))); %spin-dep variables in H are
+            c_up_c_down = c_up_c_down + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(1*computation.E(n)))...
+                + u_i_n(2) * conj(v_i_n(1)) *   (Fermi(1*computation.E(n))) ; %spin-dep variables in H are
                 % defined with general spin sigma and delta with up or down
-                % ! this works when using the negative energies : iow if the swap 1-f and f.
-                % if system.points{i}.x> 15
-                %     fprintf('cc: %d, %d, %d, %d\n',u_i_n(1), u_i_n(2), v_i_n(1), v_i_n(2));
-                % end
         end
         system.points{i} = system.points{i}.updateDelta(c_up_c_down, system); 
-        % if system.points{i}.x> 15
-        %     fprintf('cc: %d\n', system.points{i}.c_up_c_down);
-        % end
     end
 
     %correct Hamiltonian
@@ -73,8 +64,8 @@ while (GapEquationBase.canLoop(t>200, dist, treshold, 2)) % last values gives ho
     abs_dist_phase = abs(dist(:,1,2));
     [x_valu, x_id] = max(abs_dist_abs);
     [y_valu, y_id] = max(abs_dist_phase);
-    fprintf('convergence  ABS = %.5f %% at %d, PHASE = %.5f %% at %d -- |D|=%.5f and |arg(D)|=%.5f\n', ...
-        x_valu, x_id, y_valu, y_id, abs(system.points{x_id}.delta), delta_old(y_id,2));
+    fprintf('convergence  ABS = %.5f %% at %d, PHASE = %.5f %% at %d | old norm: %d, old angle %d', ...
+        dist(x_id,1,1), x_id, dist(y_id,1,2), y_id, delta_old(x_id, 1),delta_old(x_id, 2));
 end 
 
 %generate a plotable matrix
@@ -99,5 +90,5 @@ if not(isfolder(folder))
     mkdir(folder);
 end
 
-GapEquationBase.saveResults(strcat(path, phase_shift_folder), sim_deltails, system, CORREL_C);
+GapEquationBase.saveResults(folder, sim_deltails, system, CORREL_C);
 

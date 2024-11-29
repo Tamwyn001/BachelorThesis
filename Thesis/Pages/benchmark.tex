@@ -11,146 +11,209 @@ like the theory does, the algorithm dosnt converge for:
 \paragraph{1. Real guess of $\Delta$ and all parameters are free}$~$\\
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC30/MeanLine/FreeDelta/allMU/plot.tex}
+    \input{../Plots/SC30/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
     \caption{}
 \end{figure}
 From this we can read the following parameters: $\mu = \pm 1.75 -> 0.0651$, $\mu = \pm 2.75 -> 0.02836$, $\mu = \pm 3.75 -> 0.00568$.
 \\
+Using a longer SC of 45 sites. We can even preciser:
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC45/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
+    \caption{}
+\end{figure}
+From this we can read the following parameters: $\mu = \pm 1.75 -> 0.0650$, $\mu = \pm 2.75 -> 0.02937$, $\mu = \pm 3.75 -> 0.003723$.
+\\
+Until now everything works as expected :) so we can stick with the model of SC30 which is faster to compute.\\
 
 \paragraph{2. Fixed norm of $\Delta$ on the side according to 1.}$~$\\
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC30/MeanLine/FixedDeltaNorm/allMU/plot.tex}
+    \input{../Plots/SC30/NotFourier/MeanLine/FixedDeltaNorm/allMU/plot.tex}
     \caption{}
 \end{figure}
-And we try with a longer SC to try to minimise the fluctuations.
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC45/MeanLine/FixedDeltaNorm/allMU/plot.tex}
-    \caption{}
-\end{figure}
-Until now everything works as expected :) so we can stick with the model of SC30 which is faster to compute.\\
 
 \paragraph{3.Fixed $|\Delta_0|$ and a phase of $\pi/3$ on the sides.}$~$\\
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC30/MeanLine_Phase/FixedNormPhaseDelta/PhaseSide1.0472/allMU/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides}
+    \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedNormPhaseDelta/allMU/plot.tex}
+    \caption{}
 \end{figure}
-The algorithme doesn't seam to converge and the relative change sattles at 0.00285\%.\\
-
 \paragraph{4.Fixed phase of $\pi/3$ on the sides left and a gradient of $117^{\circ}$.}$~$\\
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/allMU/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides}
+    \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting_1.0472/plot.tex}
+    \caption{Using a start of $\pi/3$ on the sides and a gradient of $117\si{\deg}$.}
 \end{figure}
+And  with a different starting phase:
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU3.75/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides.}
+    \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting_-1.0472/plot.tex}
+    \caption{Using a start of $\pi/3$ on the sides and a gradient of $117\si{\deg}$.}
 \end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides.}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU1.75/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides.}
-\end{figure}
-
-And the current map:
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V1/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides. V1 $\mu = 2.75$.}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V2/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides. V2 $\mu = 2.75$.}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V1/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides. V1 $\mu = -2.75$.}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V2/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides. V2 $\mu = -2.75$.}
-\end{figure}
-
-
-And the continuity maps:
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V1/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides. V1 $\mu = 2.75$.}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V2/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides. V2 $\mu = 2.75$.}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V1/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides. V1 $\mu = -2.75$.}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V2/plot.tex}
-    \caption{using a start of $\pi/3$ on the sides. V2 $\mu = -2.75$.}
-\end{figure}
-
-The different versions are very symmetric. However the eigenvector were derived using $\chi_n$ and $E_{-n}$ so we are going to stick with V2 for the current. 
+\footnote{./generateGraph.ps1 -GnuScript "gpScripts/Currents/Currents\_long\_SC\_NoBC.gp" -SimulationPath "./SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU" -LatexPath "/SC30/NotFourier/MeanLine\_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting\_-1.0472/";}
 
 \paragraph{5. Phase start independance of the gradient.}$~$\\
-One last important physical property to show is the independance of the phase start of the gradient. The gradient is relevant for the current so the physic 
-should stay invariant under phase start change.\\
-
-We use $\mu = -2.75$ with $\varphi_1 = -\pi/3$ and $\varphi_2 = 3\pi/4$.
+The current is independant of the phase, lets for instance take $\mu = -2.75$:
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide-1.0472/MU-2.75/plot.tex}
-    \caption{Using a start of $-\pi/3$ on the side.}
+    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting_1.0472/plot.tex}
+    \caption{$\mu = -2.75$, using a start of $\pi/3$ on the sides and a gradient of $117\si{\deg}$.}
 \end{figure}
+And  with a different starting phase:
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide2.3562/MU-2.75/plot.tex}
-    \caption{Using a start of $3\pi/4$ on the side.}
+    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting_-1.0472/plot.tex}
+    \caption{$\mu = -2.75$, using a start of $-\pi/3$ on the sides and a gradient of $117\si{\deg}$.}
 \end{figure}
-The gradient has the same shape so the current will eb very much the same. The low variations makes the 
-continuity map very similar. We admit that this works fine. The pick on the lattice point numer 3 results 
-of some asumed numerical error. A better accuracy should solve this. The algorithm had 200 iterrations here.\\ 
+\footnote{./generateGraph.ps1 -GnuScript "gpScripts/Currents/Currents\_long\_SC\_NoBC.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_at/-1.0472" -LatexPath "/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting\_-1.0472/";}
 
-Here is a map of the phase to track down this specific point:
+As well as the continuity maps:
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC30/Phase/FixedLinearPhaseGradient/PhaseSide2.3652/MU-2.75/plot.tex}
-    \caption{Using a start of $3\pi/4$ on the side.}
+    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting_1.0472/plot.tex}
+    \caption{$\mu = -2.75$, using a start of $\pi/3$ on the sides and a gradient of $117\si{\deg}$.}
 \end{figure}
-
-Let's go.
-
-Complexer systems:
-\subsection{SC15AM15}
+And  with a different starting phase:
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC15AM15/MeanLine/FreeDelta/MU-2.75/plot.tex}
-    \caption{SC15AM15 with $\mu = -2.75$}
+    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting_-1.0472/plot.tex}
+    \caption{$\mu = -2.75$, using a start of $-\pi/3$ on the sides and a gradient of $117\si{\deg}$.}
 \end{figure}
+\footnote{./generateGraph.ps1 -GnuScript "gpScripts/Continuity/MeanLine\_continuity\_long\_SC.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_at/-1.0472" -LatexPath "/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting\_-1.0472/";}
+As we see the current conservation is three to four order of magnitude lower than the current itself. On the sides we have some huge drop. 
+Recalling the fact that the current should be directly proportional to the phase gradient, having this sudden phase change 
+on the sides resuts in drop of current which is then not conserved anymore. The way we look at the gradient in a discrete
+way is $\nabla f_i = (\f_{i+1} - f_{i-1})/2a$. Here we setted $a$ to one and we ommited the factor $\frac{1}{2}$. This
+means the plots represent $2\nabla f_i$. This explains why the conservation have opposite sign on each side of the lattice
+when we look at the current flow.\\
+% And we try with a longer SC to try to minimise the fluctuations.
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC45/MeanLine/FixedDeltaNorm/allMU/plot.tex}
+%     \caption{}
+% \end{figure}
 
-\subsection{SC12AM6SC12}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC12AM6SC12/MeanLine/FixedLinearPhaseGradient/Phase117deg/MU-2.75/1.0472/plot.tex}
-    \caption{SC12AM6SC12 with $\mu = -2.75$}
-\end{figure}
-Here however he get 918 positive eigenvalues instead of 900. 
+% \paragraph{3.Fixed $|\Delta_0|$ and a phase of $\pi/3$ on the sides.}$~$\\
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/MeanLine_Phase/FixedNormPhaseDelta/PhaseSide1.0472/allMU/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides}
+% \end{figure}
+% The algorithme doesn't seam to converge and the relative change sattles at 0.00285\%.\\
+
+% \paragraph{4.Fixed phase of $\pi/3$ on the sides left and a gradient of $117^{\circ}$.}$~$\\
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/allMU/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU3.75/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides.}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides.}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU1.75/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides.}
+% \end{figure}
+
+% And the current map:
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V1/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides. V1 $\mu = 2.75$.}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V2/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides. V2 $\mu = 2.75$.}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V1/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides. V1 $\mu = -2.75$.}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V2/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides. V2 $\mu = -2.75$.}
+% \end{figure}
+
+
+% And the continuity maps:
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V1/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides. V1 $\mu = 2.75$.}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V2/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides. V2 $\mu = 2.75$.}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V1/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides. V1 $\mu = -2.75$.}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V2/plot.tex}
+%     \caption{using a start of $\pi/3$ on the sides. V2 $\mu = -2.75$.}
+% \end{figure}
+
+% The different versions are very symmetric. However the eigenvector were derived using $\chi_n$ and $E_{-n}$ so we are going to stick with V2 for the current. 
+
+% \paragraph{5. Phase start independance of the gradient.}$~$\\
+% One last important physical property to show is the independance of the phase start of the gradient. The gradient is relevant for the current so the physic 
+% should stay invariant under phase start change.\\
+
+% We use $\mu = -2.75$ with $\varphi_1 = -\pi/3$ and $\varphi_2 = 3\pi/4$.
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide-1.0472/MU-2.75/plot.tex}
+%     \caption{Using a start of $-\pi/3$ on the side.}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide2.3562/MU-2.75/plot.tex}
+%     \caption{Using a start of $3\pi/4$ on the side.}
+% \end{figure}
+% The gradient has the same shape so the current will eb very much the same. The low variations makes the 
+% continuity map very similar. We admit that this works fine. The pick on the lattice point numer 3 results 
+% of some asumed numerical error. A better accuracy should solve this. The algorithm had 200 iterrations here.\\ 
+
+% Here is a map of the phase to track down this specific point:
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC30/Phase/FixedLinearPhaseGradient/PhaseSide2.3652/MU-2.75/plot.tex}
+%     \caption{Using a start of $3\pi/4$ on the side.}
+% \end{figure}
+
+% Let's go.
+
+% Complexer systems:
+% \subsection{SC15AM15}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC15AM15/MeanLine/FreeDelta/MU-2.75/plot.tex}
+%     \caption{SC15AM15 with $\mu = -2.75$}
+% \end{figure}
+
+% \subsection{SC12AM6SC12}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC12AM6SC12/MeanLine/FixedLinearPhaseGradient/Phase117deg/MU-2.75/1.0472/plot.tex}
+%     \caption{SC12AM6SC12 with $\mu = -2.75$}
+% \end{figure}
+% Here however he get 918 positive eigenvalues instead of 900. 
 \end{document}

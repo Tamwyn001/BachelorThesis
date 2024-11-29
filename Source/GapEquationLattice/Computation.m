@@ -19,7 +19,7 @@ classdef Computation
         end
 
         function obj = StorePositiveIndex(obj)
-            size_e = size(obj.E, 2); %E(n,k)
+            size_e = size(obj.E, 2); %E(n) or E(n,k) for the Fourier case
             if size_e == 1
                 t = 1;
                 for i = 1: numel(obj.E)
@@ -60,7 +60,6 @@ classdef Computation
             elseif numel(size_e) == 3
                 for k_id = 1 : size_e(3)
                     obj.E(:, k_id) = diag(obj.eigenvalues(:, :, k_id)); % size is 2Nx x 2Nx x Ny
-                    
                 end   
             end
             obj = obj.StorePositiveIndex();

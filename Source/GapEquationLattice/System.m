@@ -60,8 +60,7 @@ classdef System < SystemBase
         end
 
         function matrix = onSiteMatrix(obj, i) %site i
-            matrix = System.chemicalMatrix(System.mu);
-            
+            matrix = 1*System.chemicalMatrix(System.mu);
             if strcmp(obj.points{i}.materialLayer, 'SC')
                 matrix = matrix + System.superconductingMatrix(obj.points{i}.delta);
             end
@@ -75,14 +74,14 @@ classdef System < SystemBase
             matrix = -1 .* [m_sigma, zeros(2); zeros(2), zeros(2)];
         end
         function matrix = hopping_t_ij()
-            matrix = [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
+            matrix = -1 .* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
         end
         function matrix = superconductingMatrix(delta)
-            matrix = [zeros(2), (delta * (-1i)) * PauliMatrix.sigmaY; ...
+            matrix = -1 .* [zeros(2), (delta * (-1i)) * PauliMatrix.sigmaY; ...
                 conj(delta) * (1i) * PauliMatrix.sigmaY, zeros(2)];
         end
         function matrix= chemicalMatrix(mu)
-            matrix = mu * [eye(2), zeros(2); zeros(2), -eye(2)];
+            matrix = -1*mu .* [eye(2), zeros(2); zeros(2), -eye(2)];
         end
     end
 end

@@ -25,8 +25,8 @@ On the search of pratical applciation, reaseachers have found (an exaustive list
 domain like tunneling magnetoresistance (TMR) are limited under the properties of the material. For instance the actual use 
 of ferromagnets limits the frequency to the gigahertz range. This has to deal with the ferromagnetic resonance that connects 
 the magnetisation with electromagnetic waves. The altermagnets could be used in the terahertz range.
-Mentioning that TMR is a key component in the magnetic random access memory (MRAM), the reader can easely estimate the performance
-improvment such upgrade could deliver.\\
+Mentioning that TMR is a key component of the magnetic random access memory (MRAM), the reader can easely estimate the performance
+improvment such upgrade could deliver in a computer.\\
  
 In a more formal way, we can
 distinguish two types of altermagnet.
@@ -347,23 +347,31 @@ $\epsilon(-\bm{k},\sigma) = \epsilon(\bm{k},\sigma)$ wich describes an even band
 After introducing the basic propertires of an altermagnet we now aim to describe this system with the already introduced formalism.
 We are going to consider the first model involving a spin-dependent hopping. The Hamiltonian is given by
 \begin{equation*}
-    H_{AM} = \sum_{\langle i, j\rangle\sigma\sigma'} \left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} c_{i\sigma}^{\dagger} c_{j\sigma'} 
+    H_{AM} = -\sum_{\langle i, j\rangle\sigma\sigma'} \left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} c_{i\sigma}^{\dagger} c_{j\sigma'} 
 \end{equation*}
 involving $\bm{\sigma}=(\sigma_1, \sigma_2,\sigma_3)^T$ the Pauli matricies. $\bm{m}_{ij}$ is the actual spin dependent hopping term. If the connection line 
 between the two sites $i$ and $j$ lays on the $\bm{e}_x$ axis we have $\bm{m}_{ij} = m(0,0,1)$ and $\bm{m}_{ji} = m(0,0,-1)$ along $\bm{e}_y$ with $m$ 
 the desired hopping amplitude. $\bm{m}_{ij}$ scales and masks the pauli matricies.\\
 
-Bringing this Hamiltonian Nambu formalism we can first rewrite 
-$\left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} = \mathcal{M}_{\sigma\sigma'}$ 
-which leads to
+Since the BdG formalism uses fermonic operators we again need to bring the matrix in a way that reflects the fermionic properties regarding to the $\check{c}$ opertor.
+We can remake use of Eq.\ref{eq:Trick1}:
 \begin{equation*}
-    H^{(AM)}_{ij} = \begin{pmatrix}
-        \mathcal{M} & \mathcal{O}\\
-        \mathcal{O} & \mathcal{O}
+    H_{AM} = -\sum_{\langle i, j\rangle\sigma\sigma'} \left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} \frac{1}{2}\left(c_{i\sigma}^{\dagger} c_{j\sigma'} - c_{i\sigma}c_{j\sigma'}^{\dagger}\right).
+\end{equation*}
+For the last summand we splitted the sum, exchanged the labeling of the states $i\sigma$ and $j\sigma'$ and recombined the sums.
+Bringing this Hamiltonian in the Nambu formalism we ontain by defining
+$\left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} = \mathcal{M}_{\sigma\sigma'}$ 
+the following Hamiltonian:
+\begin{equation*}
+    H^{(AM)}_{ij} = \frac{1}{2}\begin{pmatrix}
+        -\mathcal{M} & \mathcal{O}\\
+        \mathcal{O} & \mathcal{M}
     \end{pmatrix}
     ,~~~ \text{where} ~~~ \mathcal{M} = \begin{pmatrix}
         \mathcal{M}_{\uparrow\uparrow} & \mathcal{M}_{\uparrow\downarrow}\\
         \mathcal{M}_{\downarrow\uparrow} & \mathcal{M}_{\downarrow\downarrow}\\
-    \end{pmatrix}
+    \end{pmatrix}.
 \end{equation*}
+Making use of this matrix in an altermagnetic lattice point, we can generate the according eigenvectors and -values. We can then study how the physical quantities 
+behave in this material.\\
 \end{document}
