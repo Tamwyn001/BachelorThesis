@@ -17,7 +17,7 @@ classdef SystemBase
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
-        mu = 1.75; % * t_ij  -3.75
+        mu = -1.75; % * t_ij  -3.75
         m = 1; %hopping
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions
