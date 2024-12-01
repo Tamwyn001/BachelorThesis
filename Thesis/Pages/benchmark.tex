@@ -1,6 +1,6 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-\section{Benchamrk week 5}
+\section{Benchamrk week 6}
 Context: $30\times 15$ SC with open boundary conditons.\\
 
 We have a phase gradient of $117^{\circ}$. Starting from $\pi/2$. $T=10^{-3}K$ and we iterrate until a relative
@@ -87,6 +87,69 @@ on the sides resuts in drop of current which is then not conserved anymore. The 
 way is $\nabla f_i = (f_{i+1} - f_{i-1})/2a$. Here we setted $a$ to one and we ommited the factor $\frac{1}{2}$. This
 means the plots represent $2\nabla f_i$. This explains why the current conservation $\nabla I$ has an opposite sign on each side of the lattice
 when we look at the current flow's direction. For exemple on the left we have $f_{i+1} > f_{i-1}$ so $\nabla f_i > 0$. 
+
+
+
+\paragraph{6. SC15AM15}$~$\\
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC15AM15/NotFourier/MeanLine/FreeDelta/diffMU/-2.75/plot.tex}
+    \caption{SC15AM15 with $\mu = -2.75$}
+\end{figure}
+\footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_squared\_SCAM.gp" -SimulationPath "/SC15AM15/NotFourier/FreeDelta/diffMU/-2.75" -LatexPath "/SC15AM15/NotFourier/FreeDelta/diffMU/-2.75/";}\\
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC15AM15/NotFourier/MeanLinePhase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/plot.tex}
+    \caption{SC15AM15 with $\mu = -2.75$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC15AM15/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+    \caption{SC15AM15 with $\mu = -2.75$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC15AM15/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+    \caption{SC15AM15 with $\mu = -2.75$}
+\end{figure}
+
+
+
+\paragraph{7. SC12AM6SC12}$~$\\
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/FreeDelta/diffMU/-2.75plot.tex}
+    \caption{SC12AM6SC12 with $\mu = -2.75$, free}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/Meanline/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu = -2.75$}
+\end{figure}
+\footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_3layers\_SCAMSC.gp" -SimulationPath "/SC12AM6SC12/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_at/1.0472/" -LatexPath "/SC12AM6SC12/NotFourier/Meanline/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_1.0472/";
+}
+
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/Meanline_Phase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu = -2.75$}
+\end{figure}
+\footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_phase\_3layers\_SCAMSC.gp" -SimulationPath "/SC12AM6SC12/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/" -LatexPath "/SC12AM6SC12/NotFourier/Meanline\_Phase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_1.0472/";
+}
+
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu = -2.75$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC15AM15/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu = -2.75$}
+\end{figure}
+
 % And we try with a longer SC to try to minimise the fluctuations.
 % \begin{figure}[H]
 %     \centering

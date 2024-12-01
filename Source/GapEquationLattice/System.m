@@ -41,10 +41,9 @@ classdef System < SystemBase
                             to_add = zeros(4);
                             if strcmp(obj.points{i}.materialLayer,'AM')
                                 to_add = to_add + System.altermagnetMatrix(axe);
-                            else 
+                            end 
                                 to_add = to_add + System.hopping_t_ij(); %part of the non-interacting hamiltonian
-                                %futher interaction processes can be added here
-                            end
+                                %futher interaction processes can be added here 
                         
                            
 
@@ -70,7 +69,7 @@ classdef System < SystemBase
     methods (Static)
         
         function matrix=altermagnetMatrix(axe)
-            m_sigma = System.getMS2igma(axe);
+            m_sigma = SystemBase.getMSigma(axe);
             matrix = -0.5.* [m_sigma, zeros(2); zeros(2), -1 .* m_sigma];
         end
         function matrix = hopping_t_ij()

@@ -61,7 +61,7 @@ classdef LatticePoint
             else
                 obj.U = 0;    
                 obj.delta = 0;       
-                obj.c_up_c_down = 0;
+                obj.c_up_c_down = 0; %for init it is not important what this is bc delta go inside ham and then write the c_up_c_down
             end
 
             obj.current = [0, 0];
@@ -157,16 +157,22 @@ classdef LatticePoint
                     else
                         rot = system.phi_2;
                     end
-                    obj.delta = SystemBase.guessDelta * exp(1i*rot);
-                    obj.c_up_c_down = obj.delta / obj.U; %we never intend to have two diffent object when fixing the phase
-                    %disp(obj.delta);
+                    if obj.U ~= 0
+                        obj.delta = SystemBase.guessDelta * exp(1i*rot);
+                        obj.c_up_c_down = obj.delta / obj.U; %we never intend to have two diffent object when fixing the phase
+                    else
+                        %obj.delta = 0; we leave it unchanged
+                        obj.c_up_c_down = abs(c_up_c_down) * exp(1i*rot); %store this anyway, no guess to fix towards
+                    end
                     return;
                     
                 elseif SystemBase.fixedBoundaryDeltaNorm
-
-                    obj.delta = SystemBase.guessDelta * exp(1i* angle(c_up_c_down)) ;
-                    obj.c_up_c_down = obj.delta / obj.U; %we never intend to have two diffent object when fixing the phase
-                    %disp(obj.delta);
+                    if obj.U ~= 0
+                        obj.delta = SystemBase.guessDelta * exp(1i* angle(c_up_c_down)) ;
+                        obj.c_up_c_down = obj.delta / obj.U; %we never intend to have two diffent object when fixing the phase
+                    else
+                        obj.c_up_c_down = c_up_c_down; %no norm to fix towards
+                    end
                     return;
                     
                 elseif SystemBase.fixedBoundaryDeltaArg

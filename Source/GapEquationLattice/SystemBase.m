@@ -2,16 +2,16 @@ classdef SystemBase
     %Sotres the basic properties of and methodes the physical system
 
     properties (Constant)
-        verticalPeriodicBoundary = false;
+        verticalPeriodicBoundary = true;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 2 * 0.02937; %for 1.75: 0.0650, for the 2.75: 0.02937, for 3.75:  0.003723
+        guessDelta = 2 * 0.004; %for 1.75: 0.0650, for the 2.75: 0.02937, for 3.75:  0.003723
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaNorm = false;
-        fixedBoundaryDeltaArg = true;
-        phi_1 = -1.0*pi/3.0; %phase of the superconducting gap on the left side
-        phi_2 = -1.0*pi/3.0 + (117*pi/180); %phase of the superconducting gap on the right side, phase shift of 117°
-        layer =  ["SC", 30]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
+        fixedBoundaryDeltaArg = false;
+        phi_1 = 1.0*pi/3.0; %phase of the superconducting gap on the left side
+        phi_2 = 1.0*pi/3.0 + (117*pi/180); %phase of the superconducting gap on the right side, phase shift of 117°
+        layer =  ["SC", 12, "AM", 6, "SC",12]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
 
 
@@ -87,8 +87,8 @@ classdef SystemBase
                 + System.m_matrix(3 + lookup) * PauliMatrix.sigmaZ;
         end
         function out = getMSigmaElem(axe, spin1, spin2)
-            out = System.getMSigma(axe);
-            out = out(spin1, spin2);
+            res = System.getMSigma(axe);
+            out = res(spin1, spin2);
         end
         
         function type = sampleTypeAt(x)

@@ -163,7 +163,13 @@ with the minus one from the Heisenberg picture resulting in a plus sign. Futher 
     \left(I_{i}^{\pm r}\right)_{AM} &=  -\frac{1}{2\im}\sum_{\sigma\sigma'}c_{i\pm\delta_r,\sigma}^{\dagger}c_{i\sigma}\bigl(\bm{m}_{i,i\mp\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} - c_{i\sigma}^{\dagger}c_{i\pm\delta_r,\sigma}\bigl(\bm{m}_{i,i\pm\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} 
 \end{align}
 In this sense the hopping and altermagnetic term are very similar from nature. However the altermagnetic term is scaled by the hopping amplitude $t$ on each summand, 
-which shows a spin-dependent behaviour.
+which shows a spin-dependent behaviour.\\
+
+However we're not quite finished. The way we difined the matrix element, is to be isotropic on each axis. By doing so we can 
+asume that $\bigl(\bm{m}_{i,i-\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} = \bigl(\bm{m}_{i,i+\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}$ so that:
+\begin{equation}
+    \left(I_{i}^{\pm r}\right)_{AM} =  -\frac{1}{2\im}\sum_{\sigma\sigma'}\bigl(\bm{m}_{i,i+\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\left(c_{i\pm\delta_r,\sigma}^{\dagger}c_{i\sigma} - c_{i\sigma}^{\dagger}c_{i\pm\delta_r,\sigma}\right).
+\end{equation}
 
 \paragraph{Total currents}
 Until now we are able to describe how the current flows trought each faces of the unit cell. For this we can simply split the term we derived.
@@ -178,8 +184,7 @@ BdG-transformed operators with the eigenvalues \ref{eq:BdG_transf_c} and \ref{eq
 
 For the seak of readability we are going to stick with this $r$-notation. In fact the total currents takes a disproportionate size on the page so we abstract a bit.
 Further du to the linearity of the commutator one can split the current in different terms. We first start with the derivation of the physical current
-that comes from the hopping term.\\
-
+that comes from the hopping term.
 \begin{equation*}
     \begin{aligned}
     \langle I_i^r\rangle_{\text{hop}} = \frac{t}{2\im}\left[ \sum_{\sigma} 
@@ -201,8 +206,8 @@ and after introducing the BdG-transformed operators we obtain for the first term
 \end{equation*}
 In the same way, we obtain for the other terms:
 \begin{alignat*}{2}
-    -\color{TamGreen}{\langle c_{i\sigma}^{\dagger}c_{i-\delta_{r},\sigma}\rangle} &= -&\sum_{n\in\mathcal{N}_+} u_{ni\sigma}^{\ast}u_{n,i-\delta_r,\sigma} f(E_n) + v_{ni\sigma}v_{n,i-\delta_r,\sigma}^{\ast}\bigl(1-f(E_n)\bigr)\\
-    -\color{TamTangerine}{\langle c_{i+\delta_{r},\sigma}^{\dagger}c_{i\sigma}\rangle} &= -&\sum_{n\in\mathcal{N}_+} u_{n,i+\delta_r,\sigma}^{\ast}u_{ni\sigma} f(E_n) + v_{n,i+\delta_r,\sigma}v_{ni\sigma}^{\ast}\bigl(1-f(E_n)\bigr)\\
+    -\color{TamGreen}{\langle c_{i\sigma}^{\dagger}c_{i-\delta_{r},\sigma}\rangle} &= -&\sum_{n\in\mathcal{N}_+} u_{ni\sigma}^{\ast}u_{n,i-\delta_r,\sigma} f(E_n) + v_{ni\sigma}v_{n,i-\delta_r,\sigma}^{\ast}\bigl(1-f(E_n)\bigr),\\
+    -\color{TamTangerine}{\langle c_{i+\delta_{r},\sigma}^{\dagger}c_{i\sigma}\rangle} &= -&\sum_{n\in\mathcal{N}_+} u_{n,i+\delta_r,\sigma}^{\ast}u_{ni\sigma} f(E_n) + v_{n,i+\delta_r,\sigma}v_{ni\sigma}^{\ast}\bigl(1-f(E_n)\bigr),\\
     \color{TamTangerine}{\langle c_{i\sigma}^{\dagger}c_{i+\delta_{r},\sigma}\rangle} &=  &~\sum_{n\in\mathcal{N}_+} u_{ni\sigma}^{\ast}u_{n,i+\delta_r,\sigma} f(E_n) + v_{ni\sigma}v_{n,i+\delta_r,\sigma}^{\ast}\bigl(1-f(E_n)\bigr).
 \end{alignat*}
 Here we can recognise a very usefull relation that is going to simplify everything. We have $\langle c_{i\pm\delta_r,\sigma}^{\dagger} c_{i\sigma}\rangle = \langle c_{i\sigma}^{\dagger}c_{i\pm\delta_{r},\sigma} \rangle^{\ast}$.
@@ -213,17 +218,18 @@ After summing up the terms we obtain the following expression for current of the
     \begin{aligned}
         \langle I_i^r\rangle_{\text{hop}} = t\cdot\mathcal{I}\text{m}\biggl[ \sum_{\sigma}\sum_{n\in\mathcal{N}_+} 
             f(E_n)u_{ni\sigma}\left(u_{n,i-\delta_r,\sigma}^{\ast} - u_{n,i+\delta_r,\sigma}^{\ast}\right) &\\
-            +\bigl(1-f(E_n)\bigr) v_{ni\sigma}\left(v_{n,i-\delta_x}^{\ast} - v_{n,i+\delta_x,\sigma}^{\ast}\right)&\biggr].
+            +\bigl(1-f(E_n)\bigr) v_{ni\sigma}\left(v_{n,i-\delta_r}^{\ast} - v_{n,i+\delta_r,\sigma}^{\ast}\right)&\biggr].
     \end{aligned}
 \end{equation}
-And inside the altermagnet we add the following term using the same derivation method:
-\begin{equation*}
+And inside the altermagnet we add the following term using the same derivation method. The matrix element is a constant regarding
+the states-brakets. In this sens the quantum expectation and thermal average leave this quantity unchanged. Finaly we obtain the exact
+same result than a $t$ hopping but with a prefactor. This is consitent with the observation already made.
+\begin{equation}
     \begin{aligned}
-    \langle I_l^r\rangle_{\text{AM}} = \sum_{\sigma}\sum_{n\in\mathcal{N}_+} \bigl(1-f(E_n)) 
-    &\left[ \sum _{\sigma'}\bigl(\bm{m}_{l,l+\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(u_{nl\sigma} u_{n,l+\delta_r,\sigma}^{\ast}  + u_{n,l-\delta_r,\sigma}u_{nl\sigma}^{\ast}\right)\right.\\
-    +&~\left.\sum _{\sigma'}\bigl(\bm{m}_{l,l-\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(u_{n,l+\delta_r,\sigma} u_{nl\sigma}^{\ast} + u_{nl\sigma}v_{n,l-\delta_r,\sigma}^{\ast}\right)\right]\\
-    f(E_n)&\left[ \sum _{\sigma'}\bigl(\bm{m}_{l,l+\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(v_{nl\sigma}^{\ast} u_{n,l+\delta_r,\sigma}  + v_{n,l-\delta_r,\sigma}^{\ast}v_{nl\sigma}^{\ast}\right)\right.\\
-    +&~\left.\sum _{\sigma'}\bigl(\bm{m}_{l,l-\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'} \left(v_{n,l+\delta_r,\sigma}^{\ast} v_{nl\sigma} + v_{nl\sigma}^{\ast}v_{n,l-\delta_r,\sigma}\right)\right].
+        \langle I_i^r\rangle_{\text{AM}} = \mathcal{I}\text{m}\biggl[ \sum_{\sigma\sigma'}\bigl(\bm{m}_{i,i+\delta_r}\cdot\bm{\sigma}\bigr)_{\sigma\sigma'}\sum_{n\in\mathcal{N}_+} 
+            f(E_n)u_{ni\sigma}\left(u_{n,i-\delta_r,\sigma}^{\ast} - u_{n,i+\delta_r,\sigma}^{\ast}\right) &\\
+            +\bigl(1-f(E_n)\bigr) v_{ni\sigma}\left(v_{n,i-\delta_r}^{\ast} - v_{n,i+\delta_r,\sigma}^{\ast}\right)&\biggr].
     \end{aligned}
-\end{equation*}
+\end{equation}
+
 \end{document}
