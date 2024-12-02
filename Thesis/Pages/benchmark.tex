@@ -6,25 +6,24 @@ Context: $30\times 15$ SC with open boundary conditons.\\
 We have a phase gradient of $117^{\circ}$. Starting from $\pi/2$. $T=10^{-3}K$ and we iterrate until a relative
 change in both the real and imaginary part of $\Delta$ reach 0.001\%. \\
 
-The way matlab deals with the eigenvectors and eigenvalues seams strange. So if we take $\chi_n$ along with $E_n$
-like the theory does, the algorithm dosnt converge for: 
 \paragraph{1. Real guess of $\Delta$ and all parameters are free}$~$\\
 \begin{figure}[H]
     \centering
     \input{../Plots/SC30/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
     \caption{}
 \end{figure}
-From this we can read the following parameters: $\mu = \pm 1.75 -> 0.0651$, $\mu = \pm 2.75 -> 0.02836$, $\mu = \pm 3.75 -> 0.00568$.
-\\
-Using a longer SC of 45 sites. We can even preciser:
-\begin{figure}[H]
+Here we can first denote unsymetric behaviour regardung the sign of $\mu$. The value for the negative
+mu beeing higher than for their positive counterpart, we deduct that the Van Hove singularity has shifted towards the negative energies.
+Second the highest value where the algorithm doesn't converge towards zero is approx. 3.72 and the lowest is approx. -3.9, instead of the expected 4 and -4. 
+So the density of state scales down on the energies and shifts itself to lower energies.
+From this we can read the following parameters
+\begin{table}[H]
     \centering
-    \input{../Plots/SC45/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
-    \caption{}
-\end{figure}
-From this we can read the following parameters: $\mu = \pm 1.75 -> 0.0650$, $\mu = \pm 2.75 -> 0.02937$, $\mu = \pm 3.75 -> 0.003723$.
-\\
-Until now everything works as expected :) so we can stick with the model of SC30 which is faster to compute.\\
+    \begin{tabular}{c|c|c|c|c|c|c}
+        $\mu$          & -3.75 & -2.75 & -1.75 & 1.75 & 2.75  & 3.75\\\hline\hline
+         $|\langle c_{i\uparrow}c_{i\downarrow}\rangle|_0$  & 0.01  & 0.018 &  0.07  & 0.058& 0.025 & diarded
+    \end{tabular}
+\end{table}
 
 \paragraph{2. Fixed norm of $\Delta$ on the side according to 1.}$~$\\
 \begin{figure}[H]
@@ -34,6 +33,11 @@ Until now everything works as expected :) so we can stick with the model of SC30
 \end{figure}
 
 \paragraph{3.Fixed $|\Delta_0|$ and a phase of $\pi/3$ on the sides.}$~$\\
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/NotFourier/MeanLine/FixedNormPhaseDelta/allMU/plot.tex}
+    \caption{}
+\end{figure}
 \begin{figure}[H]
     \centering
     \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedNormPhaseDelta/allMU/plot.tex}
@@ -48,8 +52,9 @@ Until now everything works as expected :) so we can stick with the model of SC30
 And  with a different starting phase:
 \begin{figure}[H]
     \centering
+    
     \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting_-1.0472/plot.tex}
-    \caption{Using a start of $\pi/3$ on the sides and a gradient of $117\si{\deg}$.}
+    \caption{Using a start of $-\pi/3$ on the sides and a gradient of $117\si{\deg}$.}
 \end{figure}
 \footnote{./generateGraph.ps1 -GnuScript "gpScripts/Currents/Currents\_long\_SC\_NoBC.gp" -SimulationPath "./SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU" -LatexPath "/SC30/NotFourier/MeanLine\_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting\_-1.0472/";}
 
@@ -90,65 +95,65 @@ when we look at the current flow's direction. For exemple on the left we have $f
 
 
 
-\paragraph{6. SC15AM15}$~$\\
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC15AM15/NotFourier/MeanLine/FreeDelta/diffMU/-2.75/plot.tex}
-    \caption{SC15AM15 with $\mu = -2.75$}
-\end{figure}
-\footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_squared\_SCAM.gp" -SimulationPath "/SC15AM15/NotFourier/FreeDelta/diffMU/-2.75" -LatexPath "/SC15AM15/NotFourier/FreeDelta/diffMU/-2.75/";}\\
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC15AM15/NotFourier/MeanLinePhase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/plot.tex}
-    \caption{SC15AM15 with $\mu = -2.75$}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC15AM15/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-    \caption{SC15AM15 with $\mu = -2.75$}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC15AM15/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-    \caption{SC15AM15 with $\mu = -2.75$}
-\end{figure}
+% \paragraph{6. SC15AM15}$~$\\
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC15AM15/NotFourier/MeanLine/FreeDelta/diffMU/-2.75/plot.tex}
+%     \caption{SC15AM15 with $\mu = -2.75$}
+% \end{figure}
+% \footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_squared\_SCAM.gp" -SimulationPath "/SC15AM15/NotFourier/FreeDelta/diffMU/-2.75" -LatexPath "/SC15AM15/NotFourier/FreeDelta/diffMU/-2.75/";}\\
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC15AM15/NotFourier/MeanLinePhase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/plot.tex}
+%     \caption{SC15AM15 with $\mu = -2.75$}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC15AM15/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+%     \caption{SC15AM15 with $\mu = -2.75$}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC15AM15/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+%     \caption{SC15AM15 with $\mu = -2.75$}
+% \end{figure}
 
 
 
-\paragraph{7. SC12AM6SC12}$~$\\
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC12AM6SC12/NotFourier/FreeDelta/diffMU/-2.75plot.tex}
-    \caption{SC12AM6SC12 with $\mu = -2.75$, free}
-\end{figure}
+% \paragraph{7. SC12AM6SC12}$~$\\
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC12AM6SC12/NotFourier/FreeDelta/diffMU/-2.75plot.tex}
+%     \caption{SC12AM6SC12 with $\mu = -2.75$, free}
+% \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC12AM6SC12/NotFourier/Meanline/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-    \caption{SC12AM6SC12 with $\mu = -2.75$}
-\end{figure}
-\footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_3layers\_SCAMSC.gp" -SimulationPath "/SC12AM6SC12/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_at/1.0472/" -LatexPath "/SC12AM6SC12/NotFourier/Meanline/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_1.0472/";
-}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC12AM6SC12/NotFourier/Meanline/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+%     \caption{SC12AM6SC12 with $\mu = -2.75$}
+% \end{figure}
+% \footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_3layers\_SCAMSC.gp" -SimulationPath "/SC12AM6SC12/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_at/1.0472/" -LatexPath "/SC12AM6SC12/NotFourier/Meanline/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_1.0472/";
+% }
 
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC12AM6SC12/NotFourier/Meanline_Phase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-    \caption{SC12AM6SC12 with $\mu = -2.75$}
-\end{figure}
-\footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_phase\_3layers\_SCAMSC.gp" -SimulationPath "/SC12AM6SC12/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/" -LatexPath "/SC12AM6SC12/NotFourier/Meanline\_Phase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_1.0472/";
-}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC12AM6SC12/NotFourier/Meanline_Phase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+%     \caption{SC12AM6SC12 with $\mu = -2.75$}
+% \end{figure}
+% \footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_phase\_3layers\_SCAMSC.gp" -SimulationPath "/SC12AM6SC12/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/" -LatexPath "/SC12AM6SC12/NotFourier/Meanline\_Phase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_1.0472/";
+% }
 
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC12AM6SC12/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-    \caption{SC12AM6SC12 with $\mu = -2.75$}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC12AM6SC12/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+%     \caption{SC12AM6SC12 with $\mu = -2.75$}
+% \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC15AM15/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-    \caption{SC12AM6SC12 with $\mu = -2.75$}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \input{../Plots/SC15AM15/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
+%     \caption{SC12AM6SC12 with $\mu = -2.75$}
+% \end{figure}
 
 % And we try with a longer SC to try to minimise the fluctuations.
 % \begin{figure}[H]

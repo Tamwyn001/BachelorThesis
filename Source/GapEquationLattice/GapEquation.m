@@ -1,7 +1,7 @@
 
 
 
-treshold = 0.001; %convergence treshold in percentage of change
+treshold = 0.0001; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system = System();
@@ -21,7 +21,7 @@ dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCol
 
 
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>700, dist, treshold, 2)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+while (GapEquationBase.canLoop(t>400, dist, treshold, 2)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);

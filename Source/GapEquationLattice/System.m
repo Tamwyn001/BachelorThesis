@@ -73,14 +73,14 @@ classdef System < SystemBase
             matrix = -0.5.* [m_sigma, zeros(2); zeros(2), -1 .* m_sigma];
         end
         function matrix = hopping_t_ij()
-            matrix = -1 .* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
+            matrix = -0.5 .* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
         end
         function matrix = superconductingMatrix(delta)
-            matrix = -1 .* [zeros(2), (delta * (-1i)) * PauliMatrix.sigmaY; ...
+            matrix = -0.5 .* [zeros(2), (delta * (-1i)) * PauliMatrix.sigmaY; ...
                 conj(delta) * (1i) * PauliMatrix.sigmaY, zeros(2)];
         end
         function matrix= chemicalMatrix(mu)
-            matrix = -1*mu .* [eye(2), zeros(2); zeros(2), -eye(2)];
+            matrix = -0.5*mu .* [eye(2), zeros(2); zeros(2), -eye(2)];
         end
     end
 end

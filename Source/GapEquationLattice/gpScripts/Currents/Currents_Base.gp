@@ -9,16 +9,12 @@ load 'palettes/SandBeach.pal'
 set xlabel '{\small\textbf{Lattice site $i_x$ in $\bm{e}_x$}}' 
 set ylabel '{\small\textbf{Lattice site $i_y$ in $\bm{e}_y$}}'
 
-# Title for the plot
-unset title # '\textbf{Correlation of the c operators}' 
-set key bottom left reverse Left
-
 
 dataroot = './Results'.targetSystem
 
 
-set ylabel at graph 0, first 0 center offset char 3, char 0 
-set ytics offset char 0, char 0 
+# set ylabel at graph 0, first 0 center offset char 3, char 0 
+# set ytics offset char 0, char 0 
 
 contrast = 0.5
 scale = 2
@@ -35,3 +31,10 @@ logarrow(v1,v2) = log(1 + enorm(v1,v2))**contrast * scale
 set mxtics 5
 set mytics 5
 set palette maxcolors 20
+
+unset title # '\textbf{Correlation of the c operators}' 
+set colorbox
+set key outside right
+set ytics offset char -1, char 0  
+set xtics offset char 0, char -0.3  
+set ylabel offset char 3, char 0 
