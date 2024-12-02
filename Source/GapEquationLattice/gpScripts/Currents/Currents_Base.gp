@@ -16,9 +16,9 @@ dataroot = './Results'.targetSystem
 # set ylabel at graph 0, first 0 center offset char 3, char 0 
 # set ytics offset char 0, char 0 
 
-contrast = 0.5
-scale = 2
-len = 4
+contrast = 1.0
+scale = 1.4*1000.0
+len = 4.0
 
 enorm(x,y) = sqrt(x**2 + y**2)
 

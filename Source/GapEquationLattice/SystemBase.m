@@ -5,13 +5,13 @@ classdef SystemBase
         verticalPeriodicBoundary = true;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 2 * 0.018; %for 1.75: 0.0650, for the 2.75: 0.02937, for 3.75:  0.003723
+        guessDelta = 2 * 0.0004; %for 1.75: 0.0650, for the 2.75: 0.02937, for 3.75:  0.003723
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaNorm = false;
-        fixedBoundaryDeltaArg = true;
+        fixedBoundaryDeltaArg = false;
         phi_1 = 1.0*pi/3.0; %phase of the superconducting gap on the left side
-        phi_2 = 1.0*pi/3.0 + (117*pi/180); %phase of the superconducting gap on the right side, phase shift of 117°
-        layer =  ["SC", 30];%["SC", 12, "AM", 6, "SC",12]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
+        phi_2 = 1.0*pi/3.0;% + (117*pi/180); %phase of the superconducting gap on the right side, phase shift of 117°
+        layer =  ["SC", 15, "AM", 15];%["SC", 12, "AM", 6, "SC",12]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
 
 
