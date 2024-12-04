@@ -95,193 +95,121 @@ when we look at the current flow's direction. For exemple on the left we have $f
 
 
 
-% \paragraph{6. SC15AM15}$~$\\
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC15AM15/NotFourier/MeanLine/FreeDelta/diffMU/-2.75/plot.tex}
-%     \caption{SC15AM15 with $\mu = -2.75$}
-% \end{figure}
-% \footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_squared\_SCAM.gp" -SimulationPath "/SC15AM15/NotFourier/FreeDelta/diffMU/-2.75" -LatexPath "/SC15AM15/NotFourier/FreeDelta/diffMU/-2.75/";}\\
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC15AM15/NotFourier/MeanLinePhase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/plot.tex}
-%     \caption{SC15AM15 with $\mu = -2.75$}
-% \end{figure}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC15AM15/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-%     \caption{SC15AM15 with $\mu = -2.75$}
-% \end{figure}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC15AM15/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-%     \caption{SC15AM15 with $\mu = -2.75$}
-% \end{figure}
+\paragraph{6. SC15AM15}$~$\\
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC15AM15/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
+    \caption{SC15AM15 with different $\mu$.}
+\end{figure}
+The expectation value is very low ($<10^{-6}$) for all values outer $-1.75\le\mu\le1.55$.
+We now stick with the lowest mu possible we can use, $\mu = -1.75$.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|c|c}
+        $\mu$          & -1.75 & -0.75 & 0.75 & 1.5 \\\hline\hline
+         $|\langle c_{i\uparrow}c_{i\downarrow}\rangle|_0$  & 0.03  & 0.035 &  0.1  & 0.1
+    \end{tabular}
+\end{table}
 
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC15AM15/NotFourier/MeanLine/FixedPhaseDelta/allMU/plot.tex}
+    \caption{SC15AM15 with different $\mu$.}
+\end{figure}
 
+For a nornal metal we would exepect these oscilations to vanish. Those are properties of the altermagnet. Instead we should just obtain a exponentiall decay.
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC15N15/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
+    \caption{SC15N15 with different $\mu$.}
+    \label{fig:SC15N15}
+\end{figure}
+Here we have still observe some fluctuations but these are smaller than the oscilations we had by a factor ten. The lines are more recognisable for a high DOS, i.e. for small $|\mu|$.\\
+We see that $\mu = -2.75$ has an unnormal small value for a SC N. This is actely a statement that we are going to observe  in the SC-AM-SC as well..
 
-% \paragraph{7. SC12AM6SC12}$~$\\
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC12AM6SC12/NotFourier/FreeDelta/diffMU/-2.75plot.tex}
-%     \caption{SC12AM6SC12 with $\mu = -2.75$, free}
-% \end{figure}
+\paragraph{7. SC12-AM6-SC12}$~$\\
+We first have a look at the tri layer SC over 12 sites followed by AM over 6 and another SC over 12.\\
+The main change here is that having an SC on both sides we see the leaking effect of the SCAM setup described above taking place on each interface.
+These exponentiall oscillating decays meet eacother in the middle of the structure. The amplitude and frequency of the oscillations seams to be
+closely related to the $\mu$ value. We have a lot of noise in $\mu=2.2$ despite the 200 iterrations which is relatively low compared to the other 
+$\mu$. Maybe the density of state is too low
+arround this chemical potential.\\ 
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=-3.75$ with a start at $\pi/3$}
+    \label{fig:SC12AM6SC12}
+\end{figure} 
 
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC12AM6SC12/NotFourier/Meanline/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-%     \caption{SC12AM6SC12 with $\mu = -2.75$}
-% \end{figure}
-% \footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_3layers\_SCAMSC.gp" -SimulationPath "/SC12AM6SC12/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_at/1.0472/" -LatexPath "/SC12AM6SC12/NotFourier/Meanline/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_1.0472/";
-% }
+Now we can apply on constant phase everywhere and fix it on the sides. The simulation conserve that falt phase and it even drop to zero inside the AM.
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/MeanLine_Phase/FixedNormPhaseDelta/allMU/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=-3.75$ with a start at $\pi/3$}
+\end{figure}
 
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC12AM6SC12/NotFourier/Meanline_Phase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-%     \caption{SC12AM6SC12 with $\mu = -2.75$}
-% \end{figure}
-% \footnote{./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine\_phase\_3layers\_SCAMSC.gp" -SimulationPath "/SC12AM6SC12/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/" -LatexPath "/SC12AM6SC12/NotFourier/Meanline\_Phase/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting\_1.0472/";
-% }
+\paragraph{Currents for $\mu=-3.75$}
+In this section we want to show the phase gradient dependence of the current $ I \propto \nabla \varphi$. We first fix the fase at $\pi/3$ on one side
+and intialize the system with a linear gradient of $117^{\circ}$ over the system.
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/DiffMU/starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=-3.75$ with a start at $\pi/3$}
+    
+\end{figure}
+We see a dependence of the slope on the chemical potential as before [..]. \\
 
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC12AM6SC12/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-%     \caption{SC12AM6SC12 with $\mu = -2.75$}
-% \end{figure}
+Now we can inspect the current for these different values of $\mu$. 
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-3.75/starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=-3.75$ with a start at $\pi/3$}
+\end{figure}
+In this first case, the chemical potential is very low, which means that the density of state is low as well. Let us analyse the current following it's natural flow.
+We start from the left, the phase gradient show some current flowing to the right. The closer we get to the AM, the stronger it's effect. We describe the AM as having
+a hopping of $t-m$ on the $y$ axis and a hopping of $t+m$ on the $x$ axis. These asymetries can explain that the current has a perpendicular direction is the AM. 
+After the AM we have the same behaviour than before. It is here important to note that due to the low $\mu$ the current in the SC is low, and is relatively high in the AM in comparison.\\
+Beside those three major precesses, we observe a smoth transition in the current between those different regions. 
+\begin{figure}[H]
+    \centering
+    \input{../Thesis/Plots/SC12AM6SC12/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.2/starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=-2.2$ with a start at $\pi/3$}
+\end{figure}
+Now that we have increased the chemical potential, the density of state has increased as well. The current in the SC become much stronger by an order of magnitude of $10^4$. 
+[Does the current in the AM scales accordingly whith the $\mu$?]. Previous simulations have shown that with the slope of the phase gradient increases as well, resulting 
+in a current that shadows the effects of the AM.\\
 
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC15AM15/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_1.0472/plot.tex}
-%     \caption{SC12AM6SC12 with $\mu = -2.75$}
-% \end{figure}
+Now we can analyse the continuity of the current in both cases $\mu=-3.75$ and $\mu=-2.2$. Adding the AM seams tends to make the algorith harder to converge. These resuts are obtained
+with 250 iterrations and could be improved by increasing the number of iterrations in a future work. At the moment an accuracy in relative change of $1.18e-4\%$ is reached in the norm of $\Delta$ 
+and one of $0.08\%$ in the phase gradient (current). The main note we can take is that the contuinuity is about an order of magnitude lower
+than the current itself which is a realtive poor result.
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/MeanLine_Continuity/FixedLinearPhaseGradient/Phase117deg/mu-3.75/starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=-3.75$ with a start at $\pi/3$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/MeanLine_Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.2/starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=-3.75$ with a start at $\pi/3$}
+\end{figure}
 
-% And we try with a longer SC to try to minimise the fluctuations.
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC45/MeanLine/FixedDeltaNorm/allMU/plot.tex}
-%     \caption{}
-% \end{figure}
+Leaving the current aside, we can make other observations. First we can try to have a better look at these oscillations. Here we have pictured them for different values of $\mu$ in a 
+twice longer AM section than before. In the same way than for the Fig.\ref{fig:SC12AM6SC12} and Fig.\ref{fig:SC15N15} we see that we have a drop of the value for $\mu = -2.75$.
+Moreover for a $\mu = -3.75$ we see that the curve isn't symmetric anymore. Despite increasing the accuracy in the relative change, we are left with that curve. Maybe the 
+oscillations regain amplitude and after leaking in the AM, it maybe regain some amplitude into the next SC. This hypothesis isn't very physical tho..
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM12SC12/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
+    \caption{SC12AM12SC12 with $\mu=-3.75$ with a start at $\pi/3$}
+\end{figure}
 
-% \paragraph{3.Fixed $|\Delta_0|$ and a phase of $\pi/3$ on the sides.}$~$\\
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/MeanLine_Phase/FixedNormPhaseDelta/PhaseSide1.0472/allMU/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides}
-% \end{figure}
-% The algorithme doesn't seam to converge and the relative change sattles at 0.00285\%.\\
+And lastely a rather important fact would be the phase independance of these oscillations. Here we ploted a given $\mu$ value for start constant phases over the system. We see that the
+curves are unchanged so that we get the same oscillations regardless the phase. 
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/MeanLine/FixedPhaseDelta/allMU/plot.tex}
+    \caption{SC12AM12SC12 with $\mu=-3.75$ with a start at $\pi/3$}
+\end{figure}
 
-% \paragraph{4.Fixed phase of $\pi/3$ on the sides left and a gradient of $117^{\circ}$.}$~$\\
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/allMU/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides}
-% \end{figure}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU3.75/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides.}
-% \end{figure}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides.}
-% \end{figure}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide1.0472/MU1.75/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides.}
-% \end{figure}
-
-% And the current map:
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V1/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides. V1 $\mu = 2.75$.}
-% \end{figure}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V2/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides. V2 $\mu = 2.75$.}
-% \end{figure}
-
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V1/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides. V1 $\mu = -2.75$.}
-% \end{figure}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/Current/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V2/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides. V2 $\mu = -2.75$.}
-% \end{figure}
-
-
-% And the continuity maps:
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V1/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides. V1 $\mu = 2.75$.}
-% \end{figure}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU2.75/V2/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides. V2 $\mu = 2.75$.}
-% \end{figure}
-
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V1/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides. V1 $\mu = -2.75$.}
-% \end{figure}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/Continuity/FixedLinearPhaseGradient/PhaseSide1.0472/MU-2.75/V2/plot.tex}
-%     \caption{using a start of $\pi/3$ on the sides. V2 $\mu = -2.75$.}
-% \end{figure}
-
-% The different versions are very symmetric. However the eigenvector were derived using $\chi_n$ and $E_{-n}$ so we are going to stick with V2 for the current. 
-
-% \paragraph{5. Phase start independance of the gradient.}$~$\\
-% One last important physical property to show is the independance of the phase start of the gradient. The gradient is relevant for the current so the physic 
-% should stay invariant under phase start change.\\
-
-% We use $\mu = -2.75$ with $\varphi_1 = -\pi/3$ and $\varphi_2 = 3\pi/4$.
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide-1.0472/MU-2.75/plot.tex}
-%     \caption{Using a start of $-\pi/3$ on the side.}
-% \end{figure}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/MeanLine_Phase/FixedLinearPhaseGradient/PhaseSide2.3562/MU-2.75/plot.tex}
-%     \caption{Using a start of $3\pi/4$ on the side.}
-% \end{figure}
-% The gradient has the same shape so the current will eb very much the same. The low variations makes the 
-% continuity map very similar. We admit that this works fine. The pick on the lattice point numer 3 results 
-% of some asumed numerical error. A better accuracy should solve this. The algorithm had 200 iterrations here.\\ 
-
-% Here is a map of the phase to track down this specific point:
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC30/Phase/FixedLinearPhaseGradient/PhaseSide2.3652/MU-2.75/plot.tex}
-%     \caption{Using a start of $3\pi/4$ on the side.}
-% \end{figure}
-
-% Let's go.
-
-% Complexer systems:
-% \subsection{SC15AM15}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC15AM15/MeanLine/FreeDelta/MU-2.75/plot.tex}
-%     \caption{SC15AM15 with $\mu = -2.75$}
-% \end{figure}
-
-% \subsection{SC12AM6SC12}
-% \begin{figure}[H]
-%     \centering
-%     \input{../Plots/SC12AM6SC12/MeanLine/FixedLinearPhaseGradient/Phase117deg/MU-2.75/1.0472/plot.tex}
-%     \caption{SC12AM6SC12 with $\mu = -2.75$}
-% \end{figure}
-% Here however he get 918 positive eigenvalues instead of 900. 
 \end{document}

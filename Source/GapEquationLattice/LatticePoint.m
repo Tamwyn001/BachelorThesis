@@ -58,6 +58,7 @@ classdef LatticePoint
                 obj.c_up_c_down = obj.delta / obj.U;
                 obj.F_x = [1, 1]; %according to mjøs p19
                 obj.F_y = [-1, -1];
+
             else
                 obj.U = 0;    
                 obj.delta = 0;       

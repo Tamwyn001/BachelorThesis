@@ -29,12 +29,12 @@ logarrow(v1,v2) = log(1 + enorm(v1,v2))**contrast * scale
 
 
 set mxtics 5
-set mytics 5
+set mytics 2
 set palette maxcolors 20
 
 unset title # '\textbf{Correlation of the c operators}' 
 set colorbox
 set key outside right
 set ytics offset char -1, char 0  
-set xtics offset char 0, char -0.3  
+set xtics offset char 0, char -0.05  
 set ylabel offset char 3, char 0 

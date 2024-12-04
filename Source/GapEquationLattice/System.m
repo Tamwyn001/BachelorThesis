@@ -44,7 +44,6 @@ classdef System < SystemBase
                             end 
                                 to_add = to_add + System.hopping_t_ij(); %part of the non-interacting hamiltonian
                                 %futher interaction processes can be added here 
-                        
                            
 
                             obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = to_add;
@@ -70,7 +69,7 @@ classdef System < SystemBase
         
         function matrix=altermagnetMatrix(axe)
             m_sigma = SystemBase.getMSigma(axe);
-            matrix = -0.5.* [m_sigma, zeros(2); zeros(2), -1 .* m_sigma];
+            matrix = 0.5.* [-1.0 .* m_sigma, zeros(2); zeros(2), m_sigma];
         end
         function matrix = hopping_t_ij()
             matrix = -0.5 .* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];

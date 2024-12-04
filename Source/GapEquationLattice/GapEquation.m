@@ -1,7 +1,7 @@
 
 
 
-treshold = 0.0001; %convergence treshold in percentage of change
+treshold = 0.001; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system = System();
@@ -21,7 +21,7 @@ dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCol
 
 
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>400, dist, treshold, 2)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+while (GapEquationBase.canLoop(t>150, dist, treshold, 2)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);
@@ -64,8 +64,8 @@ while (GapEquationBase.canLoop(t>400, dist, treshold, 2)) % last values gives ho
     abs_dist_phase = abs(dist(:,1,2));
     [x_valu, x_id] = max(abs_dist_abs);
     [y_valu, y_id] = max(abs_dist_phase);
-    fprintf('convergence  ABS = %.5f %% at %d, PHASE = %.5f %% at %d | old norm: %d, old angle %d', ...
-        dist(x_id,1,1), x_id, dist(y_id,1,2), y_id, delta_old(x_id, 1),delta_old(x_id, 2));
+    fprintf('convergence  ABS = %.5f %% at %d, PHASE = %.5f %% at x=%d | old norm: %d, old angle %d', ...
+        dist(x_id,1,1), x_id, dist(y_id,1,2), mod(y_id-1,30) +1, delta_old(x_id, 1),delta_old(x_id, 2));
 end 
 
 %generate a plotable matrix

@@ -5,20 +5,20 @@ classdef SystemBase
         verticalPeriodicBoundary = true;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 2 * 0.0004; %for 1.75: 0.0650, for the 2.75: 0.02937, for 3.75:  0.003723
+        guessDelta = 2 * 0.0+015; %for 1.75: 0.0650, for the 2.75: 0.02937, for 3.75:  0.003723
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaNorm = false;
         fixedBoundaryDeltaArg = false;
         phi_1 = 1.0*pi/3.0; %phase of the superconducting gap on the left side
         phi_2 = 1.0*pi/3.0;% + (117*pi/180); %phase of the superconducting gap on the right side, phase shift of 117°
-        layer =  ["SC", 15, "AM", 15];%["SC", 12, "AM", 6, "SC",12]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
+        layer =   ["SC", 15, "N", 15];% ["SC", 12, "AM", 6, "SC",12];superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
 
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
-        mu = -2.75; % * t_ij  -3.75
-        m = 1; %hopping
+        mu = 2.75; % * t_ij  -3.75
+        m = 0.5; %hopping
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions
         Ny = 15; 
