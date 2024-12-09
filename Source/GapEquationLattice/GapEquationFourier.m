@@ -1,7 +1,7 @@
 
 
 
-treshold = 0.2; %convergence treshold in percentage of change
+treshold = 0.0001; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system_fourier = SystemFourier();
@@ -12,17 +12,14 @@ t = 1;
 CORREL_C_trace = zeros(10, system_fourier.Ny, system_fourier.Nx);
 
 
-delta_old = ones(system_fourier.Nx, 4); %random big to compare with to start the loop
-
-
 %seting the value to compare with after its going to be updated
-dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system_fourier), 4);
+dist = 100 * ones(system_fourier.Nx, 1);
 
 chi = zeros(2 * system_fourier.Nx, 2 * system_fourier.Nx, system_fourier.Ny);
 ener = zeros(2 * system_fourier.Nx, 2 * system_fourier.Nx, system_fourier.Ny);
 
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>400, dist, treshold, 4)) 
+while (GapEquationBase.canLoop(t>1000, dist, treshold, 1)) 
 
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
@@ -77,7 +74,7 @@ while (GapEquationBase.canLoop(t>400, dist, treshold, 4))
                             end
                             % then we compute the summand
 
-                            F_dir = F_dir + u_nxk * conj (v_nxk) * ( 1 - Fermi(1*computation.E(n))) * exp(1i*rot* system_fourier.k(k_id));
+                            F_dir = F_dir + u_nxk * conj (v_nxk) * ( 1 - Fermi(1*computation.E(n))) * exp(1i * rot * system_fourier.k(k_id));
                         end
                     end
 
@@ -120,7 +117,27 @@ while (GapEquationBase.canLoop(t>400, dist, treshold, 4))
     t = t+1;
 
     %there are four parameter to check the convergence towards
-    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system_fourier), 4);
+
+    %when we have our parameters we can compute F(S) and F(T)
+
+    for i = 1 : system_fourier.Nx
+        uv_for_site_and_neigbours = zeros(3, 2 *  system_fourier.Nx, SystemBase.Ny, 2); %sites(x-1, x, x+1) x n x k x (u,v)
+            for n = 1 : size(computation.E, 1)
+                for k_id = 1 : SystemBase.Ny
+                    for target_site = -1 : 1
+                        %here we need to remap the site to + 2 to get from 1 to 3.
+                        %1: x-1, 2: x, 3: x+1
+
+                        uv_for_site_and_neigbours(target_site + 2, n, k_id, :) = computation.GetUVatXK(x + target_site, n, k_id);
+                    end
+                    
+                end
+            end
+            %for each site and k we pass the uv of the neighbours to compute the d-wave parameter 
+            system_fourier.points{i} = system_fourier.points{i}.computeDWave(system_fourier, uv_for_site_and_neigbours, computation.E); %compute all the d-wave parameter
+    end
+    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system_fourier), 1);
+    
 
     % abs_dist_re_px = abs(dist(:, 1, 1));
     % abs_dist_re_mx = abs(dist(:, 1, 2));
@@ -168,21 +185,31 @@ while (GapEquationBase.canLoop(t>400, dist, treshold, 4))
     % fprintf('Convergence in %%\n    F+x abs: %.3f, angle: %.3f at %d and %d\n    F-x abs: %.3f, angle: %.3f at %d and %d\n    F+y abs: %.3f, angle: %.3f at %d and %d\n    F-y abs: %.3f, angle: %.3f at %d and %d\n', ...
     %     abs_valu_px, angle_valu_px, abs_id_px, angle_id_px, abs_valu_mx, angle_valu_mx, abs_id_mx, angle_id_mx, abs_valu_py, angle_valu_py, abs_id_py, angle_id_py, abs_valu_my, angle_valu_my, abs_id_my, angle_id_my);
     
-    debug_id = 15;
-    abs_dist_abs_px = abs(dist(debug_id, 1, 1));
-    abs_dist_abs_mx = abs(dist(debug_id, 1, 2));
-    abs_dist_abs_py = abs(dist(debug_id, 1, 3));
-    abs_dist_abs_my = abs(dist(debug_id, 1, 4));
+    % debug_id = 15;
+    % abs_dist_abs_px = abs(dist(debug_id, 1, 1));
+    % abs_dist_abs_mx = abs(dist(debug_id, 1, 2));
+    % abs_dist_abs_py = abs(dist(debug_id, 1, 3));
+    % abs_dist_abs_my = abs(dist(debug_id, 1, 4));
 
-    abs_dist_angle_px = abs(dist(debug_id, 2, 1));
-    abs_dist_angle_mx = abs(dist(debug_id, 2, 2));
-    abs_dist_angle_py = abs(dist(debug_id, 2, 3));
-    abs_dist_angle_my = abs(dist(debug_id, 2, 4));
+    % abs_dist_angle_px = abs(dist(debug_id, 2, 1));
+    % abs_dist_angle_mx = abs(dist(debug_id, 2, 2));
+    % abs_dist_angle_py = abs(dist(debug_id, 2, 3));
+    % abs_dist_angle_my = abs(dist(debug_id, 2, 4));
 
 
     
-    fprintf('Convergence in %%\n    F+x abs: %.3f, angle: %.3f at %d\n    F-x abs: %.3f, angle: %.3f at %d \n    F+y abs: %.3f, angle: %.3f at %d\n    F-y abs: %.3f, angle: %.3f at %d\n', ...
-        abs_dist_abs_px, abs_dist_angle_px, debug_id, abs_dist_abs_mx, abs_dist_angle_mx, debug_id, abs_dist_abs_py, abs_dist_angle_py, debug_id, abs_dist_abs_my, abs_dist_angle_my, debug_id);
+    % fprintf('Convergence in %%\n    F+x abs: %.3f, angle: %.3f at %d\n    F-x abs: %.3f, angle: %.3f at %d \n    F+y abs: %.3f, angle: %.3f at %d\n    F-y abs: %.3f, angle: %.3f at %d\n', ...
+    %     abs_dist_abs_px, abs_dist_angle_px, debug_id, abs_dist_abs_mx, abs_dist_angle_mx, debug_id, abs_dist_abs_py, abs_dist_angle_py, debug_id, abs_dist_abs_my, abs_dist_angle_my, debug_id);
+    
+
+    abs_dist_abs_F_d = abs(dist(:, 1, 1));
+    abs_dist_angle_F_d = abs(dist(:, 2, 1));
+
+    [x_valu, x_id] = max(abs_dist_abs_F_d);
+    [y_valu, y_id] = max(abs_dist_angle_F_d);
+
+    fprintf('Convergence in %%\n    Fd abs: %.4f, at %d angle: %.4f at %d\n', ...
+        x_valu, x_id, y_valu, y_id);
     
 end 
 
@@ -229,7 +256,7 @@ end
 
 path_CORREL_C = strcat(folder, sim_deltails);
 disp(path_CORREL_C);
-writematrix(WriteHeatmap(system_fourier, 'Delta_d'), strcat(path_CORREL_C, 'Delta_D.dat'),'Delimiter',' ')
+writematrix(WriteHeatmap(system_fourier, 'F_d'), strcat(path_CORREL_C, '_F_D.dat'),'Delimiter',' ')
 
 
 

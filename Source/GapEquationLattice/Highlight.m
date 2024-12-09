@@ -1,6 +1,13 @@
-function Highlight(type)
-    system = System();
-    system = system.createLattice();
+function Highlight(type, tilted, fourier)
+    if strcmp(fourier, "fourier")
+        system = SystemFourier();
+        system = system.createLattice();
+    else
+        system = System();
+        system = system.createLattice(tilted);
+    end
+   
+    
     target_info = "";
     if nargin ~= 0
         switch (type)
@@ -15,8 +22,15 @@ function Highlight(type)
                 return
         end
     end
-    map = zeros(system.Ny, system.Nx);
-    for i = 1:system.Nx*system.Ny
+    if strcmp(fourier, "fourier")
+        total = system.Nx;
+        map = zeros(system.Nx,1);
+    else
+        total = system.Nx*system.Ny;
+        map = zeros(system.Ny, system.Nx);
+    end
+    
+    for i = 1:total
         if strcmp(target_info, "type") 
             if strcmp(system.points{i}.type, type)
                 map(system.points{i}.y, system.points{i}.x) = 1 ;

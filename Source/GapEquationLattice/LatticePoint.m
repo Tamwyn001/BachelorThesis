@@ -27,33 +27,41 @@ classdef LatticePoint
         % Constructor method to initialize coordinates
         function obj = LatticePoint(system, x, y)
             obj.system = system;
+            if isa(system, 'SystemFourier')
+                tilted = false; %this is not used in the fourier system
+            else
+                tilted = system.tilted;
+            end
             if nargin == 3
                 obj.x = x;
                 obj.y = y;
                 obj.i = system.xy_to_i(x, y);
-                obj.materialLayer = SystemBase.sampleTypeAt(obj.x);
-
          
             elseif nargin == 2
                 obj.i = x; %the input is the index i
                 [obj.x ,obj.y] = system.i_to_xy(obj.i);
-                %fprintf('x: %d, y: %d\n', obj.x, obj.y);
-                obj.materialLayer = SystemBase.sampleTypeAt(obj.x);
+
             end
 
+            obj.materialLayer = SystemBase.sampleTypeAt(obj.x, obj.y, tilted, numel(system.layer)/2);
+
             obj = obj.classifyPoint();
+            
             if strcmp(obj.materialLayer,'SC')
+                rot = 0;
                 obj.U = 2;
                 if SystemBase.fixedBoundaryDeltaArg
                     if obj.x == 1 
                         obj.delta = system.fixedDelta(1);
+                        rot = SystemBase.phi_1;
                     elseif obj.x == system.Nx
                         obj.delta = system.fixedDelta(2);
+                        rot = SystemBase.phi_2;
                     else
                         obj.delta = abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
+                        rot = obj.SamplePhaseAtGradient(obj.x, system);
                     end
-                    obj.F_x = exp(-1i * obj.SamplePhaseAtGradient(obj.x, system)) .* [1, 1]; %according to mjøs p19
-                    obj.F_y = exp(-1i * obj.SamplePhaseAtGradient(obj.x, system)) .* [-1, -1];
+                    
                     %fprintf('created at %d with angle, %d', obj.x ,obj.SamplePhaseAtGradient(obj.x, system));
                 elseif (SystemBase.fixedBoundaryDeltaNorm) && (obj.x == 1 || obj.x == system.Nx)
                     obj.delta = abs(system.guessDelta)*exp(1i * 0);
@@ -61,11 +69,14 @@ classdef LatticePoint
                     obj.delta = system.guessDelta;
                 end
                 obj.c_up_c_down = obj.delta / obj.U;
-
+                obj.F_x = exp(-1i * rot) .* [1, 1]; %according to mjøs p19
+                obj.F_y = exp(-1i * rot) .* [-1, -1];
+                obj.F_d = 0;
 
             else
                 obj.F_x = [0, 0]; %according to mjøs p19
                 obj.F_y = [0, 0];
+                obj.F_d = 0;
                 obj.U = 0;    
                 obj.delta = 0;       
                 obj.c_up_c_down = 0; %for init it is not important what this is bc delta go inside ham and then write the c_up_c_down

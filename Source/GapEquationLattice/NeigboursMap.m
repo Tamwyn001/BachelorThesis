@@ -1,11 +1,11 @@
 function NeigboursMap(x, y)
     system = System();
-    system = system.createLattice();
+    system = system.createLattice(false);
 
     map = zeros(system.Ny, system.Nx);
     
-    id = system.points{1}.xy_to_i(x, y);
-    map(y, x) = 0.5;
+    id = system.xy_to_i(x, y);
+    map(y, x) = 2;
     if ~isempty(system.points{id}.neighbour{1})
         map(system.points{id}.neighbour{1}.y, system.points{id}.neighbour{1}.x) = 0.5;
     end
@@ -13,10 +13,10 @@ function NeigboursMap(x, y)
         map(system.points{id}.neighbour{2}.y, system.points{id}.neighbour{2}.x) = 1;
     end
     if ~isempty(system.points{id}.neighbour{3})
-        map(system.points{id}.neighbour{3}.y, system.points{id}.neighbour{3}.x) = -0.5;
+        map(system.points{id}.neighbour{3}.y, system.points{id}.neighbour{3}.x) = 0.5;
     end
     if ~isempty(system.points{id}.neighbour{4})
-        map(system.points{id}.neighbour{4}.y, system.points{id}.neighbour{4}.x) = -1;
+        map(system.points{id}.neighbour{4}.y, system.points{id}.neighbour{4}.x) = 1;
     end
     % id = system.points{1}.xy_to_i(x, y);
     % for i = 1:system.Nx

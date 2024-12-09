@@ -1,11 +1,11 @@
-function PrintHam(x,y, k_id,systemType)
+function PrintHam(x,y, k_id, systemType,tilted)
     if strcmp(systemType, 'Fourier')
         system = SystemFourier();
         system = system.createLattice();
         system = system.generateHam(true);
     else
         system = System();
-        system = system.createLattice();
+        system = system.createLattice(tilted);
         system = system.generateHam();
     end
     

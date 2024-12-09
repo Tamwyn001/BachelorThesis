@@ -9,7 +9,7 @@ function points = WriteHeatmap(system, to_write)
     for i = 1: numel(system.points)
         % disp([num2str(j) num2str(i) string(heat_map(j,i))])
         point = system.points{i};
-        if strcmp(to_write, 'Delta_d')
+        if strcmp(to_write, 'F_d')
             attrib1 = num2str(abs(point.F_d));
             attrib2 = num2str(angle(point.F_d));
             points(i+t, :) = [string(point.x), attrib1, attrib2];

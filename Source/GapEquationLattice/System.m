@@ -3,15 +3,22 @@ classdef System < SystemBase
     % this is intended to diagonalize a 4NxNy x 4NxNy matrix
     properties
         tilted
+        DWavePurpose
     end
     properties (Constant)
         t_ij = 1;
     end
     methods
-        function obj = System()
+        function obj = System(DWavePurpose)
             %% object intialization
             obj = obj@SystemBase();
             obj.points = cell(obj.Nx * obj.Ny ,1);
+
+            if nargin == 0
+                obj.DWavePurpose = false;
+            else
+                obj.DWavePurpose = DWavePurpose;
+            end
         end
 
         function obj = createLattice(obj, tilted)
@@ -43,7 +50,11 @@ classdef System < SystemBase
                             to_add = zeros(4);
                             if strcmp(obj.points{i}.materialLayer,'AM')
                                 to_add = to_add + System.altermagnetMatrix(axe);
-                            end 
+
+                            elseif strcmp(obj.points{j}.materialLayer,'SC') && obj.DWavePurpose
+                                to_add = to_add + System.dWaveMatrix(axe);
+                            end
+
                                 to_add = to_add + System.hopping_t_ij(); %part of the non-interacting hamiltonian
                                 %futher interaction processes can be added here 
                            
@@ -61,7 +72,7 @@ classdef System < SystemBase
 
         function matrix = onSiteMatrix(obj, i) %site i
             matrix = 1*System.chemicalMatrix(System.mu);
-            if strcmp(obj.points{i}.materialLayer, 'SC')
+            if strcmp(obj.points{i}.materialLayer, 'SC') && ~(obj.DWavePurpose)
                 matrix = matrix + System.superconductingMatrix(obj.points{i}.delta);
             end
         end
@@ -82,6 +93,21 @@ classdef System < SystemBase
         end
         function matrix= chemicalMatrix(mu)
             matrix = -0.5*mu .* [eye(2), zeros(2); zeros(2), -eye(2)];
+        end
+        function matrix = dWaveMatrix(axis, point)
+            F = 0;
+            if strcmp(axis, '+x')
+                F = point.F_x(1);
+            elseif strcmp(axis, '-x')
+                F = point.F_x(2);
+            elseif strcmp(axis, '+y')
+                F = point.F_y(1);
+            elseif strcmp(axis, '-y')
+                F = point.F_y(2);
+            end
+
+            matrix = -0.5 .* [zeros(2), (1i)* F .* PauliMatrix.sigmaY; ...
+                (1i)* F .* PauliMatrix.sigmaY, zeros(2)];
         end
     end
 end

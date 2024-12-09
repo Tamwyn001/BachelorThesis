@@ -1,7 +1,7 @@
 treshold = 0.001; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
-system = System();
+system = System_DWave();
 system = system.createLattice();
 system = system.generateHam();
 computation = Computation(system); %holds the eigenvalues and eigenvectors to access them later without passing huge matrices around
@@ -37,17 +37,67 @@ while (GapEquationBase.canLoop(t>150, dist, treshold, 2)) % last values gives ho
                     % Due to the form of ^c we set u_n=(u_nUP, u_nDOWN) and v_n=(v_nUP, v_nDOWN)
 
         %to each eigenvalue there is an eigenvector. So we get the right components of the eigenvector
+        axis = ['x', 'y'];
+        directions = [1, -1];
+        for axis_id = 1:2 %x and y
+            for direct_id =  1:2 %+1 and -1 directions
 
-        for index_eigen = 1 : numel(computation.n) %sum over n, the numbers of eigenvectors with POSITIVE energies.
-            n = computation.n(index_eigen);
-            [u_i_n, v_i_n] = computation.GetUVatI(i, n);
+                F_dir = 0; %init F_dir on each particle space direction
+                can_compute = true;
+                if (x == 1 && direction_id == 2 && axis_id == 1) %-x
+                    can_compute = ~isempty(system_fourier.points{x}.neighbour{2}); 
 
-            c_up_c_down = c_up_c_down + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(1*computation.E(n)))...
-                + u_i_n(2) * conj(v_i_n(1)) *   (Fermi(1*computation.E(n))) ; %spin-dep variables in H are
-                % defined with general spin sigma and delta with up or down
+                elseif (x == system_fourier.Nx && direction_id == 1 && axis_id == 1) %+x
+                    can_compute = ~isempty(system_fourier.points{x}.neighbour{1});
+
+                elseif (y == 1 && direction_id == 2 && axis_id == 2) %-y
+                    can_compute = ~isempty(system_fourier.points{y}.neighbour{4});
+                elseif (y == system_fourier.Ny && direction_id == 1 && axis_id == 2) %+y
+                    can_compute = ~isempty(system_fourier.points{y}.neighbour{3});
+                end
+                if can_compute  
+                    for index_eigen = 1 : numel(computation.n) %sum over n, the numbers of eigenvectors with POSITIVE energies.
+                        n = computation.n(index_eigen);
+                        if strcmp(axis_id, 'x')
+                            j = i + directions(direct_id);
+                        else
+                            j = i + directions(direct_id) * system.Nx;
+                        end
+                        [u_i_n, v_i_n] = computation.GetUVatI(i, n);
+       
+                        [u_j_n, v_j_n] = computation.GetUVatI(j, n);
+
+
+                        F_dir = F_dir + u_i_n(1) * conj(v_j_n(2)) * (1- Fermi(1*computation.E(n)))...
+                            + u_i_n(2) * conj(v_j_n(1)) *   (Fermi(1*computation.E(n))) ; %spin-dep variables in H are
+                            % defined with general spin sigma and delta with up or down
+                    end
+                    %asign the computed F to the right variable in axis and direction
+                    if strcmp(axis(axis_id), 'x')
+                        if direction_id == 1 %+x
+                            F_x(1) = F_dir;
+                        else  %-x
+                            F_x(2) = F_dir;
+                        end
+                    else
+                        if direction_id == 1 %+y
+                            F_y(1) = F_dir;
+                        else    %-y
+                            F_y(2) = F_dir;
+                        end
+                    end
+                else
+                    %fprintf('cant compute at %d', x);
+                    continue;
+                end
+                
+            end
         end
-        system.points{i} = system.points{i}.updateDelta(c_up_c_down, system); 
+
+        %we asign the values
+        system_fourier.points{x} = system_fourier.points{x}.updateF(F_x, F_y);
     end
+
 
     %correct Hamiltonian
     for i = 1: system.Nx * system.Ny

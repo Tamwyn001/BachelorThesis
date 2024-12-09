@@ -35,12 +35,9 @@ classdef GapEquationBase
         function result = generateNewCollumnDeltaOrF(system)
 
             if isa(system, 'SystemFourier')
-                result = zeros(system.Nx, 4); % +x, -x, +y, -y
+                result = zeros(system.Nx, 1); % +x, -x, +y, -y
                 for j = 1: system.Nx
-                    result(j,1) = system.points{j}.F_x(1);
-                    result(j,2) = system.points{j}.F_x(2);
-                    result(j,3) = system.points{j}.F_y(1);
-                    result(j,4) = system.points{j}.F_y(2);
+                    result(j,1) = system.points{j}.F_d;
                 end
 
             elseif isa(system, 'System')
