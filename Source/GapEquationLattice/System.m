@@ -1,7 +1,9 @@
 classdef System < SystemBase
     % This system describes the formalism that let pick some periodic boundary conditions
     % this is intended to diagonalize a 4NxNy x 4NxNy matrix
-
+    properties
+        tilted
+    end
     properties (Constant)
         t_ij = 1;
     end
@@ -12,10 +14,10 @@ classdef System < SystemBase
             obj.points = cell(obj.Nx * obj.Ny ,1);
         end
 
-        function obj = createLattice(obj)
-            
-            obj = createLattice@SystemBase(obj);
+        function obj = createLattice(obj, tilted)
 
+            obj = createLattice@SystemBase(obj);
+            obj.tilted = tilted;
             %this requieres a Nx*Ny lattice system
             for i = 1: obj.Nx * obj.Ny
                 obj.points{i} = LatticePoint(obj, i); % {i} is the i-th element of the cell array, not a cell but the stored object
@@ -69,7 +71,7 @@ classdef System < SystemBase
         
         function matrix=altermagnetMatrix(axe)
             m_sigma = SystemBase.getMSigma(axe);
-            matrix = 0.5.* [-1.0 .* m_sigma, zeros(2); zeros(2), m_sigma];
+            matrix = 0.5.* [-1.0 .* m_sigma, zeros(2); zeros(2), transpose(m_sigma)];
         end
         function matrix = hopping_t_ij()
             matrix = -0.5 .* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];

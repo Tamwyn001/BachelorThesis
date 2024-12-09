@@ -2,11 +2,8 @@ function system = ComputeCurrents(system, computation)
     for i = 1: system.Nx * system.Ny
         I_x = 0.0;
         I_y = 0.0;
-
-        altermagnHopp = @(spin, axis) SystemBase.getMSigmaElem(axis, spin, 1) + SystemBase.getMSigmaElem(axis, spin, 2);
-
         target_site = system.points{i};
-        
+        Fermi = @(n) FermiDiarac(1*computation.E(n), system.T);
             for index_eigen = 1 : numel(computation.n) %sum over n, the numbers of eigenvectors with POSITIVE energies.
                 n = computation.n(index_eigen);
                 % make a if on is neigbour i : i-1 etc to avoid the vaccum
@@ -55,21 +52,34 @@ function system = ComputeCurrents(system, computation)
                     vipN = [0 0];
                 end
     
-                hopping_x = @(spin) FermiDiarac(1*computation.E(n), system.T) * (ui(spin)) * conj(uim1(spin) - uip1(spin))...
-                    + (1 - FermiDiarac(1*computation.E(n), system.T)) * conj(vi(spin)) * (vim1(spin) - vip1(spin)); 
-                hopping_y = @(spin) FermiDiarac(1*computation.E(n), system.T) * (ui(spin)) * conj(uimN(spin) - uipN(spin))...
-                    + (1 - FermiDiarac(1*computation.E(n), system.T)) * conj(vi(spin)) * (vimN(spin) - vipN(spin)); 
+                hopping_x = @(spin1, spin2) Fermi(n) * (ui(spin1)) * conj(uim1(spin1) - uip1(spin2))...
+                    + (1 - Fermi(n)) * conj(vi(spin1)) * (vim1(spin1) - vip1(spin2)); 
+                hopping_y = @(spin1, spin2) Fermi(n) * (ui(spin1)) * conj(uimN(spin1) - uipN(spin2))...
+                    + (1 - Fermi(n)) * conj(vi(spin1)) * (vimN(spin1) - vipN(spin2)); 
 
                 if strcmp(target_site.materialLayer, 'SC') || strcmp(target_site.materialLayer, 'AM')
 
-                        I_x = I_x + imag(hopping_x(1) + hopping_x(2)) * system.t_ij ;
-                        I_y = I_y + imag(hopping_y(1) + hopping_y(2)) * system.t_ij ;
+                        I_x = I_x + imag(hopping_x(1,1) + hopping_x(2,2)) * system.t_ij ;
+                        I_y = I_y + imag(hopping_y(1,1) + hopping_y(2,2)) * system.t_ij ;
                 
                 elseif strcmp(target_site.materialLayer, 'AM')
+                    hopping_AM_x = @(spin1, spin2) Fermi(n) * (ui(spin1) * conj(uim1(spin1) - uip1(spin1))...
+                                                        + conj(ui(spin1)) *     (uip1(spin2)- uim1(spin2)))...
+                                      + (1 - Fermi(n)) * (conj(vi(spin1)) *     (vim1(spin1)- vip1(spin1)))...
+                                                             + vi(spin1) * conj(vip1(spin2) - vim1(spin2));
 
-                        I_x = I_x + imag(hopping_x(1)*altermagnHopp(1, 'x') + hopping_x(2)*altermagnHopp(2, 'x')); %different hopping absed on the spin
-                        I_y = I_y + imag(hopping_y(1)*altermagnHopp(1, 'y') + hopping_y(2)*altermagnHopp(1, 'y')) ;
+                    hopping_AM_y = @(spin1, spin2) Fermi(n) * (ui(spin1) * conj(uimN(spin1) - uipN(spin1))...
+                                                        + conj(ui(spin1)) *     (uipN(spin2)- uimN(spin2)))...
+                                      + (1 - Fermi(n)) * (conj(vi(spin1)) *     (vimN(spin1)- vipN(spin1)))...
+                                                             + vi(spin1) * conj(vipN(spin2) - vimN(spin2));
+    
 
+                    for spin2 = 1:2
+                        I_x = I_x + 1/(2i) * (hopping_AM_x(1, spin2)* SystemBase.getMSigmaElem('x', 1, spin2) ...
+                                           +  hopping_AM_x(2, spin2)* SystemBase.getMSigmaElem('x', 2, spin2)); %different hopping absed on the spin
+                        I_y = I_y + 1/(2i) * (hopping_AM_y(1, spin2)* SystemBase.getMSigmaElem('y', 1, spin2) ...
+                                           +  hopping_AM_y(2, spin2)* SystemBase.getMSigmaElem('y', 2, spin2));
+                    end
                 end
 
             end

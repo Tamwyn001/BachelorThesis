@@ -356,16 +356,17 @@ the desired hopping amplitude. $\bm{m}_{ij}$ scales and masks the pauli matricie
 Since the BdG formalism uses fermonic operators we again need to bring the matrix in a way that reflects the fermionic properties regarding to the $\check{c}$ opertor.
 We can remake use of Eq.\ref{eq:Trick1}:
 \begin{equation*}
-    H_{AM} = -\sum_{\langle i j\rangle\sigma\sigma'} \left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} \frac{1}{2}\left(c_{i\sigma}^{\dagger} c_{j\sigma'} - c_{i\sigma}c_{j\sigma'}^{\dagger}\right).
+    H_{AM} = -\sum_{\langle i j\rangle\sigma\sigma'} \left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} \frac{1}{2}\left(c_{i\sigma}^{\dagger} c_{j\sigma'} - c_{i\sigma'}c_{j\sigma}^{\dagger}\right).
 \end{equation*}
-For the last summand we splitted the sum, exchanged the labeling of the states $i\sigma$ and $j\sigma'$ and recombined the sums.
+For the last summand we splitted the sum, exchanged the labeling of the states $i$ and $j$ and recombined the sums. However due to the matrix element in the front
+that we want to factorise with, we can't exchange the labbelings of $\sigma$ and $\sigma'$.
 Bringing this Hamiltonian in the Nambu formalism we ontain by defining
 $\left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} = \mathcal{M}_{\sigma\sigma'}$ 
 the following Hamiltonian:
 \begin{equation*}
     H^{(AM)}_{ij} = \frac{1}{2}\begin{pmatrix}
         -\mathcal{M} & \mathcal{O}\\
-        \mathcal{O} & \mathcal{M}
+        \mathcal{O} & \mathcal{M}^T
     \end{pmatrix}
     ,~~~ \text{where} ~~~ \mathcal{M} = \begin{pmatrix}
         \mathcal{M}_{\uparrow\uparrow} & \mathcal{M}_{\uparrow\downarrow}\\

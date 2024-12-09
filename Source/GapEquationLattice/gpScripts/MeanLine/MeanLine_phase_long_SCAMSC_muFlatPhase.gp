@@ -9,7 +9,7 @@ unset logscale y
 dataroot = './Results'.targetSystem
 set yrange[0:180]
 plot [1:30] \
-    dataroot.'/-3.75/meanline_Phase_30x15VertBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\mu =-3.75$' dashtype 1 lw 3.5 lc palette frac 0.2,\
+    dataroot.'/-3.75/meanline_Phase_30x15NoBC.dat' using 1:($2*180/pi) with lines title '\footnotesize $\mu =-3.75$' dashtype 1 lw 3.5 lc palette frac 0.2,\
 
 set out
 

@@ -16,7 +16,8 @@ classdef LatticePoint
         k
         F_x %[Fx+, Fx-]
         F_y %[Fy+,  Fy-]
-        Delta_d
+        F_d 
+        Delta_d %d-wave parameter = V/4 * F_d
     end
     properties (Constant)
         
@@ -31,6 +32,7 @@ classdef LatticePoint
                 obj.y = y;
                 obj.i = system.xy_to_i(x, y);
                 obj.materialLayer = SystemBase.sampleTypeAt(obj.x);
+
          
             elseif nargin == 2
                 obj.i = x; %the input is the index i
@@ -50,16 +52,20 @@ classdef LatticePoint
                     else
                         obj.delta = abs(system.guessDelta)*exp(1i * obj.SamplePhaseAtGradient(obj.x, system));
                     end
+                    obj.F_x = exp(-1i * obj.SamplePhaseAtGradient(obj.x, system)) .* [1, 1]; %according to mjøs p19
+                    obj.F_y = exp(-1i * obj.SamplePhaseAtGradient(obj.x, system)) .* [-1, -1];
+                    %fprintf('created at %d with angle, %d', obj.x ,obj.SamplePhaseAtGradient(obj.x, system));
                 elseif (SystemBase.fixedBoundaryDeltaNorm) && (obj.x == 1 || obj.x == system.Nx)
                     obj.delta = abs(system.guessDelta)*exp(1i * 0);
                 else
                     obj.delta = system.guessDelta;
                 end
                 obj.c_up_c_down = obj.delta / obj.U;
-                obj.F_x = [1, 1]; %according to mjøs p19
-                obj.F_y = [-1, -1];
+
 
             else
+                obj.F_x = [0, 0]; %according to mjøs p19
+                obj.F_y = [0, 0];
                 obj.U = 0;    
                 obj.delta = 0;       
                 obj.c_up_c_down = 0; %for init it is not important what this is bc delta go inside ham and then write the c_up_c_down
@@ -68,6 +74,7 @@ classdef LatticePoint
             obj.current = [0, 0];
             if isa(system, 'SystemFourier')
                 num_cell = 2;
+                
             elseif isa(system, 'System')
                 num_cell = 4;
             end
@@ -192,6 +199,23 @@ classdef LatticePoint
             obj.delta = c_up_c_down * obj.U;
         end
 
+        function obj=updateF(obj, F_x, F_y)
+            %fix the phase of values on the sides, only updates the abs of the values
+            if SystemBase.fixedBoundaryDeltaArg
+                if obj.x == 1
+                    obj.F_x = exp(-1i * obj.system.phi_1) * [abs(F_x(1)), abs(F_x(2))];
+                    obj.F_y = exp(-1i * obj.system.phi_1) * [abs(F_y(1)), abs(F_y(2))];
+                    return;
+                elseif obj.x == obj.system.Nx
+                    obj.F_x = exp(-1i * obj.system.phi_2) * [abs(F_x(1)), abs(F_x(2))];
+                    obj.F_y = exp(-1i * obj.system.phi_2) * [abs(F_y(1)), abs(F_y(2))];
+                    return;
+                end
+            end
+            obj.F_x = F_x;
+            obj.F_y = F_y;
+        end
+
         function obj = computeDWave(obj, system, neighbour_uv, energies)  
             %neighbour_uv is (site, n, k, (u,v))
             %site =1:x-1 site =2:x site =3:x+1
@@ -200,6 +224,7 @@ classdef LatticePoint
             F_i_ip1_y = obj.F_y(1);
             F_i_im1_y = obj.F_y(2);
 
+            %we already have the F_ij but need now F_ji
             F_ip1_i_x = 0.0;
             F_im1_i_x = 0.0;
             F_ip1_i_y = 0.0;
@@ -235,8 +260,8 @@ classdef LatticePoint
 
             F_yplus_S = (F_i_ip1_y + F_ip1_i_y)/2; %both summand differ in the exopnential part
             F_yminus_S = (F_i_im1_y + F_im1_i_y)/2;
-
-            obj.Delta_d = SystemFourier.V / 4 * (F_xplus_S + F_xminus_S - F_yplus_S - F_yminus_S);
+            obj.F_d = (F_xplus_S + F_xminus_S - F_yplus_S - F_yminus_S);
+            obj.Delta_d = SystemFourier.V / 4 * obj.F_d;
         end
 
 

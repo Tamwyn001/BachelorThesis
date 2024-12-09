@@ -144,7 +144,7 @@ arround this chemical potential.\\
 Now we can apply on constant phase everywhere and fix it on the sides. The simulation conserve that falt phase and it even drop to zero inside the AM.
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC12AM6SC12/NotFourier/MeanLine_Phase/FixedNormPhaseDelta/allMU/plot.tex}
+    \input{../Plots/SC12AM6SC12/NotFourier/MeanLine_Phase/FixedPhaseDelta/allMU/plot.tex}
     \caption{SC12AM6SC12 with $\mu=-3.75$ with a start at $\pi/3$}
 \end{figure}
 
@@ -172,8 +172,18 @@ After the AM we have the same behaviour than before. It is here important to not
 Beside those three major precesses, we observe a smoth transition in the current between those different regions. 
 \begin{figure}[H]
     \centering
-    \input{../Thesis/Plots/SC12AM6SC12/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.2/starting_1.0472/plot.tex}
+    \input{../Plots/SC12AM6SC12/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=-2.75$ with a start at $\pi/3$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.2/starting_1.0472/plot.tex}
     \caption{SC12AM6SC12 with $\mu=-2.2$ with a start at $\pi/3$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu2.75/starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=2.75$ with a start at $\pi/3$}
 \end{figure}
 Now that we have increased the chemical potential, the density of state has increased as well. The current in the SC become much stronger by an order of magnitude of $10^4$. 
 [Does the current in the AM scales accordingly whith the $\mu$?]. Previous simulations have shown that with the slope of the phase gradient increases as well, resulting 
@@ -188,12 +198,23 @@ than the current itself which is a realtive poor result.
     \input{../Plots/SC12AM6SC12/NotFourier/MeanLine_Continuity/FixedLinearPhaseGradient/Phase117deg/mu-3.75/starting_1.0472/plot.tex}
     \caption{SC12AM6SC12 with $\mu=-3.75$ with a start at $\pi/3$}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/MeanLine_Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=-2.75$ with a start at $\pi/3$}
+\end{figure}
+
 \begin{figure}[H]
     \centering
     \input{../Plots/SC12AM6SC12/NotFourier/MeanLine_Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.2/starting_1.0472/plot.tex}
-    \caption{SC12AM6SC12 with $\mu=-3.75$ with a start at $\pi/3$}
+    \caption{SC12AM6SC12 with $\mu=-2.2$ with a start at $\pi/3$}
 \end{figure}
-
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC12AM6SC12/NotFourier/MeanLine_Continuity/FixedLinearPhaseGradient/Phase117deg/mu2.75/starting_1.0472/plot.tex}
+    \caption{SC12AM6SC12 with $\mu=2.75$ with a start at $\pi/3$}
+\end{figure}
 Leaving the current aside, we can make other observations. First we can try to have a better look at these oscillations. Here we have pictured them for different values of $\mu$ in a 
 twice longer AM section than before. In the same way than for the Fig.\ref{fig:SC12AM6SC12} and Fig.\ref{fig:SC15N15} we see that we have a drop of the value for $\mu = -2.75$.
 Moreover for a $\mu = -3.75$ we see that the curve isn't symmetric anymore. Despite increasing the accuracy in the relative change, we are left with that curve. Maybe the 
@@ -210,6 +231,52 @@ curves are unchanged so that we get the same oscillations regardless the phase.
     \centering
     \input{../Plots/SC12AM6SC12/NotFourier/MeanLine/FixedPhaseDelta/allMU/plot.tex}
     \caption{SC12AM12SC12 with $\mu=-3.75$ with a start at $\pi/3$}
+\end{figure}
+
+\section{Fourier SC 30}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Fourier/MeanLine/FreeDelta/allMU/plot.tex}
+    \caption{SC30 with a fourier}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Fourier/MeanLine_Phase/FreeDelta/allMU/plot.tex}
+    \caption{SC30 with a fourier}
+\end{figure}
+\section{Fourier SC15 N15 }
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC15N15/Fourier/MeanLine/FreeDelta/allMU/plot.tex}
+    \caption{SC15N15 with a fourier}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC15N15/Fourier/MeanLine_Phase/FreeDelta/allMU/plot.tex}
+    \caption{SC15N15 with a fourier}
+\end{figure}
+\section{Fourier SC30 flat phase}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Fourier/MeanLine/FixedPhaseDelta/PhaseSide1.0472/allMU/plot.tex}
+    \caption{SC30with a fourier}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Fourier/MeanLine_Phase/FixedPhaseDelta/PhaseSide1.0472/allMU/plot.tex}
+    \caption{SC30 with a fourier}
+\end{figure}
+
+\section{Fourier SC30 phase gradient of 117deg}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Fourier/MeanLine/FixedLinearPhaseGradient/Phase117deg/allMU/plot.tex}
+    \caption{SC30with a fourier}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{../Plots/SC30/Fourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/plot.tex}
+    \caption{SC30 with a fourier}
 \end{figure}
 
 \end{document}

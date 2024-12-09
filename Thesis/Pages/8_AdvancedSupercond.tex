@@ -18,8 +18,9 @@ We have a factor of one half to avoid counting twice the neighbours.\\
 Trained eyes will recognise that $H_V$ is not quadratic in the creation and annihilation operators which makes the Hamiltonian impossible to write in the BdG-formalism. For this reason we can 
 use the so called Hartree-Fock mean field approximation $H_V \rightarrow H^{HF}_V$ defined as:
 \begin{equation}
-    H^{HF}_V = \frac{1}{2} \sum_{\langle ij\rangle \sigma} V_{ij} \left(F_{ij}^{\sigma \bar{\sigma}} c^{\dagger}_{j\bar{\sigma}}c^{\dagger}_{i\sigma} + \text{h.c.} + |F_{ij}^{\sigma \bar{\sigma}}|^2\right)
+    H^{HF}_V = -\frac{1}{2} \sum_{\langle ij\rangle \sigma} V_{ij} \left(F_{ij}^{\sigma \bar{\sigma}} c^{\dagger}_{j\bar{\sigma}}c^{\dagger}_{i\sigma} + \text{h.c.} + |F_{ij}^{\sigma \bar{\sigma}}|^2\right)
 \end{equation}
+\rem{Propagate the minus in the equations.}
 involving the pairing amplitude $F_{ij}^{\sigma \bar{\sigma}} = \langle c_{i\sigma}c_{j\bar{\sigma}}\rangle$ that we already introduced. The $V_{ij}$ are the neighbour-depending potential.
 The last term is a constant energy term which we can discard during the diagonalization process. If one wanted to compute the free energy this must be included there. From this point simplifications
 can be made to reach out final Hamiltonian.\\

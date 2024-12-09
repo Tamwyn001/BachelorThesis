@@ -40,9 +40,10 @@ classdef Computation
         end
 
         function [u,v] = GetUVatXK(obj, x, n, k)
-            if  (x <= 0) || (x >= size(obj.E, 1)/2 ) %we look to a x not in the system
+            if  (x <= 0) || (x > size(obj.E, 1)/2 ) %we look to a x not in the system
                 u= 0.0;
                 v= 0.0;
+                %assert(false, sprintf('x = %d is not in the system', x));
             return;
             end
             u = obj.eigenvectors(2*(x - 1) + 1, n, k); %UP , DOWN (xnk)

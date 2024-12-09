@@ -86,7 +86,6 @@ classdef GapEquationBase
             result = zeros(length, 2, num); %site x real/imag x number of vars to check
             %the data is SiteX (imag) x Direction F
             %we generate SiteX (imag) x 2 (real , imag) x Direction F
-            
             for dir = 1 : num
                 for i = 1 : length
                     % if i == 245
@@ -94,30 +93,52 @@ classdef GapEquationBase
                     % end
 
                     %avoid a 0 division for the continuity for ex.
-                    if real(delta_old(i, dir)) == 0.0
-                        safe_real = 0.01; 
-                        %fprintf('Warning: real delta is 0 at site %d\n', i);
-                    else
-                        safe_real = real(delta_old(i, dir));
-                    end
-                    if imag(delta_old(i, dir)) == 0.0
-                        safe_imag = 0.01;
-                    else
-                        safe_imag = imag(delta_old(i, dir));
+                    if strcmp(SystemBase.convergence_model,"re_im")
+                        if real(delta_old(i, dir)) == 0.0
+                            safe_real = 0.01; 
+                            %fprintf('Warning: real delta is 0 at site %d\n', i);
+                        else
+                            safe_real = real(delta_old(i, dir));
+                        end
+                        if imag(delta_old(i, dir)) == 0.0
+                            safe_imag = 0.01;
+                        else
+                            safe_imag = imag(delta_old(i, dir));
+                        end
+                    elseif strcmp(SystemBase.convergence_model,"abs_angle")
+                        if abs(delta_old(i, dir)) == 0.0
+                            safe_abs = 0.01; 
+                            %fprintf('Warning: real delta is 0 at site %d\n', i);
+                        else
+                            safe_abs = abs(delta_old(i, dir));
+                        end
+                        if angle(delta_old(i, dir)) == 0.0
+                            safe_angle = 0.01;
+                        else
+                            safe_angle = angle(delta_old(i, dir));
+                        end
                     end
                     %there is some high fluctuations in the almost nummericaly zero case, so we cut of if too small 
                     % otherwise we get a get jumps from -16 to -13 for example which is a 1000% jump
-                    if (abs(delta_new(i,dir))<1e-6 && abs(delta_old(i,dir))<1e-6) %|| (mod(i-1,30) +1 > 15)
+                    if (abs(delta_new(i,dir))<1e-10 && abs(delta_old(i,dir))<1e-10) %|| (mod(i-1,30) +1 > 15)
                         result(i, 1, dir) = 0.0;
                         result(i, 2, dir) = 0.0;
                     else
-                        result(i, 1, dir) = (real(delta_new(i,dir)) - real(delta_old(i,dir))) / safe_real * 100.0; %relative error from the old to new step
-                        if ~isnan(imag(delta_old(i,dir)))
-                            result(i, 2, dir) = (imag(delta_new(i, dir)) - imag(delta_old(i, dir))) / safe_imag * 100.0;
-                        else
-                            result(i, 2, dir) = 0.0;
+                        if strcmp(SystemBase.convergence_model, 're_im')
+                            result(i, 1, dir) = (real(delta_new(i,dir)) - real(delta_old(i,dir))) / safe_real * 100.0; %relative error from the old to new step
+                            if ~isnan(imag(delta_old(i,dir)))
+                                result(i, 2, dir) = (imag(delta_new(i, dir)) - imag(delta_old(i, dir))) / safe_imag * 100.0;
+                            else
+                                result(i, 2, dir) = 0.0;
+                            end
+                        elseif strcmp(SystemBase.convergence_model, 'abs_angle')
+                            result(i, 1, dir) = (abs(delta_new(i,dir)) - abs(delta_old(i,dir))) / safe_abs * 100.0; %relative error from the old to new step
+                            result(i, 2, dir) = (angle(delta_new(i,dir)) - angle(delta_old(i,dir))) / safe_angle * 100.0;
                         end
                     end
+                    % if i == 20 && dir ==1
+                    %     fprintf('Dist at 20 re F+x: %.5f, new %.5f, old %.5f\n', result(i, 1, dir), real(delta_new(i,dir)), real(delta_old(i,dir)));
+                    % end
                 end
             end
         end

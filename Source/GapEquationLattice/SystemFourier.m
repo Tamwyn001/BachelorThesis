@@ -6,11 +6,11 @@ classdef SystemFourier < SystemBase
     properties (Constant)
         t_SC = 1;
         t_AM = 1;
-        t_transition = 1;
-        V = 1;	
+        t_transition = 1; %also called t_0
+        V = 2;	
     end
     properties
-        k
+        k %list of all he k along the y axis
 
     end
     methods
@@ -35,7 +35,7 @@ classdef SystemFourier < SystemBase
                 % have  obj.Ny matricies of size 2obj.Nx * 2obj.Nx
                 obj.hamiltonian = zeros(2 * obj.Nx, 2 *obj.Nx, obj.Ny); % stores (x,x',k): k array of 2Nx x 2Nx matrices
             end
-            Console.progressBar(0, obj.Nx * obj.Ny);
+            %Console.progressBar(0, obj.Nx * obj.Ny);
 
             for k_id =1 : numel(obj.k)
                 k_local = obj.k(k_id);
@@ -46,7 +46,7 @@ classdef SystemFourier < SystemBase
                                  2*(x_prime - 1) + 1 : 2*(x_prime - 1) + 2, k_id) = obj.onSiteMatrix(x, k_local);
                         else
                             if x == x_prime + 1 || x == x_prime - 1 %here the neighbouring system is waaay easier bc one axis
-                                to_add = obj.hopping_t_ij_Interac(x, x_prime);
+                                to_add = obj.hopping_t_ij_Interac(x, x_prime) .* [1, 0; 0, -1];
                                 to_add = to_add + obj.superconductingMatrix(x, x_prime, k_local);
 
                                 obj.hamiltonian(2*(x - 1) + 1 : 2*(x - 1) + 2 , ...
@@ -55,7 +55,7 @@ classdef SystemFourier < SystemBase
                         end
                     end
                 end
-                Console.progressBar((k_local-1) * x + x, obj.Nx * obj.Ny);
+               % Console.progressBar((k_id-1) * obj.Nx + x, obj.Nx * obj.Ny);
             end 
         end
 
@@ -76,6 +76,7 @@ classdef SystemFourier < SystemBase
             matrix = SystemFourier.chemicalMatrix(SystemBase.mu) ...
             + obj.hopping_t_ij_OnSite(x, k_local)...
             + obj.superconductingMatrix(x, x, k_local); %U takes care of masking this value for the material
+            matrix = matrix .* [1, 1; 1, -1]; %according the theorie we have [e, F; F, -e]
         end
         
         function matrix = hopping_t_ij_OnSite(obj, x, k_local)
@@ -111,7 +112,7 @@ classdef SystemFourier < SystemBase
             elseif x - 1 == x_prime
                 f_ijk =  obj.points{x}.F_x(2);
             end
-            f_ijk = V_ij * f_ijk;
+            f_ijk = -1*V_ij * f_ijk;
 
             matrix = [0, f_ijk ; conj(f_ijk), 0];
         end
