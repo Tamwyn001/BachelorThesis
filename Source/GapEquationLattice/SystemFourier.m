@@ -17,6 +17,7 @@ classdef SystemFourier < SystemBase
         function obj = SystemFourier()
             %% object intialization
             obj = obj@SystemBase();
+            obj.convergence_model = "abs_angle";
             assert(SystemBase.verticalPeriodicBoundary,'Please set verticalPeriodicBoundary to true to use the fourier formalism.');
             obj.points = cell(obj.Nx, 1);
             tot_k = SystemBase.Ny;

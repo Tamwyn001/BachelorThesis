@@ -241,36 +241,44 @@ classdef LatticePoint
             F_ip1_i_y = 0.0;
             F_im1_i_y = 0.0;
             for n_id = 1 : size(neighbour_uv, 2)
-                for k_id = 1 : size(neighbour_uv, 3) %here we are going to reuse the u and v for different purposes
+                if isa(system, 'SystemFourier')
+                    for k_id = 1 : size(neighbour_uv, 3) %here we are going to reuse the u and v for different purposes
 
-                    % F _{i-1 , i} along x
-                    u_1 = neighbour_uv(1, n_id, k_id, 1); %1 means the site x-1
-                    v_2 = neighbour_uv(2, n_id, k_id, 2); %2 means the site x, is used in each expressions
-                    F_im1_i_x = F_im1_i_x + u_1 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T));
-
-
-                    % F _{i+1 , i} along x
-                    u_1 = neighbour_uv(3, n_id, k_id, 1); %here we reuse u1 for the site x+1 : 3
-                    F_ip1_i_x = F_ip1_i_x + u_1 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T));
+                        % F _{i-1 , i} along x
+                        u_1 = neighbour_uv(1, n_id, k_id, 1); %1 means the site x-1
+                        v_2 = neighbour_uv(2, n_id, k_id, 2); %2 means the site x, is used in each expressions
+                        F_im1_i_x = F_im1_i_x + u_1 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T));
 
 
-                    % F _{i-1 , i} along y
-                    u_2 = neighbour_uv(2, n_id, k_id, 1); %in this y hopping, we look at the uv on the same site but different k in exp
-                    F_im1_i_y = F_im1_i_y + u_2 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T)) * exp(1i*system.k(k_id));
+                        % F _{i+1 , i} along x
+                        u_1 = neighbour_uv(3, n_id, k_id, 1); %here we reuse u1 for the site x+1 : 3
+                        F_ip1_i_x = F_ip1_i_x + u_1 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T));
 
 
-                    % F _{i+1 , i} along y, same statement for the u and v
-                    F_ip1_i_y = F_ip1_i_y + u_2 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T))* exp(-1i*system.k(k_id));
+                        % F _{i-1 , i} along y
+                        u_2 = neighbour_uv(2, n_id, k_id, 1); %in this y hopping, we look at the uv on the same site but different k in exp
+                        F_im1_i_y = F_im1_i_y + u_2 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T)) * exp(1i*system.k(k_id));
 
 
+                        % F _{i+1 , i} along y, same statement for the u and v
+                        F_ip1_i_y = F_ip1_i_y + u_2 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T))* exp(-1i*system.k(k_id));
+
+
+                    end
+                    F_xplus_S = (F_i_ip1_x + F_ip1_i_x)/2; %both summand differ in the u, v
+                    F_xminus_S = (F_i_im1_x + F_im1_i_x)/2;
+        
+                    F_yplus_S = (F_i_ip1_y + F_ip1_i_y)/2; %both summand differ in the exopnential part
+                    F_yminus_S = (F_i_im1_y + F_im1_i_y)/2;
+                elseif isa(system, 'System_DWave')
+                    F_xplus_S = obj.F_x(1);
+                    F_xminus_S = obj.F_x(2);
+                    F_yplus_S = obj.F_y(1);
+                    F_yminus_S = obj.F_y(2);
                 end
             end
             
-            F_xplus_S = (F_i_ip1_x + F_ip1_i_x)/2; %both summand differ in the u, v
-            F_xminus_S = (F_i_im1_x + F_im1_i_x)/2;
 
-            F_yplus_S = (F_i_ip1_y + F_ip1_i_y)/2; %both summand differ in the exopnential part
-            F_yminus_S = (F_i_im1_y + F_im1_i_y)/2;
             obj.F_d = (F_xplus_S + F_xminus_S - F_yplus_S - F_yminus_S);
             obj.Delta_d = SystemFourier.V / 4 * obj.F_d;
         end

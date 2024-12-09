@@ -10,14 +10,13 @@ system = system.generateHam();
 computation = Computation(system); %holds the eigenvalues and eigenvectors to access them later without passing huge matrices around
 CORREL_C = zeros(system.Ny, system.Nx);
 t = 1;
-CORREL_C_trace = zeros(10,system.Ny, system.Nx);
 
 
 delta_old = ones(system.Nx*system.Ny, 2); %angle and || of delta
 
 
 %seting the value to compare with after its going to be updated
-dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 2);
+dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 2, system.convergence_model);
 
 
 fprintf('Solving the gap equation\n');
@@ -58,7 +57,7 @@ while (GapEquationBase.canLoop(t>150, dist, treshold, 2)) % last values gives ho
     end
 
     t = t+1;
-    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 2);
+    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 2,  system.convergence_model);
 
     abs_dist_abs = abs(dist(:,1,1));
     abs_dist_phase = abs(dist(:,1,2));

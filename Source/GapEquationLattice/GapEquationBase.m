@@ -34,7 +34,7 @@ classdef GapEquationBase
 
         function result = generateNewCollumnDeltaOrF(system)
 
-            if isa(system, 'SystemFourier')
+            if isa(system, 'SystemFourier') || isa(system, 'System_Dwave')
                 result = zeros(system.Nx, 1); % +x, -x, +y, -y
                 for j = 1: system.Nx
                     result(j,1) = system.points{j}.F_d;
@@ -78,7 +78,7 @@ classdef GapEquationBase
             end
         end
 
-        function result = computeDistance(delta_old, delta_new, num)
+        function result = computeDistance(delta_old, delta_new, num, model)
             length = size(delta_old, 1);
             result = zeros(length, 2, num); %site x real/imag x number of vars to check
             %the data is SiteX (imag) x Direction F
@@ -90,7 +90,7 @@ classdef GapEquationBase
                     % end
 
                     %avoid a 0 division for the continuity for ex.
-                    if strcmp(SystemBase.convergence_model,"re_im")
+                    if strcmp(model, "re_im")
                         if real(delta_old(i, dir)) == 0.0
                             safe_real = 0.01; 
                             %fprintf('Warning: real delta is 0 at site %d\n', i);
@@ -102,7 +102,7 @@ classdef GapEquationBase
                         else
                             safe_imag = imag(delta_old(i, dir));
                         end
-                    elseif strcmp(SystemBase.convergence_model,"abs_angle")
+                    elseif strcmp(model, "abs_angle")
                         if abs(delta_old(i, dir)) == 0.0
                             safe_abs = 0.01; 
                             %fprintf('Warning: real delta is 0 at site %d\n', i);
@@ -121,14 +121,14 @@ classdef GapEquationBase
                         result(i, 1, dir) = 0.0;
                         result(i, 2, dir) = 0.0;
                     else
-                        if strcmp(SystemBase.convergence_model, 're_im')
+                        if strcmp(model, 're_im')
                             result(i, 1, dir) = (real(delta_new(i,dir)) - real(delta_old(i,dir))) / safe_real * 100.0; %relative error from the old to new step
                             if ~isnan(imag(delta_old(i,dir)))
                                 result(i, 2, dir) = (imag(delta_new(i, dir)) - imag(delta_old(i, dir))) / safe_imag * 100.0;
                             else
                                 result(i, 2, dir) = 0.0;
                             end
-                        elseif strcmp(SystemBase.convergence_model, 'abs_angle')
+                        elseif strcmp(model, 'abs_angle')
                             result(i, 1, dir) = (abs(delta_new(i,dir)) - abs(delta_old(i,dir))) / safe_abs * 100.0; %relative error from the old to new step
                             result(i, 2, dir) = (angle(delta_new(i,dir)) - angle(delta_old(i,dir))) / safe_angle * 100.0;
                         end

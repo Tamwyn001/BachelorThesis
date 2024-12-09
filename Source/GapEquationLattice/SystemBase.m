@@ -22,9 +22,9 @@ classdef SystemBase
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions
         Ny = 15; 
-        convergence_model = "abs_angle"; %abs_angle if fourier , or re_im
     end
     properties
+        convergence_model; %abs_angle if fourier , or re_im
         Nx;
         points;
         hamiltonian;

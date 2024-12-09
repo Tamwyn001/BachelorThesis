@@ -19,6 +19,7 @@ classdef System < SystemBase
             else
                 obj.DWavePurpose = DWavePurpose;
             end
+            obj.convergence_model = "re_im";
         end
 
         function obj = createLattice(obj, tilted)
@@ -47,19 +48,7 @@ classdef System < SystemBase
                     else %we consider the neighbours, that possbile are bc of the periodic boundary
                         [are_neigh, axe] = Neighbours(obj.points{i}, obj.points{j}, obj); %returns the interaction as well
                         if are_neigh
-                            to_add = zeros(4);
-                            if strcmp(obj.points{i}.materialLayer,'AM')
-                                to_add = to_add + System.altermagnetMatrix(axe);
-
-                            elseif strcmp(obj.points{j}.materialLayer,'SC') && obj.DWavePurpose
-                                to_add = to_add + System.dWaveMatrix(axe);
-                            end
-
-                                to_add = to_add + System.hopping_t_ij(); %part of the non-interacting hamiltonian
-                                %futher interaction processes can be added here 
-                           
-
-                            obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = to_add;
+                            obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = obj.neighbourMatrix(i, axe);
                                 
                         end
                         %we are not neighbours, no contribution of the c operators
@@ -76,7 +65,18 @@ classdef System < SystemBase
                 matrix = matrix + System.superconductingMatrix(obj.points{i}.delta);
             end
         end
+        function matrix = neighbourMatrix(obj, i, axe)
+            matrix = zeros(4);
+            if strcmp(obj.points{i}.materialLayer,'AM')
+                matrix = matrix + System.altermagnetMatrix(axe);
 
+            elseif strcmp(obj.points{i}.materialLayer,'SC') && obj.DWavePurpose
+                matrix = matrix + System.dWaveMatrix(axe);
+            end
+
+            matrix = matrix + System.hopping_t_ij(); %part of the non-interacting hamiltonian
+                %futher interaction processes can be added here 
+        end
     end 
     methods (Static)
         

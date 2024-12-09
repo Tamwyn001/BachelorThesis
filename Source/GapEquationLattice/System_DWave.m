@@ -4,6 +4,8 @@ classdef System_DWave < System
         function obj = System_DWave()
             %% object intialization
             obj = obj@System(true);
+            obj.DWavePurpose = true;
+            obj.convergence_model = "abs_angle";
         end
     end
 end

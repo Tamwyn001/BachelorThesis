@@ -9,7 +9,6 @@ system_fourier = system_fourier.createLattice();
 system_fourier = system_fourier.generateHam(true);
 computation = Computation(system_fourier); %holds the eigenvalues and eigenvectors to access them later without passing huge matrices around
 t = 1;
-CORREL_C_trace = zeros(10, system_fourier.Ny, system_fourier.Nx);
 
 
 %seting the value to compare with after its going to be updated
@@ -136,7 +135,7 @@ while (GapEquationBase.canLoop(t>1000, dist, treshold, 1))
             %for each site and k we pass the uv of the neighbours to compute the d-wave parameter 
             system_fourier.points{i} = system_fourier.points{i}.computeDWave(system_fourier, uv_for_site_and_neigbours, computation.E); %compute all the d-wave parameter
     end
-    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system_fourier), 1);
+    dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system_fourier), 1,  system_fourier.convergence_model);
     
 
     % abs_dist_re_px = abs(dist(:, 1, 1));
