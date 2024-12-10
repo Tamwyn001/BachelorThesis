@@ -9,12 +9,11 @@ function  meanLine = MeanLineMatrix(matrix, part)
     end
     meanLine = zeros(sizeMM(2), num_param); %x and variables
 
-    % A = fscanf(fileID,formatSpec,sizeA); 
-    for j = 1 : sizeMM(2)
-        meanLine(j,1) = j;
-        total = zeros(num_param,1);
-        for i = 1 : sizeMM(1)
-            for slice = 1 : num_param
+    for j = 1 : sizeMM(2) % for each vertical lines
+        meanLine(j,1) = j; %store x id
+        total = zeros(num_param,1); % a vector having the sum of each variable in this vertical line
+        for i = 1 : sizeMM(1) % loop over the elems of the vertical line
+            for slice = 1 : num_param 
                 if strcmp(part, 'real')
                     total(slice) = total(slice) + real(matrix(i,j,slice));
                 elseif strcmp(part, 'imag')
@@ -26,8 +25,8 @@ function  meanLine = MeanLineMatrix(matrix, part)
                 end
             end
         end
-        total(:) = total(:)/sizeMM(1);
-        for slice = 1 : num_param
-            meanLine(j,1 + slice) = total(slice);
+        total = ( 1 / sizeMM(1)) .* total; %mean ervy variable
+        for slice = 1 : num_param %store the mean of each variable
+            meanLine(j, 1 + slice) = total(slice);
         end
     end

@@ -1,10 +1,17 @@
 function points = WriteHeatmap(system, to_write)
     
-    if strcmp(to_write, 'continuity')
+    if isa(system, 'SystemFourier')
+        len = 3;
+        points = strings(system.Ny*system.Nx+system.Nx,3);
+
+    elseif  strcmp(to_write, 'continuity') || strcmp(to_write, 'F_d')
+        len = 4;
         points = strings(system.Ny*system.Nx+system.Nx,4);
     else
+        len = 3;
         points = strings(system.Ny*system.Nx+system.Nx,3);
     end
+    
     t = 0;
     for i = 1: numel(system.points)
         % disp([num2str(j) num2str(i) string(heat_map(j,i))])
@@ -12,8 +19,13 @@ function points = WriteHeatmap(system, to_write)
         if strcmp(to_write, 'F_d')
             attrib1 = num2str(abs(point.F_d));
             attrib2 = num2str(angle(point.F_d));
-            points(i+t, :) = [string(point.x), attrib1, attrib2];
+            if isa(system, 'SystemFourier')
+                points(i+t, :) = [string(point.x), attrib1, attrib2];
+            else
+                points(i+t, :) = [string(point.x), string(point.y), attrib1, attrib2];
+            end
         else
+
             if strcmp(to_write, 'correl_c_c')
                 attrib = string(abs(point.c_up_c_down));
                 points(i+t, :) = [string(point.x), string(point.y), attrib];
@@ -39,7 +51,7 @@ function points = WriteHeatmap(system, to_write)
         
         
         if mod(i, system.Nx) == 0
-            if strcmp(to_write, 'continuity')
+            if len == 4
                 points(i+t+1, :) = ["", "", "", ""];
             else
                 points(i+t+1, :) = ["", "", ""];

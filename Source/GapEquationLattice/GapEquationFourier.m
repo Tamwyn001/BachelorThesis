@@ -5,7 +5,7 @@ treshold = 0.0001; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system_fourier = SystemFourier();
-system_fourier = system_fourier.createLattice();
+system_fourier = system_fourier.createLattice(false); %use the tilted interface version
 system_fourier = system_fourier.generateHam(true);
 computation = Computation(system_fourier); %holds the eigenvalues and eigenvectors to access them later without passing huge matrices around
 t = 1;
@@ -96,7 +96,6 @@ while (GapEquationBase.canLoop(t>1000, dist, treshold, 1))
                     end
                 else
                     %fprintf('cant compute at %d', x);
-                    continue;
                 end
 
                 

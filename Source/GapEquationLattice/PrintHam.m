@@ -3,6 +3,10 @@ function PrintHam(x,y, k_id, systemType,tilted)
         system = SystemFourier();
         system = system.createLattice();
         system = system.generateHam(true);
+    elseif strcmp(systemType, 'DWave')
+            system = System_DWave();
+            system = system.createLattice(tilted);
+            system = system.generateHam();
     else
         system = System();
         system = system.createLattice(tilted);

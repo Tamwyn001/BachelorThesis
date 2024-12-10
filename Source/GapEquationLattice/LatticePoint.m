@@ -69,9 +69,10 @@ classdef LatticePoint
                     obj.delta = system.guessDelta;
                 end
                 obj.c_up_c_down = obj.delta / obj.U;
-                obj.F_x = exp(-1i * rot) .* [1, 1]; %according to mjøs p19
-                obj.F_y = exp(-1i * rot) .* [-1, -1];
-                obj.F_d = 0;
+                obj.F_x = exp(-1i * rot) .* [1, 1] .* system.guessDelta; %according to mjøs p19
+                obj.F_y = exp(-1i * rot) .* [-1, -1] .* system.guessDelta;
+                obj.F_d = obj.F_x(1) + obj.F_x(2) - obj.F_y(1) - obj.F_y(2);
+                obj.Delta_d = SystemFourier.V / 4 * obj.F_d;
 
             else
                 obj.F_x = [0, 0]; %according to mjøs p19
@@ -240,8 +241,9 @@ classdef LatticePoint
             F_im1_i_x = 0.0;
             F_ip1_i_y = 0.0;
             F_im1_i_y = 0.0;
-            for n_id = 1 : size(neighbour_uv, 2)
-                if isa(system, 'SystemFourier')
+            if isa(system, 'SystemFourier')
+                for n_id = 1 : size(neighbour_uv, 2)
+               
                     for k_id = 1 : size(neighbour_uv, 3) %here we are going to reuse the u and v for different purposes
 
                         % F _{i-1 , i} along x
@@ -270,15 +272,14 @@ classdef LatticePoint
         
                     F_yplus_S = (F_i_ip1_y + F_ip1_i_y)/2; %both summand differ in the exopnential part
                     F_yminus_S = (F_i_im1_y + F_im1_i_y)/2;
-                elseif isa(system, 'System_DWave')
-                    F_xplus_S = obj.F_x(1);
-                    F_xminus_S = obj.F_x(2);
-                    F_yplus_S = obj.F_y(1);
-                    F_yminus_S = obj.F_y(2);
                 end
-            end
-            
 
+            elseif isa(system, 'System_DWave')
+                F_xplus_S = obj.F_x(1);
+                F_xminus_S = obj.F_x(2);
+                F_yplus_S = obj.F_y(1);
+                F_yminus_S = obj.F_y(2);
+            end
             obj.F_d = (F_xplus_S + F_xminus_S - F_yplus_S - F_yminus_S);
             obj.Delta_d = SystemFourier.V / 4 * obj.F_d;
         end

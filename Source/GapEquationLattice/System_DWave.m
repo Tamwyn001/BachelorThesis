@@ -7,5 +7,6 @@ classdef System_DWave < System
             obj.DWavePurpose = true;
             obj.convergence_model = "abs_angle";
         end
+
     end
 end

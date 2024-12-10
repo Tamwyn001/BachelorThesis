@@ -5,7 +5,7 @@ treshold = 0.001; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system = System();
-system = system.createLattice();
+system = system.createLattice(false); %use the tilted interface version
 system = system.generateHam();
 computation = Computation(system); %holds the eigenvalues and eigenvectors to access them later without passing huge matrices around
 CORREL_C = zeros(system.Ny, system.Nx);

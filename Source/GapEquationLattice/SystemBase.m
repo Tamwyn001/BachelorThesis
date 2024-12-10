@@ -2,10 +2,10 @@ classdef SystemBase
     %Sotres the basic properties of and methodes the physical system
 
     properties (Constant)
-        verticalPeriodicBoundary = true;
+        verticalPeriodicBoundary = false;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 2 * 8.0e-1; 
+        guessDelta = 2 * 2.0e-5; % for detla or to scale the F yx+-
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaNorm = false;
         fixedBoundaryDeltaArg = false;
@@ -17,7 +17,7 @@ classdef SystemBase
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
-        mu = 1.75; 
+        mu = -3.75; 
         m = 0.5; %hopping
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions
@@ -96,28 +96,32 @@ classdef SystemBase
         function type = sampleTypeAt(x, y, tilted, num_layers)
             if nargin == 4
                 if tilted
-                    range = [0, 0];
-                    dist = y - ceil(SystemBase.Ny / 2);
-                    range(1) = str2num(SystemBase.layer(2)) + dist;
-                    if num_layers == 2
-                        if x <= range(1)
-                            type = SystemBase.layer(1);
-                        else
-                            type = SystemBase.layer(3);
+                    if num_layers ~= 1
+                        range = [0, 0];
+                        dist = y - ceil(SystemBase.Ny / 2);
+                        range(1) = str2num(SystemBase.layer(2)) + dist;
+                        if num_layers == 2
+                            disp('2 layers');
+                            if x <= range(1)
+                                type = SystemBase.layer(1);
+                            else
+                                type = SystemBase.layer(3);
+                            end
+                        elseif num_layers == 3
+                            disp('3 layers');
+                            range(2) = range(1) + str2num(SystemBase.layer(4));
+                            if x <= range(1)
+                                %disp("1");
+                                type = SystemBase.layer(1);
+                            elseif x <= range(2)
+                                type = SystemBase.layer(3);
+                                %disp("2");
+                            else
+                                type = SystemBase.layer(5);
+                            end
                         end
-                    elseif num_layers == 3
-                        range(2) = range(1) + str2num(SystemBase.layer(4));
-                        if x <= range(1)
-                            %disp("1");
-                            type = SystemBase.layer(1);
-                        elseif x <= range(2)
-                            type = SystemBase.layer(3);
-                            %disp("2");
-                        else
-                            type = SystemBase.layer(5);
-                        end
+                        return;
                     end
-                    return;
                 end
             end
             if x <= str2num(SystemBase.layer(2))

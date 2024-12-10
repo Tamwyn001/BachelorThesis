@@ -71,7 +71,7 @@ classdef System < SystemBase
                 matrix = matrix + System.altermagnetMatrix(axe);
 
             elseif strcmp(obj.points{i}.materialLayer,'SC') && obj.DWavePurpose
-                matrix = matrix + System.dWaveMatrix(axe);
+                matrix = matrix + System.dWaveMatrix(axe, obj.points{i});
             end
 
             matrix = matrix + System.hopping_t_ij(); %part of the non-interacting hamiltonian
