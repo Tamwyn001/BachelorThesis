@@ -92,7 +92,7 @@ classdef System < SystemBase
                 conj(delta) * (1i) * PauliMatrix.sigmaY, zeros(2)];
         end
         function matrix= chemicalMatrix(mu)
-            matrix = -0.5*mu .* [eye(2), zeros(2); zeros(2), -eye(2)];
+            matrix = -0.5 * mu .* [eye(2), zeros(2); zeros(2), -eye(2)];
         end
         function matrix = dWaveMatrix(axis, point)
             F = 0;
@@ -106,8 +106,8 @@ classdef System < SystemBase
                 F = point.F_y(2);
             end
 
-            matrix = -0.5 .* [zeros(2), (1i)* F .* PauliMatrix.sigmaY; ...
-                (1i)* F .* PauliMatrix.sigmaY, zeros(2)];
+            matrix = -0.5 .* [zeros(2), (1i) * F .* PauliMatrix.sigmaY; ...
+                (- 1i)* F .* PauliMatrix.sigmaY, zeros(2)];
         end
     end
 end

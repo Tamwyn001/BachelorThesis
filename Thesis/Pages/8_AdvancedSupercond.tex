@@ -27,7 +27,7 @@ can be made to reach out final Hamiltonian.\\
 
 Using the fermionic property $[c_{i\sigma}^{\dagger},c_{j\sigma}^{\dagger}]_+ = 0$ we have $c_{i\sigma}^{\dagger} c_{j\sigma}^{\dagger} = -c_{i\sigma}^{\dagger} c_{j\sigma}^{\dagger}$
 which leads to $\langle  c_{i\sigma}^{\dagger} c_{j\sigma}^{\dagger} \rangle = -\langle c_{i\sigma}^{\dagger} c_{j\sigma}^{\dagger}\rangle$. We can use this in the last step of the following simplification:
-\begin{equation}
+\begin{equation}\label{eq:HF_V}
     \begin{aligned}
         H^{HF}_V =& \frac{1}{2} \sum_{\langle ij\rangle \sigma} V_{ij} \left(F_{ij}^{\sigma \bar{\sigma}} c^{\dagger}_{j\bar{\sigma}}c^{\dagger}_{i\sigma} + \text{h.c.}\right)\\
             =& \frac{1}{2}\sum_{\langle ij\rangle} V_{ij} \left(F_{ij}^{\uparrow \downarrow} c^{\dagger}_{j\downarrow}c^{\dagger}_{i\uparrow} + F_{ij}^{\downarrow\uparrow} c^{\dagger}_{j\uparrow}c^{\dagger}_{i\downarrow} + \text{h.c.}\right)\\
@@ -45,6 +45,7 @@ we transform only in the direction where the material is the same. For instance 
 combined to a Fourier transformation in the $y$-direction.
 In this thesis we are going to focus ourselves on a multilayer material in the $x$-direction.\\
 
+\subsection{In the vertical periodic boundary setup}
 The description of the creation and annihilation operators with a step in the momentum space for the $y$-direction can be expressed as follow:
 \begin{align}
     c_{xy\sigma} =& \frac{1}{\sqrt{N_y}} \sum_{k_y} c_{x k_y\sigma} e^{\im k_y y} \label{eq:C_Foruier}\\
@@ -164,7 +165,7 @@ On the other hand the vector we use to carry the creation and annihilation opera
     \end{pmatrix}\in\mathbb{H}^{2N_x}
 \]
 
-\subsection{BdG-transformation}
+\subsubsection{BdG-transformation for a vertical foruier transform}
 The eigenvalues equation is similar to Eq.\ref{eq:BdG_eigenVal_H}
 \begin{equation}\label{eq:BdG_eigenVal_H_k}
     H_k \mathfrak{X}_{nk} = E_{nk} \mathfrak{X}_{nk}
@@ -192,7 +193,7 @@ delivering $\mathfrak{g}_k = \mathfrak{X}^{\dagger}_k D_{k}$ which is equivalent
 Looking at $D_{k} = \mathfrak{X}_k\mathfrak{g}_k$ we can derive two very usefull expressions:
 \begin{center}
     \begin{minipage}{0.4\textwidth}
-    \begin{equation}\label{eq:BdG_transf_c}
+    \begin{equation}\label{eq:BdG_transf_c_fourier}
         c_{xk\uparrow} = \sum_{n\in\natset{2N_x}} u_{nxk}\mathfrak{g}_{nk} 
     \end{equation}
     \end{minipage}\hspace{0.05\textwidth}
@@ -207,13 +208,13 @@ Looking at $D_{k} = \mathfrak{X}_k\mathfrak{g}_k$ we can derive two very usefull
     \end{minipage}
     \begin{minipage}{0.45\textwidth}
         \begin{equation}
-        \label{eq:BdG_transf_c_dagg}
+        \label{eq:BdG_transf_c_fourier_dagg}
             c_{x,-k,\downarrow}^{\dagger} =\sum_{n\in\natset{2N_x}} v_{nxk}\mathfrak{g}_{nk}. 
         \end{equation}
     \end{minipage}
     \end{center}
 
-\subsection{Pairing amplitudes}
+\subsubsection{Pairing amplitudes}
 For the derivation of the pairing amplitudes on the axis $a\in\{\hat{\bm{x}},\hat{\bm{y}}\}$.
 Doing so, we will use our BdG-transformation as we did earlier to be 
 able to solve these parameters self-consistently using the eigenvectors and -values.\\
@@ -248,6 +249,51 @@ where we can as well write $i_x = x$. Recalling the use of $a$ to abstractise th
     F^{\pm x}_i =& \frac{1}{N_y} \sum_{nk} u_{ni_x k} v_{n,i_x\pm x,k}^{\ast}\left(1 - f(E_{nk})\right)\\
     F^{\pm y}_i =& \frac{1}{N_y} \sum_{nk} u_{ni_x k} v_{n i_x k}^{\ast}\left(1 - f(E_{nk})\right) e^{\mp \im k}.
 \end{align}
+
+
+
+\subsubsection{In the open boundary setup}
+Here we need to reuse the equations of the Nambu-Spin formalism desribed in chapter \ref{sec:BdGFormalism}. As we saw we need to first
+take care that the part of the Hamiltonian we want to introduce has \rem{a kind of symmerty} in the creation and annihilation operators.
+If we transform the Hartree-Fock Hamiltonian as it is in Eq.\ref{eq:HF_V} we see that only the uper right quadrant of the matrix $H_{V,ij}^{HF}$ 
+of $\check{c}_i^{\dagger} \cdot (H_{V}^{HF})_{ij}\cdot \check{c}_j $ is filled. We need to use the anticommutation relations to solve this.
+This delivers the following expression:
+\begin{equation}
+    \begin{aligned}
+    H_V^{HF} =& -\sum_{\langle ij\rangle} V_{ij} \left(F_{ij}^{\uparrow \downarrow} c_{j\downarrow}^{\dagger}c_{i\uparrow}^{\dagger} +
+     F_{ij}^{\uparrow \downarrow\ast} c_{i\uparrow}^{\dagger}c_{j\downarrow}^{\dagger}\right)\\
+     =& -\sum_{\langle ij\rangle} V_{ij} \left(F_{ji}^{\uparrow \downarrow} c_{i\downarrow}^{\dagger}c_{j\uparrow}^{\dagger} +
+     F_{ij}^{\uparrow \downarrow\ast} c_{i\uparrow}^{\dagger}c_{j\downarrow}^{\dagger}\right)\\
+     =& -\frac{1}{2}\sum_{\langle ij\rangle} V_{ij} \left[F_{ij}^{\uparrow \downarrow} \left(c_{i\downarrow}^{\dagger}c_{j\uparrow}^{\dagger} - c_{i\uparrow}^{\dagger}c_{j\downarrow}^{\dagger}\right)
+     + F_{ij}^{\uparrow \downarrow\ast}  \left(c_{i\uparrow}^{\dagger}c_{j\downarrow}^{\dagger} - c_{i\downarrow}^{\dagger}c_{j\uparrow}^{\dagger}\right)\right]\\
+    \end{aligned}
+\end{equation} 
+which is achieved using Eq.\ref{eq:Trick1}, $V_{ij} = {V_{ji}}$, \rem{$ F_{ij}^{\uparrow \downarrow} = -F_{ji}^{\downarrow \uparrow} = F_{ji}^{\uparrow \downarrow}$}
+using the anticommutation realtion and a spin echange. We then use $F_{ij}^{\uparrow \downarrow}$ = $F_{ij}$ since all ambiguity has been removed.\\
+Therefore the matrix we obtain is given as
+\begin{equation}
+    H_{V,ij}^{HF} = -\frac{1}{2}\begin{pmatrix}
+        \mathcal{O} & & & -F_{ij}^{\uparrow \downarrow}\\
+         & & F_{ij}^{\uparrow \downarrow} & \\
+         & F_{ij}^{\uparrow \downarrow\ast}& & \\
+         -F_{ij}^{\uparrow \downarrow\ast} & & & \mathcal{O}\\
+    \end{pmatrix} = -\frac{1}{2}\begin{pmatrix}
+        \mathcal{O} & -\im \sigma_2 F_{ij}\\
+        \im \sigma_2 F_{ij}^{\ast} & \mathcal{O}
+    \end{pmatrix}
+\end{equation}
+an takes only place between two neighbouring sites $i$ and $j$. For the accuracy one could multiply it with 
+$(\delta_{i+1,j} + \delta_{i-1,j} + \delta_{i+N_x,j} + \delta_{i-N_x,j})$. This matrix can then be added to Eq.\ref{eq:H^_ij} replacing the on-site superconductive $\Delta$-term by
+a neighbouring superconductive $F$-term.\\
+
+Now that we have expressed the Hartree-Fock Hamiltonian in the correct maner, we can use our BdG-transformation to diagonalize the Hamiltonian and find a self-consistent solution 
+for the $F$-parameters. Here we use the transformation between the creation and annihilation operators, and the eigenvectors, -values of the Hamiltonian given by Eq.\ref{eq:BdG_transf_c} 
+and Eq.\ref{eq:BdG_transf_c_dagg}. 
+\begin{equation}
+    F_{ij} = \langle c_{i\uparrow}c_{j\downarrow}\rangle = \sum_{n\in \mathcal{N}_+} u_{ni\uparrow}v_{nj\downarrow}^{\ast}\left(1 - f(E_{nk})\right) + v_{ni\uparrow}^{\ast}u_{nj\downarrow}f(E_{nk})
+\end{equation}
+in a very similar way as Eq.\ref{eq:transfo_c_up_c_down_BdG}.
+
 
 \subsection{Advanced order parameters}
 In the more simple desciption of the superconductivity we outlied how the superconducting order parameter $\Delta$ depends on the pairing amplitude $F$.

@@ -1,4 +1,4 @@
-treshold = 0.001; %convergence treshold in percentage of change
+treshold = 0.1; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system_d_wave = System_DWave();
@@ -16,7 +16,7 @@ F_d_old = 10 .* ones(system_d_wave.Nx*system_d_wave.Ny, 1); %angle and || of del
 dist = GapEquationBase.computeDistance(F_d_old, GapEquationBase.generateNewCollumnDeltaOrF(system_d_wave), 1, system_d_wave.convergence_model);
 
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>10, dist, treshold, 1)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+while (GapEquationBase.canLoop(t>50, dist, treshold, 1)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
     F_d_old = GapEquationBase.generateNewCollumnDeltaOrF(system_d_wave);
@@ -93,17 +93,19 @@ while (GapEquationBase.canLoop(t>10, dist, treshold, 1)) % last values gives how
 
     %correct Hamiltonian with Fij on neighbours interaction elems
     for i = 1: system_d_wave.Nx * system_d_wave.Ny
-        for j = 1 : numel(system_d_wave.points{i}.neighbour)
+        for j = 1 : 4 %neighbours
             if ~isempty(system_d_wave.points{i}.neighbour{j})
+
                 if j == 1
                     axe = '+x';
                 elseif j == 2
-                    axe = '-x';
-                elseif j == 3
                     axe = '+y';
+                elseif j == 3
+                    axe = '-x';
                 elseif j == 4
                     axe = '-y';
                 end
+
                 i_prime = system_d_wave.points{i}.neighbour{j}.i;
                 assert(i_prime ~= 0 && ~isempty(i_prime), 'Neighbouring system doesnt work, please asign an i to the neighbour');
 
