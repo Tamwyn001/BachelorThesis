@@ -2,22 +2,22 @@ classdef SystemBase
     %Sotres the basic properties of and methodes the physical system
 
     properties (Constant)
-        verticalPeriodicBoundary = false;
+        verticalPeriodicBoundary = true;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 2 * 2.0e-5; % for detla or to scale the F yx+-
+        guessDelta = 3.5e-3; % for detla or to scale the F yx+-
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaNorm = false;
         fixedBoundaryDeltaArg = false;
         phi_1 = 1.0*pi/3.0; %phase of the superconducting gap on the left side
         phi_2 = 1.0*pi/3.0;% + (117*pi/180); %phase of the superconducting gap on the right side, phase shift of 117°
-        layer = ["SC", 30];% ["SC", 12, "AM", 6, "SC",12];superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
+        layer = ["SC", 15, "N", 15];% ["SC", 12, "AM", 6, "SC",12];superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
 
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
-        mu = -3.75; 
+        mu = -2.75; 
         m = 0.5; %hopping
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions
@@ -101,14 +101,12 @@ classdef SystemBase
                         dist = y - ceil(SystemBase.Ny / 2);
                         range(1) = str2num(SystemBase.layer(2)) + dist;
                         if num_layers == 2
-                            disp('2 layers');
                             if x <= range(1)
                                 type = SystemBase.layer(1);
                             else
                                 type = SystemBase.layer(3);
                             end
                         elseif num_layers == 3
-                            disp('3 layers');
                             range(2) = range(1) + str2num(SystemBase.layer(4));
                             if x <= range(1)
                                 %disp("1");

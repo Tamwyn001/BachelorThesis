@@ -19,7 +19,6 @@ function Highlight(type, tilted, fourier)
                 target_info = "subject to fixed";
             otherwise
                 target_info = "type";
-                return
         end
     end
     if strcmp(fourier, "fourier")
@@ -44,7 +43,8 @@ function Highlight(type, tilted, fourier)
                 map(system.points{i}.y, system.points{i}.x) = 1 ;
             end
         end
-    end
+    end 
+    disp(map);
    
     heatmap(map);
 end
