@@ -20,14 +20,14 @@ dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCol
 
 
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>150, dist, treshold, 2)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+while (GapEquationBase.canLoop(t>300, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);
 
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
     [chi, ener] = eig(system.hamiltonian);
-    computation = computation.writeNewEigen(chi, ener);
+    computation = computation.writeNewEigen(chi, ener); %* ok
     for i = 1: system.Nx * system.Ny %for each particle we search a convergence
         c_up_c_down = 0.0; %initialize the sum of the delta elements
         %Console.progressBar(i, system.Nx * system.Ny);
@@ -44,16 +44,28 @@ while (GapEquationBase.canLoop(t>150, dist, treshold, 2)) % last values gives ho
             n = computation.n(index_eigen);
             [u_i_n, v_i_n] = computation.GetUVatI(i, n);
 
-            c_up_c_down = c_up_c_down + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(1*computation.E(n)))...
-                + u_i_n(2) * conj(v_i_n(1)) *   (Fermi(1*computation.E(n))) ; %spin-dep variables in H are
+            c_up_c_down = c_up_c_down + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(computation.E(n)))...
+                + u_i_n(2) * conj(v_i_n(1)) * (Fermi(computation.E(n))) ; %spin-dep variables in H are
                 % defined with general spin sigma and delta with up or down
+
+            assert(computation.E(n) > 0, sprintf('E(n) = %.5f', computation.E(n)));
+            % if i == 120
+            %     fprintf('u = %.5f, v = %.5f, E = %.5f\n', u_i_n(1), v_i_n(2), computation.E(n));
+            % end
         end
         system.points{i} = system.points{i}.updateDelta(c_up_c_down, system); 
+        if i == 150
+            fprintf('c_up_c_down = %.5f\n', system.points{i}.c_up_c_down);
+        end
     end
 
     %correct Hamiltonian
     for i = 1: system.Nx * system.Ny
         system.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4) = system.onSiteMatrix(i); %This takes the most time in the loop.
+        % if i==150
+        %     disp(system.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4));
+        % end
+        CORREL_C(system.points{i}.y, system.points{i}.x) = system.points{i}.c_up_c_down;
     end
 
     t = t+1;
@@ -63,8 +75,11 @@ while (GapEquationBase.canLoop(t>150, dist, treshold, 2)) % last values gives ho
     abs_dist_phase = abs(dist(:,1,2));
     [x_valu, x_id] = max(abs_dist_abs);
     [y_valu, y_id] = max(abs_dist_phase);
-    fprintf('convergence  ABS = %.5f %% at %d, PHASE = %.5f %% at x=%d | old norm: %d, old angle %d', ...
+    fprintf('convergence  ABS = %.5f %% at %d, PHASE = %.5f %% at x=%d | old norm: %d, old angle %d\n', ...
         dist(x_id,1,1), x_id, dist(y_id,1,2), mod(y_id-1,30) +1, delta_old(x_id, 1),delta_old(x_id, 2));
+
+    disp(CORREL_C)
+
 end 
 
 %generate a plotable matrix

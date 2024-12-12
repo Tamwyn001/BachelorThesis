@@ -1,22 +1,29 @@
 function PrintHam(x,y, k_id, systemType,tilted)
-    if strcmp(systemType, 'Fourier')
+    if nargin == 2
+        type = x;
+        tilt = y;
+    else
+        type = systemType;
+        tilt = tilted;
+    end
+    if strcmp(type, 'Fourier')
         system = SystemFourier();
         system = system.createLattice();
         system = system.generateHam(true);
-    elseif strcmp(systemType, 'DWave')
+    elseif strcmp(type, 'DWave')
             system = System_DWave();
-            system = system.createLattice(tilted);
+            system = system.createLattice(tilt);
             system = system.generateHam();
     else
         system = System();
-        system = system.createLattice(tilted);
+        system = system.createLattice(tilt);
         system = system.generateHam();
     end
     
-    if nargin == 1
+    if nargin == 2
         disp(system.hamiltonian);
     return
-    elseif nargin == 2
+    elseif nargin == 3
         result = strings(system.Nx, system.Ny);
         for i = 1:system.Nx *system.Ny
             point = system.points{i};

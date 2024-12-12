@@ -46,10 +46,10 @@ classdef LatticePoint
             obj.materialLayer = SystemBase.sampleTypeAt(obj.x, obj.y, tilted, numel(system.layer)/2);
 
             obj = obj.classifyPoint();
-            
+            %fprintf('created at %d with type %s\n', obj.i, obj.type);
             if strcmp(obj.materialLayer,'SC')
                 rot = 0;
-                obj.U = 2;
+                obj.U = 4.0;
                 if SystemBase.fixedBoundaryDeltaArg
                     if obj.x == 1 
                         obj.delta = system.fixedDelta(1);
@@ -66,7 +66,7 @@ classdef LatticePoint
                 elseif (SystemBase.fixedBoundaryDeltaNorm) && (obj.x == 1 || obj.x == system.Nx)
                     obj.delta = abs(system.guessDelta)*exp(1i * 0);
                 else
-                    obj.delta = system.guessDelta;
+                    obj.delta = system.guessDelta*exp( -((obj.x - system.Nx/2)^2 + (obj.y - system.Ny/2)^2) / 1000 );
                 end
                 obj.c_up_c_down = obj.delta / obj.U;
                 obj.F_x = exp(-1i * rot) .* [1, 1] .* system.guessDelta; %according to mjøs p19
@@ -156,6 +156,7 @@ classdef LatticePoint
                     obj.neighbour{4} = system.points{my_id};
                 end
                 if py_cond
+                    %fprintf('at %d we have %d\n', obj.i, py_id);
                     obj.neighbour{2} = system.points{py_id};
                 end
             elseif isa(system, 'SystemFourier')
@@ -207,6 +208,7 @@ classdef LatticePoint
                     return;
                 end
             end
+            
             obj.c_up_c_down = c_up_c_down;
             obj.delta = c_up_c_down * obj.U;
         end
@@ -284,7 +286,15 @@ classdef LatticePoint
             obj.Delta_d = SystemFourier.V / 4 * obj.F_d;
         end
 
-
+        function bool = foundAllNeighbours(obj)
+            for j = 1:4
+                if isempty(obj.neighbour{j})
+                    bool = false;
+                    return;
+                end
+            end
+            bool = true;
+        end
     end
     methods (Static)
         function angle = SamplePhaseAtGradient(x,system)

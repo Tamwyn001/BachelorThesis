@@ -8,7 +8,7 @@ classdef GapEquationBase
     end
 
     methods(Static)
-        function result = thresholdReached(dist, treshold, num)
+        function result = thresholdReached(dist, treshold, num, target)
             result = true;
             for v = 1 : num
                 if ~result % one break causes everything to stop
@@ -17,12 +17,12 @@ classdef GapEquationBase
                 total = size(dist,1); %this works for both cases
 
                 for i = 1 : total
-                    if abs(dist(i,1,v)) > treshold
+                    if (abs(dist(i,1,v)) > treshold) && (strcmp(target, 're') || strcmp(target, 'all'))
                         %fprintf('RE not reached at %d with %d\n', i,dist(i,1));
                         result = false;
                         break;
                     end
-                    if (abs(dist(i,2,v)) > treshold)
+                    if (abs(dist(i,2,v)) > treshold) && (strcmp(target, 'im') || strcmp(target, 'all'))
                         %fprintf('IM not reached at %d with %d\n', i,dist(i,2));
                         result = false;
                         break;
@@ -45,28 +45,28 @@ classdef GapEquationBase
                 result = zeros(system.Nx*system.Ny, 2); %stores angle and |delta|
                 % debug_check_at = 408;
                 for j = 1: system.Nx * system.Ny
-                    result(j,1) = abs(system.points{j}.delta);
+                    result(j,1) = abs(system.points{j}.c_up_c_down);
 
                     result(j,2) = 0.0;
                     coord_check = zeros(4,1);
                     for nei_id = 1 : 4
                         nei = system.points{j}.neighbour{nei_id};
                         if ~isempty(nei)
-                            coord_check(nei_id) = system.xy_to_i(nei.x, nei.y); %we store a zero id nei not valid
+                            coord_check(nei_id) = nei.i; %we store a zero id nei not valid
                         end
-                    end
+                    end %* ok
                     % if j == debug_check_at
                     %     fprintf('Checking on site %d having angle %.5f\n', debug_check_at,angle(system.points{debug_check_at}.delta));
                     % end
                     for i = 1: numel(coord_check)
                         if coord_check(i) ~= 0 % i represent the direction of the neighbour clockwise starting from the right
 
-                            if coord_check(i) < j %sign is for (f+x) - f (-x)
+                            if coord_check(i) < j %sign is for f(+x) - f(-x)
                                 sign = -1;
                             else
                                 sign = 1;
                             end
-                            result(j,2) = result(j,2) + sign * angle(system.points{coord_check(i)}.delta);
+                            result(j,2) = result(j,2) + sign * angle(system.points{coord_check(i)}.c_up_c_down);
                         end
                         % if j == debug_check_at
                         % fprintf(' -Checking on site nei ID %d having angle %.5f \n',i, angle(system.points{debug_check_at}.delta));
@@ -141,9 +141,9 @@ classdef GapEquationBase
             end
         end
 
-        function loop_on = canLoop(terminated, dist, treshold, num)
+        function loop_on = canLoop(terminated, dist, treshold, num, target)
             loop_on = true;
-            if GapEquationBase.thresholdReached(dist, treshold, num)
+            if GapEquationBase.thresholdReached(dist, treshold, num, target)
                 loop_on = false;
                 return;
             elseif terminated

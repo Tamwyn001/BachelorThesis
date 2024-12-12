@@ -45,7 +45,7 @@ classdef System < SystemBase
                     if i == j %we are on the diagonal. We find the superconducting and chemical potential terms
                         obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = obj.onSiteMatrix(i);
 
-                    else %we consider the neighbours, that possbile are bc of the periodic boundary
+                    elseif (~obj.points{i}.foundAllNeighbours()) %if not all the 4 neibours were found + on i j
                         [are_neigh, axe] = Neighbours(obj.points{i}, obj.points{j}, obj); %returns the interaction as well
                         if are_neigh
                             obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = obj.neighbourMatrix(i, axe);
@@ -67,9 +67,25 @@ classdef System < SystemBase
         end
         function matrix = neighbourMatrix(obj, i, axe)
             matrix = zeros(4);
-            if strcmp(obj.points{i}.materialLayer,'AM')
+            
+            if strcmp(axe, '+x')
+                nei_id = 1;
+            elseif strcmp(axe, '-x')
+                nei_id = 3;
+            elseif strcmp(axe, '+y')
+                nei_id = 2;
+            elseif strcmp(axe, '-y')
+                nei_id = 4;
+            end
+            % fprintf('%s', axe);
+            j = obj.points{i}.neighbour{nei_id}.i;
+           
+            if strcmp(obj.points{i}.materialLayer,'AM') && strcmp(obj.points{j}.materialLayer,'AM')
                 matrix = matrix + System.altermagnetMatrix(axe);
 
+            elseif strcmp(obj.points{i}.materialLayer,'FM') && strcmp(obj.points{j}.materialLayer,'FM')
+                matrix = matrix + System.ferromagnetMatrix();
+    
             elseif strcmp(obj.points{i}.materialLayer,'SC') && obj.DWavePurpose
                 matrix = matrix + System.dWaveMatrix(axe, obj.points{i});
             end
@@ -82,6 +98,10 @@ classdef System < SystemBase
         
         function matrix=altermagnetMatrix(axe)
             m_sigma = SystemBase.getMSigma(axe);
+            matrix = 0.5.* [-1.0 .* m_sigma, zeros(2); zeros(2), transpose(m_sigma)];
+        end
+        function matrix=ferromagnetMatrix() 
+            m_sigma = SystemBase.m .* PauliMatrix.sigmaZ;
             matrix = 0.5.* [-1.0 .* m_sigma, zeros(2); zeros(2), transpose(m_sigma)];
         end
         function matrix = hopping_t_ij()

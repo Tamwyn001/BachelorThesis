@@ -2,23 +2,23 @@ classdef SystemBase
     %Sotres the basic properties of and methodes the physical system
 
     properties (Constant)
-        verticalPeriodicBoundary = true;
+        verticalPeriodicBoundary = false;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 3.5e-3; % for detla or to scale the F yx+-
+        guessDelta = 2* 0.3; % for detla or to scale the F yx+-
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaNorm = false;
         fixedBoundaryDeltaArg = false;
         phi_1 = 1.0*pi/3.0; %phase of the superconducting gap on the left side
         phi_2 = 1.0*pi/3.0;% + (117*pi/180); %phase of the superconducting gap on the right side, phase shift of 117°
-        layer = ["SC", 15, "N", 15];% ["SC", 12, "AM", 6, "SC",12];superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
+        layer = ["SC", 30];% ["SC", 12, "AM", 6, "SC",12];superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
 
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
-        mu = -2.75; 
-        m = 0.5; %hopping
+        mu = -1.75; 
+        m = 0.8; %hopping
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions
         Ny = 15; 
@@ -77,9 +77,9 @@ classdef SystemBase
     end 
     methods (Static)
         function m_sigma = getMSigma(axe)
-            if strcmp(axe, '+x') || strcmp(axe, '-x')
+            if strcmp(axe, '+x') || strcmp(axe, '-x')|| strcmp(axe, 'x')
                 lookup = 0; %the lookup changes to fit an x or y hopping to find the good vector in the m_matrix
-            elseif strcmp(axe, 'y') || strcmp(axe, '-y')
+            elseif strcmp(axe, '+y') || strcmp(axe, '-y') || strcmp(axe, 'y')
                 lookup = 3;
             else
                 disp("NO AXE!")

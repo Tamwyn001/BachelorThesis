@@ -7,11 +7,11 @@ set logscale y
 dataroot = './Results'.targetSystem
 #set yrange [-0.1:0.25]
 plot [1:30] \
-    dataroot.'/-2.75/m0.0/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -2.75, 0.0' dashtype 1 lw 3.5 lc palette frac 1.0,\
-    dataroot.'/-2.75/m0.2/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -2.75, 0.2' dashtype 1 lw 3.5 lc palette frac 0.8,\
-    dataroot.'/-2.75/m0.5/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -2.75, 0.5' dashtype 1 lw 3.5 lc palette frac 0.6,\
-    dataroot.'/-2.75/m0.8/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -2.75, 0.8' dashtype 1 lw 3.5 lc palette frac 0.4,\
-    dataroot.'/-2.75/m1.0/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -2.75, 1.0' dashtype 1 lw 3.5 lc palette frac 0.0,\
+    dataroot.'/m0.0/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize  $m=0.0$' dashtype 1 lw 3.5 lc palette frac 1.0,\
+    dataroot.'/m0.2/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize  $m=0.2$' dashtype 1 lw 3.5 lc palette frac 0.8,\
+    dataroot.'/m0.5/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize  $m=0.5$' dashtype 1 lw 3.5 lc palette frac 0.6,\
+    dataroot.'/m0.8/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize  $m=0.8$' dashtype 1 lw 3.5 lc palette frac 0.4,\
+    dataroot.'/m1.0/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize  $m=1.0$' dashtype 1 lw 3.5 lc palette frac 0.0,\
 
     # dataroot.'/-3.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -3.75' dashtype 1 lw 3.5 lc palette frac 0.2,\
 #    dataroot.'/-1.75/meanline_30x15NoBC.dat' using 1:2 with lines title '\footnotesize -1.75' dashtype 1 lw 3.5 lc palette frac 0.6,\

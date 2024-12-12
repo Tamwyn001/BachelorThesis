@@ -18,6 +18,11 @@
 
 #SC 15 AM 15
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu.gp" -SimulationPath "/SC15AM15/NotFourier/FreeDelta/diffMU" -LatexPath "SC15AM15/NotFourier/MeanLine/FreeDelta/allMU/"
+
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu_m.gp" -SimulationPath "/SC15AM15/NotFourier/FreeDelta/diffMU/-2.75/" -LatexPath "SC15AM15/NotFourier/MeanLine/FreeDelta/m/mu-2.75/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu_m.gp" -SimulationPath "/SC15AM15/NotFourier/FreeDelta/diffMU/2.75/" -LatexPath "SC15AM15/NotFourier/MeanLine/FreeDelta/m/mu2.75/"
+
+
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_muFlatPhase.gp" -SimulationPath "/SC15AM15/NotFourier/FixedPhaseDelta" -LatexPath "SC15AM15/NotFourier/MeanLine/FixedPhaseDelta/allMU/"
 
 #  SC15 N 15

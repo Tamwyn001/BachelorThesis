@@ -23,20 +23,23 @@ classdef Computation
             if size_e == 1
                 t = 1;
                 for i = 1: numel(obj.E)
-                    if real(obj.E(i)) > 0.0
+                    if obj.E(i) > 0.0
                         obj.n(t) = i;
                         t = t + 1;
+                        %fprintf('E at %d = %.5f\n',i ,obj.E(i));
                     end
+                    
                 end
+                assert(numel(obj.n) == numel(obj.E)/2, 'Energies not evenly distributed, please check your hamiltonian.');   
             else
                 obj.n = 0; % here we dont need to sort out the indicies because we sum over all n.
             end
-            %disp(numel(obj.n));
-            % fprintf('%d %d\n', obj.E(obj.n(1)), obj.E(obj.n(numel(obj.E)/2)));
+
         end
         function [u,v] = GetUVatI(obj, i,n)
             u = [obj.eigenvectors(4*(i-1) + 1, n) , obj.eigenvectors(4*(i-1) + 2, n)]; %UP , DOWN
             v = [obj.eigenvectors(4*(i-1) + 3, n) , obj.eigenvectors(4*i, n)]; %UP , DOWN
+
         end
 
         function [u,v] = GetUVatXK(obj, x, n, k)
@@ -54,15 +57,18 @@ classdef Computation
 
         function obj = writeNewEigen(obj, vector, val)
             obj.eigenvalues = val;
+
             obj.eigenvectors = vector;
             size_e = size(obj.eigenvalues);
             if numel(size_e) == 2
                 obj.E = diag(obj.eigenvalues); %size is 4Nxny x 4Nxny
+                obj.E(:) = real(obj.E(:));
             elseif numel(size_e) == 3
                 for k_id = 1 : size_e(3)
                     obj.E(:, k_id) = diag(obj.eigenvalues(:, :, k_id)); % size is 2Nx x 2Nx x Ny
                 end   
             end
+
             obj = obj.StorePositiveIndex();
             %disp(obj.E);
         end
