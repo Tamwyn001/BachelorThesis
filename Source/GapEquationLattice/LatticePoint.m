@@ -87,8 +87,10 @@ classdef LatticePoint
             if isa(system, 'SystemFourier')
                 num_cell = 2;
                 
-            elseif isa(system, 'System')
+            elseif isa(system, 'System') || isa(system, 'System_DWave')
                 num_cell = 4;
+            else
+                assert(false, 'System not recognized');
             end
             
             obj.neighbour = cell(num_cell, 1);   % cout counter clockwise : 1: +x 2: +y 3: -x 4: -y
@@ -143,7 +145,7 @@ classdef LatticePoint
 
             [mx_cond, mx_id] = CanFindNeigbour(obj.i, '-x', system);
             [px_cond, px_id] = CanFindNeigbour(obj.i, '+x', system);
-            if isa(system, 'System')
+            if isa(system, 'System') || isa(system, 'System_DWave')
                 [my_cond, my_id] = CanFindNeigbour(obj.i, '-y', system);
                 [py_cond, py_id] = CanFindNeigbour(obj.i, '+y', system);
                 if mx_cond
@@ -167,6 +169,9 @@ classdef LatticePoint
                     obj.neighbour{2} = system.points{mx_id};
                 end
             end
+            % if obj.i == 150
+            %     fprintf('neighbours at %d: %d, %d, %d, %d\n', obj.i, mx_id, px_id, my_id, py_id);
+            % end
         end
 
         function obj = updateDelta(obj, c_up_c_down, system)
@@ -231,8 +236,11 @@ classdef LatticePoint
         end
 
         function obj = computeDWave(obj, system, neighbour_uv, energies)  
-            %neighbour_uv is (site, n, k, (u,v))
-            %site =1:x-1 site =2:x site =3:x+1
+            %neighbour_uv is (site, n, k, (u,v)) for fourier system
+                %site =1:x-1 site =2:x site =3:x+1
+
+            %neighbour_uv is (site, n, (u,v)) for dwave system
+                %site =1:x site =2:x+1 site =3: y+1 site =4: x-1 site =5: y-1
             F_i_ip1_x = obj.F_x(1);
             F_i_im1_x = obj.F_x(2);
             F_i_ip1_y = obj.F_y(1);
@@ -277,13 +285,56 @@ classdef LatticePoint
                 end
 
             elseif isa(system, 'System_DWave')
-                F_xplus_S = obj.F_x(1);
-                F_xminus_S = obj.F_x(2);
-                F_yplus_S = obj.F_y(1);
-                F_yminus_S = obj.F_y(2);
+                for n_id = 1 : size(neighbour_uv, 2)
+                    % on site
+                    v_i_down = neighbour_uv(1, n_id, 4);
+                    u_i_down = neighbour_uv(1, n_id, 2);
+
+
+
+                    % F _{i+1 , i} along x
+                    u_i_p1_up = neighbour_uv(2, n_id, 1); 
+                    v_i_p1_up = neighbour_uv(2, n_id, 3); 
+
+                    F_ip1_i_x = F_ip1_i_x + u_i_p1_up * conj(v_i_down) * (1 - FermiDiarac(energies(n_id), system.T)) + conj(v_i_p1_up) * u_i_down * FermiDiarac(energies(n_id), system.T);
+
+                    % F _{i+1 , i} along y
+
+                    u_i_pN_up = neighbour_uv(3, n_id, 1); 
+                    v_i_pN_up = neighbour_uv(3, n_id, 3); 
+
+                    F_ip1_i_y = F_ip1_i_y + u_i_pN_up * conj(v_i_down) * (1 - FermiDiarac(energies(n_id), system.T)) + conj(v_i_pN_up) * u_i_down * FermiDiarac(energies(n_id), system.T);
+
+                    
+                    % F _{i-1 , i} along x
+                    u_i_m1_up = neighbour_uv(4, n_id, 1); 
+                    v_i_m1_up = neighbour_uv(4, n_id, 3); 
+                    
+                    F_im1_i_x = F_im1_i_x + u_i_m1_up * conj(v_i_down) * (1 - FermiDiarac(energies(n_id), system.T)) + conj(v_i_m1_up) * u_i_down * FermiDiarac(energies(n_id), system.T);
+
+
+                    % F _{i-N , i} along y
+                    u_i_mN_up = neighbour_uv(5, n_id, 1); 
+                    v_i_mN_up = neighbour_uv(5, n_id, 3); 
+                    F_im1_i_y = F_im1_i_y + u_i_mN_up * conj(v_i_down) * (1 - FermiDiarac(energies(n_id), system.T)) + conj(v_i_mN_up) * u_i_down * FermiDiarac(energies(n_id), system.T);
+
+
+
+                end
+
+                F_xplus_S = (F_i_ip1_x + F_ip1_i_x)/2; %both summand differ in the u, v
+                F_xminus_S = (F_i_im1_x + F_im1_i_x)/2;
+    
+                F_yplus_S = (F_i_ip1_y + F_ip1_i_y)/2; %both summand differ in the exopnential part
+                F_yminus_S = (F_i_im1_y + F_im1_i_y)/2;
             end
             obj.F_d = (F_xplus_S + F_xminus_S - F_yplus_S - F_yminus_S);
-            obj.Delta_d = SystemFourier.V / 4 * obj.F_d;
+
+            if isa(system, 'SystemFourier')
+                obj.Delta_d = (SystemFourier.V / 4) * obj.F_d;
+            else
+                obj.Delta_d = (System_DWave.V / 4) * obj.F_d;
+            end
         end
 
         function bool = foundAllNeighbours(obj)

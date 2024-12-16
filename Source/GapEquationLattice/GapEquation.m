@@ -20,11 +20,13 @@ dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCol
 
 
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>300, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+trace = zeros(200, 3);
+while (GapEquationBase.canLoop(t>200, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);
-
+    debug = 250;
+    disp( system.hamiltonian(4*(debug-1) + 1: 4*(debug-1) + 4, 4*(debug-1) + 1: 4*(debug-1) + 4));
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
     [chi, ener] = eig(system.hamiltonian);
     computation = computation.writeNewEigen(chi, ener); %* ok
@@ -78,7 +80,13 @@ while (GapEquationBase.canLoop(t>300, dist, treshold, 2, 're')) % last values gi
     fprintf('convergence  ABS = %.5f %% at %d, PHASE = %.5f %% at x=%d | old norm: %d, old angle %d\n', ...
         dist(x_id,1,1), x_id, dist(y_id,1,2), mod(y_id-1,30) +1, delta_old(x_id, 1),delta_old(x_id, 2));
 
-    disp(CORREL_C)
+    total = 0;
+    for j = 1: system.Nx * system.Ny
+        total = total + abs(system.points{j}.c_up_c_down);
+    end
+
+    trace(t,:) = [t, dist(1,1,1), total];
+    %disp(CORREL_C)
 
 end 
 
@@ -103,6 +111,6 @@ folder = strcat(path, '\NotFourier', phase_shift_folder);
 if not(isfolder(folder))
     mkdir(folder);
 end
-
+writematrix(trace, strcat(folder,'trace.dat'), 'Delimiter', ' ');
 GapEquationBase.saveResults(folder, sim_deltails, system, CORREL_C);
 

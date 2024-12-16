@@ -14,9 +14,10 @@ F_d_old = 10 .* ones(system_d_wave.Nx*system_d_wave.Ny, 1); %angle and || of del
 
 %seting the value to compare with after its going to be updated
 dist = GapEquationBase.computeDistance(F_d_old, GapEquationBase.generateNewCollumnDeltaOrF(system_d_wave), 1, system_d_wave.convergence_model);
+trace = zeros(200, 3);
 
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>100, dist, treshold, 1)) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+while (GapEquationBase.canLoop(t>100, dist, treshold, 1, 'all')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
     F_d_old = GapEquationBase.generateNewCollumnDeltaOrF(system_d_wave);
@@ -88,12 +89,37 @@ while (GapEquationBase.canLoop(t>100, dist, treshold, 1)) % last values gives ho
 
         %we asign the values
         system_d_wave.points{i} = system_d_wave.points{i}.updateF(F_x, F_y);
-        system_d_wave.points{i} = system_d_wave.points{i}.computeDWave(system_d_wave); %compute all the d-wave parameter
+
+            
+
+       
     end
+    for i = 1: numel(system_d_wave.points)
+        uv_for_site_and_neigbours = zeros(5, numel(computation.n), 4); %sites(x-1, x, x+1, y-1,y+1) x n x (u_up, u_down, v_up, v_down)
+        for n_id = 1 : numel(computation.n)
+            for target_site = 1 : (numel(system_d_wave.points{i}.neighbour) + 1)
+                %1: i 2: +x 3: +y 4: -x 5: -y
+                if target_site == 1
+                    [u, v] = computation.GetUVatI(i, n_id);
+                    uv_for_site_and_neigbours(target_site, n_id, :) = [u(1), u(2), v(1), v(2)];
+                else
+                    %we need to remap if the target site is a neighbour: target_site = 2 -> +x
+                    
+                    if ~isempty(system_d_wave.points{i}.neighbour{target_site - 1})
+                        [u, v] = computation.GetUVatI(system_d_wave.points{i}.neighbour{target_site - 1}.i, n_id);
+                        uv_for_site_and_neigbours(target_site, n_id, :) =  [u(1), u(2), v(1), v(2)];
+                    end
+                end
+            end  
+        end
+        %for each site and k we pass the uv of the neighbours to compute the d-wave parameter 
+        system_d_wave.points{i} = system_d_wave.points{i}.computeDWave(system_d_wave, uv_for_site_and_neigbours, computation.E); %compute all the d-wave parameter
+    end
+
 %* OK until here
 
     %correct Hamiltonian with Fij on neighbours interaction elems
-    for i = 1: system_d_wave.Nx * system_d_wave.Ny
+    for i = 1: numel(system_d_wave.points)
         for j = 1 : 4 %neighbours
             if ~isempty(system_d_wave.points{i}.neighbour{j})
                 if j == 1
@@ -126,6 +152,14 @@ while (GapEquationBase.canLoop(t>100, dist, treshold, 1)) % last values gives ho
 
 %* Reassignment system ok
 
+    
+total = 0;
+for j = 1: numel(system_d_wave.points)
+    total = total + abs(system_d_wave.points{j}.F_d);
+end
+
+trace(t,:) = [t, dist(1,1,1), total];
+%disp(CORREL_C)
     t = t+1;
 
     %for each site and k we pass the uv of the neighbours to compute the d-wave parameter 

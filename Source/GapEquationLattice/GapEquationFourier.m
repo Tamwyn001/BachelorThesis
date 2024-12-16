@@ -120,19 +120,19 @@ while (GapEquationBase.canLoop(t>1000, dist, treshold, 1))
 
     for i = 1 : system_fourier.Nx
         uv_for_site_and_neigbours = zeros(3, 2 *  system_fourier.Nx, SystemBase.Ny, 2); %sites(x-1, x, x+1) x n x k x (u,v)
-            for n = 1 : size(computation.E, 1)
-                for k_id = 1 : SystemBase.Ny
-                    for target_site = -1 : 1
-                        %here we need to remap the site to + 2 to get from 1 to 3.
-                        %1: x-1, 2: x, 3: x+1
+        for n = 1 : size(computation.E, 1)
+            for k_id = 1 : SystemBase.Ny
+                for target_site = -1 : 1
+                    %here we need to remap the site to + 2 to get from 1 to 3.
+                    %1: x-1, 2: x, 3: x+1
 
-                        uv_for_site_and_neigbours(target_site + 2, n, k_id, :) = computation.GetUVatXK(x + target_site, n, k_id);
-                    end
-                    
+                    uv_for_site_and_neigbours(target_site + 2, n, k_id, :) = computation.GetUVatXK(x + target_site, n, k_id);
                 end
+                
             end
-            %for each site and k we pass the uv of the neighbours to compute the d-wave parameter 
-            system_fourier.points{i} = system_fourier.points{i}.computeDWave(system_fourier, uv_for_site_and_neigbours, computation.E); %compute all the d-wave parameter
+        end
+        %for each site and k we pass the uv of the neighbours to compute the d-wave parameter 
+        system_fourier.points{i} = system_fourier.points{i}.computeDWave(system_fourier, uv_for_site_and_neigbours, computation.E); %compute all the d-wave parameter
     end
     dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system_fourier), 1,  system_fourier.convergence_model);
     

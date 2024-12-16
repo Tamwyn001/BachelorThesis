@@ -39,6 +39,7 @@ classdef Computation
         function [u,v] = GetUVatI(obj, i,n)
             u = [obj.eigenvectors(4*(i-1) + 1, n) , obj.eigenvectors(4*(i-1) + 2, n)]; %UP , DOWN
             v = [obj.eigenvectors(4*(i-1) + 3, n) , obj.eigenvectors(4*i, n)]; %UP , DOWN
+            
 
         end
 
