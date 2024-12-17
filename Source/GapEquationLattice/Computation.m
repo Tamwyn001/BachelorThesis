@@ -28,7 +28,6 @@ classdef Computation
                         t = t + 1;
                         %fprintf('E at %d = %.5f\n',i ,obj.E(i));
                     end
-                    
                 end
                 assert(numel(obj.n) == numel(obj.E)/2, 'Energies not evenly distributed, please check your hamiltonian.');   
             else
@@ -71,6 +70,9 @@ classdef Computation
             end
 
             obj = obj.StorePositiveIndex();
+            for n_id = 1: numel(obj.n)
+                assert(isreal(obj.E(obj.n(n_id))), 'Eigenvalues are not real');
+            end
             %disp(obj.E);
         end
     end

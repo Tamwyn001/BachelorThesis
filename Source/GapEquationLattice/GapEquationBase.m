@@ -38,14 +38,14 @@ classdef GapEquationBase
                 total = numel(system.points);                
                 result = zeros(total, 1); % +x, -x, +y, -y
                 for j = 1: total
-                    result(1,1) = result(1,1) + abs(system.points{j}.F_d);
+                    result(j,1) = system.points{j}.F_d;
                 end
 
             elseif isa(system, 'System')
                 result = zeros(system.Nx*system.Ny, 2); %stores angle and |delta|
                 % debug_check_at = 408;
                 for j = 1: system.Nx * system.Ny
-                    result(1,1) = result(1,1) + abs(system.points{j}.c_up_c_down);
+                    result(j,1) = system.points{j}.c_up_c_down;
 
                     result(j,2) = 0.0;
                     coord_check = zeros(4,1);

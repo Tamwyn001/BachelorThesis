@@ -19,7 +19,7 @@ classdef System < SystemBase
             else
                 obj.DWavePurpose = DWavePurpose;
             end
-            obj.convergence_model = "re_im";
+            obj.convergence_model = "abs_angle";
         end
 
         function obj = createLattice(obj, tilted)
@@ -76,6 +76,8 @@ classdef System < SystemBase
                 nei_id = 2;
             elseif strcmp(axe, '-y')
                 nei_id = 4;
+            else
+                assert(false, 'axe not found');
             end
             % fprintf('%s', axe);
             j = obj.points{i}.neighbour{nei_id}.i;
@@ -98,21 +100,21 @@ classdef System < SystemBase
         
         function matrix=altermagnetMatrix(axe)
             m_sigma = SystemBase.getMSigma(axe);
-            matrix = 0.5.* [-1.0 .* m_sigma, zeros(2); zeros(2), transpose(m_sigma)];
+            matrix =  [-1.0 .* m_sigma, zeros(2); zeros(2), transpose(m_sigma)];
         end
         function matrix=ferromagnetMatrix() 
             m_sigma = SystemBase.m .* PauliMatrix.sigmaZ;
-            matrix = 0.5.* [-1.0 .* m_sigma, zeros(2); zeros(2), transpose(m_sigma)];
+            matrix = 1.* [-1.0 .* m_sigma, zeros(2); zeros(2), transpose(m_sigma)];
         end
         function matrix = hopping_t_ij()
-            matrix = -0.5 .* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
+            matrix = 1.* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
         end
         function matrix = superconductingMatrix(delta)
-            matrix = -0.5 .* [zeros(2), (delta * (-1i)) * PauliMatrix.sigmaY; ...
+        matrix = 1.* [zeros(2), (delta * (-1i)) * PauliMatrix.sigmaY; ...
                 conj(delta) * (1i) * PauliMatrix.sigmaY, zeros(2)];
         end
         function matrix= chemicalMatrix(mu)
-            matrix = -0.5 * mu .* [eye(2), zeros(2); zeros(2), -eye(2)];
+            matrix = 1 * mu .* [eye(2), zeros(2); zeros(2), -eye(2)];
         end
         function matrix = dWaveMatrix(axis, point)
             F = 0;
@@ -124,10 +126,14 @@ classdef System < SystemBase
                 F = point.F_y(1);
             elseif strcmp(axis, '-y')
                 F = point.F_y(2);
+            else
+                assert(false, 'axe not found');
             end
-
-            matrix = -0.5 .* [zeros(2), (1i) * F .* PauliMatrix.sigmaY; ...
-                (- 1i)* F .* PauliMatrix.sigmaY, zeros(2)];
+            if point.i == 250
+                fprintf('%s, has %f ', axis, F);
+            end
+            matrix = -0.5 .* [zeros(2), -1* 1i * F .* PauliMatrix.sigmaY; ...
+                1i * F .* PauliMatrix.sigmaY, zeros(2)];
         end
     end
 end

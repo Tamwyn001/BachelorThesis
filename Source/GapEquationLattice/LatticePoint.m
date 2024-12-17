@@ -66,14 +66,13 @@ classdef LatticePoint
                 elseif (SystemBase.fixedBoundaryDeltaNorm) && (obj.x == 1 || obj.x == system.Nx)
                     obj.delta = abs(system.guessDelta)*exp(1i * 0);
                 else
-                    obj.delta = system.guessDelta*exp( -((obj.x - system.Nx/2)^2 + (obj.y - system.Ny/2)^2) / 1000 );
+                    obj.delta = system.guessDelta; %*exp( -((obj.x - system.Nx/2)^2 + (obj.y - system.Ny/2)^2) / 1000 );
                 end
                 obj.c_up_c_down = obj.delta / obj.U;
                 obj.F_x = exp(-1i * rot) .* [1, 1] .* system.guessDelta; %according to mjøs p19
                 obj.F_y = exp(-1i * rot) .* [-1, -1] .* system.guessDelta;
                 obj.F_d = obj.F_x(1) + obj.F_x(2) - obj.F_y(1) - obj.F_y(2);
                 obj.Delta_d = SystemFourier.V / 4 * obj.F_d;
-
             else
                 obj.F_x = [0, 0]; %according to mjøs p19
                 obj.F_y = [0, 0];

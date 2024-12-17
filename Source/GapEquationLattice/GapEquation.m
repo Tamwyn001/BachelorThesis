@@ -25,8 +25,7 @@ while (GapEquationBase.canLoop(t>200, dist, treshold, 2, 're')) % last values gi
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);
-    debug = 250;
-    disp( system.hamiltonian(4*(debug-1) + 1: 4*(debug-1) + 4, 4*(debug-1) + 1: 4*(debug-1) + 4));
+
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
     [chi, ener] = eig(system.hamiltonian);
     computation = computation.writeNewEigen(chi, ener); %* ok
@@ -56,9 +55,9 @@ while (GapEquationBase.canLoop(t>200, dist, treshold, 2, 're')) % last values gi
             % end
         end
         system.points{i} = system.points{i}.updateDelta(c_up_c_down, system); 
-        if i == 150
-            fprintf('c_up_c_down = %.5f\n', system.points{i}.c_up_c_down);
-        end
+        % if i == 150
+        %     fprintf('c_up_c_down = %.5f\n', system.points{i}.c_up_c_down);
+        % end
     end
 
     %correct Hamiltonian
@@ -66,10 +65,10 @@ while (GapEquationBase.canLoop(t>200, dist, treshold, 2, 're')) % last values gi
         system.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4) = system.onSiteMatrix(i); %This takes the most time in the loop.
         % if i==150
         %     disp(system.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4));
-        % end
+        % end#    
         CORREL_C(system.points{i}.y, system.points{i}.x) = system.points{i}.c_up_c_down;
     end
-
+    % disp(CORREL_C);
     t = t+1;
     dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 2,  system.convergence_model);
 
@@ -89,12 +88,6 @@ while (GapEquationBase.canLoop(t>200, dist, treshold, 2, 're')) % last values gi
     %disp(CORREL_C)
 
 end 
-
-%generate a plotable matrix
-for i = 1: system.Nx * system.Ny
-    %disp(system.points{i}.delta);
-    CORREL_C(system.points{i}.y, system.points{i}.x) = system.points{i}.c_up_c_down;
-end   
 
 
 fprintf('Computing currents\n');

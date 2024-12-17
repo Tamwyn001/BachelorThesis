@@ -14,16 +14,18 @@ F_d_old = 10 .* ones(system_d_wave.Nx*system_d_wave.Ny, 1); %angle and || of del
 
 %seting the value to compare with after its going to be updated
 dist = GapEquationBase.computeDistance(F_d_old, GapEquationBase.generateNewCollumnDeltaOrF(system_d_wave), 1, system_d_wave.convergence_model);
-trace = zeros(200, 3);
-
+trace = zeros(30, 3);
+debug = zeros(system_d_wave.Ny, system_d_wave.Nx);
 fprintf('Solving the gap equation\n');
-while (GapEquationBase.canLoop(t>100, dist, treshold, 1, 'all')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+
+while (GapEquationBase.canLoop(t>30, dist, treshold, 1, 'all')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\nIteration %d:', t);
     fprintf('Diagonalising\n');
     F_d_old = GapEquationBase.generateNewCollumnDeltaOrF(system_d_wave);
 
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
     [chi, ener] = eig(system_d_wave.hamiltonian);
+    
     computation = computation.writeNewEigen(chi, ener);
     for i = 1: numel(system_d_wave.points) %for each particle we search a convergence
 
@@ -94,14 +96,16 @@ while (GapEquationBase.canLoop(t>100, dist, treshold, 1, 'all')) % last values g
 
        
     end
+
+    %recompute F_d_i. we already have F_+x etc, now we need F _i+1,i as well for F_ds
     for i = 1: numel(system_d_wave.points)
-        uv_for_site_and_neigbours = zeros(5, numel(computation.n), 4); %sites(x-1, x, x+1, y-1,y+1) x n x (u_up, u_down, v_up, v_down)
+        uv_for_site_and_neigbours = zeros(5, numel(computation.n), 4); %sites(x, x+1, y+1, x-1, y-1) x n x (u_up, u_down, v_up, v_down)
         for n_id = 1 : numel(computation.n)
             for target_site = 1 : (numel(system_d_wave.points{i}.neighbour) + 1)
                 %1: i 2: +x 3: +y 4: -x 5: -y
                 if target_site == 1
                     [u, v] = computation.GetUVatI(i, n_id);
-                    uv_for_site_and_neigbours(target_site, n_id, :) = [u(1), u(2), v(1), v(2)];
+                    uv_for_site_and_neigbours(1, n_id, :) = [u(1), u(2), v(1), v(2)];
                 else
                     %we need to remap if the target site is a neighbour: target_site = 2 -> +x
                     
@@ -153,12 +157,13 @@ while (GapEquationBase.canLoop(t>100, dist, treshold, 1, 'all')) % last values g
 %* Reassignment system ok
 
     
-total = 0;
-for j = 1: numel(system_d_wave.points)
-    total = total + abs(system_d_wave.points{j}.F_d);
-end
-
-trace(t,:) = [t, dist(1,1,1), total];
+    total = 0;
+    for j = 1: numel(system_d_wave.points)
+        total = total + abs(system_d_wave.points{j}.F_d);
+        debug(system_d_wave.points{j}.y, system_d_wave.points{j}.x) = system_d_wave.points{j}.F_d;
+    end
+    disp(debug);    
+    trace(t,:) = [t, dist(1,1,1), total];
 %disp(CORREL_C)
     t = t+1;
 
@@ -205,6 +210,7 @@ path_CORREL_C = strcat(folder, sim_deltails);
 disp(path_CORREL_C);
 writematrix(WriteHeatmap(system_d_wave, 'F_d'), strcat(path_CORREL_C, '_F_D10.dat'),'Delimiter',' ')
 
+writematrix(trace, strcat(folder,'trace.dat'), 'Delimiter', ' ');
 
 
 path_MEAN_CORREL_C = strcat(folder, "meanline_",sim_deltails);

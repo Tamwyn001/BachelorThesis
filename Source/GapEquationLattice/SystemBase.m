@@ -5,7 +5,7 @@ classdef SystemBase
         verticalPeriodicBoundary = false;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 2* 0.3; % for detla or to scale the F yx+-
+        guessDelta = 2* 0.005; % for detla or to scale the F yx+-
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaNorm = false;
         fixedBoundaryDeltaArg = false;
@@ -17,11 +17,11 @@ classdef SystemBase
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
-        mu = -3.75; 
+        mu = -1.75; 
         m = 0.8; %hopping
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions
-        Ny = 15; 
+        Ny = 2; 
     end
     properties
         convergence_model; %abs_angle if fourier , or re_im
@@ -77,7 +77,7 @@ classdef SystemBase
     end 
     methods (Static)
         function m_sigma = getMSigma(axe)
-            if strcmp(axe, '+x') || strcmp(axe, '-x')|| strcmp(axe, 'x')
+            if strcmp(axe, '+x') || strcmp(axe, '-x') || strcmp(axe, 'x')
                 lookup = 0; %the lookup changes to fit an x or y hopping to find the good vector in the m_matrix
             elseif strcmp(axe, '+y') || strcmp(axe, '-y') || strcmp(axe, 'y')
                 lookup = 3;
