@@ -3,7 +3,7 @@ function system = ComputeCurrents(system, computation)
         I_x = 0.0;
         I_y = 0.0;
         target_site = system.points{i};
-        Fermi = @(n) FermiDiarac(1*computation.E(n), system.T);
+        Fermi = @(n) FermiDiarac(-1*computation.E(n), system.T);
             for index_eigen = 1 : numel(computation.n) %sum over n, the numbers of eigenvectors with POSITIVE energies.
                 n = computation.n(index_eigen);
                 % make a if on is neigbour i : i-1 etc to avoid the vaccum

@@ -45,8 +45,9 @@ classdef System < SystemBase
                     if i == j %we are on the diagonal. We find the superconducting and chemical potential terms
                         obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = obj.onSiteMatrix(i);
 
-                    elseif (~obj.points{i}.foundAllNeighbours()) %if not all the 4 neibours were found + on i j
+                    else % (~obj.points{i}.foundAllNeighbours()) %if not all the 4 neibours were found + on i j
                         [are_neigh, axe] = Neighbours(obj.points{i}, obj.points{j}, obj); %returns the interaction as well
+
                         if are_neigh
                             obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = obj.neighbourMatrix(i, axe);
                                 
@@ -60,8 +61,8 @@ classdef System < SystemBase
         end
 
         function matrix = onSiteMatrix(obj, i) %site i
-            matrix = 1*System.chemicalMatrix(System.mu);
-            if strcmp(obj.points{i}.materialLayer, 'SC') && ~(obj.DWavePurpose)
+            matrix = System.chemicalMatrix(System.mu);
+            if strcmp(obj.points{i}.materialLayer, 'SC') && (~(obj.DWavePurpose))
                 matrix = matrix + System.superconductingMatrix(obj.points{i}.delta);
             end
         end
@@ -81,7 +82,6 @@ classdef System < SystemBase
             end
             % fprintf('%s', axe);
             j = obj.points{i}.neighbour{nei_id}.i;
-           
             if strcmp(obj.points{i}.materialLayer,'AM') && strcmp(obj.points{j}.materialLayer,'AM')
                 matrix = matrix + System.altermagnetMatrix(axe);
 
@@ -132,7 +132,7 @@ classdef System < SystemBase
             if point.i == 250
                 fprintf('%s, has %f ', axis, F);
             end
-            matrix = -0.5 .* [zeros(2), -1* 1i * F .* PauliMatrix.sigmaY; ...
+            matrix = 0.5 .* [zeros(2), -1* 1i * F .* PauliMatrix.sigmaY; ...
                 1i * F .* PauliMatrix.sigmaY, zeros(2)];
         end
     end

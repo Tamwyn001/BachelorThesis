@@ -49,7 +49,7 @@ classdef LatticePoint
             %fprintf('created at %d with type %s\n', obj.i, obj.type);
             if strcmp(obj.materialLayer,'SC')
                 rot = 0;
-                obj.U = 4.0;
+                obj.U = 2.0;
                 if SystemBase.fixedBoundaryDeltaArg
                     if obj.x == 1 
                         obj.delta = system.fixedDelta(1);

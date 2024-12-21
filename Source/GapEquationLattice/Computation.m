@@ -35,7 +35,7 @@ classdef Computation
             end
 
         end
-        function [u,v] = GetUVatI(obj, i,n)
+        function [u,v] = GetUVatI(obj, i, n)
             u = [obj.eigenvectors(4*(i-1) + 1, n) , obj.eigenvectors(4*(i-1) + 2, n)]; %UP , DOWN
             v = [obj.eigenvectors(4*(i-1) + 3, n) , obj.eigenvectors(4*i, n)]; %UP , DOWN
             
@@ -55,14 +55,15 @@ classdef Computation
 
 
 
+        
         function obj = writeNewEigen(obj, vector, val)
             obj.eigenvalues = val;
 
             obj.eigenvectors = vector;
+
             size_e = size(obj.eigenvalues);
             if numel(size_e) == 2
                 obj.E = diag(obj.eigenvalues); %size is 4Nxny x 4Nxny
-                obj.E(:) = real(obj.E(:));
             elseif numel(size_e) == 3
                 for k_id = 1 : size_e(3)
                     obj.E(:, k_id) = diag(obj.eigenvalues(:, :, k_id)); % size is 2Nx x 2Nx x Ny
@@ -71,8 +72,9 @@ classdef Computation
 
             obj = obj.StorePositiveIndex();
             for n_id = 1: numel(obj.n)
-                assert(isreal(obj.E(obj.n(n_id))), 'Eigenvalues are not real');
+                assert(imag(obj.E(obj.n(n_id)))< 1.0e-10, 'Eigenvalues are not real');       
             end
+            obj.E = real(obj.E);
             %disp(obj.E);
         end
     end

@@ -42,10 +42,11 @@ classdef GapEquationBase
                 end
 
             elseif isa(system, 'System')
-                result = zeros(system.Nx*system.Ny, 2); %stores angle and |delta|
+                result = zeros(system.Nx*system.Ny, 2); %stores delta and current gradient
                 % debug_check_at = 408;
                 for j = 1: system.Nx * system.Ny
-                    result(j,1) = system.points{j}.c_up_c_down;
+                    % result(j,1) = system.points{j}.c_up_c_down;
+                    result(1,1) = result(1,1) + system.points{j}.c_up_c_down;
 
                     result(j,2) = 0.0;
                     coord_check = zeros(4,1);

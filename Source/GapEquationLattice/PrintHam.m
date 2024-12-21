@@ -21,6 +21,7 @@ function PrintHam(x,y, k_id, systemType,tilted)
     end
     
     if nargin == 2
+        heatmap(system.hamiltonian);
         disp(system.hamiltonian);
     return
     elseif nargin == 3

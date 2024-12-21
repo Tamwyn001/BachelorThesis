@@ -7,6 +7,7 @@ function f = FermiDiarac(E,T)
     % Fermi-Dirac distribution
 
     %? we're already describing in the grand canonical ensemble so no need to remove the chemical potential -> YES
-    f = 1 / (exp((E) / (k_B * T)) + 1);
+    f = 1/(exp(E/(k_B * T)) + 1);  
+    % f = (1 - tanh(E/(2*T))) / 2;
 end
 

@@ -61,8 +61,8 @@ while (GapEquationBase.canLoop(t>30, dist, treshold, 1, 'all')) % last values gi
                         [u_j_n, v_j_n] = computation.GetUVatI(j, n);
 
 
-                        F_dir = F_dir + u_i_n(1) * conj(v_j_n(2)) * (1- Fermi(1*computation.E(n)))...
-                            + u_i_n(2) * conj(v_j_n(1)) *   (Fermi(1*computation.E(n))) ; %spin-dep variables in H are
+                        F_dir = F_dir + u_i_n(1) * conj(v_j_n(2)) * (1- Fermi(2*computation.E(n)))...
+                            + u_i_n(2) * conj(v_j_n(1)) * (Fermi(2*computation.E(n))) ; %spin-dep variables in H are
                             % defined with general spin sigma and delta with up or down
                     end
 

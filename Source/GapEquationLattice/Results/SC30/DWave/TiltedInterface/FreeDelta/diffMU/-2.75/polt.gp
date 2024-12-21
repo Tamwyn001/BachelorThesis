@@ -1,1 +1,0 @@
-plot [1:30] 'meanline_30x15NoBC_F_D10.dat' u 1:2 w l lw 2 title "F"

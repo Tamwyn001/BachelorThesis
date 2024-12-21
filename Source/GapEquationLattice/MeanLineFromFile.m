@@ -1,7 +1,7 @@
 function MeanLineFromFile(quantity)
-    path = ".\Results\SC12AM6SC12\NotFourier\FixedPhaseDelta\PhaseSide1.0472\diffMU\";
+    path = ".\Results\SC30\NotFourier\FixedLinearPhaseGradient\Phase117deg\diffMU\";
     pot = ["-3.75", "-2.75", "-2.2", "-1.75", "3.75", "2.75", "1.75"];
-    starting_at = "";%"\Starting_at\1.0472";
+    starting_at = "\Starting_at\1.0472";
     if nargin == 0
         quantity = "Phase";
     end
