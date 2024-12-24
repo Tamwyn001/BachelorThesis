@@ -119,7 +119,7 @@ classdef GapEquationBase
                     end
                     %there is some high fluctuations in the almost nummericaly zero case, so we cut of if too small 
                     % otherwise we get a get jumps from -16 to -13 for example which is a 1000% jump
-                    if (abs(delta_new(i,dir))<1e-10 && abs(delta_old(i,dir))<1e-10) %|| (mod(i-1,30) +1 > 15)
+                    if (abs(delta_new(i,dir))<1e-12 && abs(delta_old(i,dir))<1e-12) %|| (mod(i-1,30) +1 > 15)
                         result(i, 1, dir) = 0.0;
                         result(i, 2, dir) = 0.0;
                     else
