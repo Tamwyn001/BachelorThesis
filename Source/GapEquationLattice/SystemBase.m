@@ -5,23 +5,23 @@ classdef SystemBase
         verticalPeriodicBoundary = false;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 2.0* 0.5; % for detla or to scale the F yx+-
+        guessDelta = 2.0* 0.00000000007; % for detla or to scale the F yx+-
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaNorm = false;
-        fixedBoundaryDeltaArg = true;
+        fixedBoundaryDeltaArg = false;
         phi_1 = 1.0*pi/3.0; %phase of the superconducting gap on the left side
         phi_2 = 1.0*pi/3.0 + (117.0*pi/180.0); %phase of the superconducting gap on the right side, phase shift of 117°
-        layer = ["SC", 30];% ["SC", 12, "AM", 6, "SC",12];superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
+        layer =  ["SC", 15, "AM", 15]%["SC", 12, "AM", 6, "SC",12]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
 
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
-        mu = -3.75; 
-        m = 0.8; %hopping
+        mu = -2.75; 
+        m = 0.25; %hopping
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions
-        Ny = 15; 
+        Ny = 20; 
     end
     properties
         convergence_model; %abs_angle if fourier , or re_im
@@ -82,7 +82,7 @@ classdef SystemBase
             elseif strcmp(axe, '+y') || strcmp(axe, '-y') || strcmp(axe, 'y')
                 lookup = 3;
             else
-                disp("NO AXE!")
+                assert(false, "NO AXE!")
             end
             m_sigma = SystemBase.m_matrix(1 + lookup) * PauliMatrix.sigmaX ...
                 + SystemBase.m_matrix(2 + lookup) * PauliMatrix.sigmaY ...

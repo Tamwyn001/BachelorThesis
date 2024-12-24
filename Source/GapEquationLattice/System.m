@@ -100,11 +100,11 @@ classdef System < SystemBase
         
         function matrix=altermagnetMatrix(axe)
             m_sigma = SystemBase.getMSigma(axe);
-            matrix =  [-1.0 .* m_sigma, zeros(2); zeros(2), transpose(m_sigma)];
+            matrix =  [m_sigma, zeros(2); zeros(2), -1.* transpose(m_sigma)];
         end
         function matrix=ferromagnetMatrix() 
             m_sigma = SystemBase.m .* PauliMatrix.sigmaZ;
-            matrix = 1.* [-1.0 .* m_sigma, zeros(2); zeros(2), transpose(m_sigma)];
+            matrix = 1.* [m_sigma, zeros(2); zeros(2), -1.*transpose(m_sigma)];
         end
         function matrix = hopping_t_ij()
             matrix = 1.* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];

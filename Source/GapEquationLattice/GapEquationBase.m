@@ -218,8 +218,16 @@ classdef GapEquationBase
         end
         function mat = getSimMaterial()
             mat = "";
+            hasAM = false;
+
             for i = 1 : numel(SystemBase.layer)
                 mat = strcat(mat, SystemBase.layer(i));
+                if strcmp(SystemBase.layer(i), 'AM')
+                    hasAM = true;
+                end
+            end
+            if hasAM
+                mat = strcat(mat,'_m', num2str(SystemBase.m));
             end
         end
     end

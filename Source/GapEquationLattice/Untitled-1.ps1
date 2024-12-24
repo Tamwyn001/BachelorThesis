@@ -10,12 +10,25 @@
 
 ./generateGraph.ps1 -GnuScript ”gpScripts/Currents/Currents_long_SC_NoBC_mu-1.75.gp” -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-1.75/Starting_at/1.0472" -LatexPath "/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-1.75/";
 ./generateGraph.ps1 -GnuScript ”gpScripts/Currents/Currents_long_SC_NoBC_mu-2.75.gp” -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_at/1.0472" -LatexPath "/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.75/";
+./generateGraph.ps1 -GnuScript ”gpScripts/Currents/Currents_long_SC_NoBC_mu-3.75.gp” -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-3.75/Starting_at/1.0472" -LatexPath "/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-3.75/";
 
-./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine_continuity_long_SC.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_at/-1.0472" -LatexPath "/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting_-1.0472/";
-./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine_continuity_long_SC.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_at/1.0472" -LatexPath "/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/starting_1.0472/";
+./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine_continuity_long_SC_mu-1.75.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-1.75/" -LatexPath "/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-1.75/";
+./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine_continuity_long_SC_mu-2.75.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/" -LatexPath "/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/";
+./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine_continuity_long_SC_mu-3.75.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-3.75/" -LatexPath "/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-3.75/";
 
 #SC 15 AM 15
-./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu.gp" -SimulationPath "/SC15AM15/NotFourier/FreeDelta/diffMU" -LatexPath "SC15AM15/NotFourier/MeanLine/FreeDelta/allMU/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu_m0 copy.gp" -SimulationPath "" -LatexPath "SC15AM15_m0.0/NotFourier/MeanLine/FreeDelta/allMU/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu_compareLength.gp" -SimulationPath "/SC15AM30_m0/NotFourier/FreeDelta/diffMU" -LatexPath "SCAM_CompareHeight/"
+
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu-0.75_m.gp" -SimulationPath "" -LatexPath "SC15AM30/m-0.75/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu-1.75_m.gp" -SimulationPath "" -LatexPath "SC15AM30/m-1.75/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu-2.75_m.gp" -SimulationPath "" -LatexPath "SC15AM30/m-2.75/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu-3.75_m.gp" -SimulationPath "" -LatexPath "SC15AM30/m-3.75/"
+
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu_m0.25.gp" -SimulationPath "/SC15AM15_m0.25/NotFourier/FreeDelta/diffMU" -LatexPath "SC15AM15_m0.25/NotFourier/MeanLine/FreeDelta/allMU/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu_m0.25.gp" -SimulationPath "/SC15AM15_m0.5/NotFourier/FreeDelta/diffMU" -LatexPath "SC15AM15_m0.5/NotFourier/MeanLine/FreeDelta/allMU/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu_m0.25.gp" -SimulationPath "/SC15AM15_m0.75/NotFourier/FreeDelta/diffMU" -LatexPath "SC15AM15_m0.75/NotFourier/MeanLine/FreeDelta/allMU/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu_m0.25.gp" -SimulationPath "/SC15AM15_m1/NotFourier/FreeDelta/diffMU" -LatexPath "SC15AM15_m1.0/NotFourier/MeanLine/FreeDelta/allMU/"
 
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu_m.gp" -SimulationPath "/SC15AM15/NotFourier/FreeDelta/diffMU/-2.75/" -LatexPath "SC15AM15/NotFourier/MeanLine/FreeDelta/m/mu-2.75/"
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu_m.gp" -SimulationPath "/SC15AM15/NotFourier/FreeDelta/diffMU/2.75/" -LatexPath "SC15AM15/NotFourier/MeanLine/FreeDelta/m/mu2.75/"

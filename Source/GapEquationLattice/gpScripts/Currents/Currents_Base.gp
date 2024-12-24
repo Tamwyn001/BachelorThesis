@@ -33,8 +33,16 @@ set mytics 2
 set palette maxcolors 20
 
 unset title # '\textbf{Correlation of the c operators}' 
-set colorbox
 set key outside right
+set xtics offset char 0, char 0.4
 set ytics offset char -1, char 0  
-set xtics offset char 0, char -0.05  
 set ylabel offset char 3, char 0 
+
+unset label 1
+unset label 2
+unset arrow 1
+set xrange [0:31]
+set yrange [0:16]
+set size ratio 0.5 #30/15 ratio
+set colorbox vertical user origin graph 1.025, 0.0 size 0.035, 0.8
+set cbtics offset char 2, char 0
