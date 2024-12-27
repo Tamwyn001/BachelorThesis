@@ -20,8 +20,8 @@ dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCol
 
 fprintf('Solving the gap equation\n');
 trace = zeros(numel(system.points), 1);
-while (GapEquationBase.canLoop(t>40, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
-    fprintf('\nIteration %d:', t);
+while (GapEquationBase.canLoop(t>100, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+    fprintf('\n\nIteration %d\n:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);
 
@@ -64,6 +64,7 @@ while (GapEquationBase.canLoop(t>40, dist, treshold, 2, 're')) % last values giv
    
         CORREL_C(system.points{i}.y, system.points{i}.x) = system.points{i}.c_up_c_down;
     end
+    % disp(CORREL_C);
     t = t+1;
 
     dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCollumnDeltaOrF(system), 2,  system.convergence_model);
@@ -79,7 +80,7 @@ end
 
 
 fprintf('Computing currents\n');
-%system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
+system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 
 sim_deltails = GapEquationBase.getSimulationDetails(system);

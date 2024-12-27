@@ -2,7 +2,7 @@ function f = FermiDiarac(E,T)
 %FERMIDIARAC Summary of this function goes here
 %   Detailed explanation goes here
     % Constants
-    k_B = 1.380649e-23; % Boltzmann constant in J/K
+    k_B = 1;%1.380649e-23; % Boltzmann constant in J/K
     
     % Fermi-Dirac distribution
 

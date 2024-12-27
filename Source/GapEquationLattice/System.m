@@ -80,7 +80,7 @@ classdef System < SystemBase
             else
                 assert(false, 'axe not found');
             end
-            % fprintf('%s', axe);
+            
             j = obj.points{i}.neighbour{nei_id}.i;
             if strcmp(obj.points{i}.materialLayer,'AM') && strcmp(obj.points{j}.materialLayer,'AM')
                 matrix = matrix + System.altermagnetMatrix(axe);
@@ -129,11 +129,11 @@ classdef System < SystemBase
             else
                 assert(false, 'axe not found');
             end
-            if point.i == 250
-                fprintf('%s, has %f ', axis, F);
-            end
-            matrix = 0.5 .* [zeros(2), -1* 1i * F .* PauliMatrix.sigmaY; ...
-                1i * F .* PauliMatrix.sigmaY, zeros(2)];
+            % if point.i == 250
+            %     fprintf('%s, has %f ', axis, F);
+            % end
+            matrix = 1 .* [zeros(2), -1i * F .* PauliMatrix.sigmaY; ...
+                1i * conj(F) .* PauliMatrix.sigmaY, zeros(2)];
         end
     end
 end

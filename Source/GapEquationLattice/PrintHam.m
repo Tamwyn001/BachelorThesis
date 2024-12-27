@@ -22,7 +22,7 @@ function PrintHam(x,y, k_id, systemType,tilted)
     
     if nargin == 2
         heatmap(system.hamiltonian);
-        %disp(system.hamiltonian);
+        % disp(angle(system.hamiltonian(:,:)));
     return
     elseif nargin == 3
         result = strings(system.Nx, system.Ny);

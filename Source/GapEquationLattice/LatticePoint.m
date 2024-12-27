@@ -1,3 +1,4 @@
+
 classdef LatticePoint
     % Class to store a lattice point and classify it
     
@@ -235,21 +236,24 @@ classdef LatticePoint
         end
 
         function obj = computeDWave(obj, system, neighbour_uv, energies)  
+            Fermi = @(E) FermiDiarac(E, SystemBase.T);
+
+
             %neighbour_uv is (site, n, k, (u,v)) for fourier system
                 %site =1:x-1 site =2:x site =3:x+1
 
             %neighbour_uv is (site, n, (u,v)) for dwave system
                 %site =1:x site =2:x+1 site =3: y+1 site =4: x-1 site =5: y-1
-            F_i_ip1_x = obj.F_x(1);
-            F_i_im1_x = obj.F_x(2);
-            F_i_ip1_y = obj.F_y(1);
-            F_i_im1_y = obj.F_y(2);
+            F_i_ip1 = obj.F_x(1);
+            F_i_im1 = obj.F_x(2);
+            F_i_ipN = obj.F_y(1);
+            F_i_imN = obj.F_y(2);
 
             %we already have the F_ij but need now F_ji
-            F_ip1_i_x = 0.0;
-            F_im1_i_x = 0.0;
-            F_ip1_i_y = 0.0;
-            F_im1_i_y = 0.0;
+            F_ip1_i = 0.0;
+            F_im1_i = 0.0;
+            F_ipN_i = 0.0;
+            F_imN_i = 0.0;
             if isa(system, 'SystemFourier')
                 for n_id = 1 : size(neighbour_uv, 2)
                
@@ -258,32 +262,33 @@ classdef LatticePoint
                         % F _{i-1 , i} along x
                         u_1 = neighbour_uv(1, n_id, k_id, 1); %1 means the site x-1
                         v_2 = neighbour_uv(2, n_id, k_id, 2); %2 means the site x, is used in each expressions
-                        F_im1_i_x = F_im1_i_x + u_1 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T));
+                        F_im1_i = F_im1_i + u_1 * conj(v_2) * (1 - Fermi(energies(n_id, k_id)));
 
 
                         % F _{i+1 , i} along x
                         u_1 = neighbour_uv(3, n_id, k_id, 1); %here we reuse u1 for the site x+1 : 3
-                        F_ip1_i_x = F_ip1_i_x + u_1 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T));
+                        F_ip1_i = F_ip1_i + u_1 * conj(v_2) * (1 - Fermi(energies(n_id, k_id)));
 
 
                         % F _{i-1 , i} along y
                         u_2 = neighbour_uv(2, n_id, k_id, 1); %in this y hopping, we look at the uv on the same site but different k in exp
-                        F_im1_i_y = F_im1_i_y + u_2 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T)) * exp(1i*system.k(k_id));
+                        F_imN_i = F_imN_i + u_2 * conj(v_2) * (1 - Fermi(energies(n_id, k_id))) * exp(1i*system.k(k_id));
 
 
                         % F _{i+1 , i} along y, same statement for the u and v
-                        F_ip1_i_y = F_ip1_i_y + u_2 * conj(v_2) * (1 - FermiDiarac(1*energies(n_id, k_id), system.T))* exp(-1i*system.k(k_id));
+                        F_ipN_i = F_ipN_i + u_2 * conj(v_2) * (1 - Fermi(energies(n_id, k_id)))* exp(-1i*system.k(k_id));
 
 
                     end
-                    F_xplus_S = (F_i_ip1_x + F_ip1_i_x)/2; %both summand differ in the u, v
-                    F_xminus_S = (F_i_im1_x + F_im1_i_x)/2;
+                    F_xplus_S = (F_i_ip1 + F_ip1_i)/2; %both summand differ in the u, v
+                    F_xminus_S = (F_i_im1 + F_im1_i)/2;
         
-                    F_yplus_S = (F_i_ip1_y + F_ip1_i_y)/2; %both summand differ in the exopnential part
-                    F_yminus_S = (F_i_im1_y + F_im1_i_y)/2;
+                    F_yplus_S = (F_i_ipN + F_ipN_i)/2; %both summand differ in the exopnential part
+                    F_yminus_S = (F_i_imN + F_imN_i)/2;
                 end
 
             elseif isa(system, 'System_DWave')
+                factor = 1.0;
                 for n_id = 1 : size(neighbour_uv, 2)
                     % on site
                     v_i_down = neighbour_uv(1, n_id, 4);
@@ -295,37 +300,37 @@ classdef LatticePoint
                     u_i_p1_up = neighbour_uv(2, n_id, 1); 
                     v_i_p1_up = neighbour_uv(2, n_id, 3); 
 
-                    F_ip1_i_x = F_ip1_i_x + u_i_p1_up * conj(v_i_down) * (1 - FermiDiarac(energies(n_id), system.T)) + conj(v_i_p1_up) * u_i_down * FermiDiarac(energies(n_id), system.T);
+                    F_ip1_i = F_ip1_i + u_i_p1_up * conj(v_i_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_p1_up) * u_i_down * Fermi(factor*energies(n_id));
 
-                    % F _{i+1 , i} along y
+                    % F _{i+N , i} along y
 
                     u_i_pN_up = neighbour_uv(3, n_id, 1); 
                     v_i_pN_up = neighbour_uv(3, n_id, 3); 
 
-                    F_ip1_i_y = F_ip1_i_y + u_i_pN_up * conj(v_i_down) * (1 - FermiDiarac(energies(n_id), system.T)) + conj(v_i_pN_up) * u_i_down * FermiDiarac(energies(n_id), system.T);
+                    F_ipN_i = F_ipN_i + u_i_pN_up * conj(v_i_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_pN_up) * u_i_down * Fermi(factor*energies(n_id));
 
                     
                     % F _{i-1 , i} along x
                     u_i_m1_up = neighbour_uv(4, n_id, 1); 
                     v_i_m1_up = neighbour_uv(4, n_id, 3); 
                     
-                    F_im1_i_x = F_im1_i_x + u_i_m1_up * conj(v_i_down) * (1 - FermiDiarac(energies(n_id), system.T)) + conj(v_i_m1_up) * u_i_down * FermiDiarac(energies(n_id), system.T);
+                    F_im1_i = F_im1_i + u_i_m1_up * conj(v_i_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_m1_up) * u_i_down * Fermi(factor*energies(n_id));
 
 
                     % F _{i-N , i} along y
                     u_i_mN_up = neighbour_uv(5, n_id, 1); 
                     v_i_mN_up = neighbour_uv(5, n_id, 3); 
-                    F_im1_i_y = F_im1_i_y + u_i_mN_up * conj(v_i_down) * (1 - FermiDiarac(energies(n_id), system.T)) + conj(v_i_mN_up) * u_i_down * FermiDiarac(energies(n_id), system.T);
+                    F_imN_i = F_imN_i + u_i_mN_up * conj(v_i_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_mN_up) * u_i_down * Fermi(factor*energies(n_id));
 
 
 
                 end
 
-                F_xplus_S = (F_i_ip1_x + F_ip1_i_x)/2; %both summand differ in the u, v
-                F_xminus_S = (F_i_im1_x + F_im1_i_x)/2;
+                F_xplus_S = (F_i_ip1 + F_ip1_i)/2; 
+                F_xminus_S = (F_i_im1 + F_im1_i)/2;
     
-                F_yplus_S = (F_i_ip1_y + F_ip1_i_y)/2; %both summand differ in the exopnential part
-                F_yminus_S = (F_i_im1_y + F_im1_i_y)/2;
+                F_yplus_S = (F_i_ipN + F_ipN_i)/2; 
+                F_yminus_S = (F_i_imN + F_imN_i)/2;
             end
             obj.F_d = (F_xplus_S + F_xminus_S - F_yplus_S - F_yminus_S);
 
@@ -336,15 +341,15 @@ classdef LatticePoint
             end
         end
 
-        function bool = foundAllNeighbours(obj)
-            for j = 1:4
-                if isempty(obj.neighbour{j})
-                    bool = false;
-                    return;
-                end
-            end
-            bool = true;
-        end
+        % function bool = foundAllNeighbours(obj)
+        %     for j = 1:4
+        %         if isempty(obj.neighbour{j})
+        %             bool = false;
+        %             return;
+        %         end
+        %     end
+        %     bool = true;
+        % end
     end
     methods (Static)
         function angle = SamplePhaseAtGradient(x,system)

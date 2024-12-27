@@ -35,8 +35,8 @@ classdef GapEquationBase
         function result = generateNewCollumnDeltaOrF(system)
 
             if isa(system, 'SystemFourier') || isa(system, 'System_DWave')
-                total = numel(system.points);                
-                result = zeros(total, 1); % +x, -x, +y, -y
+                total = numel(system.points);
+                result = zeros(total, 1);
                 for j = 1: total
                     result(j,1) = system.points{j}.F_d;
                 end

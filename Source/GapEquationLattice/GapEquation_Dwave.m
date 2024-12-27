@@ -19,7 +19,7 @@ debug = zeros(system_d_wave.Ny, system_d_wave.Nx);
 fprintf('Solving the gap equation\n');
 
 while (GapEquationBase.canLoop(t>30, dist, treshold, 1, 'all')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
-    fprintf('\nIteration %d:', t);
+    fprintf('\n\nIteration %d:\n', t);
     fprintf('Diagonalising\n');
     F_d_old = GapEquationBase.generateNewCollumnDeltaOrF(system_d_wave);
 
@@ -27,6 +27,9 @@ while (GapEquationBase.canLoop(t>30, dist, treshold, 1, 'all')) % last values gi
     [chi, ener] = eig(system_d_wave.hamiltonian);
     
     computation = computation.writeNewEigen(chi, ener);
+
+    fprintf('Correcting\n');
+    Console.progressBar(0, numel(system_d_wave.points));
     for i = 1: numel(system_d_wave.points) %for each particle we search a convergence
 
         axis = ['x', 'y'];
@@ -61,8 +64,8 @@ while (GapEquationBase.canLoop(t>30, dist, treshold, 1, 'all')) % last values gi
                         [u_j_n, v_j_n] = computation.GetUVatI(j, n);
 
 
-                        F_dir = F_dir + u_i_n(1) * conj(v_j_n(2)) * (1- Fermi(2*computation.E(n)))...
-                            + u_i_n(2) * conj(v_j_n(1)) * (Fermi(2*computation.E(n))) ; %spin-dep variables in H are
+                        F_dir = F_dir + u_i_n(1) * conj(v_j_n(2)) * (1- Fermi(1*computation.E(n)))...
+                            + conj(v_i_n(1)) * u_j_n(2) * (Fermi(1*computation.E(n))) ; %spin-dep variables in H are
                             % defined with general spin sigma and delta with up or down
                     end
 
@@ -71,8 +74,10 @@ while (GapEquationBase.canLoop(t>30, dist, treshold, 1, 'all')) % last values gi
                         if direction_id == 1 %+x
                             F_x(1) = F_dir;
 
+
                         else  %-x
                             F_x(2) = F_dir;
+
                         end
                     else
                         if direction_id == 1 %+y
@@ -92,16 +97,18 @@ while (GapEquationBase.canLoop(t>30, dist, treshold, 1, 'all')) % last values gi
         %we asign the values
         system_d_wave.points{i} = system_d_wave.points{i}.updateF(F_x, F_y);
 
-            
+        Console.progressBar(i, numel(system_d_wave.points));
 
        
     end
+    fprintf('Neighbouring\n');
+    Console.progressBar(0, numel(system_d_wave.points));
 
     %recompute F_d_i. we already have F_+x etc, now we need F _i+1,i as well for F_ds
     for i = 1: numel(system_d_wave.points)
         uv_for_site_and_neigbours = zeros(5, numel(computation.n), 4); %sites(x, x+1, y+1, x-1, y-1) x n x (u_up, u_down, v_up, v_down)
         for n_id = 1 : numel(computation.n)
-            for target_site = 1 : (numel(system_d_wave.points{i}.neighbour) + 1)
+            for target_site = 1 : 5
                 %1: i 2: +x 3: +y 4: -x 5: -y
                 if target_site == 1
                     [u, v] = computation.GetUVatI(i, n_id);
@@ -115,9 +122,10 @@ while (GapEquationBase.canLoop(t>30, dist, treshold, 1, 'all')) % last values gi
                     end
                 end
             end  
+            
         end
-        %for each site and k we pass the uv of the neighbours to compute the d-wave parameter 
         system_d_wave.points{i} = system_d_wave.points{i}.computeDWave(system_d_wave, uv_for_site_and_neigbours, computation.E); %compute all the d-wave parameter
+        Console.progressBar(i, numel(system_d_wave.points));
     end
 
 %* OK until here
@@ -153,7 +161,48 @@ while (GapEquationBase.canLoop(t>30, dist, treshold, 1, 'all')) % last values gi
 
         end
     end
-
+    diverg = zeros(numel(system_d_wave.points), numel(system_d_wave.points));
+    for i = 1: numel(system_d_wave.points)
+        for i_prime = 1: numel(system_d_wave.points)
+            axe = '';
+            if (i_prime == i + 1)
+                axe = 'x';
+                sign = 1;
+            elseif (i_prime == i + system_d_wave.Nx)
+                axe = 'y';
+                sign = 1;
+            elseif (i_prime == i - 1)
+                axe = 'x';
+                sign = -1;
+            elseif (i_prime ==  i - system_d_wave.Nx)
+                axe = 'y';
+                sign = -1;
+            end
+            if (mod(i, system_d_wave.Nx) == 0 && strcmp(axe, 'x') && sign == 1) || (mod(i-1, system_d_wave.Nx) == 0 && strcmp(axe, 'x') && sign == -1) %right edge
+            %    fprintf('Right edge at %d, %d\n', i, i_prime);
+                continue;
+            end
+            if ~strcmp(axe, '') % neighbour
+                if sign == 1
+                    axe1 = strcat('+', axe);
+                    axe2 = strcat('-', axe);
+                elseif sign == -1
+                    axe1 = strcat('-', axe);
+                    axe2 = strcat('+', axe);
+                end
+                % fprintf('Neighbouring matrix at %d, %d\n', i, i_prime);
+                diff = system_d_wave.neighbourMatrix(i, axe1) - system_d_wave.neighbourMatrix(i_prime, axe2);
+                diverg(i, i_prime) = abs(diff(1,4));
+            end
+        end
+    end
+    % hh = heatmap(diverg);
+    % waitfor(hh);
+    [m_col, id_col] = max(diverg);
+    [m, id_row] = max(m_col);
+    % disp(m_col);
+   
+    fprintf('Divergence in matrices of = %.5f at i=%d, i_prime =%d\n', m, id_col(id_row), id_row);
 %* Reassignment system ok
 
     
@@ -162,13 +211,9 @@ while (GapEquationBase.canLoop(t>30, dist, treshold, 1, 'all')) % last values gi
         total = total + abs(system_d_wave.points{j}.F_d);
         debug(system_d_wave.points{j}.y, system_d_wave.points{j}.x) = system_d_wave.points{j}.F_d;
     end
-    disp(debug);    
-    trace(t,:) = [t, dist(1,1,1), total];
-%disp(CORREL_C)
+
     t = t+1;
 
-    %for each site and k we pass the uv of the neighbours to compute the d-wave parameter 
-    a = GapEquationBase.generateNewCollumnDeltaOrF(system_d_wave);
     dist = GapEquationBase.computeDistance(F_d_old, GapEquationBase.generateNewCollumnDeltaOrF(system_d_wave), 1, system_d_wave.convergence_model);
 
     abs_dist_abs = abs(dist(:,1,1));

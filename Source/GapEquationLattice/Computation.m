@@ -72,6 +72,7 @@ classdef Computation
 
             obj = obj.StorePositiveIndex();
             for n_id = 1: numel(obj.n)
+                % fprintf('At index n_id%d, energy, %d and norm %d\n', n_id, obj.E(obj.n(n_id)), norm(obj.eigenvectors(obj.n(n_id))));
                 assert(imag(obj.E(obj.n(n_id)))< 1.0e-10, 'Eigenvalues are not real');       
             end
             obj.E = real(obj.E);
