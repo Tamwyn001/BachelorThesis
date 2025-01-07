@@ -100,21 +100,21 @@ classdef System < SystemBase
         
         function matrix=altermagnetMatrix(axe)
             m_sigma = SystemBase.getMSigma(axe);
-            matrix =  [m_sigma, zeros(2); zeros(2), -1.* transpose(m_sigma)];
+            matrix =  -1.* [m_sigma, zeros(2); zeros(2), -1.* transpose(m_sigma)];
         end
         function matrix=ferromagnetMatrix() 
             m_sigma = SystemBase.m .* PauliMatrix.sigmaZ;
-            matrix = 1.* [m_sigma, zeros(2); zeros(2), -1.*transpose(m_sigma)];
+            matrix = -1.* [m_sigma, zeros(2); zeros(2), -1.*transpose(m_sigma)];
         end
         function matrix = hopping_t_ij()
-            matrix = 1.* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
+            matrix = -1.* [System.t_ij *eye(2), zeros(2); zeros(2), -conj(System.t_ij) * eye(2)];
         end
         function matrix = superconductingMatrix(delta)
-        matrix = 1.* [zeros(2), (delta * (-1i)) * PauliMatrix.sigmaY; ...
+        matrix = -1.* [zeros(2), (delta * (-1i)) * PauliMatrix.sigmaY; ...
                 conj(delta) * (1i) * PauliMatrix.sigmaY, zeros(2)];
         end
         function matrix= chemicalMatrix(mu)
-            matrix = 1 * mu .* [eye(2), zeros(2); zeros(2), -eye(2)];
+            matrix = -1. * mu .* [eye(2), zeros(2); zeros(2), -eye(2)];
         end
         function matrix = dWaveMatrix(axis, point)
             F = 0;
@@ -132,7 +132,7 @@ classdef System < SystemBase
             % if point.i == 250
             %     fprintf('%s, has %f ', axis, F);
             % end
-            matrix = 1 .* [zeros(2), -1i * F .* PauliMatrix.sigmaY; ...
+            matrix = -1 .* [zeros(2), -1i * F .* PauliMatrix.sigmaY; ...
                 1i * conj(F) .* PauliMatrix.sigmaY, zeros(2)];
         end
     end

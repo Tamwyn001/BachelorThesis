@@ -20,7 +20,7 @@ dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCol
 
 fprintf('Solving the gap equation\n');
 trace = zeros(numel(system.points), 1);
-while (GapEquationBase.canLoop(t>100, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+while (GapEquationBase.canLoop(t>300, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\n\nIteration %d\n:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);
@@ -50,8 +50,8 @@ while (GapEquationBase.canLoop(t>100, dist, treshold, 2, 're')) % last values gi
             n = computation.n(index_eigen);
             [u_i_n, v_i_n] = computation.GetUVatI(i, n);
 
-            c_up_c_down = c_up_c_down + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(-1*computation.E(n)))...
-                + u_i_n(2) * conj(v_i_n(1)) * (Fermi(-1*computation.E(n))) ; %spin-dep variables in H are
+            c_up_c_down = c_up_c_down + u_i_n(1) * conj(v_i_n(2)) * (1- Fermi(1*computation.E(n)))...
+                + u_i_n(2) * conj(v_i_n(1)) * (Fermi(1*computation.E(n))) ; %spin-dep variables in H are
                 % defined with general spin sigma and delta with up or down
         end
         system.points{i} = system.points{i}.updateDelta(c_up_c_down, system); 

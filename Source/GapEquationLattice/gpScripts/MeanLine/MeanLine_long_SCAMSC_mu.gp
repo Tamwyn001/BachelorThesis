@@ -6,7 +6,6 @@ set multiplot
 
 
 set logscale y
-
 unset xlabel
 set ylabel offset char 2, char -3
 set size noratio

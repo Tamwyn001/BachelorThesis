@@ -184,15 +184,16 @@ classdef GapEquationBase
 
         function sim_deltails = getSimulationDetails(system)
             sim_deltails = strcat(int2str(system.Nx),'x', int2str(system.Ny));
-            if SystemBase.verticalPeriodicBoundary && SystemBase.horizontalPeriodicBoundary
-                sim_deltails = strcat(sim_deltails, "VertHorizBC");
-            elseif SystemBase.verticalPeriodicBoundary
-                sim_deltails = strcat(sim_deltails, "VertBC");
-            elseif SystemBase.horizontalPeriodicBoundary
-                sim_deltails = strcat(sim_deltails, "HorizBC");
-            else
-                sim_deltails = strcat(sim_deltails, "NoBC");
-            end
+            sim_deltails = strcat(sim_deltails, "NoBC");
+            % if SystemBase.verticalPeriodicBoundary && SystemBase.horizontalPeriodicBoundary
+            %     sim_deltails = strcat(sim_deltails, "VertHorizBC");
+            % elseif SystemBase.verticalPeriodicBoundary
+            %     sim_deltails = strcat(sim_deltails, "VertBC");
+            % elseif SystemBase.horizontalPeriodicBoundary
+            %     sim_deltails = strcat(sim_deltails, "HorizBC");
+            % else
+            %     sim_deltails = strcat(sim_deltails, "NoBC");
+            % end
         end
 
         function phase_shift_folder = getPhaseShiftFolder(system)

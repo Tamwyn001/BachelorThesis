@@ -150,17 +150,21 @@ classdef LatticePoint
                 [py_cond, py_id] = CanFindNeigbour(obj.i, '+y', system);
                 if mx_cond
                     obj.neighbour{3} = system.points{mx_id};
+                    mx_id = system.points{mx_id}.i;
                 end
                 if px_cond
                     obj.neighbour{1} = system.points{px_id};
+                    px_id = system.points{px_id}.i;
                 end
                 if my_cond
                     obj.neighbour{4} = system.points{my_id};
+                    my_id = system.points{my_id}.i;
                 end
                 if py_cond
-                    %fprintf('at %d we have %d\n', obj.i, py_id);
                     obj.neighbour{2} = system.points{py_id};
+                    py_id = system.points{py_id}.i;
                 end
+            % fprintf('neighbours at %d: %d, %d, %d, %d\n', obj.i, px_id, py_id, mx_id, my_id);
             elseif isa(system, 'SystemFourier')
                 if px_cond
                     obj.neighbour{1} = system.points{px_id};
@@ -244,10 +248,10 @@ classdef LatticePoint
 
             %neighbour_uv is (site, n, (u,v)) for dwave system
                 %site =1:x site =2:x+1 site =3: y+1 site =4: x-1 site =5: y-1
-            F_i_ip1 = obj.F_x(1);
-            F_i_im1 = obj.F_x(2);
-            F_i_ipN = obj.F_y(1);
-            F_i_imN = obj.F_y(2);
+            F_i_ip1 = 0.0;
+            F_i_im1 = 0.0;
+            F_i_ipN = 0.0;
+            F_i_imN = 0.0;  
 
             %we already have the F_ij but need now F_ji
             F_ip1_i = 0.0;
@@ -290,47 +294,63 @@ classdef LatticePoint
             elseif isa(system, 'System_DWave')
                 factor = 1.0;
                 for n_id = 1 : size(neighbour_uv, 2)
-                    % on site
-                    v_i_down = neighbour_uv(1, n_id, 4);
+
+                    %on site members
+                    u_i_up   = neighbour_uv(1, n_id, 1);
                     u_i_down = neighbour_uv(1, n_id, 2);
+                    v_i_up   = neighbour_uv(1, n_id, 3); 
+                    v_i_down = neighbour_uv(1, n_id, 4);
 
+                    % F along x +
+                    %* OK
+                    u_i_p1_up   = neighbour_uv(2, n_id, 1); 
+                    u_i_p1_down = neighbour_uv(2, n_id, 2); 
+                    v_i_p1_up   = neighbour_uv(2, n_id, 3);
+                    v_i_p1_down = neighbour_uv(2, n_id, 4); 
 
-
-                    % F _{i+1 , i} along x
-                    u_i_p1_up = neighbour_uv(2, n_id, 1); 
-                    v_i_p1_up = neighbour_uv(2, n_id, 3); 
-
-                    F_ip1_i = F_ip1_i + u_i_p1_up * conj(v_i_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_p1_up) * u_i_down * Fermi(factor*energies(n_id));
-
-                    % F _{i+N , i} along y
-
-                    u_i_pN_up = neighbour_uv(3, n_id, 1); 
-                    v_i_pN_up = neighbour_uv(3, n_id, 3); 
+                    F_ip1_i = F_ip1_i + u_i_p1_up * conj(v_i_down)    * (1 - Fermi(factor*energies(n_id))) + conj(v_i_p1_up) * u_i_down    * Fermi(factor*energies(n_id));
+                    F_i_ip1 = F_i_ip1 + u_i_up    * conj(v_i_p1_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_up)    * u_i_p1_down * Fermi(factor*energies(n_id));
+                    
+                    % F along y +
+                    %* OK
+                    u_i_pN_up   = neighbour_uv(3, n_id, 1); 
+                    u_i_pN_down = neighbour_uv(3, n_id, 2); 
+                    v_i_pN_up   = neighbour_uv(3, n_id, 3); 
+                    v_i_pN_down = neighbour_uv(3, n_id, 4); 
 
                     F_ipN_i = F_ipN_i + u_i_pN_up * conj(v_i_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_pN_up) * u_i_down * Fermi(factor*energies(n_id));
-
+                    F_i_ipN = F_i_ipN + u_i_up * conj(v_i_pN_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_up) * u_i_pN_down * Fermi(factor*energies(n_id));
                     
-                    % F _{i-1 , i} along x
-                    u_i_m1_up = neighbour_uv(4, n_id, 1); 
-                    v_i_m1_up = neighbour_uv(4, n_id, 3); 
+                    % F along x-
+                    %* OK
+                    u_i_m1_up   = neighbour_uv(4, n_id, 1); 
+                    u_i_m1_down = neighbour_uv(4, n_id, 1); 
+                    v_i_m1_up   = neighbour_uv(4, n_id, 3); 
+                    v_i_m1_down = neighbour_uv(4, n_id, 4);
                     
                     F_im1_i = F_im1_i + u_i_m1_up * conj(v_i_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_m1_up) * u_i_down * Fermi(factor*energies(n_id));
+                    F_i_im1 = F_i_im1 + u_i_up * conj(v_i_m1_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_up) * u_i_m1_down * Fermi(factor*energies(n_id));
 
+                    % F along y-
+                    %* OK
+                    u_i_mN_up   = neighbour_uv(5, n_id, 1); 
+                    u_i_mN_down = neighbour_uv(5, n_id, 2);
+                    v_i_mN_up   = neighbour_uv(5, n_id, 3); 
+                    v_i_mN_down = neighbour_uv(5, n_id, 4);
 
-                    % F _{i-N , i} along y
-                    u_i_mN_up = neighbour_uv(5, n_id, 1); 
-                    v_i_mN_up = neighbour_uv(5, n_id, 3); 
                     F_imN_i = F_imN_i + u_i_mN_up * conj(v_i_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_mN_up) * u_i_down * Fermi(factor*energies(n_id));
-
+                    F_i_imN = F_i_imN + u_i_up * conj(v_i_mN_down) * (1 - Fermi(factor*energies(n_id))) + conj(v_i_up) * u_i_mN_down * Fermi(factor*energies(n_id));
 
 
                 end
+                obj.F_x = [F_i_ip1, F_i_im1];
+                obj.F_y = [F_i_ipN, F_i_imN];
 
-                F_xplus_S = (F_i_ip1 + F_ip1_i)/2; 
-                F_xminus_S = (F_i_im1 + F_im1_i)/2;
+                F_xplus_S = (obj.F_x(1) + F_ip1_i)/2; 
+                F_xminus_S = (obj.F_x(2) + F_im1_i)/2;
     
-                F_yplus_S = (F_i_ipN + F_ipN_i)/2; 
-                F_yminus_S = (F_i_imN + F_imN_i)/2;
+                F_yplus_S = (obj.F_y(1) + F_ipN_i)/2; 
+                F_yminus_S = (obj.F_y(1) + F_imN_i)/2;
             end
             obj.F_d = (F_xplus_S + F_xminus_S - F_yplus_S - F_yminus_S);
 

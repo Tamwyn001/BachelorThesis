@@ -1,11 +1,11 @@
 set loadpath './gpScripts/'
 load '../config/palettes/Candy.pal'
-load '/SystemDesc/SC15-N15.cfg'
+load '/SystemDesc/SC15-FM15.cfg'
 load '/MeanLine/MeanLine_Base.gp'
 
 set logscale y
 dataroot = './Results'.targetSystem
-sys = '/SC15N15/NotFourier/FreeDelta/diffMU/'
+sys = '/SC15FM15/NotFourier/FreeDelta/diffMU/'
 # set yrange [1.0e-8:1]
 
 
