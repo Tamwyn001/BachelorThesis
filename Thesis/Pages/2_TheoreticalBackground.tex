@@ -110,7 +110,7 @@ come to build the Slatter determinant.\\
 
 These bosonic and fermionic wavefunctions are eigenstate of the Hamiltonian $\hat{H}_0$ and the corresponding eigenvalue $E_{\nu}$
 is given by summing the energy of each state times its occupation number: $E_{\nu} = \sum_{\nu} \epsilon_{\nu} n_{\nu}$.
-The orthonal property of the single-particle wavefunction propagtes itselfs \rem{itselfs/itself}:
+The orthonal property of the single-particle wavefunction propagtes itself:
 \[
     \int_{\mathcal{X}^N} \Phi_a^{\ast}(x_1,..,x_N) \Phi_b(x_1,..,x_N) \dd^N x = \delta_{ab}.
 \]
@@ -419,8 +419,8 @@ and we finaly get our second quantised interaction operator:
 \]
 This describes an electron transfering a momentum $\bm{q}$ to another electron. The fornula tells that we first kill both electrons as they are before the interaction.
 Then we create two in the new states, where one lost some momentum that has been transferred the other electron. Here the $v$-term modualtes the strengh of the process. 
-The Coulomb force is known to degrow with the inverse of the distance. This term depends on the distance $\bm{r}-\bm{r}'$
-between the electrons, but not on their respective positions $\bm{r}$ and $\bm{r}'$. This exchange is therfore invariant under translations.
+The Coulomb force is known to degrow with the inverse of the distance $\bm{r}-\bm{r}'$
+between the electrons, but do not depend on their respective positions $\bm{r}$ and $\bm{r}'$. This exchange is therfore invariant under translations.
 The following diagramm is a good illustration of this process.\\
 \begin{figure}[H]
     \centering
@@ -439,129 +439,144 @@ The following diagramm is a good illustration of this process.\\
         };
         \end{feynman}
     \end{tikzpicture}
+
+    \caption{The interaction of two electrons modulated by a photon of momentum $\bm{q}$. The leftmost starts in the state  $(\bm{k}', \sigma')$ and gives 
+    a momentum $\bm{q}$ to the rightmost electron. The time is represented on the horzontal axis and the space on the vertical one.}
     \label{fig:photon_exchange}
-    \caption{The interaction of two electrons modulated by a photon of momentum $\bm{q}$.}
 \end{figure}
-This closes the introduction theorie on the second quantisation. We saw how we can express integral over wavefunctions as bra-kets scalarproducts. 
-This allowed us to introduce some operators that creates and annihilates particles in a certain state. Using this formalism we were able to compute the 
-Hamiltonian of the system in the momentum sapce. We found that the non interacting-part relies on the energy of each state times there occupation number.
+This closes the introduction theory on the second quantisation. We saw how we can express integrals over wavefunctions as bra-kets scalarproducts. 
+We introduce two operators that create and annihilate particles in a certain state. Using this formalism we were able to compute the 
+Hamiltonian of the system in the momentum sapce. We found that the non interacting-part relies on the energy of each state times their occupation number.
 In the last part we showed that an interaction between two electrons can be described as a momentum transfert between them,
  wich is modulated by the fourier transform of the Coulomb potential.\\
 
-The goal of this thesis is to study how the superconductivity behaves in the prooximity of an altermagnet. 
+The goal of this thesis is to study how the superconductivity behaves in the proximity of an altermagnet. 
 Over the next chapter we are going to explain how a superconductive state works. The altermagnet will be presented in a later part of this work.\\
+
 %------------------------%
 \section{Superconductivity}
-Superconductivity can be illustrated as a phase transition of a meterial under a crital temperature. In the superconductive state the material 
-become a perfect diamaget and its resistivity vanishes. We then observe some shielding currents that araise on it's surface
-and we can let flew a current for a very long time without loosing energy. The superconductive state is also described as Meissner state.\\ 
+Superconductivity can be illustrated as a phase transition of a metal when its temperatur lays under a crital temperature $T_C$. In the superconductive state the material 
+become a perfect diamaget and its resistivity vanishes. Let us apply a magnetic field on superconductive metal, we will observe some shielding currents that araise on it's surface.
+ They are labeld as the Faraday lines. If we take a spherical
+material, the density of these line is bigger on the equator than an the poles but this depends on the shape of the metal. We have as well an internal magnetic field, that cancels exactly the one
+that is applied outside. The magnetic susceptibility in the body is then $\chi = -1$.\\
+A second property that found multiple technical use cases is the friction-less flow of a current in the metal. The current can stream for a very long time without loosing energy. 
+In the first chapter of \cite{FossheimSudbo2004} Fossheim and Sudbø even calculated a significant decay of this current that lays above the age of the universe.
+The superconductive state is also described as a Meissner state.\\ 
 
-Suppose that we heat the material to the critical temperature $T_c$, some fluctuation effects araise and break the superconductive state.
-The shielding effects reacts different on the material. We usely distinguish type I and type II superconductors. The type I superconductor
-loose abruplty their magnetisation over $T_c$. Type II have a mixed state where the magnetisation slowly decreases until we can't measure it anymore.\\
+Suppose that we now heat the material at the critical temperature $T_c$, some fluctuation effects araise and break the superconductive state.
+We usely distinguish type I and type II superconductors. The type I superconductor
+looses abruplty their magnetisation over $T_c$. Type II have a mix of ordinary and superconductive properties at intermediaries temperatures. In this mixed states the magnetisation slowly decreases while heating the metal,
+ until we can't measure any Meissner state anymore over $T_C$. Above an intermediary field strengh, we observe as well some vortecies and flux lines that pierce the material.\\
+ \rem{add a handmade figure}\\
 
-The break of the superconductive state can be described as letting more and more filed 
-flew inside of the material. Asuming that some particle are responsible for the superconductivity, the field achieve to penetrate where wo observe 
-a lower density of these particles. The penetration is described as some magnetic field vortecies reaching a certain depth in the material.\\
+Durring the break of the superconductive state more and more magnetic field 
+flows inside of the material. Asuming that some particles are responsible for the superconductivity, the field achieve to penetrate where we observe 
+a lower density of these particles.\\
 
-The Meissner state is a thermodynamical state. We can show that the free energy of the superconductive state is higher than the normal state. 
-This results in a lower entropy compered to the normal state.
-
-Along the derivation of the superconductivity formalism we are going to follow closely the work of Fossheim and Sudbø \cite{FossheimSudbo2004} from chapter 2 to 4.
+The Meissner state is a thermodynamical state. This means that we can completely identify it with a set of variable that we are going to derive.
+We can show that the free energy of the superconductive state is higher than the normal state. 
+This results in a lower entropy compared to the normal state (\cite{FossheimSudbo2004} chap. 1.6).
+Along with the derivation of the superconductivity, we are going to follow closely the work of Fossheim and Sudbø \cite{FossheimSudbo2004} from chapter 2 to 4.
 For readability reason we set the reducted Planck constant $\hbar = 1$ in the following. Furhter they added the chemical potential to the energy of the state such
-that now $\epsilon_k + \mu \rightarrow \epsilon_k $ from eq. \ref{eq:interactingGasT}. \\
+that now $\epsilon_k + \mu \rightarrow \epsilon_k $, which was originialy defined at Eq.\ref{eq:interactingGasT}.\\
+
 \subsection{Theoretical framework and BCS theory}
-The Hamiltonian of the system is discribed by the solid state physics. The consider the energy of the electrons and the ions in a lattice.
+The Hamiltonian of the system is described by the solid state physics. We consider the energy of the electrons and the ions in a lattice and the interaction between them resulting in 
+the following, very generic expression of the Hamiltonian:
 \[
-    H = H_{e^-e^-} + H_{e^-\text{ion}} + H_{\text{ion ion}}
+    H = H_{e^-e^-} + H_{e^-\text{ion}} + H_{\text{ion ion}}.
 \]
-Each term consist of a kinetik and potential energy term. For a more mathematical approch we consider a system of $N$ electrons and $L$ ions.
+Each term consist of a kinetik and potential energy term. For a more mathematical approch we consider a system of $N$ electrons and $L$ ions and define:
 \begin{align*}
-    H_{e^-e^-} &= \sum_{i \in \natset{N}} \frac{p_i^2}{2m} + \sum_{i,j\in\natset{N}} V_{\text{Coulomb}}^{e^-e^-}(\bm{r}_i-\bm{r}_j) \\
-    H_{\text{ion ion}} &=  \sum_{i \in \natset{M}} \frac{p_i^2}{2M} + \sum_{i,j\in\natset{L}} V_{\text{Coulomb}}^{\text{ion-ion}}(\bm{R}_i-\bm{R}_j) \\
-    H_{e^-\text{ion}} &= \sum_{i\in \natset{N},j\in \natset{L}} V_{\text{Coulomb}}^{e^-\text{ion}}(\bm{r}_i-\bm{R}_j)
+    H_{e^-e^-} &= \sum_{i \in \natset{N}} \frac{p_i^2}{2m} + \sum_{ij\in\natset{N}} V_{\text{Coulomb}}^{e^-e^-}(\bm{r}_i-\bm{r}_j), \\
+    H_{\text{ion ion}} &=  \sum_{i \in \natset{M}} \frac{p_i^2}{2M} + \sum_{ij\in\natset{L}} V_{\text{Coulomb}}^{\text{ion-ion}}(\bm{R}_i-\bm{R}_j), \\
+    H_{e^-\text{ion}} &= \sum_{i\in \natset{N},j\in \natset{L}} V_{\text{Coulomb}}^{e^-\text{ion}}(\bm{r}_i-\bm{R}_j).
 \end{align*}
 We have $m$ and $M$ as the mass of the electron and the ion. $\bm{r}$ and $\bm{R}$ are the position of the electron and the ion. The ion-ion potential
 freezes the ions into the lattice. 
-We first going to introduce some concepts by describing a non-interacting electron and then improve it to include the interactions.
-Usely the potential of a lattice is periodic. If so the wavefunction o f a particle moving in the system is a plane wave modulated
-by a periodic function. Eigenstates of the corresponding hamiltonian are called Bloch state.
+First we are going to introduce some concepts by describing a non-interacting electron and then improve it to include the interactions.
+Usely the potential of a lattice is periodic. If so, according to the Bloch theorem, the wavefunction of a particle moving in the system is a plane wave modulated
+by a periodic function. Eigenstates of the corresponding Hamiltonian are called Bloch state.
 
 \subsubsection{The non-interacting electron gas}
 In this case of study the Hamiltonian only include a kinetic term
 \begin{equation}\label{eq:NonInteractingHamiltonian}
-    H=\sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma}.
+    H=\sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k}\sigma}^{\dagger}c_{\bm{k}\sigma}.
 \end{equation}
 We asume that it exist a the ground state $|0\rangle$, where the system is filled up with a certain amount of electron until the Fermi-energy $\epsilon_F$ is reached. Associated with this
-energy we find a wave vector $\bm{k}_F$, the Fermi-momentum. The set of enery up to $\epsilon_F$ is called the Fermi-sea, as an analogy to the level zero of the topographic maps.
-\[
-    \hat{n}_{\bm{k},\sigma} |0\rangle = \Theta(\epsilon_F - \epsilon_{\bm{k}})|0\rangle.
-\]
-We introduced here a very useful tool called the Heavyside-step function wich is defined as: 
+energy we find a wave vector $\bm{k}_F$, the Fermi-momentum. The set of enery up to $\epsilon_F$ is called the Fermi-sea, as an analogy to the level zero of the topographic maps. 
+Put into a mathematical form, the Fermi-sea is defined as:
+\begin{equation}
+    \hat{n}_{\bm{k},\sigma} |0\rangle = \Theta(\epsilon_F - \epsilon_{\bm{k}})|0\rangle.\label{eq:MomentumDistributionFree}
+\end{equation}
+We introduced here a very useful tool called the Heavyside-step function which is defined as: 
 \begin{equation}\label{eq:Heavyside}
     \Theta(x) = \begin{cases}
         1, ~x > 0\\
         0, ~x < 0
-    \end{cases} ~ , ~~ \Theta(-x) = 1 - \Theta(x).
+    \end{cases} , ~~~ \Theta(-x) = 1 - \Theta(x).
 \end{equation}
-This means that if we count the particle that have an energy heigher than the Fermi-energy ($\bm{k}>\bm{k}_F$) than we get zero.\\
+This means that we find no particles that have an energy heigher than the Fermi-energy ($\bm{k}>\bm{k}_F$).\\
 
-We now want to study how the electron can scatter in different states. The function that we're using is called the propagator and
-gives the probailty to find the particle at $|\bm{k}',\sigma\rangle$ at $t'$ know it at  $|\bm{k},\sigma\rangle$, $t$. 
+Now we want to study how the electron can scatter in different states. The function that we're using is called the propagator, and
+gives the probailty to find the particle in the state $|\bm{k}',\sigma\rangle$ at a time $t'$ knowing it at $|\bm{k},\sigma\rangle$ and $t$. 
 An important fact is that without interaction, the particle shouldn't scatter in another state due to energy conservation. Therfore
 \[
-    G_0(\bm{k}, \bm{k}', t'-t) = G_0(\bm{k}, t'-t) \delta_{\bm{k}, \bm{k}'}.
+    G_0(\bm{k}, \bm{k}', t'-t) = G_0(\bm{k}, t'-t) \delta_{\bm{k}, \bm{k}'},
 \]
 which is zero if the wave-vectors between the two timepoint differs. 
-We observe that only the past time $t'-t$ is relevant. This is due to the time independent property of the Hamiltonian.
+We observe that only the past time $t'-t$ is relevant. This is due to the time independence of the Hamiltonian.
 We are going to use the representation in the frequency space, using a Fourier-transformation.
 \begin{equation}
     G_0(\bm{k},\omega) = \int_{\mathbb{R}} e^{\im\omega t} G_0(\bm{k},t)\dd t = \frac{1}{\omega - \epsilon_{\bm{k}} + \im \delta_{\bm{k}}} \label{eq:single_propa}
 \end{equation}
-where $\delta_{\bm{k}} = \delta \cdot\signum{\epsilon_{\bm{k}} - \epsilon_{F}}$ involving a very small non zero number $\delta$. We observe that
+where $\delta_{\bm{k}} = \delta \cdot\signum{\epsilon_{\bm{k}} - \epsilon_{F}}$ involving a very small, non-zero number $\delta$. We observe that
 this analytical function has a pole given by 
 \begin{align*}
     &\omega - \epsilon_{\bm{k}} + \im \delta_{\bm{k}} = 0\\
-    \Longleftrightarrow ~& \omega = \epsilon_{\bm{k}} - \im \delta_{\bm{k}}
+    \Longleftrightarrow ~& \omega = \epsilon_{\bm{k}} - \im \delta_{\bm{k}}.
 \end{align*}
 where we denote $\im$ as the imaginary unit to avoid confusion with the index $i$.
-The frequency $\omega$ gives the so called spectrum of the excitation from the unique-particle system. The imaginary part serves as a damping term and is 
-inversly proportional to the lifetime of the particle. $\delta$ is a small number due to the infinitely long lifetime. This is a direct result of the abscence
-of scattering.\\
+The momentum $\omega$ gives the so called spectrum of the excitation from the unique-particle system. Please remeber that we set $\hbar =1$. The imaginary part serves as a damping term and is 
+inversly proportional to the lifetime of the particle. As a result of the abscence of scattering, $\delta$ is a small number due to the infinitely long lifetime of the electrons.\\
 
-Further the propagator yields important informations on the system when considering the integration over its different arguments. First we take the imaginary 
-part of the propagator called the single particle spectral weight.
+Further the propagator yields important informations on the system, when considering the integration over its different arguments. First we take the imaginary 
+part of the propagator, called the single particle spectral weight $A(\bm{k}, \omega)$.
 \begin{equation}\label{eq:SingleParticleSpectralWeight}
     \begin{aligned}
         A(\bm{k}, \omega) = -\frac{1}{\pi} \mathcal{I}m \left[G_0(\bm{k}, \omega)\right] =~& \frac{1}{\pi} \frac{\delta_{\bm{k}}}{(\omega- \epsilon_{\bm{k}})^2 + \delta_{\bm{k}}}\\
         =~&\delta(\omega- \epsilon_{\bm{k}})
     \end{aligned}
 \end{equation}
-which informs us about the occupation of a state $|\bm{k}\rangle$ with energy $\omega$. We can find a form for the momentum distribution $n(\bm{k})$
-\[
-    n(\bm{k}) = \int A(\bm{k},\omega) \dd \omega
-\]
-and for the density of state
+which informs us about the occupation of a state $|\bm{k}\rangle$ with frequency $\omega$. We can find a form for the momentum distribution $n(\bm{k})$:
+\begin{equation}
+    n(\bm{k}) = \int A(\bm{k},\omega) \dd \omega,\label{eq:MomentumDistribution}
+\end{equation}
+and for the density of state:
 \begin{equation}\label{eq:DensityOfState}
     D(\omega) = \int A(\bm{k},\omega) \dd ^3 k~,~~ \text{or for discontinuous state}~ \sum_{\bm{k}} A(\bm{k}, \omega).
 \end{equation}
-\subsubsection{Fermi-Liquid - the interacting case}
+
+These equations picture the non itneracting electron gas. Now that we put the groundstones, we can complexify the model.
+
+\subsubsection{Fermi-Liquid: The interacting case}
 Now that we've described the non interacting system, let us complexify the model by introducing the interactions.
 In an earlyer section we saw how
 \begin{equation} \label{eq:FermiLiquid_Hamiltonian}
-    H = \sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma} + \sum_{\bm{k},\sigma,\bm{k}',\sigma'}
+    H = \sum_{\bm{k}\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma} + \sum_{\bm{k}\sigma\bm{k}'\sigma'}
         V_{\bm{k}\bm{k}', \bm{q}} c_{\bm{k}-\bm{q},\sigma}^{\dagger}c_{\bm{k}+\bm{q},\sigma'}^{\dagger}c_{\bm{k},\sigma}c_{\bm{k}',\sigma'}
 \end{equation}
 represent the pairwise interaction of multiple electrons and their respective energy.\\
 
 To extend the model we now want to introduce two new quantities,
 the propagator $G$ and the one-particle irreductible self-energy $\Sigma$.
-The propagator maps in the complex space and sgives the probability amplitude of finding a the particle in the state $|\bm{k},\sigma\rangle$ at a time $t$. On the other hand 
+The propagator maps in the complex space and gives the probability amplitude of finding a the particle in the state $|\bm{k},\sigma\rangle$ at a time $t$. On the other hand 
 $\Sigma = \Sigma_R + \im \Sigma_I$ contains 
-the lifetime of the particle in this state and shift of energy of the particle due to the interaction with the surroundings. The frameworks defines the 
-non-interacting energy of the particle as $\epsilon_{\bm{k}}$. Whene put in an interacting system the spectrum shifts and becomes 
+the lifetime of the particle in this state, and the shift of the particle's energy due to the interaction with the surroundings. The framework defines the 
+non-interacting energy of the particle as $\epsilon_{\bm{k}}$. When put in an interacting system, the spectrum shifts and becomes 
 $\tilde{\epsilon}_{\bm{k}} =  \epsilon_{\bm{k}} + \Sigma_R$. Due to the interactions, the particle then has a much smaller lifetime. $\Sigma_I$ is antiproportional to 
-the particle's lifetime $\tau_{\bm{k}}$. We therfore expect $\Sigma_I$ to be realy small in the non interacting case. 
+the particle's lifetime $\tau_{\bm{k}}$. As saied, $\Sigma_I$ is very small in the non interacting case. 
 These two quantities are linked trough the Dyson equation, which reads
 \[
     \bigl(G(\bm{k}, \omega)\bigr)^{-1} =  \bigl(G_0(\bm{k}, \omega)\bigr)^{-1} - \Sigma(\bm{k},\omega).
@@ -573,7 +588,7 @@ from \ref{eq:single_propa} we obtain
     G(\bm{k},\omega) = \frac{1}{\omega - \epsilon_{\bm{k}} - \Sigma}.
 \]
 This function has a pole at $\omega = \epsilon_{\bm{k}} + \Sigma_R + \im \Sigma_I$, where in the none interacting case $\omega = \epsilon_{\bm{k}} + \im\Sigma_I$.
-It makes makes sense, the particle spectrum is now shifted due to the finite lifetime of the particle as a result of the interaction.\\
+This expression makes sense, the particle spectrum is now shifted due to its finite lifetime, as a result of the interaction.
 The pole yields to an expression for the spectrum
 \begin{equation} \label{eq:pole_spectrum1}
     \omega - \epsilon_{\bm{k}} - \left(\Sigma_R(\bm{k},\omega) + \im \Sigma_I(\bm{k},\omega)\right) = 0
@@ -582,7 +597,7 @@ In complexe analysis the order of a pole is given as $n$ if $f(z)$ is meromorphi
 \[
     (z-z_0)^n f(z)
 \]
-is also meromorphic in the neighbourhood of $z_0$. In our case we're interested in the 0.th order of the pole \textit{why?}. 
+is also meromorphic in the neighbourhood of $z_0$. In our case we're interested in the 0.th order of the pole \rem{why?}. 
 We therfore ignore the imaginary part of the pole and we get
 \[
     \omega = \epsilon_{\bm{k}} + \Sigma_R(\bm{k}, \epsilon_{\bm{k}}) = \tilde{\epsilon}_{\bm{k}}.  
@@ -593,17 +608,17 @@ $\Sigma_{R}$ in the neighbourhood of $\omega = \tilde{\epsilon}_{\bm{k}}$ will h
     \left.\Sigma_R(\bm{k}, \omega) = \Sigma_R(\bm{k}, \tilde{\epsilon}_{\bm{k}}) + (\omega - \tilde{\epsilon}_{\bm{k}}) \parDif{\Sigma_R}{\omega}\right|_{\omega= \tilde{\epsilon}_{\bm{k}}} + \mathcal{O}(\omega^2)
 \end{equation*}
 We aim to compute to the first order in $\Sigma_I$ such that we evaluate it at $\omega = \tilde{\epsilon}_{\bm{k}}$. 
-This leads to starting from \ref{eq:pole_spectrum1} and, after inserting the Taylor expension for $\Sigma_R$
+Starting from Eq.\ref{eq:pole_spectrum1}, and after inserting the Taylor expension for $\Sigma_R$, we obtain
 \begin{equation}
     \begin{aligned}
         \omega - \underbrace{\bigl(\epsilon_{\bm{k}} + \Sigma_R(\bm{k}, \tilde{\epsilon}_{\bm{k}})\bigr)}_{=  \tilde{\epsilon}_{\bm{k}}} 
         - \left.(\omega - \tilde{\epsilon}_{\bm{k}}) \parDif{\Sigma_R}{\omega}\right|_{\omega= \tilde{\epsilon}_{\bm{k}}} - \im \Sigma_I(\bm{k}, \tilde{\epsilon}_{\bm{k}}) &= 0\\
-        \Longleftrightarrow ~~ (\omega - \tilde{\epsilon}_{\bm{k}}) \left(1 - \left.\parDif{\Sigma_R}{\omega}\right|_{\omega= \tilde{\epsilon}_{\bm{k}}}\right) - \im \Sigma_I(\bm{k}, \tilde{\epsilon}_{\bm{k}}) &= 0
+        \Longleftrightarrow ~~ (\omega - \tilde{\epsilon}_{\bm{k}}) \left(1 - \left.\parDif{\Sigma_R}{\omega}\right|_{\omega= \tilde{\epsilon}_{\bm{k}}}\right) - \im \Sigma_I(\bm{k}, \tilde{\epsilon}_{\bm{k}}) &= 0.
     \end{aligned}
 \end{equation}
 We define the residue of the propagator as 
 \begin{equation}
-    z_{\bm{k}} = \frac{1}{1- \left.\parDif{\Sigma}{\omega}\right|_{\omega = \tilde{\epsilon}_{\bm{k}}}} \label{eq:residue}
+    z_{\bm{k}} = \frac{1}{1- \left.\parDif{\Sigma}{\omega}\right|_{\omega = \tilde{\epsilon}_{\bm{k}}}}, \label{eq:residue}
 \end{equation}
 which we can insert in the inverse lifetime of the electron occupying the state $|\bm{k},\sigma\rangle$
 \begin{equation}
@@ -640,30 +655,31 @@ We recall once again the difference of the propagators to conclude this section:
 \end{minipage}
 \end{center}
 
-\textit{Interacting electrons are degraded version of the non-interacting case. There remains a} $z_{\bm{k}}<1$.\\ 
+Interacting electrons represent a degraded version of the free-electron case, characterized by a quasiparticle weight $z_{\bm{k}} < 1$.\\
 
 \paragraph{Quasi-particles}
-The main question we have now is how does the residue look like on the fermi surface? We set us in the context of a low energy electron, close to the Fermi-surface and 
-once we had a interaction. It turns out that if there is a $z_{\bm{k}_F}>0$ we find a precise low energy single particle excitation. This excitation is very close
-to the exact eigenfunction of an non-interacting Hamiltonian. We call this state akin to the free electron a quasi-particle.\\
+The main question we have now is: How does the residue look like on the Fermi surface? We put the context of a low energy electron, close to the Fermi-surface and 
+after an interaction happend. It turns out, that if there is a $z_{\bm{k}_F}>0$ we find a precise low energy single particle excitation. This excitation is very close
+to the exact eigenfunction of an non-interacting Hamiltonian. We call this state akin to the free electron, a quasi-particle.\\
 
 This is it, a Fermi-liquid is a system of interacting electrons and quasi-particles. These quasi-particles are not eigenstates of the interacting Hamiltonian anymore.
 We can't consider them as an electron like excitation in the interaction context.
-The interactions allows to scatter some states in and out of the Bloch-State.\\
+The interactions allow to scatter some states in and out of the Bloch-State.\\
 
-The above expression for the momentum distribution $n(\bm{k})$ can be ploted and we can recognise a gap of $z_{\bm{k}_F}<1$. This wich is an inportant feature of
-the Fermi-liquid. Whereas for the non interacting
-system the momentum distribution has a discontinuity from one to zero when crossing the Fermi surface.\\
+The above expression for the momentum distribution $n(\bm{k})$ at Eq.\ref{eq:MomentumDistribution} can be ploted, and we recognise a gap of $z_{\bm{k}_F}<1$. 
+\rem{handmade plot}. This property of the Fermi liquid is a central difference with the non interacting
+system. Back then the momentum distribution had a discontinuity from one to zero when crossing the Fermi surface (Eq.\ref{eq:MomentumDistributionFree}).\\
 
-An important feature to mention that is the key understanding of the Fermi-liquid and revealed itself to be very correct 
-for metals, is the on-to-one correspondance of quantum numbers between the interactinf and non-interacting electrons. 
-This means we can start with simple Hamiltonian like Eq. \ref{eq:NonInteractingHamiltonian} and add new particles by introducing
+An important feature to mention, that is the key understanding of the Fermi-liquid , is the on-to-one correspondance of quantum numbers between the interactinf and non-interacting electrons. 
+This revealed itself to be very correct 
+for metals.
+This means we can start with simple Hamiltonian like Eq.\ref{eq:NonInteractingHamiltonian} and add new particles by introducing
 some perturbations. The obtained quasi-particles are a result of the excitation of the non-interacting system. We then observe this
 one-to-one correspondance.\\
 
-The last question one can ask is why does this approximation work so well in the most case? The answer lays in the reference system
-we choose to perturb arround. Keeping in mind the Pauli-principle, we notice that the added particle are restricted in their scattering.
-This is so strong that it almost cancels out the ``switching-on'' of the interactions. It's a good decision to perturb arround
+The last question one can ask is: Why does this approximation works so well in the most case? The answer lays in the reference system
+we choosed to perturb arround. Keeping in mind the Pauli-principle, we notice that the added particles are restricted in their scattering.
+This is so strong, that it almost cancels out the ``switching-on'' of the interactions. It's a good decision to perturb arround
 the free system. Due to the fact that we are limitted in the number of ground states, thermodynamic quantites moves in a smooth manner
 when perturbating.\\
 
@@ -673,82 +689,84 @@ due to the Pauli exclusion principle.
 
 \paragraph{Repulsive interactions}
 In condensed matter physics the dominant effect is the repulsive interactions between the electrons due to the coulomb potential. We already described it in the Hamiltonian 
-$H_{e^-e^-}$ using some pairwise interactions in \ref{eq:FermiLiquid_Hamiltonian}. Therfore the goal is now to find an expression for the potential $V_{\bm{k}\bm{k}',\bm{q}}$.\\
+$H_{e^-e^-}$ using some pairwise interactions in Eq.\ref{eq:FermiLiquid_Hamiltonian}. Therfore the goal is now to find an expression for the Coulomb potential.\\
 
-As we can see in eq. \ref{eq:FermiLiquid_Hamiltonian} the system is describe in the momentum-space. For this reason we need to 
+As we can see in Eq.\ref{eq:FermiLiquid_Hamiltonian} the system is described in the momentum-space. For this reason we need to 
 consider the Fourier-transform of the real-sapce potential. We start with the coulomb potential which is predominant in the solid state physics.
 However the integral is going to diverge for $r\rightarrow 0$. To solve this problem We
 introduce the Yakuma potential which exponentialy modulates the coulomb potential:
 \begin{equation}
-    V_{\lambda}(r) = \frac{1}{4\pi\epsilon_0} \frac{e^2}{r} e^{-r\lambda} \label{eq:Yakuma}
+    V_{\lambda}(r) = \frac{1}{4\pi\epsilon_0} \frac{e^2}{r} e^{-r\lambda,} \label{eq:Yakuma}
 \end{equation}
-this is a solid approximation since we can the fourier transform and let $\lambda\rightarrow 0$ in the result. \rem{Result in appendix?}.
-The result we get is 
+This is a solid approximation since we can easly fourier transform it and let $\lambda\rightarrow 0$ in the result. \rem{Result in appendix?/internet source}.
+The yields to
 \begin{equation} \label{eq:Pot_repulsive_el}
-    V_{\bm{k},\bm{k}',\bm{q}} = V_{\text{el}}(\bm{q}) := \frac{1}{4\pi\epsilon_0} \frac{2\pi e^2}{\bm{q}^2}
+    V_{\bm{k},\bm{k}',\bm{q}} = V_{\text{el}}(\bm{q}) := \frac{1}{4\pi\epsilon_0} \frac{2\pi e^2}{\bm{q}^2},
 \end{equation}
-with $\bm{q}$ the momentum transfert during the interaction. The Fermi-liquid remains stable to the repulsive processes.\\
+with $\bm{q}$ the momentum transfert during the interaction. We see that in the same way Coulomb potential in its real
+ space form doesn't depend on the respective postions but only on the ditance,
+this expression is independent of the inital states.
+The Fermi-liquid remains stable to the repulsive processes.\rem{how can we deduce it?}\\
 
-However as we're going to see in the next section, attractive interactiosn also takes place due to an exchange of phonons between two electrons. This will be the 
-ground stone to our description of the Meissner state.
+However as we're going to see in the next section, attractive interactions also take place due to an exchange of phonons between two electrons. This will be 
+an additional step towards the description of the Meissner state.
 
 \subsubsection{Instability due to attractive Interactions}
-Hier we are going to show how the attractive interactions destabilise the Fermi-liquid. In other words we are going to show
-that new ground states open.
+We are going to show how the attractive interactions destabilise the Fermi-liquid. This is done by proving
+that new ground states open. Leon Cooper introduced a very specific context of attraction, that has a strong influence on the stability. Taking this exemple we are going
+to make clear that attractive interactions can in some cases exeed the Coulomb force, resulting in unexpected new eigenstates.\\
 
-Leon Cooper introduced a very specific context of attraction that has a huge influence on the stability. Taking this exemple we are going
-to make clear that attractive interaction can in some cases exeed the Coulomb force resulting in unexpected new eigenstates.\\
-
-Let's asume we have an impotent Fermi sea where the electrons as considered non interacting. Adding to electrons requires to place them
-above the sea. The exotic context lays into the interactions. They can only interact if they are withing a small cover $\omega_0$
+Let's asume we have an impotent Fermi sea, where the electrons are considered non interactive. Adding electrons requires to place them
+above the sea. The exotic context is due to the interactions. They can only interact if they are withing a small frequency cover $\omega_0$
 over the Fermi surface, one on each side, facing them trough the complete surface. If this is not the case the interaction vanishes.
 
-Fossheim and Sudbø derivated a methode in \cite{FossheimSudbo2004} from p.67 to 69. They conclude with the fact that allowing such
-interaction leads to a total energy of the interacting system $E$ smaller than $2 \epsilon_{F}$. This means in the attraction of the electrons
-shift them in a state that lays under the Fermi sea. Further they showed that if the Fermi sea vanishes (one could take electrons out of the system) 
-then this attractive pairing disapears. The same is observed as we approche the classical limit.
-By forming a pair the electron share their fermionic properties and act as bosons. The Pauli principle doesn't rule their energies anymore.\\
+Fossheim and Sudbø derivated a methode in \cite{FossheimSudbo2004} from p.67 to 69. They conclude with the fact, that allowing such
+interaction leads to a total energy of the interacting system $E$ smaller than $2 \epsilon_{F}$. This means that the attraction of the electrons
+shift them in a state that lays under the Fermi sea. Further they showed that if the Fermi sea vanishes (one could take electrons out of the system), 
+then this attractive pairing disappears. The same is observed as we approche the classical limit.
+By forming a pair the electron share their fermionic properties and act as bosons. These pairs are named Cooper pairs by the eponymous physicist.
+The Pauli principle doesn't rule their energies anymore.\\
 
-We now understand why attractive processes create instabilities. An engery gap opens next to the surface,
-reflecting the energy needed to break the new formed Cooper pair. The shell $\omega_0$ is the maximum frequency delivering
+We now understand why attractive processes create instabilities in the liquid. An engery gap opens next to the energy surface,
+reflecting the energy needed to break the new formed Cooper pairs. The shell $\omega_0$ is the maximum frequency delivering
 the ``adesive'' that allows the electron to pair.
-Now that we showed the influence of attractive interactions, we seek some candidate process that are attractive.
+Now that we showed the influence of attractive interactions, we seek some candidate processes that are attractive.
 
-\subsubsection{Phonon-mediated attractive interactions \rem{reformulate}}
+\subsubsection{Attractive forces mediated by phonons}
 As known from condensed matter physics, the lattice can have some intern oscillations called phonons resulting from the spring coupling between the ions.
 Now we can imagine that due to the Coulomb interactions, an electron can shift an ions producing a phonon. If this phonon travels and influences another electron
 on it way, we result in an effective electron-electron interaction thanks to the phonon. A similar case would be the exchange of a photon between two electrons.
 We are going to show how this exchange can lead to an attractive interaction.\\
 
-Tn a dense lattice the ions moves much slowly around their equilibrium positions than the lights electrons who pass by. The electron moves the charges of the ions resulting
-in a small dipol moment. A second electron that also passes in the surounding is going to feel the dipol moment and will be 
-attracted. Then the ion shifts back in its new equilibrium position and the dipol moment vanishes long after the first electron passed.\\
+In a dense lattice the ions move much slowly around their equilibrium positions than the lights electrons who pass by. The electrons move the charges of the ions, inducing
+in a small dipol moment. A second electron that also passes in the surounding is going to feel the dipol moment, and will be 
+attracted. Then the ion shifts back in its new equilibrium position, and the dipol moment vanishes long after the first electron passed.\\
 
-Morover due to the Coulomb interaction, the electrons aim to put as most distance as they can between them in a minimal amount of time. Therfore
+Morover due to the Coulomb interactions, the electrons aim to put as much distance as they can between them, in a minimal amount of time. Therfore
 we can say that the $\bm{k}$-quantum number should be opposite between the two electron. If we target to put these concepts in a mathematical form, we use
-our previous Hamiltonian and add an electron-phonon interaction term.
+our previous Hamiltonian, and add an electron-phonon interaction term.
 \[
     H = \sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma} + \sum_{\bm{k},\sigma,\bm{k}',\sigma'}
         V_{\bm{k}\bm{k}', \bm{q}} c_{\bm{k}-\bm{q},\sigma}^{\dagger}c_{\bm{k}+\bm{q},\sigma'}^{\dagger}c_{\bm{k},\sigma}c_{\bm{k}',\sigma'} + V_{e^-\text{phonon}}
 \]
-where $V_{e^-\text{phonon}}$ usely depends on the sum of the phonons-modes $\lambda$. These modes are similar to the oscillations modes we have in a $CO_2$-molecule.
-The expression form the phonon-depend potential in momentum space reads 
+where $V_{e^-\text{phonon}}$ usely depends on the sum picturing the phonons-modes $\lambda$. These modes are similar to the oscillations modes we have in a CO$_2$-molecule for exemple.
+The expression that forms the phonon-depend potential in momentum space reads 
 \begin{equation} \label{eq:Pot_phonon_interaction}
     V_{e^-\text{phonon}} = \sum_{\bm{k},\bm{q},\sigma} M_{\bm{q}}\left(a_{-\bm{q}^{\dagger}} + a_{\bm{q}}\right) c_{\bm{k}+\bm{q},\sigma}^{\dagger}c_{\bm{k},\sigma}.
 \end{equation}
 $M_{\bm{q}}\left(a_{-\bm{q}^{\dagger}} + a_{\bm{q}}\right) $ is a matrix element of the coupling between the electron and the phonon. 
-The $a_{\bm{q}}$ and $a_{\bm{q}^{\dagger}}$ are annihilation and creation operators of the phonon with wavevector $\bm{q}$. Further researches have shown that \rem{source}
+The $a_{\bm{q}}$ and $a_{\bm{q}}^{\dagger}$ are annihilation and creation operators of a phonon with wavevector $\bm{q}$. Further researches have shown that \rem{source}
 \[
     \commu{a_{\bm{q}}}{a_{\bm{q}^{\dagger}}} = \delta_{\bm{q},\bm{q}'}
 \] 
-and therefor phonons act like bosons. Their number is however not conserved in a solid. The matrix element $M$ is a function of the eigenfrequency 
-\rem{or energy?} of the phonon $\omega_{\bm{q}},\lambda$ and the fourier tramsform $\tilde{V}$ of the electrostatic potential $V_{\lambda}(\bm{q})$ between the electron
-and the phonon of mode $\lambda$, if included. \rem{more details?}  
+and therefore phonons act like bosons. Their number is however not conserved in a solid. The matrix element $M$ is a function of the eigenfrequency 
+of the phonon $\omega_{\bm{q},\lambda}$ and the fourier tramsform $\tilde{V}$ of the electrostatic potential $V_{\lambda}(\bm{q})$ between the electron
+and the phonon of mode $\lambda$, if included.
 \[
     M_{\bm{q},\lambda} = \im (\bm{q}\cdot \bm{\xi}_{\lambda}) \sqrt{\frac{\hbar}{2M\omega_{\bm{q},\lambda}}} \tilde{V}_{\lambda}(\bm{q}).
 \]
-$M$ can't be realy computed due to its complexity, we hold it as a parameter here. This pairing is much waker than the electron-photon interaction. 
-An other important fact ist than for $\bm{q}\rightarrow 0$ the matrix element $M$ vanishes. $M$ is proportional to $\bm{q}$ which illustrate the the electron-phonon interaction
+$M$ can't be realy computed due to its complexity, we hold it as a parameter here. This pairing is much weaker than the electron-photon interaction. 
+An other important fact is that for $\bm{q}\rightarrow 0$ the matrix element $M$ vanishes. $M$ is proportional to $\bm{q}$ which illustrate how the electron-phonon interaction
 happens between a point charge and a dipol.\\
 
 The goal is now the implicitly express the phonon exchange with an effective electron-electron process. If we consider two diagrams, one aiming to describe the absorption of a phonon
@@ -781,29 +799,33 @@ and one the emission of a phonon, we can combine them to get a new effective int
         };
         \end{feynman}
       \end{tikzpicture}
-    \caption{The emission (left) and absorption (right) digramm of a phonon of wavevector $\bm{q}$ by an electron.}
+    \caption{The emission (left) and absorption (right) digramm of a phonon of wavevector $\bm{q}$ by an electron.
+    The matrix element $M_{\bm{q}}$ gives the probability amplitude of emitting or absorbing the phonon. This plays a role
+    in the Fermi golden rule, when it comes to give the transition rate of the scattering of the electron in its new state.}
     \end{figure}
-If we represent this inderaction by linking both $\bm{q}$-edges. The energy of phonon is simply defined as
+If we represent this interaction by linking both $\bm{q}$-edges, i.e. the emitted phonon is absorbed by another electron, the energy of phonon is simply defined as
 \[
-    H_{\text{phonon}} = \sum_{\bm{q}} \omega_{\bm{q}} a_{\bm{q}}^{\dagger}a_{\bm{q}}
+    H_{\text{phonon}} = \sum_{\bm{q}} \omega_{\bm{q}} a_{\bm{q}}^{\dagger}a_{\bm{q}}.
 \]
-and we can write a propagator which describes the dashed line in a connected context similar to to photon case described in the figure \ref{fig:photon_exchange}.
+We can write a propagator which describes the dashed line in a connected context similarly to the photon case described in Fig.\ref{fig:photon_exchange}.
 \[
-    D_0(\bm{q},\omega) = \frac{2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2 + \im \eta}
+    D_0(\bm{q},\omega) = \frac{2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2 + \im \eta},
 \]
 involving a very small quantity $\eta$. From this we obtain an expression for the phonon-mediated interaction of two electrons.
 This is performed using $V^{(ph)}_{\text{eff}}(\bm{q},\omega) = \mathcal{R}\text{e}\left({|M_{\bm{q}}|^2 D_0(\bm{q},\omega)}\right)$ and discarding the second 
-order $\eta$ term which is very small. 
+order $\eta$ term which is very small. We get:
 \begin{equation}\label{eq:Pot_attractive_el_phonon}
-    V^{(ph)}_{\text{eff}}(\bm{q},\omega) = \frac{2|M_{\bm{q}}|^2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2}
+    V^{(ph)}_{\text{eff}}(\bm{q},\omega) = \frac{2|M_{\bm{q}}|^2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2},
 \end{equation}
 with $\bm{q}$ the momentum transfert. 
-We can now use a more complete potential in the Hamiltonian involving both the electrostatic \ref{eq:Pot_repulsive_el} and effective phonon-mediated interactions \ref{eq:Pot_attractive_el_phonon}.
+We can now use a more complete potential in the Hamiltonian involving both the electrostatic (Eq.\ref{eq:Pot_repulsive_el}) and effective
+phonon-mediated interactions (Eq.\ref{eq:Pot_attractive_el_phonon}):
 \begin{equation}
-    V_{\text{eff}}(\bm{k},\bm{k}',\bm{q}) =  V_{\text{el}}(\bm{q}) + V^{(ph)}_{\text{eff}}(\bm{q},\omega) \label{eq:V_eff} = \frac{1}{4\pi\epsilon_0} \frac{2\pi e^2}{\bm{q}^2} + \frac{2|M_{\bm{q}}|^2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2}
+    V_{\text{eff}}(\bm{k},\bm{k}',\bm{q}) =  V_{\text{el}}(\bm{q}) + V^{(ph)}_{\text{eff}}(\bm{q},\omega) \label{eq:V_eff}
+     = \frac{1}{4\pi\epsilon_0} \frac{2\pi e^2}{\bm{q}^2} + \frac{2|M_{\bm{q}}|^2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2}.
 \end{equation}
 
-Here we have reached a very important point. This new potential can be in some case negative, which means we result in an attractive interaction between the electrons. 
+Here we have reached a very important point. This new potential can be in some case negative, which means it results in an attractive interaction between the electrons. 
 With other word, in some cases the phonon exchage can be attractive and even overcome the strong repulsive coulomb potential.
 \rem{Graph of V and the simplified version of it, which is also a very good predication.}
 
@@ -869,7 +891,7 @@ First, the Coulomb force aims to maximize the distance between the electrons in 
  This is achieved by moving them collinearly in opposite directions. Second, due to the retardation process, it's energetically more favourable
 for the electron to move along the distortion of the lattice. The result is illustrated in the figure \ref{fig:CooperPairing}. 
 \begin{figure}[H]
-    \centering\label{fif:CooperPairing}
+    
     \begin{tikzpicture}
         \pgfmathsetmacro{\spacing}{1}
         \pgfmathsetmacro{\lineA}{0}
@@ -910,6 +932,8 @@ for the electron to move along the distortion of the lattice. The result is illu
         \draw[->,semithick] (-0.5,-4.5) -- (6,-4.5) node[anchor = west]{$e^-$};
 
     \end{tikzpicture}
+    \centering
+    \caption{A lattice of ions, where two electrons propagte with opposite directions.} \label{fig:CooperPairing}
 \end{figure}
 Here the moved ions in blue are shifting back to their equilibrium position but it is important to remember that when the other 
 electron passes, it expriences almost the same distortion everywhere.
@@ -1022,7 +1046,7 @@ As \cite{FossheimSudbo2004} described it in chapter 3, p.83-84, one can note tha
 to the fact that we describe the quasiparticles as a linear combiantion of electrons and holes with opposite spins. \rem{source}
 Therfore talking about degrees of freedom the two electron-hole singlets replace the $\uparrow$, $\downarrow$ degrees of freedom and they are preserved.\\
 
-The ernegy $E_{\bm{k}}$ shows up a gap in the energy of the qusiparticle whene looking at the fermi-surface $\epsilon_{\bm{k}}=0$ \rem{We count relative to it? But the way it is define in a non interacting Ham. is not relative to it right?}.
+The ernegy $E_{\bm{k}}$ shows up a gap in the energy of the qusiparticle when looking at the fermi-surface $\epsilon_{\bm{k}}=0$ \rem{We count relative to it? But the way it is define in a non interacting Ham. is not relative to it right?}.
 This is due to the fact that the exepectation values we introduced in \ref{eq:ExpectBCS} and \ref{eq:ExpectBCSDag} are not zero. The gap is a result of the Cooper-pairing. These expections values
 are the order parameters of the Meissner state and should be confused with the superconducting gap $\Delta$. They are however zero at the same time. \\
 
