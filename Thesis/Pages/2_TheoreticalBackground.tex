@@ -3,7 +3,7 @@
  \normalsize
 
 \section{Theoretical Background}
-In order to describe the superconductors we are going the introduce the second quantisation formalism.
+In order to describe the superconductors we are going the introduce the second quantisation formalism based on \cite{Folk2014}.
 This framework allows us to picture the wavefunction of a system using creation and anihinaltion operators over
 energystates of the system. This simplifies a lot the notation. The mathematical fundation of this formalism
 lays in the Hilbert space and requires as well its dual space. To picture the many-particles interaction we need as well
@@ -13,7 +13,7 @@ We want to work on fermionic systems. The formalism stays the same for
 bosons but the results are fundamentaly different. One can mention the Pauli principle as an exemple which
 only applies on fermions. After some definition we are going to see how to derive it with the help of the second quantisation.\\ 
 
-Please note that we aim to describe the operators with a $\hat{\cdot}$.
+Please note that we aim to describe the operators with a $\hat{\circ}$.
 Later the expression will however involve a dense notation, such that we will drop the hat for the readability. The reader will stayed
 informed about the nature of each symbols. \\
 
@@ -236,8 +236,7 @@ What we defined here, is the bridge between the first and the second quantisatio
 and notice that both lead to the same result. It is important to note that both Eq.\ref{eq:SecondQuantisationDoubleParticle} and \ref{eq:Translation_FourStateOverlap}
 build a scalar.\\
 
-It exists as well a second quantisation for bosons, but this is not the aim of this thesis. For additional informations, please refer to \rem{“Second quantization” (the
-occupation-number representation), 2013}.
+It exists as well a second quantisation for bosons, but this is not the aim of this thesis. For additional informations, please refer to \cite{Folk2014}.
 
 \subsection{Basis transformation}
 Until now we considerd the wavefunction in a restricted basis $\{\varphi_{\alpha}(x)\}$. A wave function is defined as the overlapp between the basis and the state:
@@ -464,11 +463,154 @@ In the first chapter of \cite{FossheimSudbo2004} Fossheim and Sudbø even calcul
 The superconductive state is also described as a Meissner state.\\ 
 
 Suppose that we now heat the material at the critical temperature $T_c$, some fluctuation effects araise and break the superconductive state.
-We usely distinguish type I and type II superconductors. The type I superconductor
-looses abruplty their magnetisation over $T_c$. Type II have a mix of ordinary and superconductive properties at intermediaries temperatures. In this mixed states the magnetisation slowly decreases while heating the metal,
+We usely distinguish type I and type II superconductors. The type I superconductors
+loose abruplty their magnetisation over $T_c$. Type II have a mix of ordinary and superconductive properties at intermediaries temperatures. In this mixed states the magnetisation slowly decreases while heating the metal,
  until we can't measure any Meissner state anymore over $T_C$. Above an intermediary field strengh, we observe as well some vortecies and flux lines that pierce the material.\\
- \rem{add a handmade figure}\\
+ \begin{figure}[H]\centering
 
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            width=7cm,   % Adjust the width
+            height=5cm,  % Adjust the height
+            xtick={3},
+            minor y tick num = 0,
+            ytick={0.5,1},
+            ymin=0, ymax=1.3,
+            xmin=2, xmax=3.5,
+            xlabel = \(T\),
+            ylabel = {\(H\)},
+            legend style={draw=none},
+            unbounded coords = jump,
+            yticklabels = {$H_{C1}$,$H_{C2}$},
+            xticklabels = {$T_{C}$},
+            every axis/.append style={line width=1pt}
+        ]
+    
+            % The green parabola
+            \addplot [
+                domain=0:3.5, 
+                samples=4000, 
+                color=TamGreen,
+            ]
+            {sqrt(-x+3)};
+    
+            % The black parabola
+            \addplot [
+                domain=0:3.5,
+                samples=4000,
+                color=black,
+                thick,
+            ]
+            {sqrt(-x+3)/2};
+    
+            % Add a node for labeling
+            \node at (axis cs: 2.25, 0.175) [black] {$S_{\text{Me}}$};
+            \node at (axis cs: 2.4, 0.55) [TamGreen] {$S_{\text{Mi}}$};
+            \node at (axis cs: 2.8, 0.8) [black] {$N$};
+
+        \end{axis}
+    \end{tikzpicture}
+    
+        \caption{The phase diagram of a superconductive material regarding the temperatur and the external applied magnetical field strength. Type I superconductor can only be in 
+        the Meissner state $S_{\text{Me}}$ or in the normal state $N$. Type II superconductor additionaly have mixed state $S_{\text{Mi}}$ between the two. The critical values depend on the material.
+        Increasing the field strength lowers the critical temperature.}
+    \end{figure}
+ 
+    \begin{figure}[H]\centering
+
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=middle,
+                width=5cm,   % Adjust the width
+                height=5cm,  % Adjust the height
+                xtick={3},
+                minor y tick num = 0,
+                ytick=\empty,
+                ymin=0, ymax=4,
+                xmin=0, xmax=4,
+                xlabel = \(H\),
+                ylabel = {\(-M\)},
+                legend style={draw=none},
+                unbounded coords = jump,
+                xticklabels = {$H_{C}$},
+                every axis/.append style={line width=1pt}
+            ]
+        
+                % The green parabola
+                \addplot [
+                    domain=0:3.5, 
+                    samples=100, 
+                    color=black,
+                ]
+                {x < 3 ? x : 0};
+        
+                % The black parabola
+                \addplot [
+                    domain=1.5:3,
+                    samples=100,
+                    color=TamLightGreen,
+                    thick,
+                ]
+                {-x + 3};
+
+                \node at (axis cs: 2.5, 1.5) [black] {$S_{\text{Me}}$};
+                \node at (axis cs: 2, 0.3) [TamLightGreen] {$S_{\text{In}}$};
+                \node at (axis cs: 3.5, 2) [black] {$N$};
+                \draw[-, line width=.5pt, line cap=round, dash pattern=on 0pt off 2\pgflinewidth] (axis cs: 1.5,0) -- (axis cs: 1.5,1.5);
+            \end{axis}
+        \end{tikzpicture}
+        \hspace{1cm}
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=middle,
+                width=7cm,   % Adjust the width
+                height=5cm,  % Adjust the height
+                xtick={3,6},
+                minor y tick num = 0,
+                ytick=\empty,
+                ymin=0, ymax=4,
+                xmin=0, xmax=7,
+                xlabel = \(H\),
+                ylabel = {\(-M\)},
+                legend style={draw=none},
+                unbounded coords = jump,
+                xticklabels = {$H_{C1}$,$H_{C2}$},
+                every axis/.append style={line width=1pt}
+            ]
+        
+                % The green parabola
+                \addplot [
+                    domain=0:3, 
+                    samples=100, 
+                    color=black,
+                ]
+                {x};
+        
+                % The black parabola
+                \addplot [
+                    domain=3:6,
+                    samples=100,
+                    color=TamGreen,
+                    thick,
+                ]
+                {exp(-2.1*x+7.4)};
+        
+                % Add a node for labeling
+                \node at (axis cs: 5, 1) [black] {$N$};
+                \node at (axis cs: 3.5, 0.3) [TamGreen] {$S_{\text{Mi}}$};
+                \node at (axis cs: 2, 1) [black] {$S_{\text{Me}}$};
+                \draw[-, line width=.5pt, line cap=round, dash pattern=on 0pt off 2\pgflinewidth] (axis cs: 3,0) -- (axis cs: 3,3);
+            \end{axis}
+        \end{tikzpicture}
+        
+            \caption{The left plot shows how the magnetisation of a type I grows with the external field strength to cancel the applied field inside the material. Above
+            the critical field strength $H_C$ the material becomes a normal metal and the field flows through it. If the material has a non zero demagnetisation factor,
+            the field starts to penetrate the body at an intermediary field strength, leading to an intermediate (not mixed!) state. The field penetrates in form of
+            flux lines, along the normal to the surface. On the other hand we have a figure
+            that after showing the cancelation of the field inside the body, highlighs the presence of a mixed state in a type II superconductor. The field penetrates 
+            the material in the form of vortecies, and finaly let all the external field stream in the material.}
+        \end{figure}
 Durring the break of the superconductive state more and more magnetic field 
 flows inside of the material. Asuming that some particles are responsible for the superconductivity, the field achieve to penetrate where we observe 
 a lower density of these particles.\\
@@ -806,7 +948,8 @@ The expression that forms the phonon-depend potential in momentum space reads
     V_{e^-\text{phonon}} = \sum_{\bm{k},\bm{q},\sigma} M_{\bm{q}}\left(a_{-\bm{q}^{\dagger}} + a_{\bm{q}}\right) c_{\bm{k}+\bm{q},\sigma}^{\dagger}c_{\bm{k},\sigma}.
 \end{equation}
 $M_{\bm{q}}\left(a_{-\bm{q}^{\dagger}} + a_{\bm{q}}\right) $ is a matrix element of the coupling between the electron and the phonon. 
-The $a_{\bm{q}}$ and $a_{\bm{q}}^{\dagger}$ are annihilation and creation operators of a phonon with wavevector $\bm{q}$. Further researches have shown that \rem{source}
+The $a_{\bm{q}}$ and $a_{\bm{q}}^{\dagger}$ are annihilation and creation operators of a phonon with wavevector $\bm{q}$. Further researches have shown that \cite{Folk2014} 
+\rem{why does this commutator hold? More precise explanation needed or just bc we know that phonons are bosons?}
 \[
     \commu{a_{\bm{q}}}{a_{\bm{q}^{\dagger}}} = \delta_{\bm{q},\bm{q}'}
 \] 
@@ -871,15 +1014,96 @@ order $\eta$ term which is very small. We get:
 with $\bm{q}$ the momentum transfert. 
 We can now use a more complete potential in the Hamiltonian involving both the electrostatic (Eq.\ref{eq:Pot_repulsive_el}) and effective
 phonon-mediated interactions (Eq.\ref{eq:Pot_attractive_el_phonon}):
-\begin{equation}
-    V_{\text{eff}}(\bm{k},\bm{k}',\bm{q}) =  V_{\text{el}}(\bm{q}) + V^{(ph)}_{\text{eff}}(\bm{q},\omega) \label{eq:V_eff}
+\begin{equation}\label{eq:V_eff_phonon}
+    V_{\text{eff}}(\bm{q}, \omega) =  V_{\text{el}}(\bm{q}) + V^{(ph)}_{\text{eff}}(\bm{q},\omega)
      = \frac{1}{4\pi\epsilon_0} \frac{2\pi e^2}{\bm{q}^2} + \frac{2|M_{\bm{q}}|^2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2}.
 \end{equation}
 
 Here we have reached a very important point. This new potential can be in some case negative, which means it results in an attractive interaction between the electrons. 
-With other word, in some cases the phonon exchage can be attractive and even overcome the strong repulsive coulomb potential.
-\rem{Graph of V and the simplified version of it, which is also a very good predication.}
+In other words, in some cases the phonon exchage can be attractive and even overcome the strong repulsive coulomb potential.
 
+\begin{figure}[H]\centering
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            width=7cm,   % Adjust the width
+            height=5cm,  % Adjust the height
+            xtick=\empty,
+            ytick=\empty,
+            unbounded coords=jump,
+            xmin=-5, xmax=5,
+            xlabel = \(\omega\),
+            ylabel = {\(V_{\text{eff}}(\omega)\)},
+            legend style={draw=none},
+            ymin = -5, ymax = 5,
+            restrict y to domain =-100:5
+        ]
+        \pgfplotsset{every axis/.append style={line width=1pt}}
+
+
+        %Here the blue parabola is defined
+        \addplot [
+            domain=-5:-2, 
+            samples=100, 
+            color=black,
+            ]
+            {1 /(-x-2)};
+            \addplot [
+                domain=2:5, 
+                samples=100, 
+                color=black,
+                ]{1 /(x-2)};
+        \addplot [
+            domain=-2:-1.4142, 
+            samples=100, 
+            color=TamGreen,
+            ]
+            {1 /(-x-2) + 1/(x-2) +2};
+        \addplot [
+            domain=-1.4142:1.4142, 
+            samples=100, 
+            color=black,
+            ]
+            {1 /(-x-2) + 1/(x-2) +2};
+        \addplot [
+            domain=1.4142:2, 
+            samples=100, 
+            color=TamGreen,
+            ]
+            {1 /(-x-2) + 1/(x-2) +2};
+        \end{axis}
+
+        \end{tikzpicture}\hspace{1cm}
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=middle,
+                width=7cm,   % Adjust the width
+                height=5cm,  % Adjust the height
+                xtick=\empty,
+                ytick=\empty,
+                unbounded coords=jump,
+                xmin=-5, xmax=5,
+                xlabel = \(\omega\),
+                ylabel = {\(V_{\text{eff}}(\omega)\)},
+                legend style={draw=none},
+                ymin = -5, ymax = 5,
+                restrict y to domain =-100:5
+            ]
+            \pgfplotsset{every axis/.append style={line width=1pt}}
+        
+            \addplot [
+                domain=-2.000001:2.0000001,
+                samples=200,
+                color=TamGreen,
+                thick,
+            ]
+            {abs(x) < 2 ? -3 : 0};
+            \end{axis}
+            \end{tikzpicture}
+        \caption{Left the course of the phonon-mediated effective potential $V_{\text{eff}}$ defined in Eq.\ref{eq:V_eff_phonon}. For some values of $\omega$ the potential is attractive.
+        On the right is a simplifed version of the potential that revealed itself to be very accurate with the experiments.}
+    \end{figure}
 \subsubsection{Contraction of the effective Hamiltonian}
 We want to restrict ourselves in the case where the effective Hamiltonian is attractive. This happens in a small shell around the Fermi-surface.
 If we want to maximise the phase space for the scattering, the state before and after the scattering have to be in this shell. A good idea is 
@@ -915,32 +1139,36 @@ to consider that the two electrons have opposite wavevectors. The folowing figur
         \filldraw[color=TamDarkBlue, fill = white!0](0,0) circle (0.05);
     \end{tikzpicture}
     \caption{The scattering process of two electrons with opposite wavevectors $\bm{k}$ and $\bm{k}'$. We have a momentum transfert $\bm{q}$ between them. 
-    The thick line illustrates the Fermi-surface and the dotted one the thin shell. As we see if the electrons have opposite wavevectors, and the $\bm{k}$ electrons
-    scatters into the shell, then the $\bm{k}'$ electron scatters in the shell as well. This is not allways the case if the wavevectors don't agree as we can see on the left figure.
+    The thick line illustrates the Fermi-surface and the dotted one the thin shell. As we see, if the electrons have opposite wavevectors, and the $\bm{k}$ electron
+    scatters into the shell, then the $\bm{k}'$ electron scatters in the shell as well. This is not allways the case if the wavevectors don't agree, as we can see on the left figure.
     The right figure points out the maximisation process. With opposite wavevectors,
     we get the largest possbility spectrum for the scattering.}
 \end{figure}
 Further the attractivity is a short range effect, so if we want to consider it, we must think that the electrons are very close to eachother.
-This requires the electrons to have opposite spins due to the Pauli principle. This is a same as a lattice site. This is the only 
-possbility for them to cohabit the same neighbourhood. \rem{check} The approximation turns out to be a good model.\\
+This requires the electrons to have opposite spins due to the Pauli principle. Latter we are going to introduce the tigh binding formalism. In this context we want
+the electrons to be on the same lattice site to be able to form a pair. This shell approximation turns out to be a good model.\\
 
 Now we allow us to rename some variables:
 \[
-    \bm{k} + \bm{q} \longrightarrow \bm{k} ~,~~ \bm{k} \longrightarrow \bm{k}'
+    \bm{k} + \bm{q} \longrightarrow \bm{k} ~,~~ \bm{k} \longrightarrow \bm{k}'.
 \]
-The Hamiltonian that follows from these transformations is called the BCS-reduced Hamiltonian
+The Hamiltonian that follows from these transformations is called the BCS-reduced Hamiltonian:
 \begin{equation} \label{eq:BCS_ReducedHamiltonian}
-    H = \sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma} + \sum_{\bm{k},\sigma,\bm{k}} V_{\bm{k}\bm{k}'} c_{\bm{k},\sigma}^{\dagger}c_{-\bm{k},-\sigma}^{\dagger}c_{-\bm{k}',-\sigma}c_{\bm{k}',\sigma}
+    H = \sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k},\sigma}^{\dagger}c_{\bm{k},\sigma} +
+     \sum_{\bm{k},\bm{k}',\sigma} V_{\bm{k}\bm{k}'} c_{\bm{k},\sigma}^{\dagger}c_{-\bm{k},\overline{\sigma}}^{\dagger}c_{-\bm{k}',\overline{\sigma}}c_{\bm{k}',\sigma},
 \end{equation}
-$V_{\bm{k}\bm{k}'}$ is now a matrix element that acts if the wavevectors are close to the Fermi-surface. The electrons have to move in opposite directions with opposite spins.
+where $\overline{\sigma}$ is the opposite spin of $\sigma$. 
+The two rightmost operators destroy the electron with opposite wavevectors and spin before the interaction and creates two new with opposite wavevectors, including the
+ loss/gain of momentum, and opposite spin after the interaction. To convince oneself, we can just look at the expression before the variable transformation. The potential $V_{\bm{k}\bm{k}'}$ 
+ that modulates the strength of this pairing is now a matrix element that acts if the wavevectors are close to the Fermi-surface. The electrons have to move in opposite directions with opposite spins.
 Due to the retardation processes we introduced earlier, there remains a distortion in the lattice long after the electrons passed. Due to the inducting dipol moment,
-the other electron is attracted towards the distortion with $M_{\bm{q}}$ \rem{?}. As we also saw, the coulomb repulsion causes a colinear displacement, close to the distortion
-of the homologue. This phenomenon is called the Cooper-pairing and is a coupling that happens in momentum space.\\
+the other electron is attracted towards the distortion. As we also saw, the coulomb repulsion causes a colinear displacement, close to the distortion
+that its homologue provocated. This phenomenon is called the Cooper-pairing and is a coupling that happens in momentum space.\\
 
 The reader might want to see a picture of what is happing in the real space. To achieve a representation two simple statements are enough. 
 First, the Coulomb force aims to maximize the distance between the electrons in minimal time.
  This is achieved by moving them collinearly in opposite directions. Second, due to the retardation process, it's energetically more favourable
-for the electron to move along the distortion of the lattice. The result is illustrated in the figure \ref{fig:CooperPairing}. 
+for the electron to move along the distortion of the lattice. The result is illustrated in Fig.\ref{fig:CooperPairing}. 
 \begin{figure}[H]
     
     \begin{tikzpicture}
@@ -988,7 +1216,7 @@ for the electron to move along the distortion of the lattice. The result is illu
 \end{figure}
 Here the moved ions in blue are shifting back to their equilibrium position but it is important to remember that when the other 
 electron passes, it expriences almost the same distortion everywhere.
-An interacting fact is that these interactions are the source of the superconductivity but they are also the main origin of resistivity in clean materials.
+An interesting fact is that these interactions are the source of the superconductivity, but also the main origin of resistivity in clean materials.
 
 \subsubsection{On our way to the BCS-theory}
 After this introduction on the phonon coupling between the electrons in the momentum space, or Cooper-pairing,
