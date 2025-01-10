@@ -42,10 +42,16 @@ classdef System < SystemBase
             Console.progressBar(0, obj.Nx * obj.Ny);
             for i = 1 : obj.Nx * obj.Ny
                 for j = 1 : obj.Nx * obj.Ny
+                    if strcmp(obj.points{i}.materialLayer,'V')
+                        continue;
+                    end
                     if i == j %we are on the diagonal. We find the superconducting and chemical potential terms
                         obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1: 4*(j-1) + 4) = obj.onSiteMatrix(i);
 
                     else % (~obj.points{i}.foundAllNeighbours()) %if not all the 4 neibours were found + on i j
+                        if strcmp(obj.points{j}.materialLayer,'V')
+                            continue;
+                        end
                         [are_neigh, axe] = Neighbours(obj.points{i}, obj.points{j}, obj); %returns the interaction as well
 
                         if are_neigh

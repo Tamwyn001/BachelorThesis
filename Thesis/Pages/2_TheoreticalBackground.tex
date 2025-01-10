@@ -596,8 +596,8 @@ In complexe analysis the order of a pole is given as $n$ if $f(z)$ is meromorphi
 \[
     (z-z_0)^n f(z)
 \]
-is also meromorphic in the neighbourhood of $z_0$. In our case we're interested in the 0.th order of the pole \rem{why?}. 
-We therfore ignore the imaginary part of the pole and we get
+is also meromorphic in the neighbourhood of $z_0$. In our case we're interested in the 0.th order of the pole and first ignore pole's imaginary part. What we get
+is an expression for the ernergy shift:
 \[
     \omega = \epsilon_{\bm{k}} + \Sigma_R(\bm{k}, \epsilon_{\bm{k}}) = \tilde{\epsilon}_{\bm{k}}.  
 \]
@@ -620,9 +620,9 @@ We define the residue of the propagator as
     z_{\bm{k}} = \frac{1}{1- \left.\parDif{\Sigma}{\omega}\right|_{\omega = \tilde{\epsilon}_{\bm{k}}}}, \label{eq:residue}
 \end{equation}
 which we can insert in the inverse lifetime of the electron occupying the state $|\bm{k},\sigma\rangle$
-\begin{equation}
+\begin{equation*}
     \frac{1}{\tau_{\bm{k}}} = - z_{\bm{k}} \Sigma_I(\bm{k}, \tilde{\epsilon}_{\bm{k}}).
-\end{equation}
+\end{equation*}
 This justifies the statement $ \Sigma_I \propto 1/\tau_{\bm{k}}$
 This residue is a decreasing function of the energy, which means that its influence is more important for low energies. 
 An interpretation could be that the slow moving electrons have less time to interact with their fast homologues, which results in a
@@ -666,10 +666,62 @@ We can't consider them as an electron like excitation in the interaction context
 The interactions allow to scatter some states in and out of the Bloch-State.\\
 
 The above expression for the momentum distribution $n(\bm{k})$ at Eq.\ref{eq:MomentumDistribution} can be ploted, and we recognise a gap of $z_{\bm{k}_F}<1$. 
-\rem{handmade plot}. This property of the Fermi liquid is a central difference with the non interacting
+ This property of the Fermi liquid is a central difference with the non interacting
 system. Back then the momentum distribution had a discontinuity from one to zero when crossing the Fermi surface (Eq.\ref{eq:MomentumDistributionFree}).\\
 
-An important feature to mention, that is the key understanding of the Fermi-liquid , is the on-to-one correspondance of quantum numbers between the interactinf and non-interacting electrons. 
+\begin{figure}[H]\centering
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            width=10cm,   % Adjust the width
+            height=5cm,  % Adjust the height
+            xtick=\empty,
+            minor y tick num = 0,
+            ytick distance=1,
+            ymin=-.2, ymax=1.3,
+            xmin=-0.5, xmax=5.1,
+            xlabel = \(\bm{k}\),
+            ylabel = {\(n(\bm{k})\)},
+            legend style={draw=none},
+        ]
+        \pgfplotsset{every axis/.append style={line width=1pt}}
+
+            % Heaviside step function
+            \addplot [
+                domain=-1:5,
+                samples=200,
+                color=black,
+                thick,
+            ]
+            {x < 2 ? 1 : 0};
+        \addlegendentry{Fermions}
+        %Here the blue parabola is defined
+        \addplot [
+            domain=-1:2, 
+            samples=100, 
+            color=TamGreen,
+            ]
+            {1 /( exp(1.3*(x - 3.1)) +1)};
+        \addlegendentry{Quasiparticles}
+        \addplot [
+            domain=2:5, 
+            samples=100, 
+            color=TamGreen,
+            ]
+            {1 /( exp(1.3*(x - 0.8)) +1)};
+            \node(source) at (axis cs:2.2, 0.87){};
+            \node[anchor = north](kf) at (axis cs:2, 0){\(\bm{k}_F\)};
+            \node (destination) at (axis cs:2.2, 0.13){};
+            \draw[Stealth-Stealth,  style={line width=0.5pt} ](source)-- node[midway, anchor = west] {\(z_{\bm{k}}\)} (destination);
+        \end{axis}
+
+        \end{tikzpicture}
+        \caption{The momentum distribution in a Fermi liquid for fermions and quasi-particles. The quasi-particles have a smaller gap, allowing to have energies beyond the 
+        fermi surface. This gap has exactly the magnetude of the quasiparticle's weigth defined in Eq.\ref{eq:residue}.}
+    \end{figure}
+
+An important feature to mention, that is the key understanding of the Fermi-liquid, is the on-to-one correspondance of quantum numbers between the interacting and non-interacting electrons. 
 This revealed itself to be very correct 
 for metals.
 This means we can start with simple Hamiltonian like Eq.\ref{eq:NonInteractingHamiltonian} and add new particles by introducing
