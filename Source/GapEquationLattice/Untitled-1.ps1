@@ -33,6 +33,17 @@
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu-3.75_m.gp" -SimulationPath "" -LatexPath "SC15AM30/m-3.75/"
 
 
+## ! NEW
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu-2.5comapre_m.gp" -SimulationPath "" -LatexPath "AMCompare_m/Mu-2.5/"
+
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SC-AM-FM-N_mu-2.5.gp" -SimulationPath "" -LatexPath "AllMaterials/Mu-2.5/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SC-AM-FM-N_mu-1.5.gp" -SimulationPath "" -LatexPath "AllMaterials/Mu-1.5/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SC-AM-FM-N_mu-0.5.gp" -SimulationPath "" -LatexPath "AllMaterials/Mu-0.5/"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_DWave.gp" -SimulationPath "" -LatexPath "SCAMDWave/Straigth/"
+
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_DWave_diag_-2.5.gp" -SimulationPath "" -LatexPath "SCAMDWave/Diag/-2.5/"
+
+
 #SC 12 AM 6 SC 12
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAMSC_mu.gp" -SimulationPath "/SC12AM6SC12_m0.5/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU" -LatexPath "SC12AM6SC12/NotFourier/MeanLine/Phasegradien/Start_1.0472/"
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_phase_long_SCAMSC_mu.gp" -SimulationPath "/SC12AM6SC12_m0.5/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU" -LatexPath "SC12AM6SC12/NotFourier/MeanLine_Phase/FixedPhaseDelta/Starting1.0472/allMU/"

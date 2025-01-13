@@ -1,4 +1,4 @@
-treshold = 0.1; %convergence treshold in percentage of change
+treshold = 0.001; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system_d_wave = System_DWave();
@@ -21,6 +21,7 @@ fprintf('Solving the gap equation\n');
 while (GapEquationBase.canLoop(t>60, dist, treshold, 1, 'all')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\n\nIteration %d:\n', t);
     fprintf('Diagonalising\n');
+    disp(ishermitian(system_d_wave.hamiltonian));
     F_d_old = GapEquationBase.generateNewCollumnDeltaOrF(system_d_wave);
 
     %eigenvector-, values (energy and bispinor electro u  +hole v) of H for a j
@@ -37,14 +38,15 @@ while (GapEquationBase.canLoop(t>60, dist, treshold, 1, 'all')) % last values gi
             for target_site = 1 : 5
                 %1: i 2: +x 3: +y 4: -x 5: -y
                 if target_site == 1
-                    [u, v] = computation.GetUVatI(i, n_id);
-                    uv_for_site_and_neigbours(1, n_id, :) = [u(1), u(2), v(1), v(2)];
+                    [ua, va] = computation.GetUVatI(i, n_id);
+                    uv_for_site_and_neigbours(1, n_id, :) = [ua(1), ua(2), va(1), va(2)];
                 else
                     %we need to remap if the target site is a neighbour: target_site = 2 -> +x
                     
-                    if ~isempty(system_d_wave.points{i}.neighbour{target_site - 1})
-                        [u, v] = computation.GetUVatI(system_d_wave.points{i}.neighbour{target_site - 1}.i, n_id);
-                        uv_for_site_and_neigbours(target_site, n_id, :) =  [u(1), u(2), v(1), v(2)];
+                    if ~isempty(system_d_wave.points{i}.neighbour{target_site - 1}) %if there is a neighbour
+                        % fprintf('Neighbour found at %d for %d\n', system_d_wave.points{i}.neighbour{target_site - 1}.i, system_d_wave.points{i}.i);
+                        [ub, vb] = computation.GetUVatI(system_d_wave.points{i}.neighbour{target_site - 1}.i, n_id);
+                        uv_for_site_and_neigbours(target_site, n_id, :) =  [ub(1), ub(2), vb(1), vb(2)];
                     end
                 end
             end  
@@ -56,7 +58,7 @@ while (GapEquationBase.canLoop(t>60, dist, treshold, 1, 'all')) % last values gi
 
 %* OK until here
 
-    for i = 1: numel(system_d_wave.points)-1
+    for i = 2: numel(system_d_wave.points)-1
         for i_prime = i+1 :  numel(system_d_wave.points) %we fill only the upper triangle
             %because we want to enforce H_ij = H_ji , we dont want to fill the diagonal again
             % fprintf("i= %d, i_prime = %d\n", i, i_prime);
@@ -96,7 +98,9 @@ while (GapEquationBase.canLoop(t>60, dist, treshold, 1, 'all')) % last values gi
                 % fprintf('No neighbour found at %d, %d\n', i, i_prime);
             end
         end
+      
     end
+    system_d_wave.check();
     % hh = heatmap(system_d_wave.hamiltonian);
     % waitfor(hh);	
     
@@ -130,8 +134,10 @@ while (GapEquationBase.canLoop(t>60, dist, treshold, 1, 'all')) % last values gi
     %                 axe2 = strcat('+', axe);
     %             end
     %             % fprintf('Neighbouring matrix at %d, %d\n', i, i_prime);
-    %             diff = system_d_wave.neighbourMatrix(i, axe1) - system_d_wave.neighbourMatrix(i_prime, axe2);
-    %             diverg(i, i_prime) = abs(diff(1,4));
+    %             differ =  system_d_wave.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i_prime-1) + 1: 4*(i_prime-1) + 4) - system_d_wave.hamiltonian(4*(i_prime-1) + 1: 4*(i_prime-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4);
+    %             disp("i = " + i + " i_prime = " + i_prime);
+    %             disp(system_d_wave.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(i_prime-1) + 1: 4*(i_prime-1) + 4));
+    %             disp( system_d_wave.hamiltonian(4*(i_prime-1) + 1: 4*(i_prime-1) + 4, 4*(i-1) + 1: 4*(i-1) + 4));
     %         end
     %     end
     % end
@@ -166,8 +172,8 @@ while (GapEquationBase.canLoop(t>60, dist, treshold, 1, 'all')) % last values gi
 end 
 
 
-fprintf('Computing currents\n');
-system_d_wave = ComputeCurrents(system_d_wave, computation); % return a 2*Nx*Ny X Nx*Ny matrix
+% fprintf('Computing currents\n');
+% system_d_wave = ComputeCurrents(system_d_wave, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 
 Delta_D_phase = zeros(system_d_wave.Ny, system_d_wave.Nx, 2);

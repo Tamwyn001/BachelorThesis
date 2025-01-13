@@ -6,7 +6,7 @@ classdef System < SystemBase
         DWavePurpose
     end
     properties (Constant)
-        t_ij = 1;
+        t_ij = 1.0;
     end
     methods
         function obj = System(DWavePurpose)
@@ -64,8 +64,24 @@ classdef System < SystemBase
                 end
                 Console.progressBar(i, obj.Nx * obj.Ny);
             end
+            obj.check();
         end
+        function check(obj)
+            for i = 1: obj.Nx * obj.Ny
+                for j = i : obj.Nx * obj.Ny
+                    for a = 1:4
+                        for b = 1:4
+                            if ~obj.hamiltonian(4*(j-1) + a, 4*(i-1) + b) == conj(obj.hamiltonian(4*(i-1) + b, 4*(j-1) + a))
+                                fprintf('Hamiltonian is not Hermitian at %d, %d\n', i, j);
+                                disp(obj.hamiltonian(4*(j-1) + 1: 4*(j-1) + 4, 4*(i-1) + 1:  4*(i-1) + 4));
+                                disp(obj.hamiltonian(4*(i-1) + 1: 4*(i-1) + 4, 4*(j-1) + 1:  4*(j-1) + 4));
+                            end
+                        end
+                    end
 
+                end
+            end
+        end
         function matrix = onSiteMatrix(obj, i) %site i
             matrix = System.chemicalMatrix(System.mu);
             if strcmp(obj.points{i}.materialLayer, 'SC') && (~(obj.DWavePurpose))
@@ -94,7 +110,7 @@ classdef System < SystemBase
             elseif strcmp(obj.points{i}.materialLayer,'FM') && strcmp(obj.points{j}.materialLayer,'FM')
                 matrix = matrix + System.ferromagnetMatrix();
     
-            elseif strcmp(obj.points{i}.materialLayer,'SC') && obj.DWavePurpose
+            elseif strcmp(obj.points{i}.materialLayer,'SC') && strcmp(obj.points{j}.materialLayer,'SC') && obj.DWavePurpose
                 matrix = matrix + System.dWaveMatrix(axe, obj.points{i});
             end
 

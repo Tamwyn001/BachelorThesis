@@ -345,7 +345,7 @@ classdef LatticePoint
                 end
                 obj.F_x = [F_i_ip1, F_i_im1];
                 obj.F_y = [F_i_ipN, F_i_imN];
-
+                % fprintf('F_x: %d, %d, F_y: %d, %d\n', obj.F_x(1), obj.F_x(2), obj.F_y(1), obj.F_y(2));
                 F_xplus_S = (obj.F_x(1) + F_ip1_i)/2; 
                 F_xminus_S = (obj.F_x(2) + F_im1_i)/2;
     

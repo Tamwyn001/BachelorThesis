@@ -5,10 +5,9 @@ system = System();
 system = system.createLattice(false); %use the tilted interface version
 system = system.generateHam();
 system.convergence_model = "abs_angle";
-
+t = 1; %iteration counter
 computation = Computation(system); %holds the eigenvalues and eigenvectors to access them later without passing huge matrices around
 CORREL_C = zeros(system.Ny, system.Nx);
-t = 1;
 
 
 delta_old = ones(system.Nx*system.Ny, 2); %angle and || of delta
@@ -20,7 +19,7 @@ dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCol
 
 fprintf('Solving the gap equation\n');
 trace = zeros(numel(system.points), 1);
-while (GapEquationBase.canLoop(t>300, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+while (GapEquationBase.canLoop(t>100, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\n\nIteration %d\n:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);
@@ -89,7 +88,7 @@ systemMaterial = GapEquationBase.getSimMaterial();
 path = strcat(".\Results\", systemMaterial);
 phase_shift_folder = GapEquationBase.getPhaseShiftFolder(system);
 
-folder = strcat(path, '\NotFourier', phase_shift_folder);
+folder = strcat(path, '\NotFourierNEW', phase_shift_folder);
 if not(isfolder(folder))
     mkdir(folder);
 end
