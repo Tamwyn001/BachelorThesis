@@ -2,36 +2,41 @@
 \begin{document}
 \section{An advanced superconductivity}
 \subsection{Site depentend potential}
-In this section we are going to highlight how the neighbour-depending potential can lead to a new kind of superconductivity.
-These new superconductive states are label $s$, $p$ and extended $d$-wave superconductivity. The derivations we are going to make are closely based on
-the work of A.H. Mjøs and J. Linder in \cite{Mjos2019}.\\
+In this section we are going to highlight how the neighbour-depending potential can lead to a new kind of superconductivity. Among others we are going to discuss the $d$-
+wave superconductivity which shares similarities with more exotic magnets, such as the altermagnet. 
+Indeed the spatial repartition of the phase of the gap seems to have the same geometry as the spin polarisation of the altermagnet \cite{Smejkal2022} \rem{figure?}.
+Further the d-wave will be shown as non-isotropic in the reciproqual space. Considering the junction of a superconducting material with an altermagnet, this 
+makes the study of a straight and diagonal interface a case of study of particular interest.\\       
+The derivations we are going to make are closely based on the work of A.H. Mjøs and J. Linder in \cite{Mjos2019}.\\
 
 The Hamiltonian beeing the groundstone of this 
-disscusssion, we're going to beggin with it. It differs slightly from the symmertic one we derived in Eq.\ref{eq:Ham_Symm_Supercond_1}. This extended version contains a neighbour-depending potential $H_V$ that is going to 
+disscusssion, we're going to beggin with it. It differs slightly from the symmertic one we derived in Eq.\ref{eq:Ham_Symm_Supercond_1}. This extended version contains a neighbour-depending potential 
+$H_V$ that is going to 
 produce the new superconductive $\Delta$-part of the Hamiltonian. This potential is as well attractive such that $V>0$, similar to the BCS theorie.
 \begin{equation}
     H = -t\sum_{\langle ij\rangle \sigma} c_{i\sigma}^{\dagger}c_{j\sigma} - \mu \sum_{i\sigma} c_{i\sigma}^{\dagger}c_{i\sigma} - \frac{V}{2} \sum_{\langle ij\rangle \sigma} n_{i\sigma}n_{j\bar{\sigma}}.
 \end{equation}
-Here the $\bar{\sigma}$-notation means the opposite spin of $\sigma$. In other words the attraction finds only place between particles of opposite spin, mirroring the formation process of Cooper-pairs.
+Here the $\bar{\sigma}$-notation means the opposite spin of $\sigma$. In other words the attraction finds only place between particles of opposite spin,
+ mirroring the formation process of Cooper-pairs.
 We have a factor of one half to avoid counting twice the neighbours.\\
 
 Trained eyes will recognise that $H_V$ is not quadratic in the creation and annihilation operators which makes the Hamiltonian impossible to write in the BdG-formalism. For this reason we can 
 use the so called Hartree-Fock mean field approximation $H_V \rightarrow H^{HF}_V$ defined as:
 \begin{equation}
-    H^{HF}_V = -\frac{1}{2} \sum_{\langle ij\rangle \sigma} V_{ij} \left(F_{ij}^{\sigma \bar{\sigma}} c^{\dagger}_{j\bar{\sigma}}c^{\dagger}_{i\sigma} + \text{h.c.} + |F_{ij}^{\sigma \bar{\sigma}}|^2\right)
+    H^{HF}_V = -\frac{1}{2} \sum_{\langle ij\rangle \sigma} V_{ij} \left(F_{ij}^{\sigma \bar{\sigma}} c^{\dagger}_{j\bar{\sigma}}c^{\dagger}_{i\sigma} + \text{h.c.} 
+    + |F_{ij}^{\sigma \bar{\sigma}}|^2\right),
 \end{equation}
-\rem{Propagate the minus in the equations.}
 involving the pairing amplitude $F_{ij}^{\sigma \bar{\sigma}} = \langle c_{i\sigma}c_{j\bar{\sigma}}\rangle$ that we already introduced. The $V_{ij}$ are the neighbour-depending potential.
-The last term is a constant energy term which we can discard during the diagonalization process. If one wanted to compute the free energy this must be included there. From this point simplifications
-can be made to reach out final Hamiltonian.\\
+The last term is a constant energy term, which we can discard during the diagonalization process. If one wanted to compute the free energy this must be included there.
+From this point simplifications can be made to reach out final Hamiltonian.\\
 
 Using the fermionic property $[c_{i\sigma}^{\dagger},c_{j\sigma}^{\dagger}]_+ = 0$ we have $c_{i\sigma}^{\dagger} c_{j\sigma}^{\dagger} = -c_{i\sigma}^{\dagger} c_{j\sigma}^{\dagger}$
 which leads to $\langle  c_{i\sigma}^{\dagger} c_{j\sigma}^{\dagger} \rangle = -\langle c_{i\sigma}^{\dagger} c_{j\sigma}^{\dagger}\rangle$. We can use this in the last step of the following simplification:
 \begin{equation}\label{eq:HF_V}
     \begin{aligned}
-        H^{HF}_V =& \frac{1}{2} \sum_{\langle ij\rangle \sigma} V_{ij} \left(F_{ij}^{\sigma \bar{\sigma}} c^{\dagger}_{j\bar{\sigma}}c^{\dagger}_{i\sigma} + \text{h.c.}\right)\\
-            =& \frac{1}{2}\sum_{\langle ij\rangle} V_{ij} \left(F_{ij}^{\uparrow \downarrow} c^{\dagger}_{j\downarrow}c^{\dagger}_{i\uparrow} + F_{ij}^{\downarrow\uparrow} c^{\dagger}_{j\uparrow}c^{\dagger}_{i\downarrow} + \text{h.c.}\right)\\
-            =& \sum_{\langle ij\rangle} V_{ij} \left(F_{ij}^{\uparrow \downarrow} c^{\dagger}_{j\downarrow}c^{\dagger}_{i\uparrow} + \text{h.c.}\right)
+        H^{HF}_V =& -\frac{1}{2} \sum_{\langle ij\rangle \sigma} V_{ij} \left(F_{ij}^{\sigma \bar{\sigma}} c^{\dagger}_{j\bar{\sigma}}c^{\dagger}_{i\sigma} + \text{h.c.}\right)\\
+            =& -\frac{1}{2}\sum_{\langle ij\rangle} V_{ij} \left(F_{ij}^{\uparrow \downarrow} c^{\dagger}_{j\downarrow}c^{\dagger}_{i\uparrow} + F_{ij}^{\downarrow\uparrow} c^{\dagger}_{j\uparrow}c^{\dagger}_{i\downarrow} + \text{h.c.}\right)\\
+            =& -\sum_{\langle ij\rangle} V_{ij} \left(F_{ij}^{\uparrow \downarrow} c^{\dagger}_{j\downarrow}c^{\dagger}_{i\uparrow} + \text{h.c.}\right)
     \end{aligned}
 \end{equation}
 Using the raltion $F_{ij}^{\uparrow\downarrow} = -F_{ij}^{\downarrow\uparrow}$ and the symmerty of the potential $V_{ij} = V_{ji}$ we can add the two terms up and remove the one half factor.
@@ -39,7 +44,7 @@ The Hamiltonian is now ready to be diagonalized but first, we are going to discu
  
 In an homogenous material we can consider a lattice and imagine some periodic boundary conditions in all directions. There is a translation invariance.
 In heterostructures however the material may vary, let's asume
-without loss of generality, in a direction. As we now, a periodic signal is a good candiade for a Fourier transform, which we can then express in a finite set of coeficient. This is very handfull.
+without loss of generality, in a direction. As we now, a periodic signal is a good candiade for a Fourier transform, which we can then express in a finite set of coefficient. This is very handfull.
 However the direction we want to transform on has to show a periodicty. For this reason an homogenous two-dimensional lattice involves a Fourier transformation in two space dimensions while a heterostructure
 we transform only in the direction where the material is the same. For instance a multilayer material in the $x$-direction can be described by combining a real space desciption in the $x$-axis 
 combined to a Fourier transformation in the $y$-direction.
@@ -80,8 +85,8 @@ No wee need to express the neighbourhood sum. Precily we have
                         & ~~~~~~~~~~~~+t_{x,y-1} \underbrace{c_{x k\sigma} c_{x k'\sigma}^{\dagger} e^{\im k'\cdot (-1)}}_{\delta_y = -1} + t_{x,y+1} \underbrace{c_{x k\sigma}^{\dagger} c_{x k'\sigma}e^{\im k'\cdot (1)}}_{\delta_y = 1}\biggr)e^{\im (k -  k')y}
 \end{align*}
 As we see the $y$ direction is now expressed in the $k$-index, which is unique for each lattice $y$-slice. The information is then conserved. 
-We know that system have different material on the $x$ axis. This means $t_{x,y-1} = t_{x,x} = t_{x,y+1}$ because the material are isotropic but every material has a 
-different hopping term. Beside we can use the following realtion $1/N_y \sum_{y} e^{\im (k -  k')y} = \delta_{kk'}$. Perfoming both expression leads after a summation over $k'$ to
+We know that system have different material on the $x$ axis. This means $t_{x,y-1} = t_{x,x} = t_{x,y+1}$ because the material are isotropic in $y$. Every material has a 
+different hopping term nevertheless. Beside we can use the following realtion $1/N_y \sum_{y} e^{\im (k -  k')y} = \delta_{kk'}$. Perfoming both expression leads after a summation over $k'$ to
 \begin{equation*}
     H_{\text{hop}} = -\sum_{x k \sigma} t_{x,x+1} c_{x k\sigma}^{\dagger} c_{x+1 k\sigma} + t_{x,x-1} c_{x k\sigma}^{\dagger} c_{x+1 k\sigma} +  t_{x,x} c_{x k\sigma}^{\dagger} c_{xk\sigma}\left(e^{\im k} + e^{-\im k}\right)
 \end{equation*}
@@ -102,29 +107,30 @@ using
     \epsilon_{xx'k\sigma}= - t_{xx'} \left(\delta_{x+1, x'} + \delta_{x-1,x'}\right) - \left(t_{xx'}2\cos(k) + \mu\right) \delta_{xx'}
 \]
 
-Moving on to the potential term we have to introduce a new notation. $i\pm\hat{x} = i\pm 1$ and $i\pm\hat{y} = i\pm N_x$. \rem{Write a single clear message at the beggining of the lattice introduction.}.
-For the brevety we use $f(a) = V_{ia}F_{ia} c^{\dagger}_{a\downarrow} c^{\dagger}_{i\uparrow}$ \rem{!! sign check for V and in frotn oh Hv!}
+Moving on to the potential term we have to introduce a new notation. The goal is to describe a displacment in a direction from a point. So asuming
+we follow the indexing introduced in Fig.\ref{fig:Sim_System}: $i\pm\hat{x} = i\pm 1$ and $i\pm\hat{y} = i\pm N_x$.
+For the brevety we use $f(a) = V_{ia}F_{ia} c^{\dagger}_{a\downarrow} c^{\dagger}_{i\uparrow}$. Still asuming that $V_{ij}>0$ and that the interaction is attractive, we have: \rem{!! sign check for V and in frotn oh Hv!}
 \begin{align*}
-    H_V =& \sum_{\langle ij\rangle} V_{ij} F_{ij} c^{\dagger}_{i\downarrow} c^{\dagger}_{j\uparrow} + \text{h.c.} \\
-    =& \sum_{i} f(i-1) + f(i+1) + f(i+N_x) + f(i-N_x) + \text{h.c.}
+    H_V =& -\sum_{\langle ij\rangle} V_{ij} F_{ij} c^{\dagger}_{i\downarrow} c^{\dagger}_{j\uparrow} + \text{h.c.} \\
+    =& -\sum_{i} f(i-1) + f(i+1) + f(i+N_x) + f(i-N_x) + \text{h.c.}
 \end{align*}
 We can now insert our Fourier transformation introduced in Eq.\ref{eq:C_dagg_Foruier} and Eq.\ref{eq:C_Foruier} to obtain
 \begin{align*}
-    H_V =& \sum_{xy} \frac{1}{N_y} \sum_{kk'} \left( V_{x,x+1} F_{x}^{x+} c^{\dagger}_{x+1,k,\downarrow}c^{\dagger}_{xk'\uparrow} + V_{x,x-1} F_{x}^{x-} c^{\dagger}_{x+1,k,\downarrow} c^{\dagger}_{xk'\uparrow} \right.\\
+    H_V =& -\sum_{xy} \frac{1}{N_y} \sum_{kk'} \left( V_{x,x+1} F_{x}^{x+} c^{\dagger}_{x+1,k,\downarrow}c^{\dagger}_{xk'\uparrow} + V_{x,x-1} F_{x}^{x-} c^{\dagger}_{x+1,k,\downarrow} c^{\dagger}_{xk'\uparrow} \right.\\
         &+ \left.V_{xx}\left( F_{x}^{y+} e^{-\im k}  - F_{x}^{y-} e^{\im k}\right) c^{\dagger}_{xk\downarrow} c^{\dagger}_{xk'\uparrow} \right) e^{-\im(k + k')y} + \text{h.c.}\\
 \end{align*}
 Defining a more general form for the summand involving two site $i$ and $j$:
 \begin{equation*}
     \begin{aligned}
-    F_{xx'k} =& - V_{x,x'}\left( F_{x}^{x+} \delta_{x+1,x'} +  F_{x}^{x-} \delta_{x-1,x'}\right. \\
+    F_{xx'k} =&  V_{x,x'}\left( F_{x}^{x+} \delta_{x+1,x'} +  F_{x}^{x-} \delta_{x-1,x'}\right. \\
         &+ \left.\left( F_{x}^{y+} e^{-\im k}  - F_{x}^{y-} e^{\im k}\right)\delta_{xx'}\right),
     \end{aligned}
 \end{equation*} 
 where we got $k' = -k$ from the sum over the $y$-direction. We can rewrite the expression of $H_V$ as
 \begin{align*}
-    H_V =& \sum_{x} \sum_{kk'} F_{xx'k} c^{\dagger}_{xk\uparrow} c^{\dagger}_{x',-k,\downarrow} + F_{xx'k}^{\ast} c_{x',-k,\downarrow} c_{xk\uparrow}.
+    H_V =& -\sum_{x} \sum_{kk'} F_{xx'k} c^{\dagger}_{xk\uparrow} c^{\dagger}_{x',-k,\downarrow} + F_{xx'k}^{\ast} c_{x',-k,\downarrow} c_{xk\uparrow}.
 \end{align*}
-Now using $H_{\text{hop}}, H_{\mu}$ and $H_{V}$ we can write the full Hamiltonian as
+Now using $H_{\text{hop}}, H_{\mu}$ and $H_{V}$ we can write the full Hamiltonian as \rem{(add the formula for the altermagnet as well. Like Jacob sayed: We can reduce to a 2x2)}
 \begin{equation}
     \begin{aligned}
     H =& \sum_{xx'k} D_{xk}^{\dagger} H_{xx'k} D_{x'k}\\
@@ -143,9 +149,9 @@ Now using $H_{\text{hop}}, H_{\mu}$ and $H_{V}$ we can write the full Hamiltonia
 \end{equation}
 The summation over all $x,x'$ can be represented in a new matrix.
 \[
-    H = \sum_k D_k^{\dagger} H_k D_k
+    H = \sum_k \check{c}_k^{\dagger} H_k \check{c}_k
 \]
-involving the $4Nx \times 4Nx$ matrix $H_k$ and the $4Nx$-dimensional vector $D_k$.
+involving the $4Nx \times 4Nx$ matrix $H_k$ and the $4Nx$-dimensional vector $\check{c}_k$. 
 \[
     H_k = \begin{pmatrix}
         H_{11k} &\dots & H_{1N_xk}\\
@@ -153,14 +159,16 @@ involving the $4Nx \times 4Nx$ matrix $H_k$ and the $4Nx$-dimensional vector $D_
         H_{N_x1k} & & H_{N_xN_xk}
     \end{pmatrix}
 \]
+Please note that \cite{Mjos2019} uses the notation $D_k$ for $\check{c}_k$, but we dont want to confuse the reader with the already defined eigenvalues
+ diagonal matrix of Eq.\ref{eq:Diag_Ham}.
 As before the $y$ information is stored in the $k$-index, which is unique for each lattice $y$-slice. This said, we 
-can diagonalize $N_y$ times a $4N_x \times 4N_x$ matrix. $H_k$ represent the interaction of a $y$-line with itself.
-The eigenvalues are the same for each $y$-slices and physical
+can diagonalize $N_y$ times a $4N_x \times 4N_x$ matrix. Each $H_k$ represents the interaction of a $y$-line with itself.
+The eigenvalues are the same for each $y$-slices and the physical
 quantities are going to be expressed with this summation over $k$ and the eigenvalues, -vectors of each $k$ ($y$-slice).\\
 
 On the other hand the vector we use to carry the creation and annihilation operators is given as 
 \[
-    D_k^{\dagger} = \begin{pmatrix}
+    \check{c}_k^{\dagger} = \begin{pmatrix}
         c^{\dagger}_{1k\uparrow} & c_{1,-k,\downarrow}& \dots &c^{\dagger}_{N_x k\uparrow} & c_{N_x,-k,\downarrow}
     \end{pmatrix}\in\mathbb{H}^{2N_x}
 \]
@@ -168,7 +176,7 @@ On the other hand the vector we use to carry the creation and annihilation opera
 \subsubsection{BdG-transformation for a vertical foruier transform}
 The eigenvalues equation is similar to Eq.\ref{eq:BdG_eigenVal_H}
 \begin{equation}\label{eq:BdG_eigenVal_H_k}
-    H_k \mathfrak{X}_{nk} = E_{nk} \mathfrak{X}_{nk}
+    H_k \mathfrak{X}_{nk} = E_{nk} \mathfrak{X}_{nk}.
 \end{equation}
 The eigenvectors and -values are given as
 \begin{equation*}
@@ -179,15 +187,15 @@ The eigenvectors and -values are given as
     \end{pmatrix},~~ \mathfrak{x}_{nxk} = \begin{pmatrix}
         u_{nxk}\\
         v_{nxk}
-    \end{pmatrix}
+    \end{pmatrix}.
 \end{equation*}
-if we stick to the formalism we already derived in the earlier Sec.\ref{sec:Diagonalization} we obtain similar 
-eigenvectors where $u_{nik}$ corresponds to $c$. We are now going to transform the $c$ operators. First we need
+If we stick to the formalism we already derived in the earlier Sec.\ref{sec:Diagonalization} we obtain similar 
+eigenvectors where $u_{nxk}$ corresponds to $c_{xk\uparrow}$ and $v_{nik}$  $c_{x,-k,\downarrow}$ (see Eq.\ref{eq:eigenvectors_BdG_Fourier}). We are now going to transform the $c$ operators. First we need
 to define $\mathfrak{X}_k = [\mathfrak{X}_{1k}, ..,\mathfrak{X}_{2N_xk}]\in\mathbb{H}^{2N_x\times 2N_x}$ storing the number of 
-lattice sites times the number of spins (2) in the first dimension and 
+lattice sites times the number of spins (2) in the first dimension, and 
 the number of eigenvectors in the second dimension. Beside we have $\mathfrak{g}_k = (\mathfrak{g}_{1k}, .., \mathfrak{g}_{2N_xk})^T\in\mathbb{H}^{2N_x}$ along with $D_{k} = \mathfrak{X}_k\mathfrak{g}_k$,
 delivering $\mathfrak{g}_k = \mathfrak{X}^{\dagger}_k D_{k}$ which is equivalent to:
-\begin{equation}
+\begin{equation}\label{eq:eigenvectors_BdG_Fourier}
     \mathfrak{g}_{nk} = \sum_{x\in{N_x}} u_{nxk}c_{xk\uparrow} + v_{nxk}c^{\dagger}_{x,-k,\downarrow}.
 \end{equation}
 Looking at $D_{k} = \mathfrak{X}_k\mathfrak{g}_k$ we can derive two very usefull expressions:
@@ -213,43 +221,41 @@ Looking at $D_{k} = \mathfrak{X}_k\mathfrak{g}_k$ we can derive two very usefull
         \end{equation}
     \end{minipage}
     \end{center}
-
+that are the equivalent of Eqs.\ref{eq.BdG_transf_c} and \ref{eq.BdG_transf_c_dagg} for the Fourier transformed $c$-operators along the $y$-axis.\\
 \subsubsection{Pairing amplitudes}
-For the derivation of the pairing amplitudes on the axis $a\in\{\hat{\bm{x}},\hat{\bm{y}}\}$.
+For the derivation of the pairing amplitudes along the axis $a\in\{\hat{x},\hat{y}\}$, we are going to abstractize.
+With $F_i^{\pm a}$ we mean $F_i^{\pm \hat{x}}$ or $F_i^{\pm \hat{y}}$ which are equivalent to $F_{i,i\pm x}$ and $F_{i,i\pm y}$.
 Doing so, we will use our BdG-transformation as we did earlier to be 
-able to solve these parameters self-consistently using the eigenvectors and -values.\\
-
-\begin{equation*}
-    F_i^{\pm a} = \langle c_{i\uparrow} c_{i\pm a,\downarrow}\rangle =
-    \frac{1}{N_y} \sum_{kk'} \langle c_{i_x k\uparrow} c_{i_x\pm a,k',\downarrow} \rangle e^{\im(k + k')i_y} e^{\pm\im k' \delta_y}
-\end{equation*}
-using $y\pm a = y'$. Here for the brevety we have to sacrifice the notation. This is unformal and might be confusing so we clarify the point in first place.\\
-So $a$ describes a displacement in the $x$- or $y$-direction. On one hand $i+a$ refers to 
-the lattice index when moving from $i$ with a translation $a$. On the other hand, having ``$i = (x,y)$'', $x+a$ refers to the $x$-coordinate of the lattice site $i+a$.
-This is analogue for $y$.\\ 
-This then means or $a= \hat{\bm{y}}$ we have $x\pm a = x$ and $k'_a = 0$.\\
-
-The expectaion value is independant of the site vertical coordinate $y$. This means that we can achieve a site description by making the average of the value over a $x$-slice. In other words
+able to solve these parameters self-consistently using the eigenvectors and -values. We remember that the site $i$ has the coordinate $(x,y)$ and its neighbour $j$
+the coordinate $(x',y')$.
+\begin{align*}
+    F_i^{\pm a} = \langle c_{i\uparrow} c_{i\pm a,\downarrow}\rangle =& \frac{1}{N_y} \sum_{kk'} \langle c_{x k\uparrow} c_{x\pm \delta_x,k',\downarrow} \rangle e^{\im(ky + k'y')}\\
+                                                                    &   \frac{1}{N_y} \sum_{kk'} \langle c_{x k\uparrow} c_{x\pm \delta_x,k',\downarrow} \rangle e^{\im(k + k')y} e^{\pm\im k' \delta_y}
+\end{align*}
+using $y\pm \delta_y = y'$ and $x\pm \delta_x = x'$. Naturaly we know that for $a = \hat{x}$ there is no hopping along the $y$-axis, such that $\delta_y=0$ and in the same way for $a = \hat{y}$ we have $\delta_x = 0$.
+The expectaion value is independent of the site vertical coordinate $y$. This means that we can achieve a site description 
+by making the average of the value over a $x$-slice. In other words
 we can write:
 \begin{equation*}
     F^{\pm a}_i = 
-    \frac{1}{N_y}\sum_{y\in\natset{N_y}} \frac{1}{N_y} \sum_{kk'} \langle c_{i_x k\uparrow} c_{i_x \pm a,k',\downarrow} \rangle e^{\im(k + k')\bm{r}_i} e^{\pm\im k'\delta_y}
+    \frac{1}{N_y}\sum_{y\in\natset{N_y}} \frac{1}{N_y} \sum_{kk'} \langle c_{x k\uparrow} c_{x \pm \delta_x,k',\downarrow} \rangle e^{\im(k + k')\bm{r}_i} e^{\pm\im k'\delta_y}
 \end{equation*}
-which after the sumation over $i$ results as we covered earlier as $1/N_y \sum_{y} e^{\im(k + k')i_y} = \delta_{k,-k'}$
+which after the sumation over $i$ yields, as we covered earlier, to $1/N_y \sum_{y} e^{\im(k + k')y} = \delta_{k,-k'}$:
 \begin{equation*}
     F^{\pm x}_i = 
-    \frac{1}{N_y} \sum_{k} \langle c_{i_x k\uparrow} c_{i_x\pm a,k,\downarrow} \rangle e^{\mp\im k_a}
+    \frac{1}{N_y} \sum_{k} \langle c_{x k\uparrow} c_{x\pm \delta_x,k,\downarrow} \rangle e^{\mp\im k\delta_y}.
 \end{equation*}
-Now that we have simplifed the Fourier transform we can incorporate the BdG-transformation. The process is very similar to Eq.\ref{eq:transfo_c_up_c_down_BdG} and yields
+Now that we have simplifed the Fourier transform we can incorporate the BdG-transformation. The process is very similar to Eq.\ref{eq:transfo_c_up_c_down_BdG} and after doing this,
+we obtain the following expression:
 \begin{equation}\label{eq:transfo_F_x}
-    F^{\pm a}_i =\frac{1}{N_y}\sum_{k}\sum_{nn'} u_{ni_x k}v_{n',i_x \pm a,k}^{\ast} \langle \mathfrak{g}_{nk} \mathfrak{g}_{n'k}^{\dagger} \rangle e^{\mp\im k \delta_y}
+    F^{\pm a}_i =\frac{1}{N_y}\sum_{k}\sum_{nn'} u_{nx k}v_{n',x \pm \delta_x,k}^{\ast} \langle \mathfrak{g}_{nk} \mathfrak{g}_{n'k}^{\dagger} \rangle e^{\mp\im k \delta_y}
 \end{equation}
-where we can as well write $i_x = x$. Recalling the use of $a$ to abstractise the axis we get:
+Recalling the $a$ abstractization of the axis, we get:
 \begin{align}
-    F^{\pm x}_i =& \frac{1}{N_y} \sum_{nk} u_{ni_x k} v_{n,i_x\pm x,k}^{\ast}\left(1 - f(E_{nk})\right)\\
-    F^{\pm y}_i =& \frac{1}{N_y} \sum_{nk} u_{ni_x k} v_{n i_x k}^{\ast}\left(1 - f(E_{nk})\right) e^{\mp \im k}.
+    F^{\pm x}_i =& \frac{1}{N_y} \sum_{nk} u_{nx k} v_{n,x\pm \delta_x,k}^{\ast}\left(1 - f(E_{nk})\right)\\
+    F^{\pm y}_i =& \frac{1}{N_y} \sum_{nk} u_{nx k} v_{n x k}^{\ast}\left(1 - f(E_{nk})\right) e^{\mp \im k}.
 \end{align}
-
+where $x\pm \delta_x$ means $x\pm1$.
 
 
 \subsubsection{In the open boundary setup}

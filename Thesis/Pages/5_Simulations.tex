@@ -28,7 +28,8 @@ Matlab is a programm that works well with matricies so using it is a wise choice
 
 The site coordinate is stored as $(x,y)$-tuple as well as an index $i$ that iterates over $y$-row and then starts again
 at the begining of the next row. This means that with different boundary conditions we get the following shape for the system:\\
-\begin{center}
+\begin{figure}[H]
+    \centering
 \begin{tikzpicture}
     \coordinate (o) at (0.5,0.5);
     \coordinate (x) at (1.5,0.5);
@@ -133,7 +134,9 @@ at the begining of the next row. This means that with different boundary conditi
     \node[anchor=center, color = gray] at (3,0) {\scriptsize 4};
 
 \end{tikzpicture}
-\end{center}
+\caption{The sites indexing method as well as a representation of the different boundary conditions.}
+\label{fig:Sim_System}
+\end{figure}
 Left we ahve a $3\times3$-system. The others are $2\times2$ with vertical periodic boundary conditions (PBC)
 and on the right with both vertical and horizontal PBC. \\
 

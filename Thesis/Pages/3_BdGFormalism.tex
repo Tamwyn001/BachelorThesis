@@ -255,11 +255,12 @@ First we define a matrix from all the eigenstates $\check{X} = [\check{\chi}_{\p
 We then introduce a matrix $\check{D} = \text{diag}(E_{\pm 1},..,E_{\pm 2N})$ with the eigenvalues sotred on the diagonal. The order in which the eigenvectors appear is not important
 but $\check{\chi}_{i}$ should be on the same collumn index as $E_{i}$ not to loose track of which eingenvector is linked with which eingenvalue.
 Then, asuming that the Hamiltonian can be diagonalised, we can write it as:
-\[
+\begin{equation}\label{eq:Diag_Ham}
     \check{H} = \check{X}\check{D}\check{X}^{-1} = \check{X}\check{D}\check{X}^{\dagger} 
-\]
-The eigenvlues corresponds to the energies of the system, this means they should be real because they correspond to a physical quantity. The abov expression
-is equivalent to saying that $\check{H}$ is hermitian. Hermitian matrices are known to have real eingenvalues. \rem{cite?} 
+\end{equation}
+where we used the fact that .\\
+The eigenvlues corresponds to the energies of the system, this means they should be real because they correspond to a physical quantity. The above expression
+is equivalent to saying that $\check{H}$ is hermitian. Hermitian matrices are known to have real eingenvalues and can be represented with a unitary matrix $\check{X}$. \rem{cite?} 
 We can then transform the Hamiltonian with $\check{c} := \check{X}\check{\gamma}$
 \begin{align*}
     H = E_0 + \frac{1}{2}\check{c}^{\dagger}\check{H}\check{c} =& E_0 + \frac{1}{2}\check{\gamma}^{\dagger}\check{X}^{\dagger}\check{H}\check{X}\check{\gamma}\\
