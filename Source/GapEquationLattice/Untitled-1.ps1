@@ -1,7 +1,8 @@
 # Not fourier s wave
 
 #SC 30
-./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SC_mu.gp" -SimulationPath "/SC30/NotFourier/FreeDelta/diffMU" -LatexPath "SC30/NotFourier/MeanLine/FreeDelta/allMU/"
+#* TAKEN
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SC_mu.gp" -SimulationPath "/SC40/NotFourier/FreeDelta/diffMU" -LatexPath "SC40/NotFourier/MeanLine/FreeDelta/allMU/"
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_phase_long_SC_muFlatPhase.gp" -SimulationPath "/SC30/NotFourier/FixedPhaseDelta/PhaseSide1.0472/diffMU" -LatexPath "SC30/NotFourier/MeanLine_Phase/FixedPhaseDelta/allMU//starting_1.0472/"
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_phase_long_SC_muFlatPhase.gp" -SimulationPath "/SC30/NotFourier/FixedPhaseDelta/PhaseSide-2.0944/diffMU" -LatexPath "SC30/NotFourier/MeanLine_Phase/FixedPhaseDelta/allMU//starting_-2.09446/"
 
@@ -34,7 +35,13 @@
 
 
 ## ! NEW
+./generateGraph.ps1 -GnuScript ”gpScripts/SurfacePlotGap/Surface_sWave_SCAM_m-2.5.gp" -SimulationPath "-2.5" -LatexPath "sWaveDiag/Mu-2.5/"
+./generateGraph.ps1 -GnuScript ”gpScripts/SurfacePlotGap/Surface_sWave_SCAM_m-1.5.gp" -SimulationPath "-1.5" -LatexPath "sWaveDiag/Mu-1.5/"
+./generateGraph.ps1 -GnuScript ”gpScripts/SurfacePlotGap/Surface_sWave_SCAM_m-0.5.gp" -SimulationPath "-0.5" -LatexPath "sWaveDiag/Mu-0.5/"
+
+
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SCAM_mu-2.5comapre_m.gp" -SimulationPath "" -LatexPath "AMCompare_m/Mu-2.5/"
+
 
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SC-AM-FM-N_mu-2.5.gp" -SimulationPath "" -LatexPath "AllMaterials/Mu-2.5/"
 ./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SC-AM-FM-N_mu-1.5.gp" -SimulationPath "" -LatexPath "AllMaterials/Mu-1.5/"

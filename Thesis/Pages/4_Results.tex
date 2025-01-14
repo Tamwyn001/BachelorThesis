@@ -1,87 +1,132 @@
 \documentclass[..\main.tex]{subfile}
 \begin{document}
-\section{Results}
+\subsection{Results}
+We sart with the simplest system, a superconductor involving some vertical periodic boundary conditions.
+We use an attractive potential of $U=-2$ for the on site superconductivity in the superconductor and zero ervywhere else.
+\begin{figure}[H]
+  \centering
+  \input{../Plots/SC40/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
+  \caption{The expectation value of the c operators taking part into the gap as $\Delta_i = U_i\langle c_{i\uparrow}c_{i\downarrow}\rangle$. The  
+  vertical periodic boundary condition makes each site on the same $x$-coordinate having the same value.
+    We can then make an average on each of these collumns and polt the result.}
+\end{figure}
+The superconducting gap lays arround $0.01\cdot U$ and $0.16\cdot U$ \rem{eV?} for the range of selected chemical potential. Further we observe a 
+clear symmetry in the Cooper pairs distribution arround the level $\mu =0$. The overlapp of the Fermi surface with the s-wave seams
+to be the same for $\pm\mu$. Further we observe some oscillations on the left and right sides. On these locations the sites have only three
+neigbhours, there are open boundaries, the rest is vaccum. One can see this lack of neigbhours as  impurties in the system. 
+These oszillations may be caused by Andrev bound states \cite{Bobkov_2024}, that may form because the quasiparticles are reflected at the boundary.
+These can interfer with the Cooper pairs and cause the oscillations in the spacial representation of the energy gap.\\
+
+From this we can complexify the system by adding a different material on the right side of the superconductor. 
+The most simple one is a normal metal (N) that has a hopping $t$ of $1$ in every direction.
+Then we can repalce it with an alternating hopping $t+m$ depending on a $\uparrow\uparrow$ interaction
+and a $t-m$ depending on a $\downarrow\downarrow$ interaction. This is a ferromagnetic material (FM).
+Making the sign of $m$ alternating if we have an interaction along the $x$ or the $y$ axis describes an altermagnet (AM).
+Here we set $m=0.5$ and study different results for the chemical potential $\mu<0$ and compare the AM
+with the others. $\ast$ represent a placeholder for the material a curve describes.\\
+\begin{figure}[H]
+  \centering
+  \input{../Plots/AllMaterials/Mu-0.5/plot.tex}
+  \caption{Evolution of the gap in the $x$ direction for a junction of SC-N SC-FM and SC-AM at $\mu=-0.5$.}
+\end{figure}\begin{figure}[H]
+  \centering
+  \input{../Plots/AllMaterials/Mu-1.5/plot.tex}
+  \caption{Evolution of the gap in the $x$ direction for a junction of SC-N SC-FM and SC-AM at $\mu=-1.5$.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \input{../Plots/AllMaterials/Mu-2.5/plot.tex}
+  \caption{Evolution of the gap in the $x$ direction for a junction of SC-N SC-FM and SC-AM at $\mu=-2.5$.}
+\end{figure}
+We first take a look at the superconductor (SC). Inside of it the gap seams not to be affected by the chemical potential
+and sattels arround $0.1\cdot U$. 
+We can compare to the normal metal case. We have a clear decay of the gap after entering the normal metal (N). At this point 
+study that were alreay made tend to have an exponential decay of the gap \cite{Mjos2019}. Having a logarithmic scale we would
+exepect a more straight line but this is still a reasonable exponential decay. A way to approch the line would be to increase the 
+resolution of the lattice, as well as simulating a more squared one. This decay makes the expectation value having an order of 
+magnetude of difference from one side to the other of the N. For the smallest $\mu$ we have  
+
+
+Further we see that both the FM and the AM add some oscilations in the decay. \\
+
+The ferromagnet seams to following closely the normal metal for $\mu=-0.5,-1.5$. It is intersting to note a realy nice exponential
+decay when having a chemical potential of $-2.5$ modulated by oscillations. For the AM the initial decay is stronger in the sites near the 
+interface than in the FM. Then the decay seams to follow the FM. We observe about the same number of oscilaltions in the FM and the AM.
+For $\mu=-0.5$ we observe a clean line in the first four sites of the AM. Than we have oscilaltions and the Cooper-pairs are more present
+than expected regarding the initial decay. The reason might be that the first oscillation combined with the inital decay make the line
+reach it's second deepest point (arround $10^{-4}$) and looks therfore very small compared to the rest.
+
+The oscillation amplitude seams to have increased as well,
+we observe nearly two orders of magnetude in their amplitude
+ 
+ The maximal
+ oscsillation amplitude seams to be the same in every context with a value arround an order of magnetude.
+
+
+
+We now simualte how does the s-wave superconductivity behave on a diagonal interface. We focus on three different values of $\mu<0$.  
 \begin{figure}[H]
     \centering
-    \input{../Plots/SC10AM10/Correlation_cdagg_c_/MeanLine/plot.tex}
-    \caption{Mean value over the $y$-axis of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions.}
+    \input{../Plots/sWaveDiag/Mu-2.5/plot.tex}
+    \caption{$\mu = -2.5$}
 \end{figure}
-   
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.3\textwidth}
-        \centering
-        \input{../Plots/SC10AM10/Correlation_cdagg_c_/HeatMap/NoBC/plot.tex}
-        \caption{Surrounded with vaccuum.}
-        \label{fig:first}
-    \end{subfigure}\\
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \input{../Plots/SC10AM10/Correlation_cdagg_c_/HeatMap/VertBC/plot.tex}
-        \caption{Vaccum on the right and left with vertical periodic boundary conditions.}
-        \label{fig:first}
-    \end{subfigure}
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \input{../Plots/SC10AM10/Correlation_cdagg_c_/HeatMap/VertHorizBC/plot.tex}
-        \caption{Both vertical and horizontal periodic boundary conditions.}
-        \label{fig:first}
-    \end{subfigure}
-    \caption{Heatmaps of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for different boundary conditions.}
+    \input{../Plots/sWaveDiag/Mu-1.5/plot.tex}
+    \caption{$\mu = -1.5$}
 \end{figure}
-
-
-
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \input{../Plots/SC10AM10/Correlation_cdagg_c_/Currents/NoBC/plot.tex}
-
-        \caption{Surrounded with vaccuum.}
-        \label{fig:first}
-    \end{subfigure}\\
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \input{../Plots/SC10AM10/Correlation_cdagg_c_/Currents/VertBC/plot.tex}
-        \caption{Vaccum on the right and left with vertical periodic boundary conditions.}
-        \label{fig:first}
-    \end{subfigure}\\
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \input{../Plots/SC10AM10/Correlation_cdagg_c_/Currents/VertHorizBC/plot.tex}
-        \caption{Both vertical and horizontal periodic boundary conditions.}
-        \label{fig:first}
-    \end{subfigure}
-    \caption{And here we plot $\sqrt{\langle I^x_i\rangle^2 + \langle I^y_i\rangle^2}$}
+    \input{../Plots/sWaveDiag/Mu-0.5/plot.tex}
+    \caption{$\mu = -0.5$}
 \end{figure}
+The superconductivity fills uniformaly the superconductor. It's magnetude seams to grow with while $|\mu|$ get closer to zero.
+Once again the oscillating exponential decay is present. We count up to eight oscillations for the three cases of study, whose
+frequency is arround three sites in all configurations. The oscillations takes only place along the $x$ axis but the exponential decay
+seams to point along the normal of the interface, making the (40,0) region the less populated in Cooper pairs.
+The lower the $|\mu|$, the less noise we observe in the plots. Similarly to the straight interface the decay is strong in the begging
+and then slows down when approching the farest regions from the interface.\\
 
-\subsection{27 $\deg$}
-in the following we fixed the left- and right most sides to a value of $0.002$ for the gap.
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC10AM4SC10/Correlation_cdagg_c_/HeatMap/Phase27deg/NoBC/plot.tex}
-    \caption{Heatmap of the correlation function $|\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for a phase shift in $\Delta$ of 27 $\deg$ and surrounded with vaccuum.}
-\end{figure}
 
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC10AM4SC10/Correlation_cdagg_c_/Current/Phase27deg/NoBC/plot.tex}
-    \caption{Currents $\sqrt{\langle I^x_i\rangle^2 + \langle I^y_i\rangle^2}$ for a phase shift in $\Delta$ of 27 $\deg$ and surrounded with vaccuum.}
-\end{figure}
+% \begin{tikzpicture}
+%     \begin{axis}[
+%         view={0}{90},  % Adjust the viewing angle
+%         axis lines=center,
+%         xlabel={$x$}, ylabel={$y$}, zlabel={$z$},
+%         domain=-2*pi:2*pi, domain y=-2*pi:2*pi,
+%         colormap/cool,
+%       ]
+%       % \addplot3[
+%       %   surf,
+%       %   shader=flat,
+%       %   samples=50,
+%       %   samples y=50,
+%       %   z buffer=sort,
+%       %   unbounded coords=jump,
+%       % ]
+%       % ({fd(x)},{y},{fd(x)}); % Using fd(x) for z-value
 
-\subsection{27 +90 $\deg$}
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC10AM4SC10/Correlation_cdagg_c_/HeatMap/Phase190deg/NoBC/plot.tex}
-    \caption{Heatmap of the correlation function $\langle c_{i\uparrow} c_{i\downarrow}\rangle|$ for a phase shift in $\Delta$ of 27 +90 $\deg$ and surrounded with vaccuum.}
-\end{figure}
+%       \addplot3[
+%         surf,
+%         shader=flat,
+%         samples=100,
+%         samples y=100,
+%         z buffer=sort,
+%         unbounded coords=jump,
+%       ]
+%       ({x},{y},{f(x,y,2)}); % Change th{f(x,y,0.5)}e last parameter (2) to set "a" \pgfmathifthenelse{abs(cos(x-pi) + cos(y-pi) - 2/2) < 1e-3}{2}{-2}}
+%     \end{axis}
+%   \end{tikzpicture}
+\rem{A side view to comapre the oscilaltion amplitude.}
 
-\begin{figure}[H]
-    \centering
-    \input{../Plots/SC10AM4SC10/Correlation_cdagg_c_/Current/Phase190deg/NoBC/plot.tex}
-        \caption{Currents $\sqrt{\langle I^x_i\rangle^2 + \langle I^y_i\rangle^2}$ for a phase shift in $\Delta$ of 27 +90 $\deg$ and surrounded with vaccuum.}
-\end{figure}
+In the same way than before, this increase in Cooper pairs formation with degrowing $|\mu|$ is due to the shape of the fermi surface.
+For $\mu=-2.5$ we see that the populated region do not especialy fully fill the states occuped by the s-wave. 
+For $\mu=-1.5$ the populated region is larger more states can be found in the s-wave. 
+For $\mu=-0.5$ we oberve a factor two increase in the number of Cooper pairs, while we have a factor ten between the first two cases.
+This is most likely due to the fact that the fermi surface at $\mu=-1.5$ was already very close to the shape of the s-wave in the momentum space.
+Therfore the majority of the newly accessible states are outside the s-wave range,
+resulting in a smaller increase in the number of Cooper pairs when compared to the case of $\mu=-2.5$.
+
 
 
 \end{document}

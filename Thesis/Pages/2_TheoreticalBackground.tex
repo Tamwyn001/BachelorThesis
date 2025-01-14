@@ -238,7 +238,7 @@ build a scalar.\\
 
 It exists as well a second quantisation for bosons, but this is not the aim of this thesis. For additional informations, please refer to \cite{Folk2014}.
 
-\subsection{Basis transformation}
+\subsubsection{Basis transformation}
 Until now we considerd the wavefunction in a restricted basis $\{\varphi_{\alpha}(x)\}$. A wave function is defined as the overlapp between the basis and the state:
 \[
     \phi(x) = \langle x | \alpha \rangle.
@@ -315,7 +315,7 @@ From this obtain a wave function description. Then we can just use the first to 
 to get a the second quantised representation. The result is a generalisation of the experession with the $a$ operators.\\
 
 
-\subsection{Interactive electron gas}
+\subsection{Case of study: the interactive electron gas}
 As we are later going to study, the electron are allowed to interact with each other. The most simple interacting system involving electron is the electron-gas.
 During these interaction processes a photon is
 usaly carying the momentum transfert of the scattering from one electron to another. We're going to use the formalism we introduced to 
@@ -623,7 +623,6 @@ Along with the derivation of the superconductivity, we are going to follow close
 For readability reason we set the reducted Planck constant $\hbar = 1$ in the following. Further they added the chemical potential to the energy of the state such
 that now $\epsilon_k + \mu \rightarrow \epsilon_k $, which was originialy defined at Eq.\ref{eq:interactingGasT}.\\
 
-\subsection{Theoretical framework and BCS theory}
 The Hamiltonian of the system is described by the solid state physics. We consider the energy of the electrons and the ions in a lattice and the interaction between them resulting in 
 the following, very generic expression of the Hamiltonian:
 \[
@@ -641,7 +640,7 @@ First we are going to introduce some concepts by describing a non-interacting el
 Usely the potential of a lattice is periodic. If so, according to the Bloch theorem, the wavefunction of a particle moving in the system is a plane wave modulated
 by a periodic function. Eigenstates of the corresponding Hamiltonian are called Bloch state.
 
-\subsubsection{The non-interacting electron gas}
+\subsection{The non-interacting electron gas}
 In this case of study the Hamiltonian only include a kinetic term
 \begin{equation}\label{eq:NonInteractingHamiltonian}
     H=\sum_{\bm{k},\sigma} \epsilon_{\bm{k}} c_{\bm{k}\sigma}^{\dagger}c_{\bm{k}\sigma}.
@@ -702,7 +701,7 @@ and for the density of state:
 
 These equations picture the non itneracting electron gas. Now that we put the groundstones, we can complexify the model.
 
-\subsubsection{Fermi-Liquid: The interacting case}
+\subsection{Fermi-Liquid: The interacting case}
 Now that we've described the non interacting system, let us complexify the model by introducing the interactions.
 In an earlyer section we saw how
 \begin{equation} \label{eq:FermiLiquid_Hamiltonian}
@@ -905,7 +904,7 @@ The Fermi-liquid remains stable to the repulsive processes, because the accessed
 However as we're going to see in the next section, attractive interactions also take place due to an exchange of phonons between two electrons. This will be 
 an additional step towards the description of the Meissner state.
 
-\subsubsection{Instability due to attractive Interactions}
+\subsection{Instability due to attractive Interactions}
 We are going to show how the attractive interactions destabilise the Fermi-liquid. This is done by proving
 that new ground states open. Leon Cooper introduced a very specific context of attraction, that has a strong influence on the stability. Taking this exemple we are going
 to make clear that attractive interactions can in some cases exeed the Coulomb force, resulting in unexpected new eigenstates.\\
@@ -926,7 +925,7 @@ reflecting the energy needed to break the new formed Cooper pairs. The shell $\o
 the ``adesive'' that allows the electron to pair.
 Now that we showed the influence of attractive interactions, we seek some candidate processes that are attractive.
 
-\subsubsection{Attractive forces mediated by phonons}
+\subsection{Attractive forces mediated by phonons}
 As known from condensed matter physics, the lattice can have some intern oscillations called phonons resulting from the spring coupling between the ions.
 Now we can imagine that due to the Coulomb interactions, an electron can shift an ions producing a phonon. If this phonon travels and influences another electron
 on it way, we result in an effective electron-electron interaction thanks to the phonon. A similar case would be the exchange of a photon between two electrons.
@@ -1105,7 +1104,7 @@ In other words, in some cases the phonon exchage can be attractive and even over
         \caption{Left the course of the phonon-mediated effective potential $V_{\text{eff}}$ defined in Eq.\ref{eq:V_eff_phonon}. For some values of $\omega$ the potential is attractive.
         On the right is a simplifed version of the potential that revealed itself to be very accurate with the experiments.}
     \end{figure}
-\subsubsection{Contraction of the effective Hamiltonian}
+\subsection{Contraction of the effective Hamiltonian}
 We want to restrict ourselves in the case where the effective Hamiltonian is attractive. This happens in a small shell around the Fermi-surface.
 If we want to maximise the phase space for the scattering, the state before and after the scattering have to be in this shell. A good idea is 
 to consider that the two electrons have opposite wavevectors. The folowing figure illustrates this process.
@@ -1219,7 +1218,7 @@ Here the moved ions in blue are shifting back to their equilibrium position long
  However it is important to remember, that when the second electron passes, it expriences almost the same distortion everywhere.
 An interesting fact is that these interactions are the source of the superconductivity, but also the main origin of resistivity in clean materials.
     
-\subsubsection{On our way to the BCS-theory}
+\subsection{On our way to the BCS-theory}
 After this introduction on the phonon coupling between the electrons in the momentum space, or Cooper-pairing,
 we aim to describe the energy of the superconductor in a mean-field approach. The goal of it is to reduce the description
 involving neighbours, to an on-site representation in the mean field of the other sites. Thefore we are going to describe 
@@ -1398,7 +1397,7 @@ is a non interacting gas of electrons and holes. This involves the introduction 
 superconducting gap parameter that we can thanks to the statistical mechanics formalism express a in a self-consitent way.
 
 
-\subsubsection{Generalized gap equation, s-wave and d-wave superconductivity}
+\subsection{Generalized gap equation, s-wave and d-wave superconductivity}
 As we introduced in an earlier section, the formalism follows from the attractive phonon exchange but can be generalized. The superconductivity
 is the result of the pairing of the electrons into Cooper-pairs. These pairs shift into a condensate and take part to a coherent matter-wave.
 Making a link to the coherent light wave, superconductivity can be seen as the \textit{analogos} of lasers like Fossheim and Sudbø 
@@ -1454,8 +1453,7 @@ $\eta$ ge set $\lambda_{\eta\ge6} =0$.\\
 
 For $\eta \in \{1,2\}$, the corresponding $g$ is the identity under all symmteries of $C_{v4}$ and for $\eta \in \{3,4,5\}$ we observe a change of sign under  $\pi/2$ rotations.
 The same behaviour is found in the spherical harmonics for the respective  quantum numbers $l=0$ and $l=2$. From this we can deduce the use of the terms s-wave and d-wave.\\
-S-wave is isotropic in the momentum space whereas the d-wave shows a spin polarisation. This means that is has a diffent shape for the spin-up and spin-down electrons, rotated by 90$^{\circ}$.
-As showed in the following figure:
+S-wave is isotropic in the momentum space whereas the d-wave has a different countour for its part with positive phase
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -1591,7 +1589,7 @@ This value is spin independent and using the arguments we've just given in such 
 The density of state of the superconductive condensate $D_s$ is also spin independent since we're considering spin-singlet pairings. This formula should be used
 when computing simulations of the superconducting state.\\ 
 
-\subsubsection{Transition temperature and energy gap}
+\subsection{Transition temperature and energy gap}
 The goal of this discussion will be to derive a universal ratio between $\Delta$ and the crital temperature. In the last section 
 we already introduced some expressions for $\Delta_{\bm{k}}(T)$ and $V_{\bm{k}\bm{k}}$. Let us consider the simplest case where the potential stays constant $V_{\bm{k}\bm{k}} = V$.
 

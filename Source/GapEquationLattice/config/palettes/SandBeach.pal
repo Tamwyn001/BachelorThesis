@@ -1,7 +1,9 @@
-set palette maxcolors 6;
-set palette defined ( 0 '#5D607A',\
-				      1 '#666A86',\
-    	    	      2 '#788AA3',\
-		      		  3 '#92B6B1',\
-		    		  4 '#B2C9AB',\
-		    		  5 '#E8DDB5');
+set palette maxcolors 8
+set palette defined ( 0 '#5A5D72',\
+                      1 '#70748D',\
+                      2 '#7F8AAD',\
+                      3 '#85C1B8',\
+                      4 '#A1D1C0',\
+                      5 '#C3D6B4',\
+                      6 '#E8E0C3',\
+                      7 '#F9EDC7');

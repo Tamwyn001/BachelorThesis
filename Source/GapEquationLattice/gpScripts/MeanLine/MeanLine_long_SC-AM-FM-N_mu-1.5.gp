@@ -1,12 +1,12 @@
 set loadpath './gpScripts/'
 load '../config/palettes/SandBeach.pal'
-load '/SystemDesc/SC10-AM10.cfg'
+load './SystemDesc/SC20-all20.cfg'
 load '/MeanLine/MeanLine_Base.gp'
 
 set logscale y
 dataroot = './Results'.targetSystem
 sys = 'NotFourierNEW/FreeDelta/diffMU/-1.5'
-set key offset char 0.0, char -2
+set key
 # set yrange [1.0e-14:0.1]
 # set multiplot
 

@@ -2,17 +2,17 @@ classdef SystemBase
     %Stores the basic properties and methodes of the physical system
 
     properties (Constant)
-        verticalPeriodicBoundary = false;
+        verticalPeriodicBoundary = true;
         horizontalPeriodicBoundary = false;
 
-        guessDelta = 2.0* 0.07; % for detla or to scale the F yx+-
+        guessDelta = 2.0* 0.0007; % for detla or to scale the F yx+-
 
         fixedBoundaryDeltaNorm = false;
         %makes only sense when no horiz. periodic boundary conditon is applied
         fixedBoundaryDeltaArg = false;
         phi_1 = 1.0*pi/3.0; %phase of the superconducting gap on the left side
         phi_2 = 1.0*pi/3.0 + (117.0*pi/180.0); %phase of the superconducting gap on the right side, phase shift of 117°
-        layer =  ["SC", 20, "AM", 20] %["SC", 12, "AM", 6, "SC", 12]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
+        layer =  ["SC", 20, "N", 20] %["SC", 12, "AM", 6, "SC", 12]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
         %the hopping amplitude, t =1 normalizes energies
 
 

@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: ../../Thesis/Plots/AllMaterials/Mu-2.5/plot.tex
 %%Creator: gnuplot 6.0 patchlevel 0
-%%CreationDate: Sun Jan 12 17:54:12 2025
+%%CreationDate: Tue Jan 14 20:19:18 2025
 %%DocumentFonts: 
 %%BoundingBox: 50 50 482 238
 %%EndComments
@@ -441,7 +441,7 @@ SDict begin [
   /Creator (gnuplot 6.0 patchlevel 0)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Sun Jan 12 17:54:12 2025)
+  /CreationDate (Tue Jan 14 20:19:18 2025)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -482,7 +482,7 @@ doclip
 0 setgray
 newpath
 gsave % colour palette begin
-/maxcolors 6 def
+/maxcolors 8 def
 /HSV2RGB {  exch dup 0.0 eq {pop exch pop dup dup} % achromatic gray
   { /HSVs exch def /HSVv exch def 6.0 mul dup floor dup 3 1 roll sub
      /HSVf exch def /HSVi exch cvi def /HSVp HSVv 1.0 HSVs sub mul def
@@ -513,10 +513,10 @@ gsave % colour palette begin
   grayindex grayv GrayA gidx get sub abs 1e-5 le
     {RedA gidx get GreenA gidx get BlueA gidx get}
     {/dgdxval dgdx def redvalue greenvalue bluevalue} ifelse} def
-/GrayA [0 .2 .4 .6 .8 1 ] def
-/RedA [.3647 .4 .4706 .5725 .698 .9098 ] def
-/GreenA [.3765 .4157 .5412 .7137 .7882 .8667 ] def
-/BlueA [.4784 .5255 .6392 .6941 .6706 .7098 ] def
+/GrayA [0 .1429 .2857 .4286 .5714 .7143 .8571 1 ] def
+/RedA [.3529 .4392 .498 .5216 .6314 .7647 .9098 .9765 ] def
+/GreenA [.3647 .4549 .5412 .7569 .8196 .8392 .8784 .9294 ] def
+/BlueA [.4471 .5529 .6784 .7216 .7529 .7059 .7647 .7804 ] def
 /pm3dround {maxcolors 0 gt {dup 1 ge
 	{pop 1} {maxcolors mul floor maxcolors 1 sub div} ifelse} if} def
 /pm3dGamma 1.0 1.5 Gamma mul div def
@@ -908,7 +908,7 @@ Z stroke
 LTa
 LCa setrgbcolor
 0.00 0.00 0.00 C
-3021 977 M
+3508 977 M
 0 2083 V
 stroke
 1.000 UL
@@ -921,7 +921,7 @@ LTb
 .2 g LCb setrgbcolor
 3.500 UL
 LTb
-.2 g 5804 1086 M
+.2 g 5804 1526 M
 591 0 V
 1606 2963 M
 97 -2 V
@@ -973,7 +973,7 @@ LCb setrgbcolor
 1 g LCb setrgbcolor
 3.500 UL
 LTb
-1 g 5804 866 M
+1 g 5804 1306 M
 591 0 V
 1606 2954 M
 97 1 V
@@ -1025,7 +1025,7 @@ LCb setrgbcolor
 .6 g LCb setrgbcolor
 3.500 UL
 LTb
-.6 g 5804 646 M
+.6 g 5804 1086 M
 591 0 V
 1606 2944 M
 97 3 V

@@ -7,6 +7,7 @@ system = system.generateHam();
 system.convergence_model = "abs_angle";
 t = 1; %iteration counter
 computation = Computation(system); %holds the eigenvalues and eigenvectors to access them later without passing huge matrices around
+disp('Computing the gap equation');
 CORREL_C = zeros(system.Ny, system.Nx);
 
 
@@ -78,8 +79,8 @@ while (GapEquationBase.canLoop(t>100, dist, treshold, 2, 're')) % last values gi
 end 
 
 
-% fprintf('Computing currents\n');
-% system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
+fprintf('Computing currents\n');
+system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 
 sim_deltails = GapEquationBase.getSimulationDetails(system);
@@ -87,8 +88,12 @@ sim_deltails = GapEquationBase.getSimulationDetails(system);
 systemMaterial = GapEquationBase.getSimMaterial();
 path = strcat(".\Results\", systemMaterial);
 phase_shift_folder = GapEquationBase.getPhaseShiftFolder(system);
-
-folder = strcat(path, '\NotFourierNEW', phase_shift_folder);
+if system.tilted
+    tilted = "\TiltedInterface";
+else
+    tilted = "\StraightInterface";
+end
+folder = strcat(path, '\NotFourier', tilted, phase_shift_folder);
 if not(isfolder(folder))
     mkdir(folder);
 end

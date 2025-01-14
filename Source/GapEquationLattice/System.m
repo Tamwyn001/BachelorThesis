@@ -64,7 +64,7 @@ classdef System < SystemBase
                 end
                 Console.progressBar(i, obj.Nx * obj.Ny);
             end
-            obj.check();
+            % obj.check();
         end
         function check(obj)
             for i = 1: obj.Nx * obj.Ny
