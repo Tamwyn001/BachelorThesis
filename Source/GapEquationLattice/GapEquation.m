@@ -2,7 +2,7 @@ treshold = 0.001; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system = System();
-system = system.createLattice(false); %use the tilted interface version
+system = system.createLattice(true); %use the tilted interface version
 system = system.generateHam();
 system.convergence_model = "abs_angle";
 t = 1; %iteration counter
@@ -79,8 +79,8 @@ while (GapEquationBase.canLoop(t>100, dist, treshold, 2, 're')) % last values gi
 end 
 
 
-fprintf('Computing currents\n');
-system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
+% fprintf('Computing currents\n');
+% system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 
 sim_deltails = GapEquationBase.getSimulationDetails(system);
