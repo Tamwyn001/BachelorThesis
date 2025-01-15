@@ -79,8 +79,8 @@ while (GapEquationBase.canLoop(t>100, dist, treshold, 2, 're')) % last values gi
 end 
 
 
-% fprintf('Computing currents\n');
-% system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
+fprintf('Computing currents\n');
+system = ComputeCurrents(system, computation); % return a 2*Nx*Ny X Nx*Ny matrix
 
 
 sim_deltails = GapEquationBase.getSimulationDetails(system);

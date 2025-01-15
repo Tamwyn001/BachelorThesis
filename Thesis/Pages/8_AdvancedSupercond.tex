@@ -39,6 +39,7 @@ which leads to $\langle  c_{i\sigma}^{\dagger} c_{j\sigma}^{\dagger} \rangle = -
     \end{aligned}
 \end{equation}
 Using the raltion $F_{ij}^{\uparrow\downarrow} = -F_{ij}^{\downarrow\uparrow}$ and the symmerty of the potential $V_{ij} = V_{ji}$ we can add the two terms up and remove the one half factor.
+We fix the spins in the pairing amplitude and define $F_{ij} = F_{ij}^{\uparrow\downarrow}$.
 The Hamiltonian is now ready to be diagonalized but first, we are going to discuss which advantages a Fourier transform of the Hamiltonian could bring us.\\
  
 In an homogenous material we can consider a lattice and imagine some periodic boundary conditions in all directions. There is a translation invariance.
@@ -108,7 +109,7 @@ using
 
 Moving on to the potential term we have to introduce a new notation. The goal is to describe a displacment in a direction from a point. So asuming
 we follow the indexing introduced in Fig.\ref{fig:Sim_System}: $i\pm\hat{x} = i\pm 1$ and $i\pm\hat{y} = i\pm N_x$.
-For the brevety we use $f(a) = V_{ia}F_{ia} c^{\dagger}_{a\downarrow} c^{\dagger}_{i\uparrow}$. Still asuming that $V_{ij}>0$ and that the interaction is attractive, we have: \rem{!! sign check for V and in frotn oh Hv!}
+For the brevety we use $f(a) = V_{ia}F_{ia} c^{\dagger}_{a\downarrow} c^{\dagger}_{i\uparrow}$. Still asuming that $V_{ij}>0$ and that the interaction is attractive, we have:
 \begin{align*}
     H_V =& -\sum_{\langle ij\rangle} V_{ij} F_{ij} c^{\dagger}_{i\downarrow} c^{\dagger}_{j\uparrow} + \text{h.c.} \\
     =& -\sum_{i} f(i-1) + f(i+1) + f(i+N_x) + f(i-N_x) + \text{h.c.}
@@ -129,10 +130,10 @@ where we got $k' = -k$ from the sum over the $y$-direction. We can rewrite the e
 \begin{align*}
     H_V =& -\sum_{x} \sum_{kk'} F_{xx'k} c^{\dagger}_{xk\uparrow} c^{\dagger}_{x',-k,\downarrow} + F_{xx'k}^{\ast} c_{x',-k,\downarrow} c_{xk\uparrow}.
 \end{align*}
-Now using $H_{\text{hop}}, H_{\mu}$ and $H_{V}$ we can write the full Hamiltonian as \rem{(add the formula for the altermagnet as well. Like Jacob sayed: We can reduce to a 2x2)}
+Now using $H_{\text{hop}}, H_{\mu}$ and $H_{V}$ we can write the full Hamiltonian as:
 \begin{equation}
     \begin{aligned}
-    H =& \sum_{xx'k} D_{xk}^{\dagger} H_{xx'k} D_{x'k}\\
+    H =& \sum_{xx'k} \hat{c}_{xk}^{\dagger} H_{xx'k} \hat{c}_{x'k}\\
       =& \sum_{xx'k} \begin{pmatrix}
         c^{\dagger}_{xk\uparrow} & c_{x,-k,\downarrow}
       \end{pmatrix}
@@ -146,6 +147,8 @@ Now using $H_{\text{hop}}, H_{\mu}$ and $H_{V}$ we can write the full Hamiltonia
         \end{pmatrix}.
     \end{aligned}
 \end{equation}
+This is a base we can start to work with. However the altermagnetic matrix has complexer spin structures and can be described with these $\hat{c}$.
+This requires additional work if we want to express the AM in a vertical periodic boundary setup.\\
 The summation over all $x,x'$ can be represented in a new matrix.
 \[
     H = \sum_k \check{c}_k^{\dagger} H_k \check{c}_k
@@ -259,7 +262,8 @@ where $x\pm \delta_x$ means $x\pm1$.
 
 \subsubsection{In the open boundary setup}
 Here we need to reuse the equations of the Nambu-Spin formalism desribed in chapter \ref{sec:BdGFormalism}. As we saw we need to first
-take care that the part of the Hamiltonian we want to introduce has \rem{a kind of symmerty} in the creation and annihilation operators.
+take care that the part of the Hamiltonian we want to introduce has to be hermitian. Moreover the eigenvectors need to respect the fermionic
+anticommutation properties.
 If we transform the Hartree-Fock Hamiltonian as it is in Eq.\ref{eq:HF_V} we see that only the uper right quadrant of the matrix $H_{V,ij}^{HF}$ 
 of $\check{c}_i^{\dagger} \cdot (H_{V}^{HF})_{ij}\cdot \check{c}_j $ is filled. We need to use the anticommutation relations to solve this.
 This delivers the following expression:
@@ -276,7 +280,7 @@ This delivers the following expression:
 which is achieved using Eq.\ref{eq:Trick1}, $V_{ij} = {V_{ji}}$, \rem{$ F_{ij}^{\uparrow \downarrow} = -F_{ji}^{\downarrow \uparrow} = F_{ji}^{\uparrow \downarrow}$}
 using the anticommutation realtion and a spin echange. We then use $F_{ij}^{\uparrow \downarrow}$ = $F_{ij}$ since all ambiguity has been removed.\\
 Therefore the matrix we obtain is given as
-\begin{equation}
+\begin{equation}\label{eq:H_V_DWave}
     H_{V,ij}^{HF} = -\frac{1}{2}\begin{pmatrix}
         \mathcal{O} & & & -F_{ij}^{\uparrow \downarrow}\\
          & & F_{ij}^{\uparrow \downarrow} & \\
@@ -304,7 +308,7 @@ in a very similar way as Eq.\ref{eq:transfo_c_up_c_down_BdG}.
 In the more simple desciption of the superconductivity we outlied how the superconducting order parameter $\Delta$ depends on the pairing amplitude $F$.
 Because the potential was isotropic, we simply had $\Delta = U \langle c_{i\uparrow}c_{i\downarrow}\rangle$. Here however the potential is anisotropic 
 and we obtain a linear combination of the pairing amplitudes in the different directions of the lattice. Achieving different combinations of the $F$s 
-we obtiain different superconducting states. Here is an exaustive list. \rem{repalce V with U for consistency?}
+we obtiain different superconducting states. Here is an exaustive list.
 \begin{alignat}{3}
     &\Delta_{s,i} = V F_{s,i} &= \frac{V}{4} \left(F_{i}^{x+(S)} + F_{i}^{x-(S)} + F_{i}^{y+(S)} + F_{i}^{y-(S)}\right)\\
     &\Delta_{d,i} = V F_{d,i} &= \frac{V}{4} \left(F_{i}^{x+(S)} + F_{i}^{x-(S)} - F_{i}^{y+(S)} - F_{i}^{y-(S)}\right)\\
@@ -314,8 +318,8 @@ we obtiain different superconducting states. Here is an exaustive list. \rem{rep
 $F_s$, $F_d$, $F_{p_x}$ and $F_{p_y}$ are the pairing amplitudes for the $s$, $d$ (also called $d_{x^2-y^2}$ because of its expression), $p_x$ and $p_y$-wave superconductivity.
 The $S$ and $T$ are the singlet and triplet expressions of the pairing amplitudes. More precily we define them as
 \begin{align}
-    F_{ij}^{(S)} = \frac{F_{ij} \rem{-} F_{ji}}{2} = \rem{F_{ij}}\\
-    F_{ij}^{(T)} = \frac{F_{ij} \rem{+} F_{ji}}{2}
+    F_{ij}^{(S)} = \frac{F_{ij} \rem{+} F_{ji}}{2} \\
+    F_{ij}^{(T)} = \frac{F_{ij} \rem{-} F_{ji}}{2}
 \end{align}
 Where we shorten the expression using $F_{ij}^{\uparrow\downarrow(S)} = F_{ij}^{(S)}$.
 \paragraph{Symmetry discussion} $~$ We see that these parameter depends on the spin and the momentum. Therfore it's a good idea to look at their respective
@@ -344,6 +348,12 @@ because of the $\delta_{\bm{k},\bm{k}'}$ trick. For this reason $F_{i,i+ \bm{r}}
 Refering back to the order parameter definiton we see that the $s$ and $d$-wave are symmertic under momentum exchange, where the $p_x$ and $p_y$-wave are antisymmetric in such exchange.\\
 
 \subsection{Implementation of the advanced superconductivity}
-
-\rem{The individual F always change but the end result in $F_d$ can converge so we compute $F_{d,i}$ on each step to see if it converges.}
+This is more complex to implement than the BCS superconductivity. We solved this without the periodic boundary conditions method.
+Here each site has to compute eigth parameters, the four pairing amplitudes in the $ij$ and $ji$ direction.
+To do so we prepare a huge vector containing the eingenvectors components $u$ and $v$ that all the parameters need and send this to each site.\\
+Further due to computation imprecisions, we may have $F^{(S)}_{ij} \neq F^{(S)}_{ji}$. However the Hamiltonian
+should stayed hermitian so we impose $F^{(S)}_{ij} = F^{(S)}_{ji}$. Please compare the implementation of Eq.\ref{eq:H_V_DWave} in 
+the Hamiltonian of the system to check that $H_{ij} = H_{ji}^{\ast}$ is
+actualy verified. For the convergeance criteria it is important to note the following:
+The individual $F$ always change but the end result in $F_d$ can converge so we check $F_{d,i}$ on each step to see if it converges.
 \end{document}  

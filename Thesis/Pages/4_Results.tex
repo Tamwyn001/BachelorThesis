@@ -132,6 +132,76 @@ oscillations than in the straight interface case for the same traveled length.
   \caption{An arbitray oscillating exponential decay in the $x$-direction. Going this oscilations along $x$ or along the diagonal $(1,-1)$ axis results in different
   experienced oscilations for the same travel length. Plot made with Desmos.}
 \end{figure}
+Towards simulating the Josephon junction we can represent the current in the superconductor: \rem{Here OBC are used, will be replaced by vertical ones
+to agree with the rest of the study.} 
+We know \rem{(additional small section needed in the theory)} that the current is proportional to the phase gradient of the superconducting gap.
+We can experiemntaly apply a voltage difference between the two sides of the superconductor to induce a phase gradient \rem{source}.
+To simulate this we will hold the phase fixed on the sides maintaining a difference of $117^{\circ}$ between the two sides.
+We start this gradient a two different angles $\varphi_0 = -2\pi/3$ and $\varphi_0 = \pi/3$ on the left side.
+\begin{figure}[H]
+    \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting_-2.0944/plot.tex}
+    \caption{Phase on side $\varphi_0 = -2\pi/3$ and gradient of $117^{\circ}$}
+\end{figure}
+\begin{figure}[H]
+    \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting_1.0472/plot.tex}
+    \caption{Phase on side $\varphi_0 = \pi/3$ and gradient of $117^{\circ}$}
+\end{figure}
+We see that the profile of the curve is the same regardless the starting phase. The slope of the gradient increase while lowering $|\mu|$.
+Having the sides artificialy fixed in the phase causes abrupt changes in the phase on the sides. We see however when skipping the first
+ five sites from the edges, that the self consitent
+alorithm achieves to make a smooth transition. The Andrev bound states are still present and causes the small fluctuations we can see just after the
+break.\\
+\begin{figure}[H]
+    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-1.75/plot.tex}
+    \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -1.75$.}
+\end{figure}
+\begin{figure}[H]
+    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.75/plot.tex}
+    \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -2.75$.}
+\end{figure}
+\begin{figure}[H]
+    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-3.75/plot.tex}
+    \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -3.75$.}
+\end{figure}
+
+\rem{Here the current varies along the $y$ direction but after the use of vertical boundary conditions we will have a uniform patern.
+We will skip the discussion of the current along the $y$ direction for now.}
+We see that the current is very much related to the slope of the gradient. 
+The spontenous break results low values on the sides. 
+The current in the middle is then time stronger with a $\mu$ of $-1.75$ than with a $\mu$ of $-2.75$. There are three orders of magnetude
+of difference between the current strength in $\mu = -1.75$ and $-3.75$. The rule $I\propto\nabla\varphi$ seams verified.\\
+
+On last check to make is the current continuity. No charges should be generated or lost. This of course doesn't apply on
+the sides where we artificialy set the phase. Taking a function $f$ discretized on sites $i$ we have $\partial_x f = (f_{i+1} - f_{i-1} )/2a$
+$\partial_y f = (f_{i+N_x} - f_{i-N_x} )/2a$ with
+$a$ the lattice spacing. We know that we normalized the lattice spacing to $1$. Finlay we have $\nabla f = (\partial_x + \partial_y) f$ the divergence
+of $f$.
+\begin{figure}[H]
+    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-1.75/plot.tex}
+    \caption{Continuity of the current from a phase gradient of $117^{\circ}$ at $\mu = -1.75$. In both x and y direction as
+    well as the total continuity.}
+\end{figure}
+\begin{figure}[H]
+    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/plot.tex}
+    \caption{Continuity of the current from a phase gradient of $117^{\circ}$ at $\mu = -2.75$. In both x and y direction as
+    well as the total continuity.}
+\end{figure}
+\begin{figure}[H]
+    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-3.75/plot.tex}
+    \caption{Continuity of the current from a phase gradient of $117^{\circ}$ at $\mu = -3.75$. In both x and y direction as
+    well as the total continuity.}
+\end{figure}
+We see that the total discontinuity is always three orders of magnetude smaller than the current itself. This makes the discontinuity
+significantly smaller than the current and we can asume that this one is conserved. Once again a smaller convergence threshold
+as well as an increase in the lattice definition would make the discontinuity even smaller.
+We see that the $x$-component of the currrent is the one the less conserved. This fact is a direct result of the artificialy fixed phased.\\
+Finaly two strong gaps are observable on the five first and last sites. This is due the phase fluctuations we presented above. The first gap
+comes from above: Considering the derivation we defined above, if the site $i+1$ has a strong current and the site $i$, then $\partial_x I >(\gg)0$.
+On the other hand for the last five sites we have $\partial_x I <(\ll)0$ due to $f_{i+1}\ll f_i$.
+\rem{Whith the vertical periodic boundary condition we expect to have a uniform current along the $y$ direction.}
+
+
+
 
 \subsection{Conclusion and outlook}
 We have seen that the BCS superconducting gap is influenced by the Fermi surface. The gap seams to be the biggest when the Fermi surface is the largest.
@@ -144,12 +214,18 @@ Adding a diagonal interface to the system, we observed the same exponential deca
 the leaking of the Cooper pairs along the normal of the interface. This is due to the interference of the leaking Cooper pairs.\\
 Towards the modelisation of a Josephon junction with an altermagnetic material, we achieved to represent the current in a superconductor.
 The current seams to be proportional with the phase gradient of the superconducting gap and it's strength is grows with the number of Cooper pairs.
-More work needs to be done to represent the current in the altermagnet between two diffent superconductors.\\
+Morover this ones verifies the charge conservation.
+More work needs to be done to represent the current in the altermagnet between two different superconductors.\\
 
 D-wave superconductivity was already introduced as being of particular interst. This is a more complex system:
-The gap is now a neigbour dependent quantity and is not isotropic in the momentum space. Some work has been done towards studying the
-proximity effect of a d-wave superconductor with the altermagnet. However by lack of time we only achieved to represent the d-wave in a superconductor.
+The gap is now a neigbour dependent quantity and is not isotropic in the momentum space. The goal would have been 
+to study the profile of the gap when the Cooper pairs enter along the nodal lines of the gap geometry. This
+would result is a clear difference when having a straigth or diagonal interface. 
+ Some work has been done towards studying the
+proximity effect of a d-wave superconductor with the altermagnet. However by lack of time we only achieved to represent the d-wave in a superconductor.\\
 
+\rem{This is going to be resimulated with vertical periodic boundary conditions and other $\mu$s. I'm
+confident on the results I'll get, the interpretation will be written as well for monday.}
 \begin{figure}[H]
     \input{../Plots/SC30/DWave/StraightInterface/FreeDelta/diffMUplot.tex}
     \caption{D wave with free delta and real $\Delta_d$}
@@ -185,7 +261,6 @@ proximity effect of a d-wave superconductor with the altermagnet. However by lac
 %       ({x},{y},{f(x,y,2)}); % Change th{f(x,y,0.5)}e last parameter (2) to set "a" \pgfmathifthenelse{abs(cos(x-pi) + cos(y-pi) - 2/2) < 1e-3}{2}{-2}}
 %     \end{axis}
 %   \end{tikzpicture}
-\rem{A side view to comapre the oscilation amplitude.}
 
 
 \end{document}
