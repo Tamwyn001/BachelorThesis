@@ -17,7 +17,7 @@
 \usepackage{tikz}
 \usepackage{tikz-feynman}
 \usepackage{ifthen} % for the tikz loops
-
+\usepackage[toc,page]{appendix}
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{decorations.pathmorphing}
 \usepackage{twemojis}
@@ -242,16 +242,17 @@
 \newpage
 \subfile{Pages/2_TheoreticalBackground.tex} 
 \newpage
+\subfile{Pages/6_Altermagnetism.tex}
+\newpage
 \subfile{Pages/3_BdGFormalism.tex}
 \subfile{Pages/7_CurrentsInLattice.tex}
-\newpage
-\subfile{Pages/6_Altermagnetism.tex}
 \newpage
 \subfile{Pages/5_Simulations.tex} 
 \subfile{Pages/4_Results.tex}
 \newpage
-\subfile{Pages/8_AdvancedSupercond.tex}
-
+\begin{appendices}
+    \subfile{Pages/8_AdvancedSupercond.tex}
+\end{appendices}
 
 %-----------------------------------------------------------
 % Credits
@@ -261,7 +262,7 @@
     \subfile{Pages/Literature.tex}
 
     \newpage
-    \appendix
+
 
 
 \end{document}

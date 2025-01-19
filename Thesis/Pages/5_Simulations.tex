@@ -2,13 +2,13 @@
 \begin{document}
 \section{Simulations and results}
 In the last chapters we introduced the theoretical background of superconductivity and altermagnets. 
-The goal of this thesis is to use nummerical methods to solve self-consitently the superconductive gap.
+The goal of this thesis is to use numerical methods to solve self-consitently the superconductive gap.
 We remind here that all the code is available on a GitHub repository at \url{https://github.com/Tamwyn001/Thesis}.\\
 
 \subsection{Methodology}
 We're here going to simulate the s-wave superconductivity in a two-dimensional lattice,
 in a superconductor and a junction of a superconductor and an altermagnet. 
-The orientation of the interface can play some role in the shape of the gap, which 
+The orientation of the interface can play some role in the behaviour of the superconducting gap, which 
 makes the study of a straight and diagonal interface a case of study of particular interest. 
 Further we will illustrate how the phase gradient of the gap can induce a current in the superconductor.
 The shape of the d-wave gap parameter is also of interest. However, we missed the time to make a comprehensive study of it.
@@ -24,15 +24,15 @@ The Matlab code contains two important files. The system.m file is a class that 
 as well as the use or not of periodic boundary conditions. It contains also the Hamiltonian of the system
 and keeps track of all lattice sites.\\
 The LaticeSites.m describes the position of a lattice sites, stores its neighbours and monitor the lattice
-site specific physical quantities. These can be the superconducting gap or the current, etc.\\
+site specific physical quantities. These can be the superconducting gap or the current for instance.\\
 
 We introduced earlier the need of a self-consistent solution for the gap to correctly describe the Hamiltonian.
 This is achieved in the GapEquation.m file which is the main script we run. We start with a guess for
 $\Delta_i$ and introduce it in the Hamiltonian. This guess can depend on the material, or the site 
 if we aim to introduce some phase shift at specific locations.
-We then derive a new site-dependent value using Eq.\ref{eq:SelfConsitentDelta} for all site and
+We then derive a new site-dependent value using Eq. \ref{eq:SelfConsitentDelta} for all site and
 reinsert it into the Hamiltonian. This requires to compute the eigenvectors and values of the Hamiltonian. This loop will be 
-performed until the difference of each gap with its previous value reaches a treshold. We then have a proper 
+performed until the difference of each gap with its previous value reaches a threshold. We then have a proper 
 Hamiltonian and can start to derivate some values like the current. \\
 
 Matlab is a program that works well with matrices, so the choice was preferred during the prototyping. However, later in the process the fact that Matlab works 
@@ -162,7 +162,7 @@ and on the right with both vertical and horizontal PBC.\\
 
 We want to maximize the definition of the gap in the lattice. With the architecture we have (Intel i7 11th gen, 8 GB RAM),
 an upper bound of $40\times20=1200$ sites was achieved. Matlab being an interpreter, this could be optimized by using a compiled language.
-In the literature we find square lattices of $100\times100$ sites \cite{Mjos2019}. \\
+In the literature we find square lattices of $100\times100$ sites being used \cite{Mjos2019}. \\
 % \subsection{Results}
 % \subsection{Gap parameter}
 % As we saw, the gap parameter is the key value to solve before considering computing anything else.

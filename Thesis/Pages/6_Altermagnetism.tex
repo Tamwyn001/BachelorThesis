@@ -4,28 +4,28 @@
 \subsection{Introduction and overview}
 The reader might already be familiar with ferromagnets and all the regular magnetic models. Taking into account the spin and
 wave vector of each particle in a site, one can derive some symmetries under transform operations. For example a
-ferromagnet is symmetric under spin-flip (also called time reversal) and a rotation. In the example of the antiferromagnetism,
+ferromagnet is symmetric under time-reversal and spin-rotation. In the example of the antiferromagnetism,
 we have two sub-lattice with opposite spins. In such systems the spin compensate each other resulting in a null magnetization.
 The system is symmetric under spin-flip and translation and was theorized in 1948 by Louis Néel as the Néel antiferromagnets \cite{Neel1936}.
-Allowing more complexity one could imagine multiple ions in a unit cell linked by rotation, screw, etc symmetries. The half ions 
-of the cell owns an opposite spin from the other half. The spectra compensate each other resulting in a zero net magnetization.
+Allowing more complexity one could imagine multiple ions in a unit cell linked by symmetries such as rotation and screw operations. Half of the ions in the cell
+own an opposite spin from the other half. The spectra compensate each other resulting in a zero net magnetization.
 Moreover, these mediums keep same electron spectra under such transformations, making them the same as Néel's antiferromagnets.
 These material are labelled as zero $q$ antiferromagnets.
 This section summarizes the historical work of \cite{Mazin2024}.\\
 
 Altermagnets implement two or more sub-lattice which are not related between each other by translation or inversion.
-Since these operations are known to conserve the electrons spectra, we observe a band splitting of the spectra with respect to the spins.
-These class of material was pinpointed in 2019 \cite{Hayami2019}. The symmetry that actually links these sublattices is a rotation,
+The symmetry that actually links these sublattices is a rotation,
 along with a spin-polarisation in the momentum space linked with a rotation as well \cite{Smejkal2022}.
-We observe an alternating sign in the spin-splitted momenta, as well as an alternating spin polarization in the real space,
-which leads to the name altermagnetism \cite{Smejkal2022_2}. 
+In general rotation doe not conserve the electrons spectra. We actually observe a band splitting of the spectra with respect to the spins.
+There is an alternating sign in the spin-splitted momenta, as well as an alternating spin of the polarization in real space,
+which leads to the name altermagnetism \cite{Smejkal2022_2}. These class of material was pinpointed in 2019 \cite{Hayami2019}.
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.75\textwidth]{Ressources/AM.png}
     \caption{The altermagnet shares similar properties with the antiferromagnets like two sublattices of opposite spin, resulting in a zero net
     magnetization. Whereas the antiferromagnet's sublattices are liked by a translation $t$ and a space inversion $\mathcal{P}$, in the altermagnet one can link
-    each sublattice with a rotation, here labelled as $\mathcal{C}$. We observe as well an alternating sign in the energy spectra of both altermagnet's sublattices
-     \cite{Smejkal2022}\cite{Stonebraker}.}
+    each sublattice with a rotation, here labelled as $\mathcal{C}$. We observe as well an alternating sign in the energy spectra of both altermagnet's sublattices. 
+    Figure taken from \cite{Smejkal2022}\cite{Stonebraker}.}
 \end{figure}
 
 
@@ -34,13 +34,13 @@ the conventional dichotomy of ferromagnets and antiferromagnet. In fact the alte
 sublattices, like the antiferromagnet does. On the other hand it shares similar properties with the ferromagnets, such as anomalous Hall effect,
 spin current \cite{Naka2021_2}, magneto-electric effect \cite{Smejkal2022_3}, tunnelling magnetoresistance \cite{Smejkal2022_4} among other \cite{Smejkal2022_2}.\\
 
-Now that we have a better understanding of altermagnetism we can compare it with another class of material, where the sublattices
-aren't linked with the conventional crystal symmetries.
-As a consequence summing up the spin might not result in a trivial expression like the antiferromagnetic material. In fact the overall
-spin projection might almost be zero but not exactly. However, studying half metal and insulator leads to different result.
-Half metal can be seen as an insulator in one spin channel 
-but not both \cite{Mazin2024}. The Quin Luttinger's theorem, showed that such substance must have an integer number of Bohr spin
-magnetic moment. Therefore, structures with a small net magnetization see these quantities be floored to zero. \\
+% Now that we have a better understanding of altermagnetism we can compare it with another class of material, where the sublattices
+% aren't linked with the conventional crystal symmetries.
+% As a consequence summing up the spin might not result in a trivial expression like the antiferromagnetic material. In fact the overall
+% spin projection might almost be zero but not exactly. However, studying half metal and insulator leads to different result.
+% Half metal can be seen as an insulator in one spin channel 
+% but not both \cite{Mazin2024}. The Quin Luttinger's theorem, showed that such substance must have an integer number of Bohr spin
+% magnetic moment. Therefore, structures with a small net magnetization see these quantities be floored to zero. \\
 
 A few materials seem to exhibit these properties. 1D material won't work because of lack of rotation possibilities. A diverse list of two and three-dimensional 
 materials were listed by \cite{Smejkal2022} such as semimetals with a Cr$_2$O monolayer \cite{Chen_2023}, a variety of insulators like 
@@ -182,7 +182,7 @@ we are going to focus on two simple transformation. The inversion $P$ and the sp
     P : \bm{r} &\mapsto -\bm{r} ~~~~~~~~~~~~~~~~~~~~ &~~~\realnum^3 \rightarrow \realnum^3, \\
     T : t &\mapsto -t  ~\hat{=} ~\sigma \mapsto -\sigma &\realnum \rightarrow \realnum.~
 \end{alignat*}
-We can first asume that the energy $\epsilon$ of the particle (or band structure) depends on the spin $\sigma$ and the wave vector $\bm{k}$. Using $\bm{p} = \dd \bm{r}/\dd t$ and the de Broglie hypothesis 
+We can first assume that the energy $\epsilon$ of the particle (or band structure) depends on the spin $\sigma$ and the wave vector $\bm{k}$. Using $\bm{p} = \dd \bm{r}/\dd t$ and the de Broglie hypothesis 
 $\bm{p} = \hbar\bm{k}$ \cite{Broglie1924} leads to: 
 \begin{align*}
     P \bigl(\epsilon(\bm{k}, \sigma)\bigr) &= \epsilon(-\bm{k}, \sigma)\\
@@ -197,7 +197,7 @@ and therefore the $PT$-symmetric systems are spin-degenerated. We have the same 
  Reciprocally this means that the existence 
 of $ \epsilon(\bm{k}, \sigma)$ is followed by an observation of $ \epsilon(\bm{k}, -\sigma)$.\\
 
-\paragraph{A few examples}
+\paragraph{A few examples}$~$\\
 We can imagine having a small lattice section for the seek of readability. We consider a ferromagnetic lattice where we apply the space inversion
 in the middle where the black cross is. The arrows represent the spin and the overall sign of the wave vector $\bm{k}$ is given under each state. Moreover, 
 we use the shading to keep track of the real space location of the site. This representation is in the real space.\\
@@ -250,12 +250,12 @@ we use the shading to keep track of the real space location of the site. This re
         \end{tikzpicture}
 
 \end{figure}
-The relevant variables for the symmetry in the spectrum are the spin projection and the momentum. We see however that the spin are flipped before and after the PT-operation.
+The relevant variables for the symmetry in the spectrum are the spin projection and the momentum. We see however that the spin are flipped before and after the $PT$-operation.
 Letting the spin points downwards again will require to use an additional operation. Therefore, the ferromagnet is not $PT$-symmetric, and we observe no spin degeneracy as the
 equation shows it.\\
 
 The antiferromagnet has a spin switch in every direction. Here when choosing a point to apply our operations to, we see that 
-neither a lattice point nor a point in the middle on two sites lead to a PT symmetry. As we see the spins points in different directions.
+neither a lattice point nor a point in the middle on two sites lead to a $PT$ symmetry. As we see the spins points in different directions.
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -355,19 +355,20 @@ However, if we apply the inversion in the in-between, we observe something diffe
         \draw[->,semithick] (3.5,0) -- (4.5,0)  node[midway, above] {\(P\)};
     \end{tikzpicture}
 \end{figure}
-This point we apply the $P$ transformation around makes the antiferromagnets having a PT symmetry. We see that the lattice site have moved but only the spin and
-the wave vector takes part to the band $\epsilon$. We therefore have a degeneracy in the energy spectrum. Finding at least one point where the PT 
-symmetry works makes the system PT symmetric.\\
+This point we apply the $P$ transformation around makes the antiferromagnets having a $PT$ symmetry. We see that the lattice site have moved but only the spin and
+the wave vector takes part to the band $\epsilon$. We therefore have a degeneracy in the energy spectrum. Finding at least one point where the $PT$ 
+symmetry works makes the system $PT$ symmetric.\\
 
 If we now take a look at an altermagnets pictured in Fig.\ref{fig:altermagnet_lattice}, we have two different models to test. In the first one $\bm{(a)}$
 the effect of the time reversal $T$ makes the hopping change $m\rightarrow -m$. Then we find no point
-to invert the system around so that this first model doesn't have a PT symmetry. For the second one $\bm{(b)}$
+to invert the system around so that this first model doesn't have a $PT$ symmetry. For the second one $\bm{(b)}$
 we can first invert all spin but afterwards inverting the space doesn't bring back the system in the original configuration.
 In fact neither applying the $P$ after $T$ on the lattice point nor on the space in-between leads to the lattice we began with. In both cases the 
 degeneracy is lifted, we have dissimilar energies for the different spin-orientation. This is the reason for the band splitting we discussed in the introducing 
 paragraph.\\
 
-\paragraph{Beyond the scope} $~$ We refer as spin-orbit coupling (SOC) the interaction between the spin of the electron and the orbital motion. 
+\paragraph{Brief mention of spin-orbit coupling} $~$ \\
+We refer as spin-orbit coupling (SOC) the interaction between the spin of the electron and the orbital motion. 
 When SOC is discarded we observe a rotation symmetry around the spins. A rotation $R$ can turn the spin back after the application of $T$
 resulting in a $RT$ symmetry. $RT\bigl(\epsilon(\bm{k},\sigma)\bigr) = \epsilon(-\bm{k},\sigma)$ must equal $\epsilon(\bm{k},\sigma)$.\\
 

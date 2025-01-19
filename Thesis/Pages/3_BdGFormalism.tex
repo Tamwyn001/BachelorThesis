@@ -3,7 +3,8 @@
 
 \section{Bogoliubov-de Gennes Formalism} \label{sec:BdGFormalism}
 The Bogoliubov-de Gennes transformation allows us to express the Hamiltonian in a diagonal way and express our quantities 
-by looking at the eigenvectors of the Hamiltonian. The resulting matrix is expressed in a huge space and is very sparse.\\
+by looking at the eigenvectors of the Hamiltonian. The resulting matrix is expressed in a huge space and is very sparse.
+This section follows closely the derivation of J. A. Ouassou in \cite{Ouassou_unpubl}. Some details of this derivation are also found in \cite{Ouassou2024}.\\
 
 To give a taste of it, it will allow us to rewrite our Hamiltonian as following
 \begin{align}
@@ -39,11 +40,10 @@ real eigenvalues. This was just an example.\\
 Depending on the interaction we wish to describe, we can figure out what combination of operators we want and design the $4\times4$ matrix accordingly.
 To achieve a full description of the system we can consider the interaction between two site $i,j$ as a $4\times4$ matrix involving the $\hat{c}_i^{\dagger}$ and $c_j$ operators.
 Then we can build a huge matrix $\check{H}$ based on $4\times4$ matrices at $\check{H}_{ij}$. The vectors we multiply this matrix with are just the $\hat{c}_i^{\dagger}$ and $c_j$ operators 
-stack above one and other forming the above-introduced $\check{c}$ vector. As a result, one gets the first formula introduced in this section at Eq.\ref{eq:BdG_intro_H}.
+stack above one and other forming the above-introduced $\check{c}$ vector. As a result, one gets the first formula introduced in this section at Eq. \ref{eq:BdG_intro_H}.
 We can then compute the eigenvalues and -vectors to express the quantities we're interested in. This is what we call the Bogoliubov-de Gennes transformation.\\
 
 Now that the motivation is clear, we need to bring our Hamiltonian in a form that involves the fermionic operators $c_{i\sigma}$ and $c_{i\sigma}^{\dagger}$. 
-This section follows closely the derivation of J. A. Ouassou in Ref. \cite{Ouassou_unpubl}. Some details of this derivation are also found in Ref.\cite{Ouassou2024}.
  
 \subsection{Tight Binding Model}
 Our goal is now to fix our particles on lattice sites and describe their interactions. We are therefore going to translate our wave function formalism in an on-site plus
@@ -99,9 +99,9 @@ and we integrate/differentiate the integrands in the other integral, leading to 
 
 \subsubsection{Superconductivity}
 Previous study of ours on the superconductivity have led us to the following Hamiltonian:
-\[
+\begin{equation}\label{eq:Ham_Supercond_Tight}
     H_S = - \int U(\bm{r}) \psi_{\downarrow}^{\dagger}(\bm{r})\psi_{\uparrow}^{\dagger}(\bm{r})\psi_{\uparrow}(\bm{r})\psi_{\downarrow}(\bm{r}) \dd^3r
-\]
+\end{equation}
 on which we can apply a mean field approximation $\Delta(\bm{r}) = U(\bm{r})\langle \psi_{\uparrow}(\bm{r})\psi_{\downarrow}(\bm{r})\rangle$.
 This yields to a common BCS-Hamiltonian for regular superconductors.\\
 \[
@@ -109,13 +109,14 @@ This yields to a common BCS-Hamiltonian for regular superconductors.\\
      \Delta(\bm{r})^{\ast}\psi_{\uparrow}(\bm{r})\psi_{\downarrow}(\bm{r})\biggr) \dd^3r.
 \]  
 We see that we the second integrand is just the complex conjugate of the first one. 
-To spare some place, we are going to focus ourselves on the first one and denoted its homologue with $h.c.$ ``hermitian conjugate''. We insert Eq.$\ref{eq:Wannier_fieldOp}$ 
+To spare some place, we are going to focus ourselves on the first one and denoted its homologue with $h.c.$ ``hermitian conjugate''. We insert Eq. \ref{eq:Wannier_fieldOp} 
 in our last expression and obtain:
 \begin{align*}
     H_S =& - \sum_{ij} c_{i\downarrow}^{\dagger}c_{i\uparrow}^{\dagger} \int \Delta(\bm{r}) w^{\ast}(\bm{r} - \bm{R}_i) w^{\ast}(\bm{r} - \bm{R}_j) \dd^3r + \text{h.c.}\\
     :=& -\sum_{ij} \Delta_{ij} c_{i\downarrow}^{\dagger}c_{i\uparrow}^{\dagger} + \text{h.c.}
 \end{align*}
-Let's talk the coherence length of the Cooper pairs. Its is antiproportional to the gap $\Delta$ and gives the extent of the correlation of the operators $c_{i\uparrow}$ and $c_{j\downarrow}$.
+
+Let us introduce the coherence length of the Cooper pairs. Its is inversely proportional to the gap $\Delta$ and gives the extent of the correlation of the operators $c_{i\uparrow}$ and $c_{j\downarrow}$.
 $\Delta(\bm{r})$ is an order parameter and doesn't vary much in the coherence length, which is much bigger than the atomic length.
 Therefore, we can say that the orbitals vary faster than the gap \cite{Jabir2021}. Moreover, these orbitals are picked in the neighbourhood of the atomic location $\bm{R}_i$ and $\bm{R}_j$.
 Achieving the integral we get $\Delta_{ij} = \Delta_i \delta_{ij}$. We can from then reintroduce the h.c. and we get:
@@ -131,7 +132,7 @@ After applying the tight binding formalism we get:
 \[
     E_0 = \sum_{i} \frac{|\Delta_i|^2}{U},
 \]
-which is a term we can add to the Hamiltonian in Eq.\ref{eq:Ham_Supercond_Tight}. Form these equations we have the final 
+which is a term we can add to the Hamiltonian in Eq. \ref{eq:Ham_Supercond_Tight}. Form these equations we have the final 
 Hamiltonian for the superconducting system:
 \[
     H = E_0 + H_N + H_S.
@@ -141,33 +142,36 @@ As we introduced it while motivating the Bogoliubov-de Gennes formalism, we aspi
 \[
     \hat{c}_i = \left(c_{i\uparrow}, c_{i\downarrow},c_{i\uparrow}^{\dagger}, c_{i\downarrow}^{\dagger}\right).
 \]
-However, using the form we have in the superconducting (Eq.\ref{eq:Ham_Supercond_Tight}) and normal (Eq.\ref{eq:Ham_Normal}) 
+However, using the form we have in the superconducting (Eq. \ref{eq:Ham_Supercond_Tight}) and normal (Eq. \ref{eq:Ham_Normal}) 
 Hamiltonian will later not act as a fermionic operator upon the transformation we're about to
 do. We need to rewrite the Hamiltonian in a more symmetric way to later respect the anticommutation relations.\\
 
-\paragraph{The chemical potential} It can be expressed using the anticommutation relations of the fermionic operators $[c_{i\sigma}^{\dagger},c_{i\sigma}]_+ = 1$:
+\paragraph{The chemical potential} $~$\\
+It can be expressed using the anticommutation relations of the fermionic operators $[c_{i\sigma}^{\dagger},c_{i\sigma}]_+ = 1$:
 \begin{equation}\label{eq:SymHam_muTerm}
     \sum_{i\sigma} \mu_i c_{i\sigma}^{\dagger} c_{i\sigma} = \frac{1}{2}\sum_{i\sigma} \mu_i \left(c_{i\sigma}^{\dagger}c_{i\sigma} - c_{i\sigma}c_{i\sigma}^{\dagger} + 1\right)
 \end{equation}
 The trick we used is quite straight forward but not obvious. Taking two different states $\alpha$ and $\gamma$ we have:
-\[
-    c^{\dagger}_{\alpha}c_{\gamma} ~=~ \frac{1}{2}c^{\dagger}_{\alpha}c_{\gamma} + \frac{1}{2}c^{\dagger}_{\alpha}c_{\gamma} ~=~ \frac{1}{2}c^{\dagger}_{\alpha}c_{\gamma} + \underbrace{\frac{1}{2}c^{\dagger}_{\alpha}c_{\gamma} + \frac{1}{2}c_{\gamma}c^{\dagger}_{\alpha}}_{\frac{1}{2}\anticommu{c^{\dagger}_{\alpha}}{c_{\gamma}} = \frac{1}{2}\delta_{\alpha\gamma}} - \frac{1}{2}c_{\gamma}c^{\dagger}_{\alpha} \tag{$\mathfrak{Tr}$1}. \label{eq:Trick1}
-\]
-\paragraph{The hopping term} This term can in the same way be expressed as:
+\begin{equation}\label{eq:Trick1}
+    c^{\dagger}_{\alpha}c_{\gamma} ~=~ \frac{1}{2}c^{\dagger}_{\alpha}c_{\gamma} + \frac{1}{2}c^{\dagger}_{\alpha}c_{\gamma} ~=~ \frac{1}{2}c^{\dagger}_{\alpha}c_{\gamma} + \underbrace{\frac{1}{2}c^{\dagger}_{\alpha}c_{\gamma} + \frac{1}{2}c_{\gamma}c^{\dagger}_{\alpha}}_{\frac{1}{2}\anticommu{c^{\dagger}_{\alpha}}{c_{\gamma}} = \frac{1}{2}\delta_{\alpha\gamma}} - \frac{1}{2}c_{\gamma}c^{\dagger}_{\alpha} \tag{$\mathfrak{Tr}$1}. 
+\end{equation}
+\paragraph{The hopping term} $~$\\
+We can express this term in the same way:
 \[
     \sum_{\langle ij\rangle\sigma} t_{ij} c_{i\sigma}^{\dagger} c_{j\sigma} = \frac{1}{2}\sum_{\langle ij\rangle \sigma} t_{ij} \left(c_{i\sigma}^{\dagger}c_{j\sigma} - c_{j\sigma}c_{i\sigma}^{\dagger}\right).
 \]
-This has to be done so that the $\gamma$ operators respect the fermionic anticommutation relations. The same method is involved for the chemical potential term.\\
+This has to be done so that the $\gamma$ operators respect the fermionic anticommutation relations. The same method is involved for the chemical potential term.
 We can also take the liberty to reorder the indices and use the fact that $t_{ij} = t_{ji}^{\ast}$:
 \begin{equation}\label{eq:SymHam_tij}
     \sum_{\langle ij\rangle\sigma} t_{ij} c_{i\sigma}^{\dagger} c_{j\sigma} = \frac{1}{2}\sum_{\langle ij\rangle \sigma} t_{ij}c_{i\sigma}^{\dagger}c_{j\sigma} - t_{ij}c_{i\sigma}c_{j\sigma}^{\dagger} = \frac{1}{2}\sum_{\langle ij\rangle \sigma} t_{ij}c_{i\sigma}^{\dagger}c_{j\sigma} - t_{ij}^{\ast}c_{i\sigma}c_{j\sigma}^{\dagger}.
 \end{equation}
-\paragraph{The superconducting term} This term takes the following form:
+\paragraph{The superconducting term}$~$\\ 
+This term takes the following form:
 \begin{equation}\label{eq:SymHam_Delta}
 \sum_{i} \Delta_i c_{i\downarrow}^{\dagger}c_{i\uparrow}^{\dagger} + \Delta_i^{\ast} c_{i\uparrow}c_{i\downarrow}
         = \frac{1}{2}\sum_{i} \Delta_i \left(c_{i\downarrow}^{\dagger}c_{i\uparrow}^{\dagger}-c_{i\uparrow}^{\dagger}c_{i\downarrow}^{\dagger}\right)+ \Delta_i^{\ast} \left(c_{i\uparrow}c_{i\downarrow}-c_{i\downarrow}c_{i\uparrow}\right).
 \end{equation}
-We then finish this section by using Eq.\ref{eq:SymHam_muTerm}, \ref{eq:SymHam_tij} and \ref{eq:SymHam_Delta} in the Hamiltonian and obtain the following form:
+We then finish this section by using Eqs. \ref{eq:SymHam_muTerm}, \ref{eq:SymHam_tij} and \ref{eq:SymHam_Delta} in the Hamiltonian and obtain the following form:
 \begin{equation}\label{eq:Ham_Symm_Supercond_1}
     \begin{aligned}
     H = E_0 ~-~& \frac{1}{2} \sum_{i\sigma} \mu_i\left(c_{i\sigma}^{\dagger}c_{i\sigma} - c_{i\sigma}c_{i\sigma}^{\dagger}\right)\\
@@ -201,7 +205,7 @@ We can further compress our $\hat{c}_i$ operator by introducing
     \check{c} = (\hat{c}_1,..,\hat{c}_N)
 \] 
 along with the system Hamiltonian-matrix $\check{H}_{ij}$ that orders the $\hat{H}_{ij}$ matrices together.  
-Please note that $\check{H}_{ij}$ corresponds to an entry of $\hat{H}_{ij}$. The later maps two sites $i,j$ to a $4\times4$ matrix while the second concatenate all the matrices.\\
+Please note that $\check{H}_{ij}$ corresponds to an entry of $\hat{H}_{ij}$. The later maps two sites $i,j$ to a $4\times4$ matrix while the second concatenate all the matrices.
 In $\check{H}_{ij}$ taking the entries $a=4(i-1) + 1$ to $4(i-1) + 4$ and $b=4(j-1) + 1$ to $4(j-1) + 4$ corresponds to $\hat{H}_{ab}$ if $a$ is the site $i$ and $b$ the site $j$.
 This allows us to rewrite the Hamiltonian $\ref{eq:BdG_sys_H}$ as:
 \begin{align}
@@ -227,7 +231,7 @@ We can simplify the eigenvalue problem by only taking a look at a site $i$. We t
 \]
 To generalize we can sum over the rows of $\check{H}_{ij}$ with the components of $\check{\chi}_n$.
 We remember that $\check{H}_{ij}$ represent a complex scalar and $\hat{H}_{ij}$ is a $4\times4$ matrix with complex entries.
- So it follows by reintroducing Eq.\ref{eq:H^_ij} the following set of equations:
+ So it follows by reintroducing Eq. \ref{eq:H^_ij} the following set of equations:
 \begin{equation}
     \left\{
     \begin{aligned}
@@ -262,17 +266,17 @@ Then, assuming that the Hamiltonian can be diagonalized, we can write it as:
 \begin{equation}\label{eq:Diag_Ham}
     \check{H} = \check{X}\check{D}\check{X}^{-1} = \check{X}\check{D}\check{X}^{\dagger} 
 \end{equation}
-where we used the fact that .\\
+
 The eigenvalues correspond to the energies of the system, this means they should be real because they correspond to a physical quantity. The above expression
-is equivalent to saying that $\check{H}$ is hermitian. Hermitian matrices are known to have real eigenvalues and can be represented with a unitary matrix $\check{X}$. \rem{cite?} 
-We can then transform the Hamiltonian with $\check{c} := \check{X}\check{\gamma}$
+is equivalent to saying that $\check{H}$ is hermitian. Hermitian matrices are known to have real eigenvalues and can be represented with a unitary matrix $\check{X}$ \cite{Terence}.
+We can then transform the Hamiltonian with $\check{c} := \check{X}\check{\gamma}$:
 \begin{align*}
     H = E_0 + \frac{1}{2}\check{c}^{\dagger}\check{H}\check{c} =& E_0 + \frac{1}{2}\check{\gamma}^{\dagger}\check{X}^{\dagger}\check{H}\check{X}\check{\gamma}\\
     =& E_0 +\frac{1}{2}\check{\gamma}^{\dagger}\underbrace{\check{X}^{\dagger} \check{X}}_{=\mathbb{I}}\check{D}\underbrace{\check{X}^{-1}\check{X}}_{=\mathbb{I}}\check{\gamma}\\
     =& E_0 + \frac{1}{2}\check{\gamma}^{\dagger}\check{D}\check{\gamma}\\
-    =& E_0 + \frac{1}{2}\sum_{n\in\mathcal{N}}E_n \gamma_n^{\dagger}\gamma_n\\
+    =& E_0 + \frac{1}{2}\sum_{n\in\mathcal{N}}E_n \gamma_n^{\dagger}\gamma_n,
 \end{align*}
-where $\mathcal{N}= \{\pm n : n \in \natset{N}\}$
+where $\mathcal{N}= \{\pm n : n \in \natset{N}\}$.
 Rearranging the transformation of $\check{c}$, we get $\gamma = \check{X}^{\dagger}\check{c}$.   
 Now that we've made the structure of the involved variables clear in the last section, we find the expression of the $\gamma$ which is $2N$-dimensional. A component of $\gamma$ is:
 \begin{align*}
