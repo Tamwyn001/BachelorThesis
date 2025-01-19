@@ -9,7 +9,7 @@ classdef SystemBase
 
         fixedBoundaryDeltaNorm = false;
         %makes only sense when no horiz. periodic boundary conditon is applied
-        fixedBoundaryDeltaArg = true;
+        fixedBoundaryDeltaArg = false;
         phi_1 = 1.0*pi/3.0; %phase of the superconducting gap on the left side
         phi_2 = 1.0*pi/3.0 + (117.0*pi/180.0); %phase of the superconducting gap on the right side, phase shift of 117°
         layer =  ["SC", 40] %["SC", 12, "AM", 6, "SC", 12]; %superconducting and altermgnet layer separated verticaly ["SC", 10, "AM", 4, "SC", 10]
@@ -18,7 +18,7 @@ classdef SystemBase
 
         T = 0.001; %K  
         %  no be to targe in order to stay under the critical temperature
-        mu = -2.5; 
+        mu = -3.5; 
         m = 0.5; %hopping
         m_matrix = [[0,0, SystemBase.m], [0,0, -SystemBase.m]]; %contributions factor on the pauli matrixies. the submatrices...
         %  are hopping in x and y directions

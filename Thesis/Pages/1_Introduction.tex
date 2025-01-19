@@ -2,27 +2,29 @@
 \begin{document}
 \section{Introduction}
 
-Superconductivity has today a wide range of applications like transportation with levitating trains. These are mostly implemented in China~\cite{Roque2024} and Japan around 2027~\cite{Nishijima2013}.
-Important imaging methods have emerged, like terahertz imaging. This frequency range is between the normal use cases of 
-optical components (400-800 THz) and electrical devices (up to the GHz range), giving the opportunity to picture a wider range of materials.
-Further nuclear magnetic resonance imaging (NMRI) takes advantage of the response of the nuclear spin to an external 
+Superconductivity has today a wide range of applications. We can mention a precise class of magnetometer, the superconducting quantum interference device (SQUID).
+Designed to measure weak fields (up to \SI{5e-18}{\tesla})\cite{Range2004}, they are based on multiple superconducting loops involving Josephson junctions and were invented
+in 1963 \cite{JAKLEVIC1964}.
+Important imaging methods have emerged nuclear magnetic resonance imaging (NMRI) takes advantage of the response of the nuclear spin to an external 
 magnetic field to provide a non-intrusive spectroscopy technique. To provide stronger field and better imaging definition, superconducting magnets are used \cite{Nakamura2015}. In fact, they
-allow stable and strong fields up to around 24T \cite{Hashi2015}, whereas conventional permanent magnets are limited around 2T \cite{Haishi2005}.\\
-Besides, superconducting magnetic energy storage (SMES) can store around one and a hundred MW of energy, with a discharge time of a few seconds. This makes
+allow stable and strong fields with an upper bound around \SI{24}{\tesla} \cite{Hashi2015}, whereas conventional permanent magnets are limited around \SI{2}{\tesla} \cite{Haishi2005}.
+
+Besides, superconducting magnetic energy storage (SMES) can store in an interval from one to a hundred MW of energy, with a discharge time of a few seconds. This makes
 this technology interesting for the grid stabilization, providing a very responsive energy storage system \cite{Tixador2008}.
 SMES is based on a superconducting coil within a cryostat that stores the energy in the coil and releases it when needed. Due to the superconducting nature of the coil,
-an energy conversion efficiency of 95\% is observed \cite{Tixador2008}.\\
+an energy conversion efficiency of 95\% is observed \cite{Tixador2008}.
+In the context of public transportation levitating trains were subject to high-scale projects. These are mostly implemented in China~\cite{Roque2024} and Japan around 2027 \cite{Nishijima2013}.\\
 
 This very promising state of matter has a main drawback, the freezing low critical temperature. Over the past century, researchers 
-have been searching for materials that could display superconducting properties at higher temperatures \cite{Bednorz1986} (Nobel in 1987).
-\cite{PhysRevLett.58.908} found critical temperature above the liquid nitrogen temperature.
+have been searching for materials that could display superconducting properties at higher temperatures \cite{Bednorz1986} (Nobel prize in 1987).
+Reference \cite{PhysRevLett.58.908} found critical temperature above the liquid nitrogen temperature.
 Special doping methods were proven to improve $T_C$ \cite{Doiron-Leyraud2007} in 2007.
 In 2015 researchers found that applying a substrate to single-layer FeSe films could improve the critical temperature \cite{Ge2015}.
-And a lot of other studies that extended the range of materials that could be superconducting at higher temperatures \cite{Einaga2016}\cite{Drozdov_2019} \cite{lee2023}.\\
-These progress were among others, achieved by increasing considerably the pressure, even to gigapascals in some studies \cite{Drozdov_2019}.\\
+Multiple other studies extended the range of materials that could be in a superconductive state at higher temperatures \cite{Einaga2016}\cite{Drozdov_2019} \cite{lee2023}.
+Those progresses were among other things achieved by increasing considerably the pressure, even to gigapascals in some studies \cite{Drozdov_2019}.\\
 
-Further unconventional d-wave superconductivity has been proven to be stable at higher temperatures than its conventional BCS-homologue.
-The applications we provided above need liquid helium to stay in the temperatures that allow superconductivity. D-wave
+Further unconventional $d$-wave superconductivity has been proven to be stable at higher temperatures than its conventional BCS-homologue.
+The applications we provided above need liquid helium to stay in the temperatures that allow superconductivity. $d$-wave
 would work with liquid nitrogen for example, which is a strong economic argument.\\
 
 Superconductors were proven to exhibit different characteristics in comparison to normal conductors as
@@ -31,8 +33,8 @@ They experimented with tin Sn and lead Pb being subject to a magnetic field belo
 of the superconductor were ordering in such a way, that no magnetic flux lines were able to penetrate the superconductor ($\bm{B} = 0$ inside). This has been called the Meissner effect
 and presents the superconductors as perfect diamagnets.\\
 
-In this study is going to focus on simulating the proximity effects when the superconductor is put near another material. This material is a newly found class 
-that settles between the ferromagnet and the antiferromagnet \cite{Smejkal2022}. A proper introduction of these so called altermagnets will be given later.
+This study is going to focus on simulating the proximity effects when the superconductor is put near another material. The material is a newly found class 
+that settles between the ferromagnet and the antiferromagnet \cite{Smejkal2022}. A proper introduction of these so-called altermagnets will be given later.
  For now, we want to put the theoretical basis for the superconductors.\\
 
 \paragraph{Notation}$~$\\
@@ -40,7 +42,7 @@ First a few words about the notation. When having multiple indices under a symbo
 For example, $x_{ij}$ is the same as $x_{i,j}$. However, when we have more complex indices such as $x_{i-1, j}$, we keep the comma between all
 the indices. For the summation over natural numbers we use the notation $\natset{N} = \{1,..,N\}_{\mathbb{N}}$.\\
 
-We are going to use Hilbert-space's operators. As often in physics, they will be multiplied with the wavefunction. This is the case for the Hamiltonian 
+We are going to use Hilbert-space's operators. As often in physics, they will be multiplied with the wave function. This is the case for the Hamiltonian 
 operator for example. However, the second quantization operators work differently. We will give a proper definition when the moment comes.
 \end{document}
 

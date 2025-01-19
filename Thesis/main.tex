@@ -57,7 +57,7 @@
 \usepackage{bbm} %for the \mathbb{1}
 \newcommand{\indc}{\mathlarger{\mathlarger{\mathbbm{1}\normalsize}}}
 
-\usepackage[backend=biber, style=numeric, sorting=ynt, sortlocale=en_EN]{biblatex}
+\usepackage[style=numeric, sorting=none]{biblatex} %backend=biber, sortlocale=en_EN
 \addbibresource{references.bib}
 
 %\input{C:/Users/Tamwyn/Documents/CustomLatexTextMF/mytexmf/tex/latex/UniLaTeXPackage/Arto/ArtoMain.tex}
@@ -70,6 +70,7 @@
     top=1.6cm, 
     bottom=2.5cm
 }
+
 \renewcommand{\footnoterule}{%
     \vspace*{-3pt} % Vertical space before the line
     \begin{tikzpicture}
@@ -83,7 +84,7 @@
     \vspace*{3pt} % Vertical space after the line
 }
 %\thispagestyle{empty}
-\setlength\parindent{0pt}
+% \setlength\parindent{0pt}
 \pagestyle{fancy}
 \fancyhf{} % Clear default header and footer
 % Customize footer with design around the page number

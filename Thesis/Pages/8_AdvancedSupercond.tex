@@ -1,6 +1,6 @@
 \documentclass[../main.tex]{subfile}
 \begin{document}
-\section{An advanced superconductivity}
+\section{An unconventional superconductivity}
 \subsection{Site dependent potential}
 In this section we are going to highlight how the neighbour-depending potential can lead to a new kind of superconductivity. Among others, we are going to discuss the $d$-
 wave superconductivity which shares similarities with more exotic magnets, such as the altermagnet. 
@@ -175,7 +175,7 @@ On the other hand the vector we use to carry the creation and annihilation opera
     \end{pmatrix}\in\mathbb{H}^{2N_x}
 \]
 
-\subsubsection{BdG-transformation for a vertical foruier transform}
+\subsubsection{BdG-transformation for a vertical Foruier transform}
 The eigenvalues' equation is similar to Eq.\ref{eq:BdG_eigenVal_H}
 \begin{equation}\label{eq:BdG_eigenVal_H_k}
     H_k \mathfrak{X}_{nk} = E_{nk} \mathfrak{X}_{nk}.
@@ -304,7 +304,7 @@ and Eq.\ref{eq:BdG_transf_c_dagg}.
 in a very similar way as Eq.\ref{eq:transfo_c_up_c_down_BdG}.
 
 
-\subsection{Advanced order parameters}
+\subsection{unconventional order parameters}
 In the more simple description of the superconductivity we outlied how the superconducting order parameter $\Delta$ depends on the pairing amplitude $F$.
 Because the potential was isotropic, we simply had $\Delta = U \langle c_{i\uparrow}c_{i\downarrow}\rangle$. Here however the potential is anisotropic, 
 and we obtain a linear combination of the pairing amplitudes in the different directions of the lattice. Achieving different combinations of the $F$s 
@@ -347,7 +347,7 @@ Changing the sign of the momentum we obtain  $\frac{1}{N} \sum_{\bm{k}} \langle 
 because of the $\delta_{\bm{k},\bm{k}'}$ trick. For this reason $F_{i,i+ \bm{r}} +  F_{i,i- \bm{r}}$ is symmetric under momentum exchange while $F_{i,i+ \bm{r}} -  F_{i,i- \bm{r}}$ is antisymmetric.\\
 Referring back to the order parameter definition we see that the $s$ and $d$-wave are symmetric under momentum exchange, where the $p_x$ and $p_y$-wave are antisymmetric in such exchange.\\
 
-\subsection{Implementation of the advanced superconductivity}
+\subsection{Implementation of the unconventional superconductivity}
 This is more complex to implement than the BCS superconductivity. We solved this without the periodic boundary conditions method.
 Here each site has to compute eight parameters, the four pairing amplitudes in the $ij$ and $ji$ direction.
 To do so we prepare a huge vector containing the eigenvectors' components $u$ and $v$ that all the parameters need and send this to each site.\\

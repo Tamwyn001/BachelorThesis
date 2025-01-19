@@ -2,7 +2,7 @@ treshold = 0.001; %convergence treshold in percentage of change
 Fermi = @(E) FermiDiarac(E, SystemBase.T);
 
 system_d_wave = System_DWave();
-system_d_wave = system_d_wave.createLattice(true); %use the tilted interface version
+system_d_wave = system_d_wave.createLattice(false); %use the tilted interface version
 system_d_wave = system_d_wave.generateHam();
 computation = Computation(system_d_wave); %holds the eigenvalues and eigenvectors to access them later without passing huge matrices around
 Delta_D = zeros(system_d_wave.Ny, system_d_wave.Nx);
