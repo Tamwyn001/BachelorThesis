@@ -1044,7 +1044,8 @@ In other words, in some cases the phonon exchange can be attractive and even ove
             axis lines=middle,
             width=7cm,   % Adjust the width
             height=5cm,  % Adjust the height
-            xtick=\empty,
+            xtick={-2,2},
+            xticklabels={$-\omega_q$,$  \omega_q$},
             ytick=\empty,
             unbounded coords=jump,
             xmin=-5, xmax=5,
@@ -1095,7 +1096,8 @@ In other words, in some cases the phonon exchange can be attractive and even ove
                 axis lines=middle,
                 width=7cm,   % Adjust the width
                 height=5cm,  % Adjust the height
-                xtick=\empty,
+                xtick={-2,2},
+                xticklabels={$-\omega_q$,$  \omega_q$},
                 ytick=\empty,
                 unbounded coords=jump,
                 xmin=-5, xmax=5,
@@ -1117,7 +1119,8 @@ In other words, in some cases the phonon exchange can be attractive and even ove
             \end{axis}
             \end{tikzpicture}
         \caption{Left the course of the phonon-mediated effective potential $V_{\text{eff}}$ defined in Eq. \ref{eq:V_eff_phonon}. For some values of $\omega$ the potential is attractive.
-        On the right is a simplified version of the potential that revealed itself to be very accurate with the experiments. Inspired by \cite{FossheimSudbo2004}.}
+        On the right is a simplified version of the potential that revealed itself to be very accurate with the experiments.
+        $-\omega_q$ is an arbitrary value. Inspired by \cite{FossheimSudbo2004}.}
     \end{figure}
 \subsection{Construction of the effective Hamiltonian}
 We want to restrict ourselves in the case where the effective Hamiltonian is attractive. This happens in a small shell around the Fermi-surface.
@@ -1633,9 +1636,9 @@ When introducing $\lambda = V D_n(0)$ we obtain:
     \end{aligned}
 \end{equation*}
 Using $\gamma := \lim{m}{\infty} \left(\sum_{l\in\natset{m}} 1/l - \ln(m)\right)$ the Euler-Mascheroni constant. More details are provided
-in \cite{FossheimSudbo2004} p.88-89. We obtain \rem{check the exponent}
+in \cite{FossheimSudbo2004} p.88-89. We obtain
 \[
-    k_B T_C \approx 1.13\cdot  \omega_D e^{-1/\lambda}
+    k_B T_C \approx 1.13\cdot  \omega_D e^{-1/\lambda}.
 \]
 For $T\rightarrow 0$ the gap equation takes a simpler form to solve:
 \begin{equation*}

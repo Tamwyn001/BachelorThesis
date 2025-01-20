@@ -11,7 +11,7 @@
 
 ./generateGraph.ps1 -GnuScript ”gpScripts/Currents/Currents_long_SC_NoBC_mu-1.75.gp” -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-1.75/Starting_at/1.0472" -LatexPath "/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-1.75/";
 ./generateGraph.ps1 -GnuScript ”gpScripts/Currents/Currents_long_SC_NoBC_mu-2.75.gp” -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/Starting_at/1.0472" -LatexPath "/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.75/";
-./generateGraph.ps1 -GnuScript ”gpScripts/Currents/Currents_long_SC_NoBC_mu-3.75.gp” -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-3.75/Starting_at/1.0472" -LatexPath "/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-3.75/";
+./generateGraph.ps1 -GnuScript ”gpScripts/Currents/Currents_SC40_VertBC_mu-3.5.gp” -SimulationPath "/SC40/NotFourier/StraightInterface/FixedLinearPhaseGradient/Phase117deg/diffMU/-3.5/Starting_at/1.0472" -LatexPath "/SC40/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-3.5/";
 
 ./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine_continuity_long_SC_mu-1.75.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-1.75/" -LatexPath "/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-1.75/";
 ./generateGraph.ps1 -GnuScript "gpScripts/MeanLine/MeanLine_continuity_long_SC_mu-2.75.gp" -SimulationPath "/SC30/NotFourier/FixedLinearPhaseGradient/Phase117deg/diffMU/-2.75/" -LatexPath "/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/";
@@ -66,7 +66,7 @@
 
 
 # D wave one direction 
-./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SC_muDWave.gp" -SimulationPath "/SC30/DWave/StraightInterface/FreeDelta/diffMU" -LatexPath "SC30/DWave/StraightInterface/FreeDelta/diffMU"
+./generateGraph.ps1 -GnuScript ”gpScripts/MeanLine/MeanLine_long_SC_muDWave.gp" -SimulationPath "/SC40/DWave/StraightInterface/FreeDelta/diffMU" -LatexPath "SC40/DWave/StraightInterface/FreeDelta/diffMU"
 
 
 

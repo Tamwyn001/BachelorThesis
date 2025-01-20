@@ -8,7 +8,8 @@ load '/MeanLine/MeanLine_Base.gp'
 set logscale y
 dataroot = './Results'.targetSystem
 sys = 'NotFourierNEW/FreeDelta/diffMU/-2.5'
-set key 
+set key title '$\ast$' offset char -2.25, char 0.75
+
 # set yrange [1.0e-14:0.1]
 # set multiplot
 
@@ -17,7 +18,7 @@ set key
 plot [1:40] \
     dataroot.'/SC20N20/'.sys.'/meanline_40x30NoBC.dat' using 1:2 with lines title '\footnotesize N' dashtype 1 lw 3.5 lc palette frac 0.2,\
     dataroot.'/SC20FM20/'.sys.'/meanline_40x30NoBC.dat' using 1:2 with lines title '\footnotesize FM' dashtype 1 lw 3.5 lc palette frac 1.0,\
-    dataroot.'/SC20AM20_m0.5/'.sys.'/meanline_40x30NoBC.dat' using 1:2 with lines title '\footnotesize AM with $m=0.5$' dashtype 1 lw 3.5 lc palette frac 0.6,\
+    dataroot.'/SC20AM20_m0.5/'.sys.'/meanline_40x30NoBC.dat' using 1:2 with lines title '\footnotesize AM' dashtype 1 lw 3.5 lc palette frac 0.6,\
 
 
 # set origin 0.48, 0.325

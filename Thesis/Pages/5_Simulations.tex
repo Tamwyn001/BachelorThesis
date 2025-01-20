@@ -160,6 +160,16 @@ at the beginning of the next row. This means that with different boundary condit
 Left we have a $3\times3$-system. The others are $2\times2$ with vertical periodic boundary conditions (PBC)
 and on the right with both vertical and horizontal PBC.\\
 
+\paragraph{Mathematical definition of PBCs}$~$\\
+
+We have a rectangular lattice of size $N_x\times N_y$. The quantities have to be the same on both side of the system along the axis having these PBC.
+Here we have vertical periodic boundary conditions. This means that the quantities have to be the same on the top and the bottom of the system. 
+If we describe the system with a wavefunction $\Psi(x,y)$ then we have:
+\begin{equation}
+    \Psi(x,y) = \Psi(x,y+N_y) \quad\quad \forall x\in\natset{N_x}\quad, \forall y \in \natset{N_y}
+\end{equation} 
+This leads to a finite number of possibility for the Fourier transform of the wavefunction, as we are going to show in Sec. \ref{sec:Vertical_Fourier}.\\
+
 We want to maximize the definition of the gap in the lattice. With the architecture we have (Intel i7 11th gen, 8 GB RAM),
 an upper bound of $40\times20=1200$ sites was achieved. Matlab being an interpreter, this could be optimized by using a compiled language.
 In the literature we find square lattices of $100\times100$ sites being used \cite{Mjos2019}. \\

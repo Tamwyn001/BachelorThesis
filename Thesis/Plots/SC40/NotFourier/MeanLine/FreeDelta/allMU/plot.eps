@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: ../../Thesis/Plots/SC40/NotFourier/MeanLine/FreeDelta/allMU/plot.tex
 %%Creator: gnuplot 6.0 patchlevel 0
-%%CreationDate: Tue Jan 14 16:01:23 2025
+%%CreationDate: Mon Jan 20 14:21:36 2025
 %%DocumentFonts: 
 %%BoundingBox: 50 50 482 238
 %%EndComments
@@ -441,7 +441,7 @@ SDict begin [
   /Creator (gnuplot 6.0 patchlevel 0)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Tue Jan 14 16:01:23 2025)
+  /CreationDate (Mon Jan 20 14:21:36 2025)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -482,7 +482,7 @@ doclip
 0 setgray
 newpath
 gsave % colour palette begin
-/maxcolors 8 def
+/maxcolors 5 def
 /HSV2RGB {  exch dup 0.0 eq {pop exch pop dup dup} % achromatic gray
   { /HSVs exch def /HSVv exch def 6.0 mul dup floor dup 3 1 roll sub
      /HSVf exch def /HSVi exch cvi def /HSVp HSVv 1.0 HSVs sub mul def
@@ -513,10 +513,10 @@ gsave % colour palette begin
   grayindex grayv GrayA gidx get sub abs 1e-5 le
     {RedA gidx get GreenA gidx get BlueA gidx get}
     {/dgdxval dgdx def redvalue greenvalue bluevalue} ifelse} def
-/GrayA [0 .1429 .2857 .4286 .5714 .7143 .8571 1 ] def
-/RedA [.3529 .4392 .3412 .5216 .6314 .7647 .9098 .9765 ] def
-/GreenA [.3647 .4549 .4784 .7569 .8196 .8392 .8784 .9294 ] def
-/BlueA [.4471 .5529 .6392 .7216 .7529 .7059 .7647 .7804 ] def
+/GrayA [0 .25 .5 .75 1 ] def
+/RedA [.5843 .8941 .9647 .898 .6627 ] def
+/GreenA [.9333 .7569 .5804 .8627 .8706 ] def
+/BlueA [.7255 .9765 .7569 .5451 .9765 ] def
 /pm3dround {maxcolors 0 gt {dup 1 ge
 	{pop 1} {maxcolors mul floor maxcolors 1 sub div} ifelse} if} def
 /pm3dGamma 1.0 1.5 Gamma mul div def

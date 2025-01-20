@@ -27,7 +27,9 @@ Indeed, the spatial repartition of the phase of the gap shares a similar geometr
         \draw[->, thick] (o) -- ($(o)+(0,1)$) node[anchor = east]{$k_y$};
     \end{tikzpicture}
     \caption{The positive and negative phase of the unconventional $d$-wave superconductive gap, as well as the spin splitting of the altermagnet in momentum space.
-    The intersection of the lines are called nodes. Figure inspired by \cite{Smejkal2022}.}
+    The intersection of the lines are called nodes. A line from the centre to the node is a nodal line. 
+    In a proximity system if the Cooper pairs enters the non-superconducting material 
+    along the nodal lines, we expect no preferred phase, as it could be if we enter from the left for example. Figure inspired by \cite{Smejkal2022}.}
 \end{figure}
 
 The derivations we are going to make are closely based on the work of A. H. Mjøs and J. Linder in \cite{Mjos2019}.
@@ -75,7 +77,7 @@ we transform only in the direction where the material is the same. For instance 
 combined to a Fourier transformation in the $y$-direction.
 In this thesis we are going to focus ourselves on a multilayer material in the $x$-direction.\\
 
-\subsection{In the vertical periodic boundary setup}
+\subsection{In the vertical periodic boundary setup}\label{sec:Vertical_Fourier}
 We assume we have a lattice of $N_x\times N_y$ sites.
 The description of the creation and annihilation operators with a step in the momentum space for the $y$-direction can be expressed as follows:
 \begin{align}
@@ -250,7 +252,7 @@ Looking at $D_{k} = \mathfrak{X}_k\mathfrak{g}_k$ we can derive two very useful 
         \end{equation}
     \end{minipage}
     \end{center}
-These are the equivalent of Eqs.\ref{eq:BdG_transf_c} and \ref{eq:BdG_transf_c_dagg} for the Fourier transformed $c$-operators along the $y$-axis.\\
+These are the equivalent of Eqs. \ref{eq:BdG_transf_c} and \ref{eq:BdG_transf_c_dagg} for the Fourier transformed $c$-operators along the $y$-axis.\\
 \subsubsection{Pairing amplitudes}
 For the derivation of the pairing amplitudes along the $x$ and $y$ axis shares similarities. Therefore, we embed the axis into the variable $a\in\{\hat{x},\hat{y}\}$.
 With $F_i^{\pm a}$ we mean $F_i^{\pm \hat{x}}$ or $F_i^{\pm \hat{y}}$ which are equivalent to $F_{i,i\pm x}$ and $F_{i,i\pm y}$.
@@ -282,7 +284,7 @@ we obtain the following expression:
 Recalling the $a$ abstraction of the axis, we get:
 \begin{align}
     F^{\pm x}_i =& \frac{1}{N_y} \sum_{nk} u_{nx k} v_{n,x\pm \delta_x,k}^{\ast}\left(1 - f(E_{nk})\right)\\
-    F^{\pm y}_i =& \frac{1}{N_y} \sum_{nk} u_{nx k} v_{n x k}^{\ast}\left(1 - f(E_{nk})\right) e^{\mp \im k}.
+    F^{\pm y}_i =& \frac{1}{N_y} \sum_{nk} u_{nx k} v_{n x k}^{\ast}\left(1 - f(E_{nk})\right) e^{\mp \im k},
 \end{align}
 where $x\pm \delta_x$ means $x\pm1$.
 
@@ -305,7 +307,7 @@ This delivers the following expression:
     \end{aligned}
 \end{equation} 
 which is achieved using Eq. \ref{eq:Trick1}, $V_{ij} = {V_{ji}}$, \rem{$ F_{ij}^{\uparrow \downarrow} = -F_{ji}^{\downarrow \uparrow} = F_{ji}^{\uparrow \downarrow}$}
-using the anticommutation relation and a spin-echange. We then use $F_{ij}^{\uparrow \downarrow}$ = $F_{ij}$ since all ambiguity has been removed.\\
+using the anticommutation relation and a spin-echange. We then use $F_{ij}^{\uparrow \downarrow}$ = $F_{ij}$ since all ambiguity has been removed.
 Therefore, the matrix we obtain is given as
 \begin{equation}\label{eq:H_V_DWave}
     H_{V,ij}^{HF} = -\frac{1}{2}\begin{pmatrix}
@@ -323,8 +325,8 @@ $(\delta_{i+1,j} + \delta_{i-1,j} + \delta_{i+N_x,j} + \delta_{i-N_x,j})$. This 
 a neighbouring superconductive $F$-term.\\
 
 Now that we have expressed the Hartree-Fock Hamiltonian in the correct manner, we can use our BdG-transformation to diagonalize the Hamiltonian and find a self-consistent solution 
-for the $F$-parameters. Here we use the transformation between the creation and annihilation operators, and the eigenvectors, -values of the Hamiltonian given by Eq. \ref{eq:BdG_transf_c} 
-and Eq. \ref{eq:BdG_transf_c_dagg}. 
+for the $F$-parameters. Here we use the transformation between the creation and annihilation operators, and the eigenvectors, -values of the Hamiltonian given by Eqs. \ref{eq:BdG_transf_c} 
+and \ref{eq:BdG_transf_c_dagg}. 
 \begin{equation}
     F_{ij} = \langle c_{i\uparrow}c_{j\downarrow}\rangle = \sum_{n\in \mathcal{N}_+} u_{ni\uparrow}v_{nj\downarrow}^{\ast}\left(1 - f(E_{nk})\right) + v_{ni\uparrow}^{\ast}u_{nj\downarrow}f(E_{nk})
 \end{equation}
@@ -349,7 +351,9 @@ The $S$ and $T$ are the singlet and triplet expressions of the pairing amplitude
     F_{ij}^{(T)} = \frac{F_{ij} - F_{ji}}{2}
 \end{align}
 Where we shorten the expression using $F_{ij}^{\uparrow\downarrow(S)} = F_{ij}^{(S)}$.
-\paragraph{Symmetry discussion} $~$ We see that these parameters depends on the spin and the momentum. Therefore, it's a good idea to look at their respective
+\paragraph{Symmetry discussion} $~$\\
+
+We see that these parameters depends on the spin and the momentum. Therefore, it's a good idea to look at their respective
 behaviour under exchange of these variables.\\
 
 The discussion for the spin exchange is quite straight forward.
@@ -377,7 +381,7 @@ Referring back to the order parameter definition we see that the $s$ and $d$-wav
 \subsection{Implementation of the unconventional superconductivity}
 This is more complex to implement than the BCS superconductivity. We solved this without the periodic boundary conditions method.
 Here each site has to compute eight parameters, the four pairing amplitudes in the $ij$ and $ji$ direction.
-To do so we prepare a huge vector containing the eigenvectors' components $u$ and $v$ that all the parameters need and send this to each site.\\
+To do so we prepare a huge vector containing the eigenvectors' components $u$ and $v$ that all the parameters need and send this to each site.
 Further due to computation imprecisions, we may have $F^{(S)}_{ij} \neq F^{(S)}_{ji}$. However, the Hamiltonian
 should stay hermitian, so we impose $F^{(S)}_{ij} = F^{(S)}_{ji}$. Please compare the implementation of Eq. \ref{eq:H_V_DWave} in 
 the Hamiltonian of the system to check that $H_{ij} = H_{ji}^{\ast}$ is

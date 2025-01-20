@@ -2,7 +2,8 @@
 \begin{document}
 \subsection{Results}
 We start with the simplest system, a superconductor involving some vertical periodic boundary conditions.
-We use an attractive potential of $U=-2$ for the on site superconductivity in the superconductor and zero everywhere else.
+We use an attractive potential of $U=\SI{-2}{\electronvolt}$ for the on site superconductivity in the superconductor and zero everywhere else.
+The chemical potential is given in $\si{\electronvolt}$
 \begin{figure}[H]
   \centering
   \input{../Plots/SC40/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
@@ -23,7 +24,7 @@ These oscillations may be caused by Andrev bound states \cite{Bobkov_2024}, that
 These can interfere with the Cooper pairs and cause the oscillations in the spacial representation of the energy gap.\\
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.5\textwidth]{Ressources/GapBrillouin.png}
+  \includegraphics[width=0.45\textwidth]{Ressources/GapBrillouin.png}
   \caption{The first Brillouin zone with the Fermi surface for $\mu$ of \textcolor{Brillou1}{$\bm{-3.8}$}, \textcolor{Brillou2}{$\bm{0}$},
   \textcolor{Brillou3}{$\bm{1.4}$} and \textcolor{Brillou4}{$\bm{3.8}$}. The BCS gap is represented by the black circle. Its size is given such that 
   we can see that at a $\mu>0$ the states that can be found in the gap are less present until they vanish for a high $\mu$. For low $\mu$ there is
@@ -40,22 +41,22 @@ Then we can replace it with an alternating hopping $t+m$ depending on a $\uparro
 and a $t-m$ depending on a $\downarrow\downarrow$ interaction. If this hopping takes place in every direction, this describes a ferromagnetic material (FM).
 Making the sign of $m$ alternating if we have a hopping along the $x$ or the $y$ axis describes an altermagnet (AM).
 Here we set $m=0.5$ and study different results for the chemical potential $\mu<0$ and compare the AM
-with the others. $\ast$ represent a placeholder for the material a curve describes.\\
+with the others. $\ast$ represents a placeholder for the material a curve describes.\\
 \begin{figure}[H]
   \centering
   \input{../Plots/AllMaterials/Mu-0.5/plot.tex}
-  \caption{Evolution of the gap in the $x$ direction for a junction of SC-N SC-FM and SC-AM at $\mu=-0.5$.}
+  \caption{Evolution of the gap in the $x$ direction for a junction of SC-N, SC-FM and SC-AM at $\mu=-0.5$. Hopping $m=0.5$.}
   \label{fig:SC_START_Mu-0.5}
 \end{figure}\begin{figure}[H]
   \centering
   \input{../Plots/AllMaterials/Mu-1.5/plot.tex}
-  \caption{A junction of SC-N SC-FM and SC-AM at $\mu=-1.5$.}
+  \caption{A junction of SC-N, SC-FM and SC-AM at $\mu=-1.5$, and a hopping $m=0.5$.}
   \label{fig:SC_START_Mu-1.5}
 \end{figure}
 \begin{figure}[H]
   \centering
   \input{../Plots/AllMaterials/Mu-2.5/plot.tex}
-  \caption{A junction of SC-N SC-FM and SC-AM at $\mu=-2.5$.}
+  \caption{A junction of SC-N, SC-FM and SC-AM at $\mu=-2.5$, and a hopping $m=0.5$.}
     \label{fig:SC_START_Mu-2.5}
 \end{figure}
 We first take a look at the superconductor (SC). Inside it the gap is not be the same for $\mu=-0.5,-1.5$
@@ -86,7 +87,7 @@ These oscillations are more likely due to the fact that we have a spin-dependent
 and the FM, but not in the N. As a result of the spin-splitted Fermi surfaces the electrons in the Cooper pairs have different momenta.
 This phenomenon causes the superconductivity correlation in the FM to oscillate \cite{Jong1995}. A similar behaviour happens inside the AM.
 
-This dynamic influences the gap and the different components of the gap interfere with each other resulting
+This dynamic influences the gap, and the different components of the gap interfere with each other resulting
 periodically in especially low values. We see that the direction-dependence of the altermagnetic hopping causes a weaker gap and 
 oscillations of bigger amplitudes. Traces of Friedel oscillations and quasiparticles' reflections are still visible, especially in the non-SC materials.\\
 
@@ -149,12 +150,13 @@ To simulate this we will hold the phase fixed on the sides maintaining a differe
 We start this gradient at two different angles $\varphi_0 = -2\pi/3$ and $\varphi_0 = \pi/3$ on the left side.
 \begin{figure}[H]
     \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting_-2.0944/plot.tex}
-    \caption{Phase on side $\varphi_0 = -2\pi/3$ and gradient of $117^{\circ}$}
+    \caption{Progression of the complex phase of the gap in a 30 sites long SC for a range of chemical potentials.
+     Phase on side $\varphi_0 = -2\pi/3$ and gradient of $117^{\circ}$.}
     \label{fig:Phase-2pi3}
 \end{figure}
 \begin{figure}[H]
     \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting_1.0472/plot.tex}
-    \caption{Phase on side $\varphi_0 = \pi/3$ and gradient of $117^{\circ}$}
+    \caption{Complex phase of the gap in a 30 sites long SC. Phase on side $\varphi_0 = \pi/3$ and gradient of $117^{\circ}$.}
     \label{fig:Phasepi3}
 \end{figure}
 We see that the profile of the curve is the same regardless the starting phase. The slope of the gradient increase while lowering $|\mu|$.
@@ -171,7 +173,7 @@ break.\\
     \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -2.75$.}
 \end{figure}
 \begin{figure}[H]
-    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-3.75/plot.tex}
+    \input{../Plots/SC40/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-3.5/plot.tex}
     \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -3.75$.}
 \end{figure}
 
@@ -183,7 +185,7 @@ The current in the middle is ten times stronger with a $\mu$ of $-1.75$ than wit
 of difference between the current strength in $\mu = -1.75$ and $-3.75$. The rule $I\propto\nabla\varphi$ is nevertheless verified.\\
 
 One last check to make is the current continuity. No charges should be generated or lost. This of course doesn't apply on
-the sides where we artificially fix the phase. Taking a function $f$ discretized on sites $i$ we have $\partial_x f = (f_{i+1} - f_{i-1} )/2a$
+the sides where we artificially fix the phase. Taking a function $f$ discretized on sites $i$ we have $\partial_x f = (f_{i+1} - f_{i-1} )/2a$,
 $\partial_y f = (f_{i+N_x} - f_{i-N_x} )/2a$ with
 $a$ the lattice spacing. We know that we normalized the lattice spacing to $1$. Finally, we have $\nabla f = (\partial_x + \partial_y) f$ as the divergence
 of $f$.
@@ -210,10 +212,10 @@ We see that the $x$-component of the current is the one the less conserved. This
 Far from the bulk, on the two first and last site, we observe cliff effects. This is due the abrupt changes in the phase we presented above.
 The first cliff is positive, and the second one is negative.:
 Considering the derivation we defined above, if the site $i+1$ has a stronger current than the site $i$, then $\partial_x I > 0$.
-On the other hand for the last five sites we have $\partial_x I <0$ due to $f_{i+1}< f_i$. Here the current difference involved displays two to three orders of magnitude.
+On the other hand for the last five sites we have $\partial_x I <0$ due to $I_{i+1}< I_i$. Here the current difference involved displays two to three orders of magnitude.
 On the first and last site there is a discontinuity due to the missing neighbours. For the second and one before the last sites, there is a sudden change in the current
 between sites two and three, as well as between the last and the one before the last site.\\
-\rem{Whih the vertical periodic boundary condition we expect to have a uniform current along the $y$ direction.}
+\rem{With the vertical periodic boundary condition we expect to have a uniform current along the $y$ direction.}
 
 
 
@@ -235,18 +237,24 @@ Moreover, the current verifies the charge conservation.
 More work needs to be done to represent the current in the altermagnet between two different superconductors.\\
 
 $d$-wave superconductivity was already introduced as being of particular interest. This is a more complex system.
-The gap is now a neighbour dependent quantity and is not isotropic in the momentum space. The goal would have been 
+As derived in the appendix, thegap is now a neighbour dependent quantity and is not isotropic in the momentum space. The goal would have been 
 to study the profile of the gap when the Cooper pairs enter along the nodal lines of the gap geometry. This
 would result is a clear difference when having a straight or diagonal interface. 
  Some work has been done towards studying the
-proximity effect of a $d$-wave superconductor with the altermagnet. However, by lack of time we only achieved to represent the d-wave in a superconductor.\\
+proximity effect of a $d$-wave superconductor with the altermagnet. However, by lack of time we only achieved to represent the d-wave in a superconductor.
 
-\rem{This is going to be re simulated with vertical periodic boundary conditions and other $\mu$s. I'm
-confident on the results I'll get, the interpretation will be written as well for Monday.}
+
+
 \begin{figure}[H]
-    \input{../Plots/SC30/DWave/StraightInterface/FreeDelta/diffMUplot.tex}
-    \caption{D wave with free delta and real $\Delta_d$}
+    \input{../Plots/SC40/DWave/StraightInterface/FreeDelta/diffMUplot.tex}
+    \caption{$d$-wave superconductive parameter $F_d$ taking part into the gap $\Delta_{d,i} = V_i F_{d,i}$ for different chemical potential. This parameter is purely 
+    real}
 \end{figure}
+As we can see the $d$-wave gap is not the same as the conventional BCS gap. We still observe this symmetry around $|\mu|$ for the range of selected chemical potentials in the bulk.
+However, we have a decrease from $\pm3.5$ to $\pm2.5$ before growing towards $\pm0.5$. The parameter is weaker for $\mu=\pm2.5$ and $\pm3.5$ than the BCS gap but
+about the same value for $\pm0.5$. We see that the Friedel oscillations as well as the presence of bound states still provoke oscillations on the sites near the vacuum.\\
+We see as well that the gap is not symmetric around bulk along the $x$ axis. This might be caused by the oscillations that have different amplitude and frequency
+for the different chemical potentials.\\
 
 
 % \begin{tikzpicture}

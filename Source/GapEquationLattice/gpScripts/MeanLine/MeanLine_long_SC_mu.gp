@@ -1,5 +1,5 @@
 set loadpath './gpScripts/'
-load '../config/palettes/SandBeach.pal'
+load '../config/palettes/Candy.pal'
 load '/SystemDesc/SC.cfg'
 load '/MeanLine/MeanLine_Base.gp'
 
@@ -7,15 +7,7 @@ unset logscale y
 set ylabel '$\bm{\langle c_{i\uparrow}c_{i\downarrow}\rangle}$'
 set yrange [-0.01:0.18]
 dataroot = './Results'.targetSystem
-
-set palette defined ( 0 '#5A5D72',\
-                      1 '#70748D',\
-                      2 '#577AA3',\
-                      3 '#85C1B8',\
-                      4 '#A1D1C0',\
-                      5 '#C3D6B4',\
-                      6 '#E8E0C3',\
-                      7 '#F9EDC7')
+set key title '$\mu$' offset char -3, char 0.75
 
 # set palette rgbformulae 22,13,-31   # Secondary darker palette (automatically derived)
 

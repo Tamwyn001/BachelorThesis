@@ -1,6 +1,6 @@
 function MeanLineFromFile(quantity)
-    path = ".\Results\SC12AM6SC12_m0.5\NotFourier\FixedLinearPhaseGradient\Phase117deg\diffMU\";
-    pot = ["-3.75", "-2.75", "-1.75", "-0.75", "0.75", "1.75", "2.75", "3.75"];
+    path = ".\Results\SC40\NotFourier\StraightInterface\FixedLinearPhaseGradient\Phase117deg\diffMU";
+    pot = ["-3.5", "-2.75", "-1.75", "-0.75", "0.75", "1.75", "2.75", "3.75"];
     starting_at = "\Starting_at\1.0472";
     if nargin == 0
         quantity = "Continuity";
