@@ -15,7 +15,7 @@ set terminal epslatex size 6,2.62 color colortext
 
 # Set labels for the axes
 set xlabel '{\small\textbf{Lattice site $i$ in $\bm{e}_x$}}' 
-set ylabel '$\bm{|\langle c_{i\uparrow}c_{i\downarrow}\rangle|}$'
+set ylabel '$\bm{\langle c_{i\uparrow}c_{i\downarrow}\rangle}$'
 
 # Title for the plot
 unset title # '\textbf{Correlation of the c operators}' 

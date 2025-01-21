@@ -148,6 +148,8 @@ We know \rem{(additional small section needed in the theory)} that the current i
 We can experimentally apply a voltage difference between the two sides of the superconductor to induce a phase gradient \rem{source}.
 To simulate this we will hold the phase fixed on the sides maintaining a difference of $117^{\circ}$ between the two sides.
 We start this gradient at two different angles $\varphi_0 = -2\pi/3$ and $\varphi_0 = \pi/3$ on the left side.
+In order to have a better visualization we reduce the size of the system to $30\times15$ sites being used.
+ We will study the current for different chemical potentials.
 \begin{figure}[H]
     \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting_-2.0944/plot.tex}
     \caption{Progression of the complex phase of the gap in a 30 sites long SC for a range of chemical potentials.
@@ -165,16 +167,16 @@ Having the sides artificially fixed in the phase causes abrupt changes in the ph
 algorithm achieves to make a smooth transition. The Andrev bound states are still present and causes the small fluctuations we can see just after the
 break.\\
 \begin{figure}[H]
-    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-1.75/plot.tex}
-    \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -1.75$.}
+    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-0.5/plot.tex}
+    \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -0.5$.}
 \end{figure}
 \begin{figure}[H]
-    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.75/plot.tex}
-    \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -2.75$.}
+    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-1.5/plot.tex}
+    \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -1.5$.}
 \end{figure}
 \begin{figure}[H]
-    \input{../Plots/SC40/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-3.5/plot.tex}
-    \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -3.75$.}
+    \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.5/plot.tex}
+    \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -2.5$.}
 \end{figure}
 
 \rem{Here the current varies along the $y$ direction but after the use of vertical boundary conditions we will have a uniform pattern.
@@ -190,18 +192,21 @@ $\partial_y f = (f_{i+N_x} - f_{i-N_x} )/2a$ with
 $a$ the lattice spacing. We know that we normalized the lattice spacing to $1$. Finally, we have $\nabla f = (\partial_x + \partial_y) f$ as the divergence
 of $f$.
 \begin{figure}[H]
-    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-1.75/plot.tex}
-    \caption{Continuity of the current from a phase gradient of $117^{\circ}$ at $\mu = -1.75$. In both $x$ and $y$ direction as
+    \centering
+    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-0.5/plot.tex}
+    \caption{Continuity of the current from a phase gradient of $117^{\circ}$ at $\mu = -0.5$. In both $x$ and $y$ direction as
     well as the total continuity.}
 \end{figure}
 \begin{figure}[H]
-    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.75/plot.tex}
-    \caption{Continuity of the current from a phase gradient of $117^{\circ}$ at $\mu = -2.75$. In both $x$ and $y$ direction as
+    \centering
+    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-1.5/plot.tex}
+    \caption{Continuity of the current from a phase gradient of $117^{\circ}$ at $\mu = -1.5$. In both $x$ and $y$ direction as
     well as the total continuity.}
 \end{figure}
 \begin{figure}[H]
-    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-3.75/plot.tex}
-    \caption{Continuity of the current from a phase gradient of $117^{\circ}$ at $\mu = -3.75$. In both $x$ and $y$ direction as
+    \centering
+    \input{../Plots/SC30/NotFourier/Continuity/FixedLinearPhaseGradient/Phase117deg/mu-2.5/plot.tex}
+    \caption{Continuity of the current from a phase gradient of $117^{\circ}$ at $\mu = -2.5$. In both $x$ and $y$ direction as
     well as the total continuity.}
 \end{figure}
 We see that the total discontinuity is always three orders of magnitude smaller than the current itself. This makes the discontinuity

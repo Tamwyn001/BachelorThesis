@@ -20,7 +20,7 @@ dist = GapEquationBase.computeDistance(delta_old, GapEquationBase.generateNewCol
 
 fprintf('Solving the gap equation\n');
 trace = zeros(numel(system.points), 1);
-while (GapEquationBase.canLoop(t>100, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
+while (GapEquationBase.canLoop(t>150, dist, treshold, 2, 're')) % last values gives how many DIFFEREBT parameters are to check per lattice site p(real, imag) is one param
     fprintf('\n\nIteration %d\n:', t);
     fprintf('Diagonalising\n');
     delta_old = GapEquationBase.generateNewCollumnDeltaOrF(system);

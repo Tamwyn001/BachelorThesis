@@ -14,7 +14,7 @@ set key title '$\ast$' offset char -2.25, char 0.75
 
 plot [1:40] \
     dataroot.'/SC20N20/'.sys.'/meanline_40x30NoBC.dat' using 1:2 with lines title '\footnotesize N' dashtype 1 lw 3.5 lc palette frac 0.2,\
-    dataroot.'/SC20FM20/'.sys.'/meanline_40x30NoBC.dat' using 1:2 with lines title '\footnotesize FM' dashtype 1 lw 3.5 lc palette frac 1.0,\
+    dataroot.'/SC20FM20/'.sys.'/meanline_40x30NoBC.dat' using 1:2 with lines title '\footnotesize FM' dashtype 1 lw 3.5 lc '#E5DC8B',\
     dataroot.'/SC20AM20_m0.5/'.sys.'/meanline_40x30NoBC.dat' using 1:2 with lines title '\footnotesize AM' dashtype 1 lw 3.5 lc palette frac 0.6,\
 
 

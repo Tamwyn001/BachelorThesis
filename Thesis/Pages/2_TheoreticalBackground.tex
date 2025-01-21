@@ -28,19 +28,19 @@ between the particles.\\
 \[
     \hat{H}_0 = \sum_{i\in \natset{N}} \hat{h}_i(x_i)~,~~ \hat{h}_i(x_i) = -\frac{\hbar^2}{2m}\nabla_i^2 + \hat{U}(x_i).
 \]
-We introduce the notation $\natset{N} = \{n \in \mathbb{N}: n\leq N\}$. The potential part may depend on the particle's position $\bm{r}$ or spin $s$. 
+The potential part may depend on the particle's position $\bm{r}$ or spin $s$. 
 We use $x_i := (\bm{r}, s) \in \mathcal{X}\subseteq\mathbb{R}^{3}\times\mathbb{S}$ to group this information. For example, we have for an electron:
 $\mathbb{S}= {-\frac{1}{2},\frac{1}{2}}$.\\
 
-Further we describe a quantum state that a particle can occupy with a wave function $\phi_{\nu}(x)$, 
+Further we describe a quantum state that a particle can occupy with a wavefunction $\phi_{\nu}(x)$, 
 which is related to a certain energy $\epsilon_n \in\mathbb{R}$. This energy depends on 
 the wave vector and the spin of the particle: $\nu = (\bm{k}, \sigma)$. The fundamental equation of
-quantum mechanics relates the wave function with the hamiltonian using the energy of the state:
+quantum mechanics relates the wavefunction with the hamiltonian using the energy of the state:
 \[
     \hat{h} \phi_{\nu}(x) = \epsilon_\nu \phi_{\nu}(x)
 \]
-The wave function lay in the Hilbert space $\mathcal{H}$. Therefore, $\phi_{\nu}(x)$ are eigenfunctions or -states of
-the Hamiltonian with eigenvalues $\epsilon_{\nu}$. Further the wave function should build an orthonormal basis:
+The wavefunction lies in the Hilbert space $\mathcal{H}$. Therefore, $\phi_{\nu}(x)$ are eigenfunctions or -states of
+the Hamiltonian with eigenvalues $\epsilon_{\nu}$. Further the wavefunction should build an orthonormal basis:
 \[
     \int_\mathcal{X} \phi_{\nu'}(x) \phi_{\nu}(x) \dd x = \delta_{\nu'\nu}.
 \]
@@ -53,15 +53,15 @@ where $ \int_{\mathbb{R}^3}\dd^3 r = \int_{\mathbb{R}}\int_{\mathbb{R}}\int_{\ma
 In other words we integrate over all possible states.\\
 
 Now that we can picture a single particle, the next question is: How to describe the collective behaviour of a collection of such particles?
-This is done with a many-body wave function, that sums up all possible combinations of wave functions in the system and should stay normalized. 
-A combination is illustrated as the product of each possible wave function of the particle in a certain state. These particles
+This is done with a many-body wavefunction, that sums up all possible combinations of wavefunctions in the system and should stay normalized. 
+A combination is illustrated as the product of each possible wavefunction of the particle in a certain state. These particles
 can be swapped, and therefore we need to consider all the combinations.
 We aim to work with fermions but give a quick insight with bosons for comparison. We admit having $N \in \mathbb{N}$ particles in the system.\\
 
 \paragraph{Bosons}$~$\\
 
 Boson are more flexible because they are not restrained by the Pauli principle.
-Their many-particle wave function is symmetric (exponent $S$) under swap of two particles.
+Their many-particle wavefunction is symmetric (exponent $S$) under swap of two particles.
 \[
     \Phi^{(S)}(x_1,..,x_N) = \left(N!\prod_{N}(n_{\nu})!\right)^{-\frac{1}{2}} \sum_{P\in S_n} P \phi_{\nu_1}(x_1)\cdot ..\cdot \phi_{\nu_N}(x_N).
 \]
@@ -77,7 +77,7 @@ We now see, the permutation aims to describe each particle (an $x_i$) in each po
 
 \paragraph{Fermions}$~$\\
 
-Fermions are a bit different. Their many-particle wave function is antisymmetric under swap of two particles. We denote it as
+Fermions are a bit different. Their many-particle wavefunction is antisymmetric under swap of two particles. We denote it as
 \[
     \Phi^{(A)}(x_1,..,x_N) = \left(N!\right)^{-\frac{1}{2}} \sum_{P\in S_n} \signum{P}\cdot P \phi_{\nu_1}(x_1)\cdot ..\cdot \phi_{\nu_N}(x_N),
 \]
@@ -99,7 +99,7 @@ We usually describe this expression as the Slater determinant. A determinant van
 in the same state. This means that the probability of finding two fermions in the same state is zero.
 This is the Pauli principle. Only one or no particle may occupy each state. From this we get the constraint for $n_{\nu}$.\\
 
-However following this method may lead to a major problem. The many-particle wave function of fermions is defined up to a sign. For instance if we consider
+However following this method may lead to a major problem. The many-particle wavefunction of fermions is defined up to a sign. For instance if we consider
 two particles ``having'' $x_1$ and $x_2$, we have two possible state $\nu_1$ and $\nu_2$. Two possible solution are
 \begin{align*}
     &\Phi^{(A_1)} = \frac{1}{\sqrt{2}} \bigl(\varphi_{\nu_1} (x_1)\varphi_{\nu_2} (x_2) - \varphi_{\nu_1} (x_2)\varphi_{\nu_2} (x_1) \bigr)\\
@@ -109,30 +109,30 @@ two particles ``having'' $x_1$ and $x_2$, we have two possible state $\nu_1$ and
 This sign difference may lead to computation errors. To solve this we must give a labelling to our states when we count them, and keep it when we 
 come to build the Slater determinant.\\
 
-These bosonic and fermionic wave functions are eigenstate of the Hamiltonian $\hat{H}_0$ and the corresponding eigenvalue $E_{\nu}$
+These bosonic and fermionic wavefunctions are eigenstate of the Hamiltonian $\hat{H}_0$ and the corresponding eigenvalue $E_{\nu}$
 is given by summing the energy of each state times its occupation number: $E_{\nu} = \sum_{\nu} \epsilon_{\nu} n_{\nu}$.
-The orthogonal property of the single-particle wave function propagates itself:
+The orthogonal property of the single-particle wavefunction propagates itself:
 \[
     \int_{\mathcal{X}^N} \Phi_a^{\ast}(x_1,..,x_N) \Phi_b(x_1,..,x_N) \dd^N x = \delta_{ab}.
 \]
-Therefore, we can expend any many-particle wave function $\Psi$ as the linear combination of these:
+Therefore, we can expend any many-particle wavefunction $\Psi$ as the linear combination of these:
 \[
     \Psi = \sum_a f_a \Phi_a(x_1,..,x_N)
 \]
 where $f_a$ is a coefficient and $a$ a labelling.\\
 
-What we just discussed is the so-called first quantization- or wave function formalism. Now we intend to introduce a more compact description of our system. 
+What we just discussed is the so-called first quantization- or wavefunction formalism. Now we intend to introduce a more compact description of our system. 
 
 \subsection{The second quantization}
 For a better description of the many-particle system we introduce a simpler notation. The second quantization lies on three important objects. 
 States, which are described as ``kets''. We put any relevant information (e.g. quantum numbers) in the ket: $|\bm{k}, \sigma,..\rangle$. 
-Then we need operators that act on these states to allow evolutions in the system. 
+Then we need two operators that act on these states to allow evolutions in the system. 
 The second quantization has two main operators. They can create and annihilates a state.\\
 
 \paragraph{States} $~$\\
 
 In this section we describe a state as the number of particle that occupies each single-particle state. As explained before, we need to
-order the state: $1<2<..<N$. We can then describe the wave function as follows $|n_{1},..,n_{N}\rangle$.\\
+order the state: $1<2<..<N$. We can then describe the wavefunction as follows $|n_{1},..,n_{N}\rangle$.\\
 
 Further the state where no particle are present is called the vacuum state, and we denote it as $|0_{\nu_1},..,0_{\nu_N}\rangle = |0\rangle$.
 
@@ -149,7 +149,7 @@ We intentionally discarded the hat on the $c$ as said before.
 We notice the $ (1-n_{\nu})$ term, which avoids creating a particle in an already occupied state. This is the way we express
 the Pauli principle. 
 Further we can construct a state by applying this operator one after another on the vacuum state. To avoid the minus one adding a negative sign, we start from the 
-end and add the particle backwards in the order of the state:
+end, and add the particle backwards in the order of the state:
 \[
     |n_{1},..,n_{N}\rangle = (c_{1}^{\dagger})^{n_{1}}\cdot ..\cdot (c_{N}^{\dagger})^{n_{N}} |0\rangle
 \]  
@@ -165,7 +165,7 @@ so it is only possible to annihilate existing particles. Now that we can bring t
 the operators yield.
 
 The anticommutator of two operators reads $[A,B]_{+}$ or $\{A,B\} := AB + BA$ and is an operator as well.
-we are going to stick with $[A,B]_{+}$ since it is more consistent with the commutator notation $[A,B]_{-}$ (or simply $[A,B]$).\\
+We are going to stick with $[A,B]_{+}$ since it is more consistent with the commutator notation $[A,B]_{-}$ (or simply $[A,B]$).\\
 
 The following results are obtained by separating the $\nu = \mu$ from the $\nu \neq \mu$. We must also say that the dagger $\dagger$ 
 should be understood as the complex transpose of the operator: $(AB)^{\dagger} = B^{\dagger}A^{\dagger}$.
@@ -183,7 +183,7 @@ From this we can define the number operator $\hat{n}_{\nu}:= c_{\nu}^{\dagger} c
 \[
     \hat{N} = \sum_{\nu} \hat{n}_{\nu}~,~~\text{where logically}~ N = \sum_{\nu} n_{\nu}.
 \]
-If we apply the total number operator on the system wave function, we obtain the total number of particles.
+If we apply the total number operator on the system wavefunction, we obtain the total number of particles.
 We kept the hat on the operator to avoid the confusion with the actual number $n_{\nu}$ of particles.\\
 
 \paragraph{Second quantization description of the single- and two- particle operators}$~$\\
@@ -211,9 +211,9 @@ where $\alpha$ and $\beta$ are single-particle states of the system. $c_{\alpha}
 from the state $|\beta\rangle$ to the state $|\alpha\rangle$. However, this transition can be restricted by physical laws. This is the role of the matrix element.
 It returns zero, if the operation does not bring $|\alpha\rangle$ into $|\beta\rangle$.\\
 
-The equivalent expression in the wave function formalism is
+The equivalent expression in the wavefunction formalism is
 \begin{equation}\label{eq:Translation_TwoStateOverlap}  
-    \langle \alpha|\hat{h}|\beta\rangle = \int  \varphi_{\alpha}^{\ast}(x) \hat{h}(x) \varphi_{\beta}(x) \dd x\\
+    \langle \alpha|\hat{h}|\beta\rangle = \int  \varphi_{\alpha}^{\ast}(x) \hat{h}(x) \varphi_{\beta}(x) \dd x,
 \end{equation}
 where $x$ still represents the position and the spin of the particle.
 $\hat{h}$ is a single particle operator, it means it acts on one particle at a time.
@@ -243,7 +243,7 @@ build a scalar.\\
 It exists as well a second quantization for bosons, but this is not the aim of this thesis. For additional information, please refer to \cite{Folk2014}.
 
 \subsubsection{Basis transformation}
-Until now, we considered the wave function in a restricted basis $\{\varphi_{\alpha}(x)\}$. A wave function is defined as the overlap between the basis and the state:
+Until now, we considered the wavefunction in a restricted basis $\{\varphi_{\alpha}(x)\}$. A wavefunction is defined as the overlap between the basis and the state:
 \[
     \phi(x) = \langle x | \alpha \rangle.
 \]
@@ -266,7 +266,7 @@ Inverting the indices leads to the same result, which yields to the transformati
     a_{\alpha}^{\dagger} &= \sum_{\tilde{\alpha}}\langle\tilde{\alpha}|\alpha\rangle a_{\tilde{\alpha}}^{\dagger}\\
     a_{\alpha} &= \sum_{\tilde{\alpha}}\langle\alpha|\tilde{\alpha}\rangle a_{\tilde{\alpha}}.
 \end{align*}
-Further we can use these relations to express a wave function in the basis of another wave function. We have
+Further we can use these relations to express a wavefunction in the basis of another wavefunction. We have
 \begin{align*}
     \phi_{\alpha}(x) = \langle x|\alpha\rangle &= \langle x|\left(\sum_{\tilde{\alpha}} \langle \tilde{\alpha}|\alpha\rangle |\tilde{\alpha}\rangle\right) = \sum_{\tilde{\alpha}}  \langle \tilde{\alpha}|\alpha\rangle\langle x|\tilde{\alpha}\rangle
     = \sum_{\tilde{\alpha}} \langle \tilde{\alpha}|\alpha\rangle \varphi_{\tilde{\alpha}}(x).
@@ -295,7 +295,7 @@ In the same way one can prove $[a_{\tilde{\alpha}},a_{\tilde{\alpha}'}] = [a_{\t
 \subsubsection{Field operators}
 Later in this thesis we are going to use field operators to describe an order parameter of a superconductive system. These are 
 creation and annihilation operators that are defined in the $|x\rangle$-space-spin basis regarding another basis $\{|\alpha\rangle\}$. We here give the state as an argument
-and not as an index any more. Despite the notation, the following operators mustn't be confused with a wave function.
+and not as an index any more. Despite the notation, the following operators mustn't be confused with a wavefunction.
 \begin{align}
     \hat{\psi}^{\dagger}(x) &= \sum_{\alpha} \langle\alpha|x\rangle a_{\alpha}^{\dagger} = \sum_{\alpha} \varphi_{\alpha}^{\ast}(x) a_{\alpha}^{\dagger} \label{eq:FieldOp}\\ 
     \hat{\psi}(x) &= \sum_{\alpha} \langle\alpha|x\rangle a_{\alpha} = \sum_{\alpha} \varphi_{\alpha}(x) a_{\alpha}^{\dagger}\label{eq:FieldOpDag}
@@ -308,7 +308,7 @@ are involved, the commutations properties should be respected. Using the result 
     \left[\hat{\psi}(x), \hat{\psi}^{\dagger}(x')\right]_{\xi} = &~ \delta(x-x')
 \end{align*}
 In the last expression we obtain a $\langle x | x '\rangle$ which can not be normalized the $\{|x\rangle\}$-basis. Instead of a Kronecker delta $\delta_{xx'}$
-we get a delta distribution $\delta(x-x')$. This can be justified because the wave function is normalized and can be ``seen'' as well as a distribution.
+we get a delta distribution $\delta(x-x')$. This can be justified because the wavefunction is normalized and can be ``seen'' as well as a distribution.
 The goal is now to describe the Hamiltonian using this fields operators. Therefore, we rebuild these operators in the Hamiltonian using a $\{|x\rangle\}$ basis
 \begin{align*}
     \hat{H}_0 &=  \int \hat{\psi}^{\dagger}(x) \hat{h}(x)\hat{\psi}(x) \dd x\\
@@ -1044,8 +1044,7 @@ In other words, in some cases the phonon exchange can be attractive and even ove
             axis lines=middle,
             width=7cm,   % Adjust the width
             height=5cm,  % Adjust the height
-            xtick={-2,2},
-            xticklabels={$-\omega_q$,$  \omega_q$},
+            xtick=\empty,
             ytick=\empty,
             unbounded coords=jump,
             xmin=-5, xmax=5,
@@ -1096,8 +1095,7 @@ In other words, in some cases the phonon exchange can be attractive and even ove
                 axis lines=middle,
                 width=7cm,   % Adjust the width
                 height=5cm,  % Adjust the height
-                xtick={-2,2},
-                xticklabels={$-\omega_q$,$  \omega_q$},
+                xtick=\empty,
                 ytick=\empty,
                 unbounded coords=jump,
                 xmin=-5, xmax=5,
@@ -1119,8 +1117,7 @@ In other words, in some cases the phonon exchange can be attractive and even ove
             \end{axis}
             \end{tikzpicture}
         \caption{Left the course of the phonon-mediated effective potential $V_{\text{eff}}$ defined in Eq. \ref{eq:V_eff_phonon}. For some values of $\omega$ the potential is attractive.
-        On the right is a simplified version of the potential that revealed itself to be very accurate with the experiments.
-        $-\omega_q$ is an arbitrary value. Inspired by \cite{FossheimSudbo2004}.}
+        On the right is a simplified version of the potential that revealed itself to be very accurate with the experiments. Inspired by \cite{FossheimSudbo2004}.}
     \end{figure}
 \subsection{Construction of the effective Hamiltonian}
 We want to restrict ourselves in the case where the effective Hamiltonian is attractive. This happens in a small shell around the Fermi-surface.
@@ -1636,9 +1633,9 @@ When introducing $\lambda = V D_n(0)$ we obtain:
     \end{aligned}
 \end{equation*}
 Using $\gamma := \lim{m}{\infty} \left(\sum_{l\in\natset{m}} 1/l - \ln(m)\right)$ the Euler-Mascheroni constant. More details are provided
-in \cite{FossheimSudbo2004} p.88-89. We obtain
+in \cite{FossheimSudbo2004} p.88-89. We obtain \rem{check the exponent}
 \[
-    k_B T_C \approx 1.13\cdot  \omega_D e^{-1/\lambda}.
+    k_B T_C \approx 1.13\cdot  \omega_D e^{-1/\lambda}
 \]
 For $T\rightarrow 0$ the gap equation takes a simpler form to solve:
 \begin{equation*}
