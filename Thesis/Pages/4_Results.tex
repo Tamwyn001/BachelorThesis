@@ -142,10 +142,9 @@ oscillations than in the straight interface case for the same travel length.
   \caption{An arbitrary oscillating exponential decay in the $x$-direction. Going these oscillations along $x$ or along the diagonal $(1,-1)$ axis results in different
   experienced oscillations for the same travel length. Plot made with Desmos.}
 \end{figure}
-Towards simulating the Josephon junction we can represent the current in the superconductor: \rem{Here OBC are used, will be replaced by vertical ones
-to agree with the rest of the study.} 
-We know \rem{(additional small section needed in the theory)} that the current is proportional to the phase gradient of the superconducting gap.
-We can experimentally apply a voltage difference between the two sides of the superconductor to induce a phase gradient \rem{source}.
+Towards simulating the Josephon junction we can represent the current in the superconductor.
+We know that the current is proportional to the phase gradient of the superconducting gap \cite{Orlando2003}.
+We can experimentally apply a voltage difference between the two sides of the superconductor to induce a phase gradient \cite{Orlando2003}.
 To simulate this we will hold the phase fixed on the sides maintaining a difference of $117^{\circ}$ between the two sides.
 We start this gradient at two different angles $\varphi_0 = -2\pi/3$ and $\varphi_0 = \pi/3$ on the left side.
 In order to have a better visualization we reduce the size of the system to $30\times15$ sites being used.
@@ -161,11 +160,35 @@ In order to have a better visualization we reduce the size of the system to $30\
     \caption{Complex phase of the gap in a 30 sites long SC. Phase on side $\varphi_0 = \pi/3$ and gradient of $117^{\circ}$.}
     \label{fig:Phasepi3}
 \end{figure}
-We see that the profile of the curve is the same regardless the starting phase. The slope of the gradient increase while lowering $|\mu|$.
+We see that the profile of the curve is the same regardless the starting phase. The slope of the gradient increases while lowering $|\mu|$.
 Having the sides artificially fixed in the phase causes abrupt changes in the phase on the sides. We see however when skipping the first
- five sites from the edges, that the self-consistent
-algorithm achieves to make a smooth transition. The Andrev bound states are still present and causes the small fluctuations we can see just after the
-break.\\
+three sites from the sides, that the self-consistent algorithm achieves to make a smooth transition.
+
+The slope is related to the number of Cooper pairs present in the system.
+It looks like the pairs can not have a strong phase difference between each other. When we have more of these, they can arrange themselves to produce a strong slope
+in the gradient, while keeping a not to large difference between the neighbours. In this sense, 
+fewer pairs means that the gradient will not be strong compared to a system with more pairs. 
+
+The algorithm makes the phase repartition centred around the mean value of the gradient. Then it draws the 
+line with the respective slopes. This may yield to a strong change of the phase on the sides because we fixed the phase there, and the slope might not be
+sufficient to reach the values on the sides. We observe some noise in the phase gradient of the gap for $\mu=-2.5$. The small resolution of the system
+might make the algorithm converge to a less accurate result. At this chemical potential the electron filling is not very high as well. This results in less
+Cooper pairs and a less accurate phase gradient.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c||c|c|c}
+        $\mu$ (in \si{\electronvolt}) & $-2.5$ & $-1.5$ & $-0.5$\\\hline
+        Slope (in \si{\deg\per\site})& $1.2726$ & $2.6961$ & $3.4564$\\
+    \end{tabular}
+    \caption{The slopes of the phase gradient for different chemical potentials.}
+\end{table}
+
+
+We see that the difference in the slope between $\mu=-2.5$ and $-1.5$ is weaker than between $\mu=-1.5$ and $-0.5$. As discussed earlier this
+is a proof that the extension of the Fermi surface does not bring a lot of additional states to contribute to the gap.\\
+
+Now we can plot the spacial representation of the current in the superconductor with the different phase gradient produced above. We remember
+that we use vertical boundary conditions.
 \begin{figure}[H]
     \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-0.5/plot.tex}
     \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -0.5$.}
@@ -178,11 +201,17 @@ break.\\
     \input{../Plots/SC30/NotFourier/Currents/FixedLinearPhaseGradient/Phase117deg/mu-2.5/plot.tex}
     \caption{Current from a phase gradient of $117^{\circ}$ at $\mu = -2.5$.}
 \end{figure}
-
-\rem{Here the current varies along the $y$ direction but after the use of vertical boundary conditions we will have a uniform pattern.
-We will skip the discussion of the current along the $y$ direction for now.}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c||c|c|c}
+        $\mu$ (in \si{\electronvolt}) & $-2.5$ & $-1.5$ & $-0.5$\\\hline
+        Current (arb. unit)& $0.004$ & $0.015$ & $0.023$\\
+    \end{tabular}
+    \caption{Average value of the current in the sites $i_x\in[2,29]$ for different chemical potentials.}
+\end{table}
+First we observe a uniform current along the $y$ direction. This is due to the vertical periodic boundary conditions.
 We see that the current is very much related to the slope of the gradient, as it should be. 
-The abrupt changes described in Fig. \ref{fig:Phase-2pi3} and \ref{fig:Phase-2pi3} causes low values in the current on the sides of the system. 
+The abrupt changes described in Figs. \ref{fig:Phase-2pi3} and \ref{fig:Phase-2pi3} causes low values in the current on the sides of the system. 
 The current in the middle is ten times stronger with a $\mu$ of $-1.75$ than with a $\mu$ of $-2.75$. There are three orders of magnitude
 of difference between the current strength in $\mu = -1.75$ and $-3.75$. The rule $I\propto\nabla\varphi$ is nevertheless verified.\\
 
@@ -209,8 +238,10 @@ of $f$.
     \caption{Continuity of the current from a phase gradient of $117^{\circ}$ at $\mu = -2.5$. In both $x$ and $y$ direction as
     well as the total continuity.}
 \end{figure}
-We see that the total discontinuity is always three orders of magnitude smaller than the current itself. This makes the discontinuity
-significantly smaller than the current, and we can assume that this one is conserved. Once again a smaller convergence threshold
+We see that the total discontinuity is always three orders of magnitude smaller than the current itself. 
+The current along the $y$-axis has no contribution to the total divergence. This is a result of the vertical periodic boundary conditions.
+The discontinuity is
+significantly smaller than the current, and we can assume that this one is conserved. Once again a smaller convergence threshold,
 as well as an increase in the lattice definition would make the discontinuity even smaller.
 We see that the $x$-component of the current is the one the less conserved. This fact is a direct result of the artificially fixed phased.
 
@@ -220,9 +251,6 @@ Considering the derivation we defined above, if the site $i+1$ has a stronger cu
 On the other hand for the last five sites we have $\partial_x I <0$ due to $I_{i+1}< I_i$. Here the current difference involved displays two to three orders of magnitude.
 On the first and last site there is a discontinuity due to the missing neighbours. For the second and one before the last sites, there is a sudden change in the current
 between sites two and three, as well as between the last and the one before the last site.\\
-\rem{With the vertical periodic boundary condition we expect to have a uniform current along the $y$ direction.}
-
-
 
 
 \subsection{Conclusion and outlook}
@@ -242,7 +270,7 @@ Moreover, the current verifies the charge conservation.
 More work needs to be done to represent the current in the altermagnet between two different superconductors.\\
 
 $d$-wave superconductivity was already introduced as being of particular interest. This is a more complex system.
-As derived in the appendix, thegap is now a neighbour dependent quantity and is not isotropic in the momentum space. The goal would have been 
+As derived in the appendix, the gap is now a neighbour dependent quantity and is not isotropic in the momentum space. The goal would have been 
 to study the profile of the gap when the Cooper pairs enter along the nodal lines of the gap geometry. This
 would result is a clear difference when having a straight or diagonal interface. 
  Some work has been done towards studying the
