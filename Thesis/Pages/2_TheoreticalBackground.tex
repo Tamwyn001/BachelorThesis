@@ -938,7 +938,8 @@ the ``adhesive'' that allows the electron to pair.
 Now that we showed the influence of attractive interactions, we seek some candidate processes that are attractive.
 
 \subsection{Attractive forces mediated by phonons}
-As known from condensed matter physics, the lattice can have some internal oscillations called phonons resulting from the spring coupling between the ions.
+As known from condensed matter physics \cite{GrossMarx2013}, 
+the lattice can have some internal oscillations called phonons resulting from the spring coupling between the ions.
 Now we can imagine that due to the Coulomb interactions, an electron can shift the ions producing a phonon. If this phonon travels and influences another electron
 on it way, we result in an effective electron-electron interaction thanks to the phonon. A similar case would be the exchange of a photon between two electrons.
 We are going to show how this exchange can lead to an attractive interaction.\\
@@ -1423,7 +1424,7 @@ Making a link to the coherent light wave, superconductivity can be seen as the \
 highlight it in \cite{FossheimSudbo2004}.\\
 
 To achieve such generalization we let the formalism be open to other kind of interactions and do not restrict it to the thin shell around the Fermi-surface.
-The potential matrix-element can therefore take a complexer form than introduced in Eq. \ref{eq:V_eff_phonon}.\\
+The potential matrix-element can therefore take a more complex form than introduced in Eq. \ref{eq:V_eff_phonon}.\\
 
 We recall that the electrons move into a lattice. We can assume that this crystal owns some symmetries that are reflected in its crystallographic (complete) basis $\{g_{\eta}(\bm{k})\}$.
 Similar to the Bloch state, we could imagine that the symmetries emphasize some physical quantities. Assuming this, we propose a form for the potential that takes advantage
@@ -1467,11 +1468,11 @@ We can then introduce the basis-functions $\{g_{\eta}(\bm{k})\}$ we talked about
     g_{4}(\bm{k}) =& \frac{1}{2\pi}\bigl( \cos(k_x) - \cos(k_y)\bigr) \tag{$d$-wave}\\
     g_{5}(\bm{k}) =& \frac{1}{2\pi}\sin(k_x) \sin(k_y)\\
 \end{align*}
-from which involves the following lambdas $\lambda_1 = 2U\pi^2, ~ \lambda_2=\lambda_4 = 4V\pi^2, ~ \lambda_3=\lambda_5=4W \pi^2$ and for greater
-$\eta$ gewe set $\lambda_{\eta\ge6} =0$.\\
+from which involves the following lambdas $\lambda_1 = 2U\pi^2, ~ \lambda_2=\lambda_4 = 4V\pi^2, ~ \lambda_3=\lambda_5=4W \pi^2$, and for greater
+$\eta$ we set $\lambda_{\eta\ge6} =0$.\\
 
 For $\eta \in \{1,2\}$, the corresponding $g$ is the identity under all symmetries of $C_{v4}$ and for $\eta \in \{3,4,5\}$ we observe a change of sign under  $\pi/2$ rotations.
-The same behaviour is found in the spherical harmonics for the respective  quantum numbers $l=0$ and $l=2$. From this we can deduce the use of the terms $s$-wave and $d$-wave.\\
+The same behaviour is found in the spherical harmonics for the respective  quantum numbers $l=0$ and $l=2$. From this we can deduce the use of the terms $s$-wave and $d$-wave.
 $s$-wave is isotropic in the momentum space whereas the $d$-wave has a different contour for its part with positive phase
 \begin{figure}[H]
     \centering
@@ -1479,18 +1480,22 @@ $s$-wave is isotropic in the momentum space whereas the $d$-wave has a different
         \coordinate (A) at (0,0);
         \coordinate (B) at (2.5,0);
         \coordinate (C) at (7.5,0);
-        \filldraw[draw=black,fill=TamLightGreen!30]  (A) circle (1.3);
-        \filldraw[draw=black,fill=TamYellow!30] (B)++(-0.5,0) arc[x radius = 2, y radius = 1.5 , start angle=180, end angle=-180];
-        \draw[draw=black] (B) arc[x radius = 1.5, y radius = 2 , start angle=180, end angle=-180] ;
-        \fill[fill=TamYellow!30] (B)++(0.05,0) arc[x radius = 1.45, y radius = 1.95 , start angle=180, end angle=-180];
-
-        \fill[draw=black, fill = green!30]  (B)++(1.5,0) circle (1.5);
-        \filldraw[draw=black,fill=TamDarkBlue!30] (C)++(-1,0) arc[x radius = 2, y radius = 1 , start angle=180, end angle=-180] ;
+        \filldraw[draw = TamLightGreen ,fill=TamLightGreen!30]  (A) circle (1.3);
+        \fill[fill=TamYellow!50] (B)++(-0.5,0) arc[x radius = 2, y radius = 1.5 , start angle=180, end angle=-180];
+        \fill[fill=TamYellow!50] (B)++(0.0,0) arc[x radius = 1.5, y radius = 2 , start angle=180, end angle=-180];
         
-        \filldraw[draw=black,fill=red!30] (C) arc[x radius = 1, y radius = 2 , start angle=180, end angle=-180] ;
-        \filldraw[draw=black,,fill=green!30]  (C)++(1,0) circle (1.27);
+        \fill[fill=red!20, thick] (C) arc[x radius = 1, y radius = 2 , start angle=180, end angle=-180] ;
+        \filldraw[draw=TamDarkBlue,fill=TamDarkBlue!30] (C)++(-1,0) arc[x radius = 2, y radius = 1 , start angle=180, end angle=-180] ;
+        \draw[draw=red] (C) arc[x radius = 1, y radius = 2 , start angle=180, end angle=-180] ;
+
+        \node[anchor=center] at ($(A) - (0,2.5)$) {$s$-wave};
+        \node[anchor=center] at ($(B) - (-1.5,2.5)$) {ext. $s$-wave};
+        \node[anchor=center] at ($(C) - (-1,2.5)$) {$d$-wave};
+
     \end{tikzpicture}
-    \caption{Different gap contours in the momentum space. The $s$-wave is isotropic and the $d$-wave has a different contour for its part with positive phase. \rem{Work in progress.}}
+    \caption{Different gap contours in the momentum space. The $s$-wave is isotropic and extended $s$-wave has a more complex
+     surface (see appendix \ref{sec:Unconventional_order_parameters}).
+    The $d$-wave has a splitting for its part with positive and negative phase. We observe a degeneracy where the two parts overlap.}
 \end{figure}
 
 Further we can reintroduce the BCS gap equation \ref{eq:BCS_gap_eq} and obtain a lattice-dependent form for the gap:
@@ -1633,7 +1638,7 @@ When introducing $\lambda = V D_n(0)$ we obtain:
     \end{aligned}
 \end{equation*}
 Using $\gamma := \lim{m}{\infty} \left(\sum_{l\in\natset{m}} 1/l - \ln(m)\right)$ the Euler-Mascheroni constant. More details are provided
-in \cite{FossheimSudbo2004} p.88-89. We obtain \rem{check the exponent}
+in \cite{FossheimSudbo2004} p.88-89. We obtain
 \[
     k_B T_C \approx 1.13\cdot  \omega_D e^{-1/\lambda}
 \]

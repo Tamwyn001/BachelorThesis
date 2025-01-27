@@ -9,16 +9,16 @@ we have two sub-lattice with opposite spins. In such systems the spin compensate
 The system is symmetric under spin-flip and translation and was theorized in 1948 by Louis Néel as the Néel antiferromagnets \cite{Neel1936}.
 Allowing more complexity one could imagine multiple ions in a unit cell linked by symmetries such as rotation and screw operations. Half of the ions in the cell
 own an opposite spin from the other half. The spectra compensate each other resulting in a zero net magnetization.
-Moreover, these mediums keep same electron spectra under such transformations, making them the same as Néel's antiferromagnets.
+Moreover, these mediums keep the same electron spectra under such transformations, making them the same as Néel's antiferromagnets.
 These material are labelled as zero $q$ antiferromagnets.
 This section summarizes the historical work of \cite{Mazin2024}.\\
 
 Altermagnets implement two or more sub-lattice which are not related between each other by translation or inversion.
 The symmetry that actually links these sublattices is a rotation,
 along with a spin-polarisation in the momentum space linked with a rotation as well \cite{Smejkal2022}.
-In general rotation doe not conserve the electrons spectra. We actually observe a band splitting of the spectra with respect to the spins.
+In general, rotation doe not conserve the electrons spectra. We actually observe a band splitting of the spectra with respect to the spins.
 There is an alternating sign in the spin-splitted momenta, as well as an alternating spin of the polarization in real space,
-which leads to the name altermagnetism \cite{Smejkal2022_2}. These class of material was pinpointed in 2019 \cite{Hayami2019}.
+which leads to the name altermagnetism \cite{Smejkal2022_2}. This class of material was discovered in 2019 \cite{Hayami2019}.
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.75\textwidth]{Ressources/AM.png}
@@ -31,7 +31,7 @@ which leads to the name altermagnetism \cite{Smejkal2022_2}. These class of mate
 
 These properties put the altermagnet in between
 the conventional dichotomy of ferromagnets and antiferromagnet. In fact the altermagnet compensate its magnetical moments taking advantage of the two
-sublattices, like the antiferromagnet does. On the other hand it shares similar properties with the ferromagnets, such as anomalous Hall effect,
+sublattices, like the antiferromagnet does. On the other hand, it shares similar properties with the ferromagnets, such as anomalous Hall effect,
 spin current \cite{Naka2021_2}, magneto-electric effect \cite{Smejkal2022_3}, tunnelling magnetoresistance \cite{Smejkal2022_4} among other \cite{Smejkal2022_2}.\\
 
 % Now that we have a better understanding of altermagnetism we can compare it with another class of material, where the sublattices
@@ -47,9 +47,9 @@ materials were listed by \cite{Smejkal2022} such as semimetals with a Cr$_2$O mo
  perovskite oxide LaMnO$_3$ \cite{Yuan2021} CaCrO$_3$ \cite{Naka2021}, ferrite  Fe$_2$O$_3$ \cite{Smejkal2022_2}, or organic insulators $\kappa$-Cl \cite{Naka2019}.
 We find as well the chalcogenide MnTe semiconductor \cite{Smejkal2022_2}.
 
-On the seek of practical application, researchers have found (an exhaustive list is provided in \cite{Mazin2024}) that
+On the sake of practical application, researchers have found (an exhaustive list is provided in \cite{Mazin2024}) that
 domain like tunnelling magnetoresistance (TMR) are limited under the properties of the material. For instance the actual use 
-of ferromagnets limits the frequency to the gigahertz range \rem{check the values at \url{https://www.nature.com/articles/158670a0}}.
+of ferromagnets limits the frequency to the gigahertz range \cite{Mazin2024}.
 This has to deal with the ferromagnetic resonance that connects 
 the magnetization with electromagnetic waves. The altermagnets could be used in the terahertz range.
 Mentioning that TMR is a key component of the magnetic random access memory (MRAM) \cite{OSullivan2004}\cite{Yadav2022}, the reader can easily estimate the performance
@@ -58,7 +58,7 @@ improvement such upgrade could deliver in a computer.\\
 After this introduction on altermagnets, we intend to find a way to implement these into our system. In a more formal way, we can
 distinguish two types of altermagnet.
 In the first type, the altermagnet's lattice site have different distance to the neighbours depending on the linking axis and the 
-spin of the particle in the site. This is illustrated in Fig.\ref{fig:altermagnet_lattice} $(\bm{a})$. On the other hand we can consider a unit cell being unsymmetrical
+spin of the particle in the site. This is illustrated in Fig. \ref{fig:altermagnet_lattice} $(\bm{a})$. On the other hand, we can consider a unit cell being unsymmetrical
 in its ion position. We consider a square lattice were each unit cell has a non-magnetic ion and two magnetic ions with opposite spin.
 Please consider the second schema $(\bm{b})$.\\
 
@@ -198,7 +198,9 @@ and therefore the $PT$-symmetric systems are spin-degenerated. We have the same 
 of $ \epsilon(\bm{k}, \sigma)$ is followed by an observation of $ \epsilon(\bm{k}, -\sigma)$.\\
 
 \paragraph{A few examples}$~$\\
-We can imagine having a small lattice section for the seek of readability. We consider a ferromagnetic lattice where we apply the space inversion
+
+To illustrate these symmetries we can consider a few examples.
+We can imagine having a small lattice section for the sake of readability. First we choose a ferromagnetic lattice, where we apply the space inversion
 in the middle where the black cross is. The arrows represent the spin and the overall sign of the wave vector $\bm{k}$ is given under each state. Moreover, 
 we use the shading to keep track of the real space location of the site. This representation is in the real space.\\
 \begin{figure}[H]
@@ -254,7 +256,7 @@ The relevant variables for the symmetry in the spectrum are the spin projection 
 Letting the spin points downwards again will require to use an additional operation. Therefore, the ferromagnet is not $PT$-symmetric, and we observe no spin degeneracy as the
 equation shows it.\\
 
-The antiferromagnet has a spin switch in every direction. Here when choosing a point to apply our operations to, we see that 
+The antiferromagnet has a spin switch in every direction. Here, when choosing a point to apply our operations to, we see that 
 neither a lattice point nor a point in the middle on two sites lead to a $PT$ symmetry. As we see the spins points in different directions.
 \begin{figure}[H]
     \centering
@@ -355,11 +357,11 @@ However, if we apply the inversion in the in-between, we observe something diffe
         \draw[->,semithick] (3.5,0) -- (4.5,0)  node[midway, above] {\(P\)};
     \end{tikzpicture}
 \end{figure}
-This point we apply the $P$ transformation around makes the antiferromagnets having a $PT$ symmetry. We see that the lattice site have moved but only the spin and
+At this point, we apply the $P$ transformation around makes the antiferromagnets having a $PT$ symmetry. We see that the lattice site have moved but only the spin and
 the wave vector takes part to the band $\epsilon$. We therefore have a degeneracy in the energy spectrum. Finding at least one point where the $PT$ 
 symmetry works makes the system $PT$ symmetric.\\
 
-If we now take a look at an altermagnets pictured in Fig.\ref{fig:altermagnet_lattice}, we have two different models to test. In the first one $\bm{(a)}$
+If we now take a look at an altermagnets pictured in Fig. \ref{fig:altermagnet_lattice}, we have two different models to test. In the first one $\bm{(a)}$
 the effect of the time reversal $T$ makes the hopping change $m\rightarrow -m$. Then we find no point
 to invert the system around so that this first model doesn't have a $PT$ symmetry. For the second one $\bm{(b)}$
 we can first invert all spin but afterwards inverting the space doesn't bring back the system in the original configuration.
@@ -368,6 +370,7 @@ degeneracy is lifted, we have dissimilar energies for the different spin-orienta
 paragraph.\\
 
 \paragraph{Brief mention of spin-orbit coupling} $~$ \\
+
 We refer as spin-orbit coupling (SOC) the interaction between the spin of the electron and the orbital motion. 
 When SOC is discarded we observe a rotation symmetry around the spins. A rotation $R$ can turn the spin back after the application of $T$
 resulting in a $RT$ symmetry. $RT\bigl(\epsilon(\bm{k},\sigma)\bigr) = \epsilon(-\bm{k},\sigma)$ must equal $\epsilon(\bm{k},\sigma)$.\\
@@ -376,7 +379,7 @@ If we now consider a collinear magnet without SOC, we have a $RT$ but no $PT$ sy
 $\epsilon(-\bm{k},\sigma) = \epsilon(\bm{k},\sigma)$ which describes an even band structure. Such systems are called inversion symmetric altermagnets.\\
 
 \subsection{Implementation of an altermagnet}
-After introducing the basic properties of an altermagnet we now aim to describe this system with the already introduced formalism.
+After introducing the basic properties of an altermagnet, we now aim to describe this system with the already introduced formalism.
 We are going to consider the first model involving a spin-dependent hopping. The Hamiltonian is given by \cite{Ouassou2023} as:
 \begin{equation*}
     H_{AM} = -\sum_{\langle i, j\rangle\sigma\sigma'} \left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} c_{i\sigma}^{\dagger} c_{j\sigma'} 
@@ -385,10 +388,10 @@ involving $\bm{\sigma}=(\sigma_1, \sigma_2,\sigma_3)^T$ the Pauli matrices. $\bm
 between the two sites $i$ and $j$ lies on the $\bm{e}_x$ axis, we have $\bm{m}_{ij} = m(0,0,1)$ and $\bm{m}_{ji} = m(0,0,-1)$ along $\bm{e}_y$. $m$ is 
 the desired hopping amplitude, and $\bm{m}_{ij}$ scales and masks the Pauli matrices. $\sigma_3$ puts $m$ on the diagonal, and takes care of the sign switch. 
 Now having the normal metal t-hopping and this term leads to the $t\pm m$ we
-described in Fig.\ref{fig:altermagnet_lattice} (\textbf{a}).\\
+described in Fig. \ref{fig:altermagnet_lattice} (\textbf{a}).\\
 
 Since the BdG formalism uses fermionic operators, we again need to bring the matrix in a way that reflects the fermionic properties with regard to the $\check{c}$ operator.
-We can remake use of Eq.\ref{eq:Trick1}:
+We can remake use of Eq. \ref{eq:Trick1}:
 \begin{equation*}
     H_{AM} = -\sum_{\langle i j\rangle\sigma\sigma'} \left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} \frac{1}{2}\left(c_{i\sigma}^{\dagger} c_{j\sigma'} - c_{i\sigma'}c_{j\sigma}^{\dagger}\right).
 \end{equation*}
