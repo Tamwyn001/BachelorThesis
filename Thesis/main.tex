@@ -36,24 +36,7 @@
 \usepackage{mathtools}
 \usepackage{pgfplots}
 \pgfplotsset{width=10cm,compat=1.9}
-%\usepackage{tgpagella}
-%\usepackage[light,math]{kurier}
-%\usepackage{libris}
-%\renewcommand*\familydefault{\sfdefault}
-%\usepackage{accanthis}
-%\usepackage{XCharter}
-% \usepackage{tgpagella}
-% \usepackage{newtxmath}
-%\usepackage{kpfonts}
-%\usepackage{lmodern}
-%\usepackage{lmodern}
-%\usepackage{libertinus}
-%\DeclareMathAlphabet{\msfsl}{OT1}{qtm}{m}{n}
-%\usepackage{boisik}
-%\usepackage{gfsartemisia}
-%\usepackage{CormorantGaramond}
-%\usepackage[light]{antpolt}
-%\usepackage{mathpazo}
+\usepackage{pdfpages}
 \usepackage{bbm} %for the \mathbb{1}
 \newcommand{\indc}{\mathlarger{\mathlarger{\mathbbm{1}\normalsize}}}
 
@@ -263,7 +246,9 @@
     \subfile{Pages/Literature.tex}
 
     \newpage
-
+\section{Administrative documents}
+\includepdf[pages=-]{Ressources/Eigenstaendigkeitserklearung2.pdf}
+\includepdf[pages=-]{Ressources/0215_002.pdf}
 
 
 \end{document}
