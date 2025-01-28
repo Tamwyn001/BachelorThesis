@@ -928,15 +928,15 @@ We are going to show how the attractive interactions destabilize the Fermi-liqui
 that new ground states open. Leon Cooper introduced a very specific context of attraction, that has a strong influence on the stability. Taking this example we are going
 to make clear that attractive interactions can in some cases exceed the Coulomb force, resulting in unexpected new eigenstates.\\
 
-Let's assume we have an inert Fermi sea, where the electrons are considered non-interactive. Adding electrons requires to place them
+Let's assume we have an inert Fermi-sea, where the electrons are considered non-interactive. Adding electrons requires to place them
 above the sea. The exotic context is due to the interactions. They can only interact if they are within a small frequency cover $\omega_0$
-over the Fermi surface, one on each side, facing them through the complete surface. If this is not the case the interaction vanishes.
+over the Fermi-surface, one on each side, facing themselves through the complete surface. If this is not the case when the interaction vanishes.
 
 Fossheim and Sudbø derived a method in \cite{FossheimSudbo2004} from p.67 to 69. They conclude with the fact that allowing such
 interaction leads to a total energy of the interacting system $E$ smaller than $2 \epsilon_{F}$. This means that the attraction of the electrons
-shift them in a state that lies under the Fermi sea. Further they showed that if the Fermi sea vanishes (one could take electrons out of the system), 
+shifts them in a state that lies under the Fermi-sea. Furthermore, they showed that if the Fermi sea vanishes (one could take electrons out of the system), 
 then this attractive pairing disappears. The same is observed as we approach the classical limit.
-By forming a pair the electrons effectively acts as a boson in some ways. These pairs are named Cooper pairs by the eponymous physicist.
+By forming a pair, the electrons effectively acts as a boson in some ways. These pairs are named Cooper pairs by the eponymous physicist.
 The Pauli principle does not rule their energies any more.\\
 
 We now understand why attractive processes create instabilities in the liquid. An energy gap opens bellow the energy surface,
@@ -945,14 +945,14 @@ the ``adhesive'' that allows the electron to pair.
 Now that we showed the influence of attractive interactions, we seek some candidate processes that are attractive.
 
 \subsection{Attractive forces mediated by phonons}
-As known from condensed matter physics, the lattice can have some internal oscillations called phonons resulting from the spring coupling between the ions.
+As known from condensed matter physics \cite{GrossMarx2013}, the lattice can have some internal oscillations called phonons resulting from the spring coupling between the ions.
 Now we can imagine that due to the Coulomb interactions, an electron can shift the ions producing a phonon. If this phonon travels and influences another electron
 on it way, we result in an effective electron-electron interaction thanks to the phonon. A similar case would be the exchange of a photon between two electrons.
 We are going to show how this exchange can lead to an attractive interaction.\\
 
 In a dense lattice the ions move much slower around their equilibrium positions than the light electrons who pass by. The electrons move the charges of the ions, inducing
-in a small dipole moment. A second electron that also passes in the surrounding is going to feel the dipole moment, and will be 
-attracted. Then the ion shifts back in its new equilibrium position, and the dipole moment vanishes long after the first electron passed.\\
+in a small dipole moment. A second electron, that also passes in the surrounding, is going to feel the dipole moment, and will be 
+attracted. Then, the ion shifts back in its new equilibrium position, and the dipole moment vanishes long after the first electron passed.
 
 Moreover, due to the Coulomb interactions, the electrons aim to put as much distance as they can between them, in a minimal amount of time. Therefore,
 we can say that the $\bm{k}$-quantum number should be opposite between the two electron. If we target to put these concepts in a mathematical form, we use
@@ -962,16 +962,16 @@ our previous Hamiltonian, and add an electron-phonon interaction term.
         V_{\bm{k}\bm{k}', \bm{q}} c_{\bm{k}-\bm{q},\sigma}^{\dagger}c_{\bm{k}+\bm{q},\sigma'}^{\dagger}c_{\bm{k},\sigma}c_{\bm{k}',\sigma'} + V_{e^-\text{phonon}}
 \]
 where $V_{e^-\text{phonon}}$ usually depends on the sum picturing the phonons-modes $\lambda$. These modes are similar to the oscillations modes we have in a CO$_2$-molecule for example.
-The expression that forms the phonon-depend potential in momentum space reads 
+The expression that forms the phonon-dependent potential in momentum space reads 
 \begin{equation} \label{eq:Pot_phonon_interaction}
     V_{e^-\text{phonon}} = \sum_{\bm{k},\bm{q},\sigma} M_{\bm{q}}\left(a_{-\bm{q}^{\dagger}} + a_{\bm{q}}\right) c_{\bm{k}+\bm{q},\sigma}^{\dagger}c_{\bm{k},\sigma}.
 \end{equation}
 $M_{\bm{q}}\left(a_{-\bm{q}^{\dagger}} + a_{\bm{q}}\right) $ is a matrix element of the coupling between the electron and the phonon. 
 The $a_{\bm{q}}$ and $a_{\bm{q}}^{\dagger}$ are annihilation and creation operators of a phonon with wave vector $\bm{q}$.\\
 
-Let us now take a step aside and recall the quantum oscillator. Its eigenstates are considered as bosonic. This is achieved by showing that the ladder operators
+Let us now take a step aside, and recall the quantum oscillator. Its eigenstates are considered bosonic. This is achieved by showing that the ladder operators
 verify the commutation relation $[a,a^{\dagger}] = 1$. On the other side, the phonons are modelled with springs between the ions. For this reason they
-behave in the same manner as the quantum oscillator: By extension phonons act like bosons. For this reason they verify:
+behave in the same manner as the quantum oscillator. By extension of this idea, phonons act like bosons. For this reason they verify:
 \[
     \commu{a_{\bm{q}}}{a_{\bm{q}^{\dagger}}} = \delta_{\bm{q},\bm{q}'}
 \] 
@@ -982,7 +982,7 @@ and the phonon of mode $\lambda$, if included.
     M_{\bm{q},\lambda} = \im (\bm{q}\cdot \bm{\xi}_{\lambda}) \sqrt{\frac{\hbar}{2M\omega_{\bm{q},\lambda}}} \tilde{V}_{\lambda}(\bm{q}).
 \]
 We do not provide here a detailed calculation of $M_{q,\lambda}$. This pairing is much weaker than the electron-photon interaction. 
-Another important fact is that for $\bm{q}\rightarrow 0$ the matrix element $M$ vanishes. $M$ is proportional to $\bm{q}$ which illustrate how the electron-phonon interaction
+Another important fact is that for $\bm{q}\rightarrow 0$, the matrix element $M$ vanishes. $M$ is proportional to $\bm{q}$ which illustrate how the electron-phonon interaction
 happens between a point charge and a dipole.\\
 
 The goal is now the implicitly express the phonon exchange with an effective electron-electron process. If we consider two diagrams, one aiming to describe the absorption of a phonon
@@ -1015,7 +1015,7 @@ and one the emission of a phonon, we can combine them to get a new effective int
         };
         \end{feynman}
       \end{tikzpicture}
-    \caption{The emission (left) and absorption (right) digram of a phonon of wave vector $\bm{q}$ by an electron.
+    \caption{The emission (left) and absorption (right) Feynman-digrams of a phonon of wave vector $\bm{q}$ by an electron.
     The matrix element $M_{\bm{q}}$ gives the probability amplitude of emitting or absorbing the phonon. This plays a role
     in the Fermi golden rule, when it comes to give the transition rate of the scattering of the electron in its new state.}
     \end{figure}
@@ -1028,7 +1028,7 @@ We can write a propagator which describes the dashed line in a connected context
     D_0(\bm{q},\omega) = \frac{2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2 + \im \eta},
 \]
 involving a very small quantity $\eta$. From this we obtain an expression for the phonon-mediated interaction of two electrons.
-This is performed using $V^{(ph)}_{\text{eff}}(\bm{q},\omega) = \mathcal{R}\text{e}\left({|M_{\bm{q}}|^2 D_0(\bm{q},\omega)}\right)$ and discarding the second 
+This is performed using an effective potential $V^{(ph)}_{\text{eff}}(\bm{q},\omega) = \mathcal{R}\text{e}\left({|M_{\bm{q}}|^2 D_0(\bm{q},\omega)}\right)$ and discarding the second 
 order $\eta$ term which is very small. We get:
 \begin{equation}\label{eq:Pot_attractive_el_phonon}
     V^{(ph)}_{\text{eff}}(\bm{q},\omega) = \frac{2|M_{\bm{q}}|^2\omega_{\bm{q}}}{\omega^2 - \omega_{\bm{q}}^2},
@@ -1042,7 +1042,7 @@ phonon-mediated interactions (Eq. \ref{eq:Pot_attractive_el_phonon}):
 \end{equation}
 
 Here we have reached a very important point. This new potential can be in some case negative, which means it results in an attractive interaction between the electrons. 
-In other words, in some cases the phonon exchange can be attractive and even overcome the strong repulsive Coulomb potential.
+In other words, in some cases the phonon exchange can be attractive, and even overcome the strong repulsive Coulomb potential.
 
 \begin{figure}[H]\centering
 
@@ -1051,7 +1051,9 @@ In other words, in some cases the phonon exchange can be attractive and even ove
             axis lines=middle,
             width=7cm,   % Adjust the width
             height=5cm,  % Adjust the height
-            xtick=\empty,
+            xtick={-2,2},
+            xticklabels = {$-\omega_{\bm{q}}$,$\omega_{\bm{q}}$},
+            xticklabel style={anchor=south}, % Place xtick labels above the axis
             ytick=\empty,
             unbounded coords=jump,
             xmin=-5, xmax=5,
@@ -1102,7 +1104,9 @@ In other words, in some cases the phonon exchange can be attractive and even ove
                 axis lines=middle,
                 width=7cm,   % Adjust the width
                 height=5cm,  % Adjust the height
-                xtick=\empty,
+                xtick={-2,2},
+                xticklabels = {$-\omega_{\bm{q}}$,$\omega_{\bm{q}}$},
+                xticklabel style={anchor=south}, % Place xtick labels above the axis
                 ytick=\empty,
                 unbounded coords=jump,
                 xmin=-5, xmax=5,
@@ -1123,8 +1127,8 @@ In other words, in some cases the phonon exchange can be attractive and even ove
             {abs(x) < 2 ? -3 : 0};
             \end{axis}
             \end{tikzpicture}
-        \caption{Left the course of the phonon-mediated effective potential $V_{\text{eff}}$ defined in Eq. \ref{eq:V_eff_phonon}. For some values of $\omega$ the potential is attractive.
-        On the right is a simplified version of the potential that revealed itself to be very accurate with the experiments. Inspired by \cite{FossheimSudbo2004}.}
+        \caption{On the left, the course of the phonon-mediated effective potential $V_{\text{eff}}$ defined in Eq. \ref{eq:V_eff_phonon}. For some values of $\omega$ the potential is attractive.
+        On the right is a simplified version of the potential that revealed itself to be very accurate with the experiments. The figure is inspired by \cite{FossheimSudbo2004}.}
     \end{figure}
 \subsection{Construction of the effective Hamiltonian}
 We want to restrict ourselves in the case where the effective Hamiltonian is attractive. This happens in a small shell around the Fermi-surface.
@@ -1164,9 +1168,9 @@ to consider that the two electrons have opposite wave vectors. The following fig
     The thick line illustrates the Fermi surface and the dotted one the thin shell. As we see, if the electrons have opposite wave vectors, and the $\bm{k}$ electron
     scatters into the shell, then the $\bm{k}'$ electron scatters in the shell as well. This is not always the case if the wave vectors do not agree, as we can see on the left figure.
     The right figure points out the maximization process. With opposite wave vectors,
-    we get the largest possibility spectrum for the scattering. Inspired by \cite{FossheimSudbo2004}.}
+    we get the largest possibility spectrum for the scattering. The illustration is inspired by \cite{FossheimSudbo2004}.}
 \end{figure}
-Further the attraction is a short range effect, so if we want to consider it, we must think that the electrons are very close to each other.
+Furthermore, the attraction is a short range process, so if we want to consider it, we must think that the electrons are very close to each other.
 This requires the electrons to have opposite spins due to the Pauli principle. Latter we are going to introduce the tight binding formalism. In this context we want
 the electrons to be on the same lattice site to be able to form a pair. This shell approximation turns out to be a good model.\\
 
@@ -1182,13 +1186,13 @@ The Hamiltonian that follows from these transformations is called the BCS-reduce
 where $\overline{\sigma}$ is the opposite spin of $\sigma$. 
 The two rightmost operators destroy the electron with opposite wave vectors and spin before the interaction and creates two new with opposite wave vectors, including the
  loss/gain of momentum, and opposite spin after the interaction. To convince oneself, we can just look at the expression before the variable transformation. The potential $V_{\bm{k}\bm{k}'}$ 
- that modulates the strength of this pairing is now a matrix element that acts if the wave vectors are close to the Fermi-surface. The electrons have to move in opposite directions with opposite spins.
-Due to the retardation processes we introduced earlier, there remains a distortion in the lattice long after the electrons passed. Due to the inducting dipole moment,
+ that modulates the strength of this pairing is now a matrix element that acts, if the wave vectors are close to the Fermi-surface. The electrons have to move in opposite directions with opposite spins.
+Due to the retardation processes we introduced earlier, there remains a distortion in the lattice long after the electrons passed. Due to the inducted dipole moment,
 the other electron is attracted towards the distortion. As we also saw, the Coulomb repulsion causes a collinear displacement, close to the distortion
-that its homologue produced. This phenomenon is called the Cooper-pairing and is a coupling that happens in momentum space.\\
+that its homologue produced. This phenomenon is called the Cooper-pairing and is a coupling that happens in momentum space.
 
-The reader might want to see a picture of what is happing in the real space. To achieve a representation two simple statements are enough. 
-First, the Coulomb force aims to maximize the distance between the electrons in minimal time.
+The reader might want to see a picture of what is happing in the real space. To achieve a representation, two simple statements are enough. 
+First, the Coulomb force aims to maximize the distance between the electrons in a minimal amount of time.
  This is achieved by moving them collinearly in opposite directions. Second, due to the retardation process, it is energetically more favourable
 for the electron to move along the distortion of the lattice. The result is illustrated in Fig. \ref{fig:CooperPairing}. 
 \begin{figure}[H]
@@ -1234,9 +1238,10 @@ for the electron to move along the distortion of the lattice. The result is illu
 
     \end{tikzpicture}
     \centering
-    \caption{A lattice of ions, where two electrons propagate with opposite directions. Inspired by \cite{FossheimSudbo2004}.} \label{fig:CooperPairing}
+    \caption{A lattice of ions, where two electrons propagate with opposite directions. The blue dots represent the ions shifted from their original position.
+    The figure is inspired by \cite{FossheimSudbo2004}.} \label{fig:CooperPairing}
 \end{figure}
-Here the moved ions in blue are shifting back to their equilibrium position long after the passage of the second electron.
+Here, the moved ions are shifting back to their equilibrium position long after the passage of the second electron.
 However, it is important to remember, that when the second electron passes, it experiences almost the same distortion everywhere.
 An interesting fact is that these interactions are the source of the superconductivity, but also the main origin of resistivity in clean materials.
     
@@ -1244,12 +1249,12 @@ An interesting fact is that these interactions are the source of the superconduc
 After this introduction on the phonon coupling between the electrons in the momentum space, or Cooper-pairing,
 we aim to describe the energy of the superconductor in a mean-field approach. The goal of it is to reduce the description
 involving neighbours, to an on-site representation in the mean field of the other sites. Therefore, we are going to describe 
-a one-body problem which is easier to compute. As known, mean-fields approaches require self-consistent equations to be comprehensive.\\
+a one-body problem which is easier to work with. As known, mean-field approaches require self-consistent equations to be comprehensive.\\
 
 The first step is to introduce the following expectation values:
 \begin{align}
-    b_{\bm{k}} = &\langle c_{-\bm{k}\downarrow}c_{\bm{k}\uparrow}\rangle \label{eq:ExpectBCS} \\
-    b_{\bm{k}}^{\dagger} = &\langle c_{\bm{k}\uparrow}^{\dagger}c_{-\bm{k}\downarrow}^{\dagger}\rangle  \label{eq:ExpectBCSDag}
+    b_{\bm{k}} = &\langle c_{-\bm{k}\downarrow}c_{\bm{k}\uparrow}\rangle, \label{eq:ExpectBCS} \\
+    b_{\bm{k}}^{\dagger} = &\langle c_{\bm{k}\uparrow}^{\dagger}c_{-\bm{k}\downarrow}^{\dagger}\rangle,  \label{eq:ExpectBCSDag}
 \end{align}
 which lead to a new expression for the $c$ operators:
 \begin{equation}
@@ -1275,12 +1280,12 @@ This brings our Hamiltonian in another form:
 \begin{equation} \label{eq:HamiltonianBCS1}
     H = \sum_{\bm{k}\sigma} \epsilon_{\bm{k}} c_{\bm{k}\sigma}^{\dagger}c_{\bm{k}\sigma} - \sum_{\bm{k}} \left( \Delta_{\bm{k}}^{\dagger} c_{-\bm{k}'\downarrow}c_{\bm{k}'\uparrow}  + \Delta_{\bm{k}}^{\dagger} c_{\bm{k}\uparrow} ^{\dagger}c_{-\bm{k}\downarrow}^{\dagger} -  b_{\bm{k}}^{\dagger} \Delta_{\bm{k}}^{\dagger} \right).
 \end{equation}
-We took the liberty to split the sum, rename the $\bm{k}'$ to $\bm{k}$ and recombine the sum. We notice that this form involves a lot of creation and annihilation terms, and this is not 
-is rather uncommon for an effective non-interacting electron gas. Furthermore, we remember that we aim a one particle description in the mean field of its neighbours.
+We took the liberty to split the sum, rename the $\bm{k}'$ to $\bm{k}$ and recombine the sum. We notice that this form involves a lot of creation and annihilation terms, and this is 
+is rather uncommon for an effective non-interacting electron gas. Furthermore, we remember that we aim a one-particle description in the mean field of its neighbours.
 This complexity will lead to some difficulties to express the quasi-particle spectrum. A good solution is 
-to rotate the basis of the $c$ operators, to land in a basis that diagonalizes the Hamiltonian and therefore minimizes the number of operators.\\
+to rotate the basis of the $c$ operators, to land in a basis that diagonalizes the Hamiltonian, and therefore minimizes the number of operators.\\
 
-The transformation involves two new fermionic operators $\eta$ and $\gamma$ that therefore respect Eq. \ref{eq:Fermion1} to \ref{eq:Fermion3} and reads in a matrix form:
+The transformation involves two new fermionic operators $\eta$ and $\gamma$ that must respect Eq. \ref{eq:Fermion1} to \ref{eq:Fermion3}. They read in a matrix form:
 \begin{equation}\label{eq:RotationBasis_c1}
     \begin{pmatrix}
         c_{\bm{k}\uparrow}\\
@@ -1323,9 +1328,10 @@ We obtain the following expression
           -& \sum_{\bm{k}} \left[\Delta_{\bm{k}} \cos(\theta)^2 - \Delta_{\bm{k}}^{\dagger}\sin(\theta)^2 + 2\epsilon_{\bm{k}} \cos(\theta)\sin(\theta) \right]\gamma^{\dagger}_{\bm{k}}\eta_{\bm{k}}.     
     \end{aligned}
 \end{equation}
-The goal is to diagonalize the Hamiltonian in the $(\gamma, \eta)$ basis. Therefore, we have to choose $\theta$, such that the terms with $\gamma^{\dagger}\eta$ and $\eta^{\dagger}\gamma$ vanish.
-A difficulty that we may encounter along with this idea is that $\Delta$ is an order parameter and own a complex phase fluctuation. In other words one can write
-$\Delta = |\Delta|e^{\im\tau}$ where $\tau$ has some fluctuations, but we are going to ignore them.\\
+
+The goal is to diagonalize the Hamiltonian in such a way, that the terms with a $\gamma^{\dagger}\eta$ and $\eta^{\dagger}\gamma$ contribution vanish. We have to choose the adequate $\theta$.
+A difficulty that we may encounter along with this idea, is that $\Delta$ is an order parameter and owns a complex phase fluctuation. In other words one can write
+$\Delta = |\Delta|e^{\im\tau}$ where $\tau$ has some fluctuations, but we are going to ignore them.
 
 We can set
 \begin{equation*}
@@ -1337,15 +1343,15 @@ and introduce two new variables called the coherence factors:
     u_{\bm{k}}^2 := \cos(\theta)^2 &= \frac{1}{2} \left(1 + \frac{\epsilon_{\bm{k}}}{E_{\bm{k}}}\right)  \label{eq:coherenceFac_u},
 \end{align}
 along with a new energy $E_{\bm{k}} = \sqrt{\epsilon_{\bm{k}}^2 + |\Delta_{\bm{k}}|^2}$. These factors play an important
-role in NMR as well as in the ultrasound propagation in superconductors. Cooper and Schrieffer made some correct
-predictions in an advanced many-body system. This is labelled as one of the greatest achievements in condensed matter physics in the 20th century \cite{FossheimSudbo2004}.
+role in NMR, as well as in the ultrasound propagation in superconductors. Cooper and Schrieffer made some correct
+predictions in an advanced many-body system. This is labelled as one of the greatest achievements in condensed matter physics in the 20-th century \cite{FossheimSudbo2004}.
 They are going as well to play a central role in the simulations later.\\
 
 We obtain a Hamiltonian that looks very similar to a free fermion quasiparticle gas:
 \begin{equation}\label{eq:HamiltonianBCS2}
 H = \underbrace{\sum_{\bm{k}} \left(\epsilon_{\bm{k}} + \Delta_{\bm{k}} b_{\bm{k}}^{\dagger}\right)}_{\substack{=:H_0~ \text{constant}\\\text{ mean-field term}}}  
 + \underbrace{\sum_{\bm{k}} E_{\bm{k}}\left(\eta_{\bm{k}}^{\dagger}\eta_{\bm{k}} - 
-\gamma_{\bm{k}}^{\dagger}\gamma_{\bm{k}}\right)}_{\substack{\text{Spinless fermion system with} 
+\gamma_{\bm{k}}^{\dagger}\gamma_{\bm{k}}\right)}_{\substack{\text{Spinless fermionic system with} 
 \\\text{two types of fermions of}\\\text{energies }E_{\bm{k}}\text{ and }-E_{\bm{k}}.}}.
 \end{equation}
 This expression forgets the interactions to describe two types of particles in a mean field. 
@@ -1353,22 +1359,22 @@ As \cite{FossheimSudbo2004} described it in chapter 3, p.83-84, one can note tha
 to the fact that we describe the quasiparticles as a linear combination of electrons and holes with opposite spins (see Eq. \ref{eq:RotationBasis_c1}).
 The two relevant degrees of freedom are distinct linear combinations of particle-hole 
 pairs with spin-singlet components. However, the resulting quasiparticles are not spin-singlets, as they carry a non-zero spin.
-The degrees of freedom are therefore preserved.\\
+The degrees of freedom are therefore preserved.
 
-The energy $E_{\bm{k}}$ present a gap in the energy of the quasiparticles when looking at the Fermi surface $\epsilon_{\bm{k}}=0$ (we remember that $\mu$ is present in $\epsilon_{\bm{k}}$).
-This is due to the fact that the expectation values we introduced in \ref{eq:ExpectBCS} and \ref{eq:ExpectBCSDag} do not vanish. The gap is a result of the Cooper-pairing. These expectation values
+The energy $E_{\bm{k}}$ presents a gap in the energy of the quasiparticles when looking at the Fermi-surface $\epsilon_{\bm{k}}=0$ (we remember that $\mu$ is present in $\epsilon_{\bm{k}}$).
+This is due to the fact that the expectation values we introduced in Eqs. \ref{eq:ExpectBCS} and \ref{eq:ExpectBCSDag} do not vanish. The gap is a result of the Cooper-pairing. These expectation values
 are the order parameters of the Meissner state and shouldn't be confused with the superconducting gap $\Delta$. They can however be zero both at the same time. \\
 
 This free particle context is a good opportunity to introduce the grand canonical ensemble of the Hamiltonian. 
 Even if we could give the direct result, deriving this ensemble involves a lot of important steps, so for
-the seek of completeness, we are going to go step to step through it.\\
+the sake of completeness, we are going to go step to step through it.
 
 We define the particle number operator $N = \sum_{\bm{k}}\left( n_{\eta\bm{k}} + n_{\gamma\bm{k}}\right)$, that counts the quasiparticles of both class. 
 Further the possible states $\bm{k}$ are in a ``continuous'' set $\mathfrak{K}= \left\{\bm{k}_1,\bm{k}_2,..\right\}$. The set $\{n_{\bm{k}}\}$ gathers
 the different occupation numbers of all the states $\bm{k}$ under one configuration. The configurations are stored in an ensemble $\mathcal{C}$. 
-Further we consider fermions, so the occupation numbers of the particle
- type $\eta$ or $\gamma$ in state $\bm{k}$ are labelled $n_{\eta\bm{k}}$ and $n_{\gamma\bm{k}}$ 
- and equals either 0 or 1.
+Further we consider fermions, so that the occupation numbers of the particle's
+types $\eta$ or $\gamma$ in state $\bm{k}$ are labelled $n_{\eta\bm{k}}$ and $n_{\gamma\bm{k}}$,
+and equals either 0 or 1.
 \begin{align*}
     Z_G &= \text{Tr}\left(e^{-\beta( H)}\right)\\
     &= \sum_{\{n_{\bm{k}}\}\in\mathcal{C}} e^{-\beta H_0} \langle \{n_{\bm{k}}\}|\exp\left(\sum_{\bm{k'}}-\beta E_{\bm{k'}}\eta_{\bm{k'}}^{\dagger}\eta_{\bm{k'}} + \beta E_{\bm{k'}}\gamma_{\bm{k'}}^{\dagger}\gamma_{\bm{k'}}\right)|\{n_{\bm{k}}\}\rangle\\
@@ -1379,7 +1385,7 @@ Further we consider fermions, so the occupation numbers of the particle
     &~~~~~~~~~~~~\sum_{n_{\gamma\bm{k}_1}} \exp\left(\beta\left[E_{\bm{k}_1}n_{\gamma\bm{k}_1}\right]\right)\sum_{n_{\gamma\bm{k}_2}} \exp\left(\beta\left[E_{\bm{k}_2}n_{\gamma\bm{k}_2}\right]\right)\cdot..\\
     &= e^{-\beta H_0} \prod_{\bm{k}}  \left(1 + e^{-\beta E_{\bm{k}}}\right) \left(1 + e^{\beta E_{\bm{k}}}\right) \\
 \end{align*}
-This partition function becomes useful if we want to derive the free energy of the system. It will help us to solve the self-consistent equation for the gap.\\
+This partition function becomes useful if we want to derive the free energy of the system. It will help us to solve the self-consistent equation for the gap.
 According to \cite{FuchsBaugaertel2023} p.99 the free energy can be derived from the partition function as:
 \[
     F = -\frac{1}{\beta}\ln(Z_G) = H_0 -\frac{1}{\beta}\sum_{\bm{k}} + \ln\left(1 + e^{-\beta E_{\bm{k}}}\right)\ln\left(1 + e^{\beta E_{\bm{k}}}\right).
@@ -1390,7 +1396,7 @@ Following \cite{FossheimSudbo2004} we obtain in the limit of low temperatures ($
       &= H_0 + \sum_{\bm{k}} E_{\bm{k}} - E_{\bm{k}}\theta\left(E_{\bm{k}}\right) + E_{\bm{k}} \theta\left(E_{\bm{k}}\right)\\
       &= \sum_{\bm{k}} \epsilon_{\bm{k}} + \Delta_{\bm{k}}b_{\bm{k}}^{\dagger} E_{\bm{k}},
 \end{align*}
-where we used the properties from the Heaviside step-function described in \ref{eq:Heaviside}.
+where we used the properties from the Heaviside step-function described in Eq. \ref{eq:Heaviside}.
 The minimization of the free energy $F$ should self-consitently determine the gap $\Delta_{\bm{k}}$. This is a statement that depends neither on the momentum space structure,
 nor on the attraction of the potential \cite{FossheimSudbo2004}. $E_{\bm{k}}$ has an implicit $\Delta_{\bm{k}}$-dependence.
 We compute the derivation $\parDif{F}{\Delta_{\bm{k}}}$ and search the argument of the zero-position. Deriving one $\bm{k} $ from the sum is enough. We demand the following
@@ -1410,17 +1416,17 @@ with $-\sum_{\bm{k}} V_{\bm{k}\bm{k}'}$ and introduce Eq. \ref{eq:DeltaBaseDef},
 \end{equation}
 
 Fossheim and Sudbø \cite{FossheimSudbo2004} emphasize that this equation is not limited to phonon mediated interaction, as long we
-do not specify the potential. Further Cooper-pairs can condensate, because in the pair, the spin of the electrons adds up to zero.
-The pair is not ruled any more by the Pauli principle and can take part into the superconducting condensate.
-Even if the formation temperature of Cooper-pairs in higher than the critical temperature $T_C$, these mean field approach makes these temperatures agree.\\
+do not specify the potential. Furthermore, Cooper-pairs can condensate, because in the pair the spin of the electrons adds up to zero.
+The pair is not ruled any more by the Pauli principle, and can take part into the superconducting condensate.
+Even if the formation temperature of Cooper-pairs in higher than the critical temperature $T_C$, this mean field approach makes these temperatures agree.
 
-As we introduced earlier the gap has a complex phase fluctuation. This phase is hard to vary in good metals because the number of carrier electrons is high.
-On the other side in poor metals, the fluctuations that break the pair are more easily reached, i.e. at a lower temperature than in good metal. Superconductivity
+As we introduced earlier, the gap has a complex phase fluctuation. This phase is hard to vary in good metals because the number of carrier electrons is high.
+On the other side, in poor metals, the fluctuations that break the pair are more easily reached, i.e. at a lower temperature than in good metal. Superconductivity
 is therefore more stable in metals of good value.\\
 
 In this section we saw how to reduce the many-body Hamiltonian to a single-body problem in the means field of its neighbours. The system that follows from this
 is a non-interacting gas of electrons and holes. This involves the introduction of the 
-superconducting gap parameter that we can thank to the statistical mechanics formalism express in a self-consistent way.
+superconducting gap parameter that we can, thanks to the statistical mechanics formalism, express in a self-consistent way.
 
 
 \subsection{Generalized gap equation, $s$-wave and $d$-wave superconductivity}
@@ -1430,7 +1436,7 @@ Making a link to the coherent light wave, superconductivity can be seen as the \
 highlight it in \cite{FossheimSudbo2004}.\\
 
 To achieve such generalization we let the formalism be open to other kind of interactions and do not restrict it to the thin shell around the Fermi-surface.
-The potential matrix-element can therefore take a more complex form than introduced in Eq. \ref{eq:V_eff_phonon}.\\
+The potential matrix-element can therefore take a more complex form than introduced in Eq. \ref{eq:V_eff_phonon}.
 
 We recall that the electrons move into a lattice. We can assume that this crystal owns some symmetries that are reflected in its crystallographic (complete) basis $\{g_{\eta}(\bm{k})\}$.
 Similar to the Bloch state, we could imagine that the symmetries emphasize some physical quantities. Assuming this, we propose a form for the potential that takes advantage
@@ -1439,8 +1445,7 @@ of the basis.
     V_{\bm{k}\bm{k}'} = \sum_{\eta} \lambda_{\eta} g_{\eta}(\bm{k})g_{\eta}(\bm{k}')
 \]
 $\eta$ is also often labelled as the channel \cite{FossheimSudbo2004}. Assuming we have a square lattice, 
-\begin{figure}[H]
-    \centering
+\begin{center}
     \begin{tikzpicture}
         \filldraw[color=black, fill = white , thick](0,0) circle (0.1);
         \filldraw[color=black, fill = TamLightGreen , thick](1,0) circle (0.1);
@@ -1453,8 +1458,8 @@ $\eta$ is also often labelled as the channel \cite{FossheimSudbo2004}. Assuming 
         \filldraw[color=black, fill = TamYellow , thick](1,-1) circle (0.1);
         \filldraw[color=black, fill = TamYellow , thick](-1,-1) circle (0.1);
     \end{tikzpicture}
-\end{figure}
-with interaction strength $U/2$ on site, for nearest neighbours $2V$ and $4W$ for second-nearest neighbours. We can for each site describe their position with a shift vector 
+\end{center}
+\noindent with interaction strength $U/2$ on site, for nearest neighbours $2V$ and $4W$ for second-nearest neighbours. We can for each site describe their position with a shift vector 
 to the central site. Using
 \[
     f(k,k')=\cos(k)\cos(k')+\sin(k)\sin(k'),
@@ -1463,19 +1468,19 @@ Fourier transforming these displacements leads to the following:
 \[
 \begin{aligned}
     V_{\bm{k}\bm{k}'} = U + &~2V\left(f(k_x,k_x')+ f(k_y,k_y')\right)\\
-    + &~4W \left(f(k_x,k_x') \cdot f(k_y,k_y')\right)
+    + &~4W \left(f(k_x,k_x') \cdot f(k_y,k_y')\right).
 \end{aligned} 
 \]
 We can then introduce the basis-functions $\{g_{\eta}(\bm{k})\}$ we talked about a few paragraphs ago.
 \begin{align*}
     g_{1}(\bm{k}) =& \frac{1}{2\pi}\\
-    g_{2}(\bm{k}) =& \frac{1}{2\pi}\bigl( \cos(k_x) + \cos(k_y)\bigr) \tag{$s$-wave}\\
-    g_{3}(\bm{k}) =& \frac{1}{2\pi}\cos(k_x) \cos(k_y)\\
-    g_{4}(\bm{k}) =& \frac{1}{2\pi}\bigl( \cos(k_x) - \cos(k_y)\bigr) \tag{$d$-wave}\\
-    g_{5}(\bm{k}) =& \frac{1}{2\pi}\sin(k_x) \sin(k_y)\\
+    g_{2}(\bm{k}) =& \frac{1}{2\pi}\bigl( \cos(k_x) + \cos(k_y)\bigr), \tag{$s$-wave}\\
+    g_{3}(\bm{k}) =& \frac{1}{2\pi}\cos(k_x) \cos(k_y),\\
+    g_{4}(\bm{k}) =& \frac{1}{2\pi}\bigl( \cos(k_x) - \cos(k_y)\bigr), \tag{$d$-wave}\\
+    g_{5}(\bm{k}) =& \frac{1}{2\pi}\sin(k_x) \sin(k_y),\\
 \end{align*}
-from which involves the following lambdas $\lambda_1 = 2U\pi^2, ~ \lambda_2=\lambda_4 = 4V\pi^2, ~ \lambda_3=\lambda_5=4W \pi^2$, and for greater
-$\eta$ we set $\lambda_{\eta\ge6} =0$.\\
+from which we get the following lambdas $\lambda_1 = 2U\pi^2, ~ \lambda_2=\lambda_4 = 4V\pi^2, ~ \lambda_3=\lambda_5=4W \pi^2$, and for greater
+$\eta$ we set $\lambda_{\eta\ge6} =0$.
 
 For $\eta \in \{1,2\}$, the corresponding $g$ is the identity under all symmetries of $C_{v4}$ and for $\eta \in \{3,4,5\}$ we observe a change of sign under  $\pi/2$ rotations.
 The same behaviour is found in the spherical harmonics for the respective  quantum numbers $l=0$ and $l=2$. From this we can deduce the use of the terms $s$-wave and $d$-wave.
@@ -1504,7 +1509,7 @@ $s$-wave is isotropic in the momentum space whereas the $d$-wave has a different
     The $d$-wave has a splitting for its part with positive and negative phase. We observe a degeneracy where the two parts overlap.}
 \end{figure}
 
-Further we can reintroduce the BCS gap equation \ref{eq:BCS_gap_eq} and obtain a lattice-dependent form for the gap:
+Further we can reintroduce the BCS gap equation \ref{eq:BCS_gap_eq}, and obtain a lattice-dependent form for the gap:
 \begin{equation}
     \begin{aligned}
     \Delta_{\bm{k}} =& -\sum_{\bm{k}'} V_{\bm{k}\bm{k}'}\Delta_{\bm{k}'}\chi(E_{\bm{k}})\\
@@ -1512,7 +1517,7 @@ Further we can reintroduce the BCS gap equation \ref{eq:BCS_gap_eq} and obtain a
     =& \sum_{\eta\in\natset{5}}\Delta_{\eta} g_{\eta}(\bm{k}).
     \end{aligned}
 \end{equation}
-This is a nice form to have as Fossheim and Sudbø \cite{FossheimSudbo2004} point out p.92. The gap is a linear combination of the physical quantities $g_{\eta}(\bm{k})$.
+This is a practical form to have, as Fossheim and Sudbø \cite{FossheimSudbo2004} point out p.92. The gap is a linear combination of the physical quantities $g_{\eta}(\bm{k})$.
 The newly introduced $\Delta_{\eta}$ are independent of the wave vector $\bm{k}$ but are function of the temperature. We can express these in the basis 
 of another $\eta'$ ($\lambda_{\eta\ge6} =0$):
 \begin{align*}
@@ -1520,36 +1525,38 @@ of another $\eta'$ ($\lambda_{\eta\ge6} =0$):
     \mathcal{M}_{\eta,\eta'} =& -\lambda_{\eta}\sum_{\bm{k}} g_{\eta}(\bm{k})g_{\eta'}(\bm{k}) \chi(E_{\bm{k}}).
 \end{align*}
 These are numerical cumbersome to compute, but taking $U>0$, $V<0$ and $W=0$ in the square lattice we obtain no attraction in the 
-$\lambda_1$-channel but attraction in the s- and $d$-wave channels. This tells us a lot like \cite{FossheimSudbo2004} analysed it. 
+$\lambda_1$-channel but attraction in the $s$- and $d$-wave channels. This tells us a lot like \cite{FossheimSudbo2004} analysed it. 
 First the gap is highly associated to the Fourier transform of the wave function of the Cooper-pairs.    
 Further the gap accommodate itself ``to be zero in the channel where the wave function is non-zero for zero separation between the electrons''\cite{FossheimSudbo2004} p.92.
-The s- and $d$-wave channels are preferred in order to avoid the on-site Coulomb repulsion (i.e. the Coulomb force between the two members of the pair).
+The $s$- and $d$-wave channels are preferred, in order to avoid the on-site Coulomb repulsion (i.e. the Coulomb force between the two members of the pair).
 This can be put in comparison with the special
 case of the phonon pairing. In the latest the electrons used retardation processes to cancel out the repulsion. They avoided themselves in time. 
-Here the avoidance takes place in space.\\
+Here the avoidance takes place in space.
 
 The manifestation of the retardation effects are actually a direct consequence of restricting ourselves to a thin shell around the Fermi-surface.
 Logically if we have a Cooper pair formation that does not follow this restriction, the whole Brillouin zone should be taken into account to compute the gap.\\
 
-Further we can express the Fourier transform of the gap as $\Delta(\bm{r}) = \sum_{\bm{k}} \Delta_{\bm{k}} e^{i\bm{k}\bm{r}}$ which leads $\Delta(0) = \sum_{\bm{k}} \delta_{\bm{k}}$.
-However, a repulsive interaction is obtained for $\Delta(\bm{0}) \neq 0$, so we need to find $\Delta_{\bm{k}}$s whose sum satisfies this. 
+We can express the Fourier transform of the gap as $\Delta(\bm{r}) = \sum_{\bm{k}} \Delta_{\bm{k}} e^{i\bm{k}\bm{r}}$, which leads $\Delta(0) = \sum_{\bm{k}} \delta_{\bm{k}}$.
+However, a repulsive interaction is obtained for $\Delta(\bm{0}) \neq 0$, so we need to find $\Delta_{\bm{k}}$, whose sum satisfies this. 
 This can be done using the $s$-wave and $d$-wave channels, i.e. $\Delta_{\bm{k}} = \Delta_0(T)g_2(\bm{k})$ and $\Delta_{\bm{k}} = \Delta_0(T)g_4(\bm{k})$.
 We already motivated superconductivity and its difficulty to maintain due to the phase fluctuations above the (freezing) critical temperature $T_C$. 
 However, superconductivity involving $d$-wave channels is believed \cite{FossheimSudbo2004} p.92 to be found in materials with high $T_C$.
-$\Delta_{\bm{k}} = \Delta_0(T)g_4(\bm{k})$ is therefore a good case of study.
+$\Delta_{\bm{k}} = \Delta_0(T)g_4(\bm{k})$ is therefore a good case of study.\\
 
 \paragraph{Density of Meissner states} $~$\\
-We imagine some fluctuation described by $g(\bm{k})$ 
-that only depend on $E_{\bm{k}} = \sqrt{\epsilon_{\bm{k}}^2 + \Delta_{\bm{k}}^2}$. Further we assume $\Delta$ being $\bm{k}$-
-independent for now. We can introduce the normal density of states.
+
+We imagine some fluctuations described by $g(\bm{k})$ 
+that only depend on $E_{\bm{k}} = \sqrt{\epsilon_{\bm{k}}^2 + \Delta_{\bm{k}}^2}$. We then assume $\Delta$ being $\bm{k}$-
+independent for now. We can introduce the normal density of states:
 \[
-    D_n(\epsilon) = \frac{1}{N} \sum_{\bm{k}} \delta(\epsilon - \epsilon_{\bm{k}})  
+    D_n(\epsilon) = \frac{1}{N} \sum_{\bm{k}} \delta(\epsilon - \epsilon_{\bm{k}}),
 \]
-with $N$ the number of Fourier modes. This is the same as the number of lattice sites for us \cite{FossheimSudbo2004} p.93.   
+with $N$ the number of Fourier modes. This is the same as the number of lattice sites for us \cite{FossheimSudbo2004} p.93.
+We then have:
 \[
-    \sum_{\bm{k}} g(\bm{k})= \int D_n(\epsilon)g\left(\sqrt{\epsilon^2-\Delta^2}\right) \dd \epsilon
+    \sum_{\bm{k}} g(\bm{k})= \int D_n(\epsilon)g\left(\sqrt{\epsilon^2-\Delta^2}\right) \dd \epsilon.
 \]
-as well as a variable transformation $E = \sqrt{\epsilon^2 + \Delta^2}$ which leads to
+We consider the variable transformation $E = \sqrt{\epsilon^2 + \Delta^2}$, which leads to:
 \[
     \dd E = \frac{\epsilon}{\sqrt{\epsilon^2 + \Delta^2}} \dd \epsilon ~~ \Longleftrightarrow ~~ \dd \epsilon = \frac{E}{\epsilon} \dd E,
 \]
@@ -1563,30 +1570,31 @@ Further we have $\parDif{\epsilon}{E} = \frac{E}{\sqrt{E^2-\Delta^2}} =\frac{E}{
 
 Then we use a common method in solid state physics to simplify the expression. We assume that $D_n(\epsilon)$ is slowly varying so that $D_n(\epsilon)\approx D_n(0)$
 where $\epsilon$ is measured relative to the Fermi surface. Hopefully we do not have any sharpness around the Fermi-surface \cite{FossheimSudbo2004} p.93. 
-We can therefore exclude the Van Hove singularities close to the Fermi-surface.
+We can therefore exclude the Van Hove singularities close to the Fermi-surface and obtain:
 \begin{align*}
     \frac{D_s(E)}{D_n(0)} \frac{E}{\sqrt{E^2-\Delta^2}} =& \frac{E}{\sqrt{E^2-\Delta^2}}\frac{D_n(\epsilon)}{D_n(0)}\\
     =&\frac{E}{\sqrt{E^2-\Delta^2}} \Theta (E- |\Delta|)
 \end{align*}
 We use the Heaviside step-function because the last term is either one or zero. This is our final expression for the density of the Meissner 
-state when the gap is $\bm{k}$-independent.
+state when the gap is $\bm{k}$-independent.\\
+
 For the $\bm{k}$ dependence of the gap we can use the spectral weight introduced in Eq. \ref{eq:SingleParticleSpectralWeight}.
 In analogy to the propagator or Green function introduced through the Dyson equation at Eq. \ref{eq:Dyson} for the electrons, we can define one for the 
-superconducting condensate that involves time-dependent fermionic operators.
+superconducting condensate, that involves time-dependent fermionic operators.
 \[
     G(\bm{k}, t; \sigma) = - \im \langle 0 | c_{\bm{k}\sigma}(t) c_{\bm{k}\sigma}^{\dagger}(0) | 0 \rangle
 \]
-involving the BCS superconducting ground state $|0\rangle$ which is an eigenstate of the Hamiltonian of Eq. \ref{eq:HamiltonianBCS2}. As before we can consider
-the Fourier transform of the propagator $G(\bm{k}, \omega; \sigma)$  
+This involves the BCS superconducting ground state $|0\rangle$, which is an eigenstate of the Hamiltonian of Eq. \ref{eq:HamiltonianBCS2}. As before, we can consider
+the Fourier transform of the propagator $G(\bm{k}, \omega; \sigma)$:
 \[
     G(\bm{k}, \omega; \sigma) = \frac{1}{2\pi} \int e^{\im\omega t} G(\bm{k}, \omega; \sigma)\dd t.
 \] 
 We recall that Cooper pairs are made of two electrons with opposite spin. We can first take a 
 look at the density of state of the pair-member with $\sigma =~ \uparrow$. 
 However, we here are only considering spin singlet pairing, so proving that the spectral weight $A$ is spin independent should
-show that computing it for $\sigma =~ \uparrow$ is enough as Fossheim and Sudbø argued in \cite{FossheimSudbo2004} p.94.\\
+show that computing it for $\sigma =~ \uparrow$ is enough, as Fossheim and Sudbø argued in \cite{FossheimSudbo2004} p.94.
 
-So without loss of generality we set $\sigma = ~ \uparrow$ and reintroduce the rotation of the basis of the $c$ operators 
+Therefore, without loss of generality, we set $\sigma = ~ \uparrow$, and reintroduce the rotation of the basis of the $c$ operators 
 we performed in Eqs.\ref{eq:RotationBasis_c1} and \ref{eq:RotationBasis_c2}.
 \begin{align*}
     G(\bm{k},t; \uparrow) = -\im \langle 0 |&~\left(\cos(\theta) \eta_{\bm{k}}^{\dagger}(t) - \sin(\theta) \gamma_{\bm{k}}^{\dagger}(t)\right)\\
@@ -1604,7 +1612,7 @@ and therefore
     \end{aligned}
 \end{equation}
 We can nicely split the propagator in the sum of free $\eta$- and $\gamma$-particles in the superconducting state.
-Employing to coherence factors of Eqs.\ref{eq:coherenceFac_u} and \ref{eq:coherenceFac_v} in the Fourier transform of we obtain
+Employing to coherence factors of Eqs.\ref{eq:coherenceFac_u} and \ref{eq:coherenceFac_v} in the Fourier transformed expression of the propagator, we obtain
 \[
     G(\bm{k}, \omega; \uparrow) = \frac{u_{\bm{k}}^2}{\omega - E_{\bm{k}} + \im\delta_{\bm{k}}} + \frac{v_{\bm{k}}^2}{\omega + E_{\bm{k}} - \im\delta_{\bm{k}}}.
 \]
@@ -1618,23 +1626,23 @@ This value is spin independent and using the arguments we've just given in such 
         =& \frac{1}{N} \sum_{\bm{k}} \left(u^2_{\bm{k}}\delta(\omega - E_{\bm{k}}) + v^2_{\bm{k}}\delta(\omega + E_{\bm{k}})\right).
 \end{align*}
 The density of state of the superconductive condensate $D_s$ is also spin independent since we are considering spin-singlet pairings. This formula should be used
-when computing simulations of the superconducting state.\\ 
+when computing simulations of the superconducting state. Reference \cite{Mjos2019} approximates the delta distribution with Gaussian one of small variance.\\ 
 
 \subsection{Transition temperature and energy gap}
 The goal of this discussion will be to derive a universal ratio between $\Delta$ and the crystal temperature. In the last section 
-we already introduced some expressions for $\Delta_{\bm{k}}(T)$ and $V_{\bm{k}\bm{k}}$. Let us consider the simplest case where the potential stays constant $V_{\bm{k}\bm{k}} = V$.
+we already introduced some expressions for $\Delta_{\bm{k}}(T)$ and $V_{\bm{k}\bm{k}}$. Let us consider the simplest case where the potential stays constant $V_{\bm{k}\bm{k}} = V$.\\
 
 The phonon modulated interaction has a cover $\omega_0 = \omega_D$, that is the Debye frequency. Inserting this back to the BCS gap equation 
-\ref{eq:BCS_gap_eq}, we see that the gap loses its $\bm{k}$-dependence and results as the identity when applying the symmetries
+\ref{eq:BCS_gap_eq}, we see that the gap loses its $\bm{k}$-dependence, and results in the identity when applying the symmetries
 ruling the crystal:
 \begin{equation*}
     1 = V\sum_{\bm{k}'} \frac{\tanh\left(\beta E_{\bm{k}'}\right)}{2 E_{\bm{k}'}}.
 \end{equation*}
-This equation can be easily solved for $T=T_C$ or $T = 0$.\\
+This equation can be easily solved for $T=T_C$ or $T = 0$.
 
 Considering $T$ approaching $T_C$ from bellow, we can assume that the gap vanishes. We replace the $\bm{k}$-sum by an integral over the normal 
-density of state $D_n(\epsilon)$. Due to the shell the sum occurs in a tiny volume around the Fermi-Surface, so that $D_n(\epsilon)$ is 
-evaluated close to the surface. We assume that in this neighbourhood $D_n$ varies slowly, such that avoid some van Hove singularities we 
+density of state $D_n(\epsilon)$. Due to the shell, the sum occurs in a tiny volume around the Fermi-Surface, so that $D_n(\epsilon)$ is 
+evaluated close to the surface. We assume that in this neighbourhood, $D_n$ varies slowly, such that we avoid some van Hove singularities. Therfore, we can 
 simply approximate $D_n(\epsilon) \rightarrow D_n(0)$. We choose zero because $\epsilon$ is counted relative to the surface in our early thoughts. 
 When introducing $\lambda = V D_n(0)$ we obtain:
 \begin{equation*}
@@ -1644,34 +1652,32 @@ When introducing $\lambda = V D_n(0)$ we obtain:
     \end{aligned}
 \end{equation*}
 Using $\gamma := \lim{m}{\infty} \left(\sum_{l\in\natset{m}} 1/l - \ln(m)\right)$ the Euler-Mascheroni constant. More details are provided
-in \cite{FossheimSudbo2004} p.88-89. We obtain
+in \cite{FossheimSudbo2004} p.88-89, and we obtain:
 \[
-    k_B T_C \approx 1.13\cdot  \omega_D e^{-1/\lambda}
+    k_B T_C \approx 1.13\cdot  \omega_D e^{-1/\lambda}.
 \]
 For $T\rightarrow 0$ the gap equation takes a simpler form to solve:
 \begin{equation*}
-        1 = V \sum_{\bm{k}'} \frac{1}{2 E_{\bm{k}'}} = \lambda\int_0^{\omega_D}  \frac{1}{\sqrt{\epsilon^2 + \Delta^2}}\dd \epsilon
+        1 = V \sum_{\bm{k}'} \frac{1}{2 E_{\bm{k}'}} = \lambda\int_0^{\omega_D}  \frac{1}{\sqrt{\epsilon^2 + \Delta^2}}\dd \epsilon,
 \end{equation*}
 and leads to 
 \[
-    \Delta(T=0) = 2 \omega_D e^{-1/\lambda}
+    \Delta(T=0) = 2 \omega_D e^{-1/\lambda},
 \]
 according to the same source. We see how these expressions are closely dependent on $\lambda$. Moreover, we can interpret the essential singularity
-at $\lambda\rightarrow 0$ as following: The attractive processes are singular perturbations of the non-interacting electron gas.
-$m$ is very demanding to solve even for simple metals and is a function of multiple small details of the system. We aim here 
-to acquire qualitative knowledge. Let us now bring the ratio
+at $\lambda\rightarrow 0$ as following: the attractive processes are singular perturbations of the non-interacting electron gas.
+$m$ is very demanding to solve even for simple metals, and is a function of multiple small details of the system. We aim here 
+to acquire qualitative knowledge is its calculation is not the focus here. Let us now bring the ratio
 \[
-    \frac{2\Delta(T=0)}{k_B T_C} = \frac{2 \pi}{e^{\gamma}} \approx 3.52
+    \frac{2\Delta(T=0)}{k_B T_C} = \frac{2 \pi}{e^{\gamma}} \approx 3.52,
 \]  
-which is a universal ratio and does not depend any more on the properties of the material. Knowing the critical temperature one can know
-the gap at $0\si{\kelvin}$.\\
+which is a universal ratio, and does not depend any more on the properties of the material. Knowing the critical temperature, one can know
+the gap at $\SI{0}{\kelvin}$.\\
 
 In this long section we have derived how the Cooper pairs raise from the coupling of two electrons of opposite spin and momentum. Using a mean field approach
 and a rotation of the basis we were able to reduce the many-body Hamiltonian to a single-body problem. This allowed use to derive a self-consistent solution for 
 the energy gap that the coupling of the electrons left behind. Then we have seen how the gap can be expressed in a basis of the crystallographic symmetries.
 Finally, we derived an expression for the density of the Meissner state.\\
 
-Now that we have a better understanding of the superconductivity, we can move on to the next section where we will present a method to self consistently solve
-the gap. This will be done by diagonalizing the Hamiltonian and read the superconductivity from the eigenvalues and -vectors. To do so we need to discretize the
-system, by introducing the tight binding model.\\
+Now that we have a better understanding of the superconductivity, it is now time to introduce our second relevant material: the altermagnets.
 \end{document}

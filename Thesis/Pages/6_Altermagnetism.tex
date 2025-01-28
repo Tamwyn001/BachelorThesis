@@ -6,7 +6,7 @@ The reader might already be familiar with ferromagnets and all the regular magne
 wave vector of each particle in a site, one can derive some symmetries under transform operations. For example a
 ferromagnet is symmetric under time-reversal and spin-rotation. In the example of the antiferromagnetism,
 we have two sub-lattice with opposite spins. In such systems the spin compensate each other resulting in a null magnetization.
-The system is symmetric under spin-flip and translation and was theorized in 1948 by Louis Néel as the Néel antiferromagnets \cite{Neel1936}.
+The system is symmetric under spin-flip and translation, and was theorized in 1948 by Louis Néel as the Néel antiferromagnets \cite{Neel1936}.
 Allowing more complexity one could imagine multiple ions in a unit cell linked by symmetries such as rotation and screw operations. Half of the ions in the cell
 own an opposite spin from the other half. The spectra compensate each other resulting in a zero net magnetization.
 Moreover, these mediums keep the same electron spectra under such transformations, making them the same as Néel's antiferromagnets.
@@ -25,14 +25,14 @@ which leads to the name altermagnetism \cite{Smejkal2022_2}. This class of mater
     \caption{The altermagnet shares similar properties with the antiferromagnets like two sublattices of opposite spin, resulting in a zero net
     magnetization. Whereas the antiferromagnet's sublattices are liked by a translation $t$ and a space inversion $\mathcal{P}$, in the altermagnet one can link
     each sublattice with a rotation, here labelled as $\mathcal{C}$. We observe as well an alternating sign in the energy spectra of both altermagnet's sublattices. 
-    Figure taken from \cite{Smejkal2022}\cite{Stonebraker}.}
+    The credits for the figure go to \cite{Smejkal2022} and \cite{Stonebraker}.}
 \end{figure}
 
 
 These properties put the altermagnet in between
 the conventional dichotomy of ferromagnets and antiferromagnet. In fact the altermagnet compensate its magnetical moments taking advantage of the two
 sublattices, like the antiferromagnet does. On the other hand, it shares similar properties with the ferromagnets, such as anomalous Hall effect,
-spin current \cite{Naka2021_2}, magneto-electric effect \cite{Smejkal2022_3}, tunnelling magnetoresistance \cite{Smejkal2022_4} among other \cite{Smejkal2022_2}.\\
+spin current \cite{Naka2021_2}, magneto-electric effect \cite{Smejkal2022_3} and tunnelling magnetoresistance \cite{Smejkal2022_4} among other processes \cite{Smejkal2022_2}.\\
 
 % Now that we have a better understanding of altermagnetism we can compare it with another class of material, where the sublattices
 % aren't linked with the conventional crystal symmetries.
@@ -42,9 +42,9 @@ spin current \cite{Naka2021_2}, magneto-electric effect \cite{Smejkal2022_3}, tu
 % but not both \cite{Mazin2024}. The Quin Luttinger's theorem, showed that such substance must have an integer number of Bohr spin
 % magnetic moment. Therefore, structures with a small net magnetization see these quantities be floored to zero. \\
 
-A few materials seem to exhibit these properties. 1D material won't work because of lack of rotation possibilities. A diverse list of two and three-dimensional 
-materials were listed by \cite{Smejkal2022} such as semimetals with a Cr$_2$O monolayer \cite{Chen_2023}, a variety of insulators like 
- perovskite oxide LaMnO$_3$ \cite{Yuan2021} CaCrO$_3$ \cite{Naka2021}, ferrite  Fe$_2$O$_3$ \cite{Smejkal2022_2}, or organic insulators $\kappa$-Cl \cite{Naka2019}.
+A few materials seem to exhibit these properties. 1D material will not work because of the lack of rotation possibilities. A diverse list of two and three-dimensional 
+materials were listed by \cite{Smejkal2022}. We can cite semimetals with a Cr$_2$O monolayer \cite{Chen_2023}, a variety of insulators like 
+perovskite oxide LaMnO$_3$ \cite{Yuan2021} CaCrO$_3$ \cite{Naka2021}, ferrite  Fe$_2$O$_3$ \cite{Smejkal2022_2}, or organic insulators $\kappa$-Cl \cite{Naka2019}.
 We find as well the chalcogenide MnTe semiconductor \cite{Smejkal2022_2}.
 
 On the sake of practical application, researchers have found (an exhaustive list is provided in \cite{Mazin2024}) that
@@ -59,7 +59,7 @@ After this introduction on altermagnets, we intend to find a way to implement th
 distinguish two types of altermagnet.
 In the first type, the altermagnet's lattice site have different distance to the neighbours depending on the linking axis and the 
 spin of the particle in the site. This is illustrated in Fig. \ref{fig:altermagnet_lattice} $(\bm{a})$. On the other hand, we can consider a unit cell being unsymmetrical
-in its ion position. We consider a square lattice were each unit cell has a non-magnetic ion and two magnetic ions with opposite spin.
+in its ion position. We consider a square lattice were each unit cell has a non-magnetic ion and two magnetic ions with opposite spins.
 Please consider the second schema $(\bm{b})$.\\
 
 \begin{figure}[H]
@@ -180,28 +180,29 @@ After giving an introduction on the geometric background of altermagnet we can n
 we are going to focus on two simple transformation. The inversion $P$ and the spin flip (time reversal) $T$ which are broadly discussed in the literature \cite{Smejkal2022}\cite{Smejkal2022_2}.
 \begin{alignat*}{2}
     P : \bm{r} &\mapsto -\bm{r} ~~~~~~~~~~~~~~~~~~~~ &~~~\realnum^3 \rightarrow \realnum^3, \\
-    T : t &\mapsto -t  ~\hat{=} ~\sigma \mapsto -\sigma &\realnum \rightarrow \realnum.~
+    T : t &\mapsto -t  ~\hat{=} ~\sigma \mapsto \overline{\sigma} &\realnum \rightarrow \realnum,
 \end{alignat*}
-We can first assume that the energy $\epsilon$ of the particle (or band structure) depends on the spin $\sigma$ and the wave vector $\bm{k}$. Using $\bm{p} = \dd \bm{r}/\dd t$ and the de Broglie hypothesis 
-$\bm{p} = \hbar\bm{k}$ \cite{Broglie1924} leads to: 
+with $\overline{\sigma}$ the opposite spin of $\sigma$.
+We can first assume that the energy $\epsilon$ of the particle (or band structure) depends on the spin $\sigma$ and the wave vector $\bm{k}$. The equation $\bm{p} = \dd \bm{r}/\dd t$ and the de Broglie hypothesis 
+$\bm{p} = \hbar\bm{k}$ \cite{Broglie1924} can lead to: 
 \begin{align*}
     P \bigl(\epsilon(\bm{k}, \sigma)\bigr) &= \epsilon(-\bm{k}, \sigma)\\
-    T \bigl(\epsilon(\bm{k}, \sigma)\bigr) &= \epsilon(-\bm{k}, -\sigma)
+    T \bigl(\epsilon(\bm{k}, \sigma)\bigr) &= \epsilon(-\bm{k}, \overline{\sigma})
 \end{align*}
-We observe the $PT$ operation $P\circ T$. If the system is $PT$ symmetric one should get $\epsilon(\bm{k}, \sigma)= P\circ T\bigl(\epsilon(\bm{k}, \sigma)\bigr)$.
+We observe the $PT$ operation $P\circ T$. If the system is $PT$ symmetric, one should get $\epsilon(\bm{k}, \sigma)= P\circ T\bigl(\epsilon(\bm{k}, \sigma)\bigr)$.
 Assuming it's the case we can write
 \[
-    \epsilon(\bm{k}, \sigma)= P\circ T\bigl(\epsilon(\bm{k}, \sigma)\bigr) =  \epsilon(\bm{k}, \downarrow)
+    \epsilon(\bm{k}, \sigma)= P\circ T\bigl(\epsilon(\bm{k}, \sigma)\bigr) =  \epsilon(\bm{k}, \overline{\sigma})
 \] 
 and therefore the $PT$-symmetric systems are spin-degenerated. We have the same energy for a given momentum at two opposite spins.
  Reciprocally this means that the existence 
-of $ \epsilon(\bm{k}, \sigma)$ is followed by an observation of $ \epsilon(\bm{k}, -\sigma)$.\\
+of $ \epsilon(\bm{k}, \sigma)$ is followed by an observation of $ \epsilon(\bm{k}, \overline{\sigma})$.\\
 
 \paragraph{A few examples}$~$\\
 
 To illustrate these symmetries we can consider a few examples.
 We can imagine having a small lattice section for the sake of readability. First we choose a ferromagnetic lattice, where we apply the space inversion
-in the middle where the black cross is. The arrows represent the spin and the overall sign of the wave vector $\bm{k}$ is given under each state. Moreover, 
+in the middle, on the black cross. The arrows represent the spin and the overall sign of the wave vector $\bm{k}$ is given under each state. Moreover, 
 we use the shading to keep track of the real space location of the site. This representation is in the real space.\\
 \begin{figure}[H]
     \centering
@@ -252,8 +253,8 @@ we use the shading to keep track of the real space location of the site. This re
         \end{tikzpicture}
 
 \end{figure}
-The relevant variables for the symmetry in the spectrum are the spin projection and the momentum. We see however that the spin are flipped before and after the $PT$-operation.
-Letting the spin points downwards again will require to use an additional operation. Therefore, the ferromagnet is not $PT$-symmetric, and we observe no spin degeneracy as the
+The relevant variables for the symmetry in the spectrum are the spin projection and the momentum. We see, however, that the spin show a different spin orientation before and after the $PT$-operation.
+Letting the spins point downwards again will require to use an additional operation. Therefore, the ferromagnet is not $PT$-symmetric, and we observe no spin degeneracy as the
 equation shows it.\\
 
 The antiferromagnet has a spin switch in every direction. Here, when choosing a point to apply our operations to, we see that 
@@ -357,23 +358,23 @@ However, if we apply the inversion in the in-between, we observe something diffe
         \draw[->,semithick] (3.5,0) -- (4.5,0)  node[midway, above] {\(P\)};
     \end{tikzpicture}
 \end{figure}
-At this point, we apply the $P$ transformation around makes the antiferromagnets having a $PT$ symmetry. We see that the lattice site have moved but only the spin and
-the wave vector takes part to the band $\epsilon$. We therefore have a degeneracy in the energy spectrum. Finding at least one point where the $PT$ 
+Applying the $P$ transformation around this point makes the antiferromagnets having a $PT$ symmetry. We see that the lattice site have moved, but only the spin and
+the wave vector take part to the band $\epsilon$. We therefore have a degeneracy in the energy spectrum. Finding at least one point where the $PT$ 
 symmetry works makes the system $PT$ symmetric.\\
 
-If we now take a look at an altermagnets pictured in Fig. \ref{fig:altermagnet_lattice}, we have two different models to test. In the first one $\bm{(a)}$
+If we now take a look at an altermagnets pictured in Fig. \ref{fig:altermagnet_lattice}, we have two different models to test. In the first one $\bm{(a)}$,
 the effect of the time reversal $T$ makes the hopping change $m\rightarrow -m$. Then we find no point
-to invert the system around so that this first model doesn't have a $PT$ symmetry. For the second one $\bm{(b)}$
-we can first invert all spin but afterwards inverting the space doesn't bring back the system in the original configuration.
-In fact neither applying the $P$ after $T$ on the lattice point nor on the space in-between leads to the lattice we began with. In both cases the 
+to invert the system around so that this first model does not have a $PT$ symmetry. For the second one $\bm{(b)}$,
+we can first invert all spins, but afterwards, inverting the space does not bring back the system in the original configuration.
+In fact, neither applying the $P$ after $T$ on the lattice point, nor on the space in-between, leads to the lattice we began with. In both cases, the 
 degeneracy is lifted, we have dissimilar energies for the different spin-orientation. This is the reason for the band splitting we discussed in the introducing 
-paragraph.\\
+paragraph.\newpage
 
-\paragraph{Brief mention of spin-orbit coupling} $~$ \\
+\paragraph{Brief mention of the spin-orbit coupling} $~$ \\
 
-We refer as spin-orbit coupling (SOC) the interaction between the spin of the electron and the orbital motion. 
+We refer to spin-orbit coupling (SOC) as the interaction between the spin of the electron and the orbital motion. 
 When SOC is discarded we observe a rotation symmetry around the spins. A rotation $R$ can turn the spin back after the application of $T$
-resulting in a $RT$ symmetry. $RT\bigl(\epsilon(\bm{k},\sigma)\bigr) = \epsilon(-\bm{k},\sigma)$ must equal $\epsilon(\bm{k},\sigma)$.\\
+resulting in a $RT$ symmetry. $RT\bigl(\epsilon(\bm{k},\sigma)\bigr) = \epsilon(-\bm{k},\sigma)$ must equal $\epsilon(\bm{k},\sigma)$.
 
 If we now consider a collinear magnet without SOC, we have a $RT$ but no $PT$ symmetry. Under such circumstances the spin-splitting must be symmetric under 
 $\epsilon(-\bm{k},\sigma) = \epsilon(\bm{k},\sigma)$ which describes an even band structure. Such systems are called inversion symmetric altermagnets.\\
@@ -390,26 +391,7 @@ the desired hopping amplitude, and $\bm{m}_{ij}$ scales and masks the Pauli matr
 Now having the normal metal t-hopping and this term leads to the $t\pm m$ we
 described in Fig. \ref{fig:altermagnet_lattice} (\textbf{a}).\\
 
-Since the BdG formalism uses fermionic operators, we again need to bring the matrix in a way that reflects the fermionic properties with regard to the $\check{c}$ operator.
-We can remake use of Eq. \ref{eq:Trick1}:
-\begin{equation*}
-    H_{AM} = -\sum_{\langle i j\rangle\sigma\sigma'} \left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} \frac{1}{2}\left(c_{i\sigma}^{\dagger} c_{j\sigma'} - c_{i\sigma'}c_{j\sigma}^{\dagger}\right).
-\end{equation*}
-For the last summand we split the sum, exchanged the labelling of the states $i$ and $j$ and recombined the sums. However, due to the matrix element in the front
-that we want to factorize with, we can't exchange the labellings of $\sigma$ and $\sigma'$.
-Bringing this Hamiltonian in the Nambu formalism we obtain by defining
-$\left(\bm{m}_{ij} \cdot \bm{\sigma}\right)_{\sigma\sigma'} = \mathcal{M}_{\sigma\sigma'}$ 
-the following Hamiltonian:
-\begin{equation*}
-    H^{(AM)}_{ij} = \frac{1}{2}\begin{pmatrix}
-        -\mathcal{M} & \mathcal{O}\\
-        \mathcal{O} & \mathcal{M}^T
-    \end{pmatrix}
-    ,~~~ \text{where} ~~~ \mathcal{M} = \begin{pmatrix}
-        \mathcal{M}_{\uparrow\uparrow} & \mathcal{M}_{\uparrow\downarrow}\\
-        \mathcal{M}_{\downarrow\uparrow} & \mathcal{M}_{\downarrow\downarrow}\\
-    \end{pmatrix}.
-\end{equation*}
-Making use of this matrix in an altermagnetic lattice point, we can generate the according eigenvectors and -values. We can then study how the physical quantities 
-behave in this material.\\
+Now that we have a better understanding of the superconductivity and the altermagnets, we can move on to the next section where we will present a method to self consistently solve
+the gap. This will be done by diagonalizing the Hamiltonian, and read the superconductivity from the eigenvalues and -vectors. To do so we need to discretize the
+system by introducing the tight binding model.
 \end{document}
