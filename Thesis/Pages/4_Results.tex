@@ -2,20 +2,21 @@
 \begin{document}
 \subsection{Results}
 We start with the simplest system, a superconductor involving some vertical periodic boundary conditions.
-We use an attractive potential of $U=\SI{-2}{\electronvolt}$ for the on site superconductivity in the superconductor and zero everywhere else.
-The chemical potential is given in $\si{\electronvolt}$
+We use an attractive potential of $U=\SI{2}{\electronvolt}$ for the on site superconductivity in the superconductor and zero everywhere else.
+The chemical potential is given in $\si{\electronvolt}$.
 \begin{figure}[H]
   \centering
   \input{../Plots/SC40/NotFourier/MeanLine/FreeDelta/allMU/plot.tex}
-  \caption{The expectation value of the c operators taking part into the gap as $\Delta_i = U_i\langle c_{i\uparrow}c_{i\downarrow}\rangle$. The  
+  \caption{The expectation value of the $c$ operators taking part into the gap as $\Delta_i = U_i\langle c_{i\uparrow}c_{i\downarrow}\rangle$. The  
   vertical periodic boundary condition makes the results on each site on the same $x$-coordinate being the same.
     We can then form an average on each of these $y$-slices and plot the result.}
 \end{figure}
 The superconducting gap lies around $0.01\cdot U$ and $0.16\cdot U$ for the range of selected chemical potentials. Further we observe a 
 clear symmetry in the Cooper pairs distribution around the level $\mu =0$. The overlap of the Fermi surface with the $s$-wave seams
 to be the same for $\pm\mu$ (see Fig. \ref{fig:Brillouin}). In fact if the accessible states are also found where the superconducting gap 
-is defined, we expect the electrons to be more likely to bind into Cooper pairs.\\   
-Further we observe some oscillations on the left and right sides that are well-defined over three to four sites towards the bulk. On these locations the sites have only three
+is defined, we expect the electrons to be more likely to bind into Cooper pairs.
+
+Furthermre, we observe some oscillations on the left and right sides that are well-defined over three to four sites towards the bulk. On these locations the sites have only three
 neighbours, there are open boundaries, the rest is vacuum. One can see this lack of neighbours as impurities in the system. 
 A first interpretation can be given by the Friedel oscillations \cite{Harrison1970}. The boundary disturbs the electron density and causes decreasing oscillations towards
 the bulk. The Cooper-pairs being made of electrons, these oscillations are reflected in the gap as well. Another contribution to the oscillations
@@ -26,12 +27,12 @@ These can interfere with the Cooper pairs and cause the oscillations in the spac
   \centering
   \includegraphics[width=0.45\textwidth]{Ressources/GapBrillouin.png}
   \caption{The first Brillouin zone with the Fermi surface for $\mu$ of \textcolor{Brillou1}{$\bm{-3.8}$}, \textcolor{Brillou2}{$\bm{0}$},
-  \textcolor{Brillou3}{$\bm{1.4}$} and \textcolor{Brillou4}{$\bm{3.8}$}. The BCS gap is represented by the black circle. Its size is given such that 
+  \textcolor{Brillou3}{$\bm{1.4}$} and \textcolor{Brillou4}{$\bm{3.8}$}. The BCS gap is represented by the black circle. Its size is given, such that 
   we can see that at a $\mu>0$ the states that can be found in the gap are less present until they vanish for a high $\mu$. For low $\mu$ there is
   not many states accessible to fill the gap as well. The figure was made with Desmos.}
   \label{fig:Brillouin}
 \end{figure}
-In the simulation the size of the gap is such, that the Fermi surface 
+In the simulation, the size of the gap is such, that the Fermi surface 
 covers the same area of the gap representation in reciprocal space for $\pm\mu$.
 A maximum around $\mu=0$ is expected as the Fermi surface is the largest there.   
 
@@ -45,7 +46,7 @@ with the others. $\ast$ represents a placeholder for the material a curve descri
 \begin{figure}[H]
   \centering
   \input{../Plots/AllMaterials/Mu-0.5/plot.tex}
-  \caption{Evolution of the gap in the $x$ direction for a junction of SC-N, SC-FM and SC-AM at $\mu=-0.5$. Hopping $m=0.5$.}
+  \caption{Evolution of the gap in the $x$ direction for a junction of SC-N, SC-FM and SC-AM at $\mu=-0.5$. A hopping $m=0.5$ is used.}
   \label{fig:SC_START_Mu-0.5}
 \end{figure}\begin{figure}[H]
   \centering
@@ -59,34 +60,34 @@ with the others. $\ast$ represents a placeholder for the material a curve descri
   \caption{A junction of SC-N, SC-FM and SC-AM at $\mu=-2.5$, and a hopping $m=0.5$.}
     \label{fig:SC_START_Mu-2.5}
 \end{figure}
-We first take a look at the superconductor (SC). Inside it the gap is not be the same for $\mu=-0.5,-1.5$
+We first take a look at the superconductor (SC). Inside it, the gap is the same for $\mu=-0.5,-1.5$,
 and settles around $0.1\cdot U$. Most likely the increase of the Fermi surface do not give an additional contribution to the gap.
 The gap is however one order of magnitude smaller for $\mu=-2.5$. Here the withdrawal of the Fermi surface is more relevant and the 
 gap becomes smaller.
 
 We have a clear decay of the gap after entering the normal metal (N). At this point, 
-studies that were already made tend to have an exponential decay of the gap \cite{Mjos2019}. Having a logarithmic scale we would
+studies that were already made tend to have an exponential decay of the gap \cite{Mjos2019}. Having a logarithmic scale, we would
 except a more linear behaviour, but this is still a reasonable exponential decay. Another way to approach the line would be to increase the 
 resolution of the lattice, as well as simulating a more squared one. This decay makes the expectation value results in a difference of an entire
-of magnitude from one side to the other of the N. For the smallest $\mu$ we see that the decay is weaker, the gap lost
+of magnitude from one side to the other of the N. For the smallest $\mu$, we see that the decay is weaker, the gap lost
 half of its amplitude after crossing the N. Further we see that both the FM and the AM add some oscillations in the decay. \\
 
 The ferromagnet follows closely the normal metal for $\mu=-0.5,-1.5$. It is interesting to note a clean exponential
-decay when having a chemical potential of $-2.5$ modulated by oscillations. We observe about the same number of oscillations and about of
-the same amplitude in these three cases. In the AM the initial decay is stronger in the sites near the 
-interface than in the FM. Then the decay seams to follow the FM. We observe about the same number of oscillations in the FM and the AM.
+decay when having a chemical potential of $-2.5$, modulated by oscillations. We observe about the same number of oscillations and about of
+the same amplitude in these three cases. In the AM, the initial decay is stronger in the sites near the 
+interface than in the FM. Then, the decay seams to follow the FM. We observe about the same number of oscillations in the FM and the AM.
 For $\mu=-0.5$ we observe a clean line in the first four sites of the AM. Then we have oscillations and the Cooper-pairs are more present
 than expected regarding the initial decay. The reason might be that the first oscillation combined with the initial decay make the line
-reach it's second-deepest point (around $10^{-4}$) and therefore everything looks more flat.
+reach its second-deepest point (around $10^{-4}$) and therefore everything looks more flat.
 
 In the AM the oscillation amplitude increases with a decreasing $|\mu|$.
 We observe nearly two orders of magnitude in their amplitude for $\mu=-0.5$ compared to one order of magnitude for $\mu=-2.5$.
-We tried to simulate these for a $\mu=-3.5$ but the algorithm  converge to values that are numerically zero everywhere ($10^{-16}$).
+We tried to simulate these for a $\mu=-3.5$, but the algorithm  converge to values that are numerically zero everywhere ($10^{-16}$).
 It looks like the Fermi-surface is too small and there is a lack of electrons to build the Cooper pairs.\\
  
 These oscillations are more likely due to the fact that we have a spin-dependent hopping. In fact, we have the same behaviour for the AM
-and the FM, but not in the N. As a result of the spin-splitted Fermi surfaces the electrons in the Cooper pairs have different momenta.
-This phenomenon causes the superconductivity correlation in the FM to oscillate \cite{Jong1995}. A similar behaviour happens inside the AM.
+and the FM, but not in the N. As a result of the spin-splitted Fermi-surfaces, the electrons in the Cooper pairs have different momenta.
+This phenomenon causes the superconductive correlation function in the FM to oscillate \cite{Jong1995}. A similar behaviour happens inside the AM.
 
 This dynamic influences the gap, and the different components of the gap interfere with each other, resulting
 periodically in especially low values. We see that the direction-dependence of the altermagnetic hopping causes a weaker gap and 
@@ -133,7 +134,7 @@ This yields to a smaller increase in the number of Cooper pairs when compared to
 
 
 We know that the Cooper pairs leak from the SC. It is reasonable to state that they can leak in every direction from a site on the interface.
-Due to interferences between them, we can expect to have a net diffusion along the normal of the interface. By doing so the leaking that we see
+Due to interferences between them, we can expect to have a net diffusion along the normal of the interface. By doing so, the leaking that we see
 should take place along the $(1,-1)$ axis: The leaking goes through the oscillations along the normal. This results in more spread
 oscillations than in the straight interface case for the same travel length.
 
@@ -143,7 +144,7 @@ oscillations than in the straight interface case for the same travel length.
   \caption{An arbitrary oscillating exponential decay in the $x$-direction. Going these oscillations along $x$ or along the diagonal $(1,-1)$ axis results in different
   experienced oscillations for the same travel length. The plot was made with Desmos.}
 \end{figure}
-Towards simulating the Josephon junction we can represent the current in the superconductor.
+Towards simulating the Josephon junction, we can represent the current in the superconductor.
 We know that the current is proportional to the phase gradient of the superconducting gap \cite{Orlando2003}.
 We can experimentally apply a voltage difference between the two sides of the superconductor to induce a phase gradient \cite{Orlando2003}.
 To simulate this we will hold the phase fixed on the sides maintaining a difference of $117^{\circ}$ between the two sides.
@@ -153,12 +154,12 @@ We will study the current for different chemical potentials.
 \begin{figure}[H]
     \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting_-2.0944/plot.tex}
     \caption{Progression of the complex phase of the gap in a 30 sites long SC for multiple chemical potentials.
-     A phase on side $\varphi_0 = -2\pi/3$ and gradient of $117^{\circ}$.}
+     A phase on the left side of $\varphi_0 = -2\pi/3$ and gradient of $117^{\circ}$ are used.}
     \label{fig:Phase-2pi3}
 \end{figure}
 \begin{figure}[H]
     \input{../Plots/SC30/NotFourier/MeanLine_Phase/FixedLinearPhaseGradient/Phase117deg/allMU/starting_1.0472/plot.tex}
-    \caption{The complex phase of the gap in a 30 sites long SC. A phase on side $\varphi_0 = \pi/3$ and gradient of $117^{\circ}$.}
+    \caption{The complex phase of the gap in a 30 sites long SC. A phase on the left side of $\varphi_0 = \pi/3$ and gradient of $117^{\circ}$ are used.}
     \label{fig:Phasepi3}
 \end{figure}
 We see that the profile of the curve is the same regardless the starting phase. The slope of the gradient increases with a falling $|\mu|$.
@@ -185,7 +186,7 @@ Cooper pairs and a less accurate phase gradient.
 \end{table}
 
 
-We see that the difference in the slope between $\mu=-2.5$ and $-1.5$ is weaker than between $\mu=-1.5$ and $-0.5$. As discussed earlier this
+We see that the difference in the slope between $\mu=-2.5$ and $-1.5$ is weaker than between $\mu=-1.5$ and $-0.5$. As discussed earlier, this
 is a proof that the extension of the Fermi surface does not bring a lot of additional states to contribute to the gap.\\
 
 Now we can plot the spacial representation of the current in the superconductor with the different phase gradient produced above. We remember
@@ -217,8 +218,8 @@ The abrupt changes described in Figs. \ref{fig:Phase-2pi3} and \ref{fig:Phase-2p
 The current in the middle is ten times stronger with a $\mu$ of $-1.75$ than with a $\mu$ of $-2.75$. There are three orders of magnitude
 of difference between the current strength in $\mu = -1.75$ and $-3.75$. The behaviour $I\propto\nabla\varphi$ \cite{Orlando2003} is nevertheless verified.\\
 
-One last measurement to perform is the current continuity. No charges should be generated or lost. This of course doesn't apply on
-the sides where we artificially fix the phase. Taking a function $f$ discretized on sites $i$ we have $\partial_x f = (f_{i+1} - f_{i-1} )/2a$,
+One last measurement to perform is the current continuity. No charges should be generated or lost. This, of course, does not apply on
+the sides, where we artificially fixed the phase. Taking a function $f$ discretized on sites $i$ we have $\partial_x f = (f_{i+1} - f_{i-1} )/2a$,
 $\partial_y f = (f_{i+N_x} - f_{i-N_x} )/2a$ with
 $a$ the lattice spacing. We know that we normalized the lattice spacing to $1$. Finally, we have $\nabla f = (\partial_x + \partial_y) f$ as the divergence
 of $f$.
@@ -252,7 +253,7 @@ The first cliff is positive, and the second one is negative.:
 Considering the derivation we defined above, if the site $i+1$ has a stronger current than the site $i$, then $\partial_x I > 0$.
 On the other hand for the last five sites we have $\partial_x I <0$ due to $I_{i+1}< I_i$. Here the current difference involved displays two to three orders of magnitude.
 On the first and last site there is a discontinuity due to the missing neighbours. For the second and one before the last sites, there is a sudden change in the current
-between sites two and three, as well as between the last and the one before the last site.\\
+between sites two and three, as well as between the last and the one before the last site. We therefore observe these cliff effects.\\
 
 
 \subsection{Conclusion and outlook}
@@ -267,7 +268,7 @@ Adding a diagonal interface to the system, we observed the same exponential deca
 the leaking of the Cooper pairs along the normal of the interface. This is due to the interference of the leaking Cooper pairs.
 
 Towards the modelling of a Josephon junction with an altermagnetic material, we achieved to represent the current in a superconductor.
-The current is proportional with the phase gradient of the superconducting gap, and its strength grows with the number of Cooper pairs.
+The current is proportional to the phase gradient of the superconducting gap, and its strength grows with the number of Cooper pairs.
 Moreover, the current verifies the charge conservation.
 More work needs to be done to represent the current in the altermagnet between two different superconductors.\\
 
@@ -283,12 +284,12 @@ proximity effect of a $d$-wave superconductor with the altermagnet. However, due
 \begin{figure}[H]
     \input{../Plots/SC40/DWave/StraightInterface/FreeDelta/diffMUplot.tex}
     \caption{$d$-wave superconductive parameter $F_d$ taking part into the gap $\Delta_{d,i} = V_i F_{d,i}$ for different chemical potential. This parameter is purely 
-    real}
+    real.}
 \end{figure}
 As we can see the amplitude of the $d$-wave gap is not the same as the conventional BCS gap. We still observe this symmetry around $|\mu|$ for the range of selected chemical potentials in the bulk.
 However, we have a decrease from $\pm3.5$ to $\pm2.5$ before growing towards $\pm0.5$. The parameter is weaker for $\mu=\pm2.5$ and $\pm3.5$ than the BCS gap but
-about the same value for $\pm0.5$. We see that the Friedel oscillations as well as the presence of bound states still provoke oscillations on the sites near the vacuum.\\
-We see as well that the gap is not symmetric around bulk along the $x$ axis. This might be caused by the oscillations that have different amplitude and frequency
+about the same value for $\pm0.5$. We see that the Friedel oscillations as well as the presence of bound states still provoke oscillations on the sites near the vacuum.
+We see as well, that the gap is not symmetric around bulk along the $x$ axis. This might be caused by the oscillations that have different amplitude and frequency
 for the different chemical potentials.\\
 
 
