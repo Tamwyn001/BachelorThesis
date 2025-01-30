@@ -150,6 +150,9 @@
 
 \newcommand{\rem}[1]{\textcolor{TamGreen}{#1}}
 \thispagestyle{empty}
+% \includepdf[pages=-]{Ressources/Title.pdf} 
+% \newpage
+\thispagestyle{empty}
 \begin{center} 
     \noindent\Huge.\\
     \noindent$\circ$\\
@@ -172,7 +175,11 @@
 \textbf{Written by} Arto Steffan, \\
 \textbf{under the supervision of} Prof. Dr. Jacob Wüsthoff Linder, \\
 \textbf{and corrected by} Prof. Dr. Wolfgang Belzig.\\
-\vspace*{124pt}
+\vspace*{112pt}
+\begin{center}
+    February 3rd, 2025
+\end{center}
+\vspace*{12pt}
 \begin{center}
     \rule{.4\textwidth}{0.4pt}
 \end{center}
@@ -187,17 +194,24 @@
         \vspace*{12pt}
     \end{subfigure}
 \end{figure}
-\newpage
 
+
+\newpage
+% \shipout\null
 \subfile{Pages/0_Acknolegmend.tex} 
 \vspace*{7pt}
+
 \newpage
+% \shipout\null
 
 % -----------------------------------------------------------
 % Content prepartion
 
     \tableofcontents
     \thispagestyle{empty}	
+    
+\newpage
+% \shipout\null
     \setcounter{page}{1}
     \pagenumbering{arabic}
 
@@ -244,9 +258,70 @@
 
 \newpage
     \subfile{Pages/Literature.tex}
+\newpage
+% \includepdf[pages=-]{Ressources/Eigenstaendigkeitserklearung3.pdf}
+% \includepdf[pages=-]{Ressources/Themenzuteilung Steffan 1 Gutachter mit Verlängerung.pdf}
+\vspace*{150pt}
+\thispagestyle{empty}
 
-\includepdf[pages=-]{Ressources/Eigenstaendigkeitserklearung3.pdf}
-\includepdf[pages=-]{Ressources/Themenzuteilung Steffan 1 Gutachter mit Verlängerung.pdf}
+\begin{center}
+    
 
-
+\begin{tikzpicture}
+    \coordinate (A) at (0,0);
+  
+    \coordinate (B) at (0.5, 0.5);
+    \coordinate (C) at (1.5, 0.5);
+    \coordinate (D) at (1.5, -0.5);
+    \coordinate (E) at (0.8, -0.5);
+    \coordinate (F) at (0.8, 0.2);
+    \coordinate (G) at (1, 0.2);
+  
+    \coordinate (H) at (0.5, -0.2);
+    \coordinate (I) at (0.5, -0.7);
+    \coordinate (J) at (3.5, -0.7);
+    \coordinate (K) at (3.5, -0.1);
+    \coordinate (L) at (2.2, -0.1);
+    \coordinate (M) at (2.2, -0.5);
+    \coordinate (N) at (3.2, -0.5);
+  
+    \coordinate (S) at (1.7, 0.5);
+    \coordinate (O) at (1.7, 0.1);
+    \coordinate (P) at (3, 0.1);
+    \coordinate (Q) at (3, 0.3);
+    \coordinate (R) at (2.3, 0.3);
+  
+    \draw[thick] (B) -- (C) -- (D) -- (E) -- (F) -- (G);  
+    \draw[thick] (H) -- (I) -- (J) -- (K) -- (L)-- (M) -- (N);  
+    \draw[thick] (S) -- (O) -- (P) -- (Q) -- (R);
+  
+    \node[] at (A) {\(\oint\)};
+  
+    \coordinate (-B) at (-0.5, 0.5);
+    \coordinate (-C) at (-1.5, 0.5);
+    \coordinate (-D) at (-1.5, -0.5);
+    \coordinate (-E) at (-0.8, -0.5);
+    \coordinate (-F) at (-0.8, 0.2);
+    \coordinate (-G) at (-1, 0.2);
+  
+    \coordinate (-H) at (-0.5, -0.2);
+    \coordinate (-I) at (-0.5, -0.7);
+    \coordinate (-J) at (-3.5, -0.7);
+    \coordinate (-K) at (-3.5, -0.1);
+    \coordinate (-L) at (-2.2, -0.1);
+    \coordinate (-M) at (-2.2, -0.5);
+    \coordinate (-N) at (-3.2, -0.5);
+  
+    \coordinate (-S) at (-1.7, 0.5);
+    \coordinate (-O) at (-1.7, 0.1);
+    \coordinate (-P) at (-3, 0.1);
+    \coordinate (-Q) at (-3, 0.3);
+    \coordinate (-R) at (-2.3, 0.3);
+  
+    \draw[thick] (-B) -- (-C) -- (-D) -- (-E) -- (-F) -- (-G);  
+    \draw[thick] (-H) -- (-I) -- (-J) -- (-K) -- (-L)-- (-M) -- (-N);  
+    \draw[thick] (-S) -- (-O) -- (-P) -- (-Q) -- (-R);
+  
+   \end{tikzpicture}
+\end{center}
 \end{document}
